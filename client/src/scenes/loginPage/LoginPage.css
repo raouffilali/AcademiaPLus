@@ -1,0 +1,18 @@
+* {
+    margin: auto;
+  }
+  body {
+    box-sizing: border-box;
+  }
+  
+  .rectangle{
+   
+    width: 450px;
+    height: 480px;
+    background-color: white;
+    border-radius: 117px 13px 14px 0px;
+    right: 100px;
+    
+  }
+  
+  
