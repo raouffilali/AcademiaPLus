@@ -1,10 +1,11 @@
 import React from "react";
-import {ShoppingCartOutlined, SearchRounded, Language}from "@mui/icons-material";
+import { FaSearch } from "react-icons/fa";
+import { GrLanguage } from "react-icons/gr";
+import { RiShoppingCart2Line } from "react-icons/ri";
 
 const NavBar = () => {
   // State for toggling dropdown menus
-  const [showCategories, setShowCategories] =
-    React.useState(false);
+  const [showCategories, setShowCategories] = React.useState(false);
 
   const [showLanguageMenu, setShowLanguageMenu] = React.useState(false);
 
@@ -62,7 +63,7 @@ const NavBar = () => {
             placeholder="Search course .."
           />
           <div className="w-6 h-6 absolute top-1/2 transform -translate-y-1/2 right-3">
-            <SearchRounded sx={{ fontSize: 30 }} color="disabled" />
+            <FaSearch size={20} color="#b3b3b3" />
           </div>
         </div>
         {/* Become a Teacher Button */}
@@ -76,7 +77,7 @@ const NavBar = () => {
             onClick={toggleLanguageMenu}
           >
             <svg className="w-5 h-5 inline ml-1 ">
-              <Language />
+              <GrLanguage />
             </svg>
             EN
             <svg
@@ -98,7 +99,7 @@ const NavBar = () => {
         </div>
         {/* cart Icon */}
         <div className="ml-2 mr-2 text-gray-800 ">
-          <ShoppingCartOutlined />
+          <RiShoppingCart2Line size={20} />
         </div>
         {/* Login Button */}
         <a

@@ -1,9 +1,12 @@
+import { Footer } from "../../components";
 import PackageCard from "../../components/Package card/PackageCard";
 
 function SubscriptionPackagesPage() {
   return (
     <>
+
       <PackageCard />
+
     </>
   )
 }
