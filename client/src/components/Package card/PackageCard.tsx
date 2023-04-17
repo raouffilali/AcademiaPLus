@@ -1,26 +1,30 @@
 import React from "react";
 import Footer from "../Footer/Footer";
 import NavBar from "../navBar/NavBar";
+import { Pricing } from "../subsOfferCard/Pricing";
+import SubscriptionCard from "../subsOfferCard/SubsOfferCard";
 
 function PackageCard() {
   return (
+    
     // first div just a text and description
     <>
+    
     <NavBar/>
       {/* // first div just a text and description */}
       <div className=" container  p-6 flex flex-col justify-start items-center mx-auto mt-10 mb-20">
         <h3>
-          <span className=" text-lightYelloPal text-xl font-medium">
+          <span className=" text-lightYelloPal text-4xl font-medium">
             Subscription{" "}
           </span>{" "}
-          <span className="text-[#565454] text-xl font-medium">Plans</span>
+          <span className="text-[#565454] text-4xl font-medium">Plans</span>
         </h3>
-        <p className="text-[#B4ACAC] text-lg  ">
+        <p className="text-[#B4ACAC] text-3xl  ">
           Choose a plan that works for you .{" "}
         </p>
 
         {/* // second div is the cards */}
-        <div className=" mt-14 w-[400px] h-[400px] p-20 bg-[#E8F1F0] md:w-[800px] md:h-[800px] "></div>
+        <Pricing/>
 
         {/* text of why we are diffrent */}
         <h1 className="  mt-5 text-[#565454] text-2xl font-extrabold ">
