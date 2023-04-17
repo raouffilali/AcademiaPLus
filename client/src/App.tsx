@@ -4,12 +4,13 @@ import SubscriptionPackagesPage from "./scenes/subscriptionPackagesPage/Subscrip
 import Footer from "./components/Footer/Footer";
 import NavBar from "./components/navBar/NavBar";
 import SignupPage from "./scenes/SignupPage/SignupPage";
+import LandingPage from "./scenes/landingPage/LandingPage";
 
 function App() {
   return (
     <>
-      <SignupPage />
-
+      <LandingPage/>
+ 
     </>
   );
 }

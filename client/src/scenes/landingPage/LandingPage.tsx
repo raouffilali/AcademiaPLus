@@ -4,6 +4,8 @@ import { NavBar } from "../../components";
 import FieldsCards from "../../components/fieldsCards/FieldsCards";
 import CourseCard from '../../components/courseCard/CourseCard';
 import {HiArrowSmRight} from "react-icons/hi";
+import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs";
+import courses from '../../components/courseCard/courses';
 type Tab = 'popular' | 'trending' | 'new'; 
 function LandingPage() {
   const course = {
@@ -83,60 +85,60 @@ function LandingPage() {
         <a href="/"><p className="flex items-center text-blueLink text-[18px]">Explore more <HiArrowSmRight className="mr-[3px]"/></p></a>
         </div>
         <div>
-        <hr className="border-gray-200 h-[0px] w-full mb-2 mt-0" /> 
+        <hr className="border-gray-200 h-[0px] w-full mb-2 mt-0" />   
         {activeTab === 'popular' && (
-          <div className="flex justify-between space-x-2  pt-2 pb-5 flex-start">
+          <div className="flex justify-between space-x-2 pt-2 pb-5 flex-start">
             {/* content for "Popular" tab */}
-           {/* Card 1 */}
-           <CourseCard
-        courseName={course.courseName}
-        instructor={course.instructor}
-        rating={parseFloat(course.rating)}
-        views={parseInt(course.views)}
-        category={course.category}
-        price={course.price}
-      />
-            
-            {/* Card 2*/}
-            <CourseCard
-        courseName={course.courseName}
-        instructor={course.instructor}
-        rating={parseFloat(course.rating)}
-        views={parseInt(course.views)}
-        category={course.category}
-        price={course.price}
-      />
-            {/* Card 3 */}
-            <CourseCard
-        courseName={course.courseName}
-        instructor={course.instructor}
-        rating={parseFloat(course.rating)}
-        views={parseInt(course.views)}
-        category={course.category}
-        price={course.price}
-      />
-            {/* Card 4 */}
-            <CourseCard
-        courseName={course.courseName}
-        instructor={course.instructor}
-        rating={parseFloat(course.rating)}
-        views={parseInt(course.views)}
-        category={course.category}
-        price={course.price}
-      />
-
-          </div>
+        {courses.map((course, index) => (
+          <CourseCard
+            key={index}
+            courseName={course.courseName}
+            instructor={course.instructor}
+            rating={course.rating}
+            views={course.views}
+            category={course.category}
+            price={course.price.toString()}
+          />
+        ))}
+      </div>
         )}
         {activeTab === 'trending' && (
-          <div>
-            {/* content for "Trending" tab */}
-            <p>Content for Trending tab</p>
-          </div>
+          <div className="flex justify-between space-x-2 pt-2 pb-5 flex-start">
+          {/* content for "Trending" tab */}
+         {/* Card 1*/}
+         {courses.map((course, index) => (
+          <CourseCard
+            key={index}
+            courseName={course.courseName}
+            instructor={course.instructor}
+            rating={course.rating}
+            views={course.views}
+            category={course.category}
+            price={course.price.toString()}
+          />
+        ))}
+        
+
+        </div>
         )}
         {activeTab === 'new' && (
-          <div>
-            {/*content for "New" tab */}
-            <p>Content for New tab</p>
+          <div className="flex justify-between space-x-2 pt-2 pb-5 flex-start">
+          {/* content for "Trending" tab */}
+         {/* Card 1*/}
+         {courses.map((course, index) => (
+          <CourseCard
+            key={index}
+            courseName={course.courseName}
+            instructor={course.instructor}
+            rating={course.rating}
+            views={course.views}
+            category={course.category}
+            price={course.price.toString()}
+          />
+        ))}
+      
+      
+            
           </div>
         )}
       </div>
