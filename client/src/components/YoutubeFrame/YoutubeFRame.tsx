@@ -44,7 +44,7 @@ function YouTubeFrame() {
       <div className="mx-auto w-full md:w-3/4 lg:w-1/2">
         {" "}
         <button className="  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border w-full border-blue-700 rounded">
-        + Add new Lesson
+          + Add new Lesson
         </button>
       </div>
     </div>

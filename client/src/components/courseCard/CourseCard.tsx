@@ -1,4 +1,3 @@
-import React from "react";
 
 interface CourseCardProps {
   courseName: string;
@@ -41,8 +40,8 @@ function CourseCard({
                 <span className="bg-blue-100 text-blueLink text-xs px-2 py-1 rounded-md">
                   {category}
                 </span>{" "}
-          </div> 
-        
+          </div>
+
         <div className="flex justify-between items-center px-2 mb-0">
           <div className="flex items-center">
             <div className="flex">
@@ -60,15 +59,15 @@ function CourseCard({
           </div>
             {/* Average rating */}
             <span className="text-gray-500">{rating}</span>{" "}
-             
+
             {/* Number of views */}
             <span className="text-gray-500 ml-2">•</span>
             <span className="text-gray-500 ml-2">{views}K views</span>{" "}
             {/* Pricing information */}
           </div>
           <div className="text-black font-medium ml-2">{price}</div>{" "}
-        
-       
+
+
       </div>
     </div>
   );
