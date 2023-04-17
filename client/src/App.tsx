@@ -3,12 +3,13 @@ import SubscriptionPackagesPage from "./scenes/subscriptionPackagesPage/Subscrip
 // import {Footer} from "./components/index"
 import Footer from "./components/Footer/Footer";
 import NavBar from "./components/navBar/NavBar";
+import SignupPage from "./scenes/SignupPage/SignupPage";
 
 function App() {
   return (
     <>
-      <SubscriptionPackagesPage />
-      
+      <SignupPage />
+
     </>
   );
 }
