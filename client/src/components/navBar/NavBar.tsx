@@ -24,14 +24,14 @@ const NavBar = () => {
       {/* Logo */}
       <div className="flex items-center">
         <img
-          src="./assets/logo.png"
+          src="./public/assets/logo.png"
           style={{ width: "80px", height: "80px" }}
           alt="Logo"
         />
         {/*Categories Dropdown */}
         <div className="relative ml-2">
           <button
-            className="text-gray-800 hover:text-gray-600 focus:outline-none"
+            className="text-gray-800 hover:text-gray-600 focus:outline-none text-[15px]"
             onClick={toggleCategories}
           >
             Categories
@@ -58,7 +58,7 @@ const NavBar = () => {
       <div className="flex items-center">
         <div className="relative">
           <input
-            className="bg-white border-solid  border-2 border-gray-300 rounded-[15px]   w-[521px] text-gray-800 px-4 py-2  focus:outline-none"
+            className="bg-white border-solid  text-[15px] border-2 border-gray-300 rounded-[15px]   w-[521px] text-gray-800 px-4 py-2  focus:outline-none"
             type="text"
             placeholder="Search course .."
           />
@@ -67,16 +67,16 @@ const NavBar = () => {
           </div>
         </div>
         {/* Become a Teacher Button */}
-        <button className="ml-4 bg-lightBluePal  hover:bg-DarkBluePal  text-white  py-2 px-2 font-normal rounded-lg focus:outline-none">
+        <button className="ml-4 bg-lightBluePal  hover:bg-DarkBluePal  text-white text-[15px]  py-[6px] px-2 font-normal rounded-lg focus:outline-none">
           Become a Teacher
         </button>
         {/* Language Dropdown */}
         <div className="relative ml-4">
           <button
-            className="text-gray-800 hover:text-gray-600 focus:outline-none"
+            className="text-gray-800 hover:text-gray-600 focus:outline-none text-[15px]"
             onClick={toggleLanguageMenu}
           >
-            <svg className="w-5 h-5 inline ml-1 ">
+            <svg className="w-5 h-5 inline ml-1 text-gray-800 ">
               <GrLanguage />
             </svg>
             EN
@@ -89,7 +89,7 @@ const NavBar = () => {
             </svg>
           </button>
           {showLanguageMenu && (
-            <ul className="absolute right-0 mt-2 py-2 bg-white text-gray-800 rounded-lg shadow-md">
+            <ul className="absolute right-0 mt-2 py-2 bg-white text-gray-800  text-[15px]rounded-lg shadow-md">
               {/* Render language options */}
               <li className="px-4 py-2">English</li>
               <li className="px-4 py-2">Arabic</li>
@@ -98,20 +98,20 @@ const NavBar = () => {
           )}
         </div>
         {/* cart Icon */}
-        <div className="ml-2 mr-2 text-gray-800 ">
-          <RiShoppingCart2Line size={20} />
+        <div className="ml-2 mr-2 text-gray-800  ">
+          <RiShoppingCart2Line size={18} />
         </div>
         {/* Login Button */}
         <a
           href="#login"
-          className="mr-2 ml-2 text-lightYelloPal hover:text-yelloPal focus:outline-none"
+          className=" text-[15px] mr-2 ml-2 text-lightYelloPal hover:text-yelloPal focus:outline-none"
         >
           Login
         </a>
         {/* Signup Button */}
         <button
           type="button"
-          className="focus:outline-none text-white bg-lightYelloPal hover:bg-yelloPal  focus:ring-yellow-300 font-medium rounded-lg  px-5 py-1 mr-2 ml-2  "
+          className=" text-[15px] focus:outline-none text-white bg-lightYelloPal hover:bg-yelloPal  focus:ring-yellow-300 font-medium rounded-lg  px-5 py-1 mr-2 ml-2  "
         >
           Sign Up
         </button>
