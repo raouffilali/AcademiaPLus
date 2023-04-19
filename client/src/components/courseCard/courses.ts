@@ -33,6 +33,22 @@ const courses = [
     price: 2200
   },
   {
+    courseName: "Course 4",
+    instructor: "Instructor 4",
+    rating: 4.6,
+    views: 9,
+    category: "Category 3",
+    price: 2200
+  },
+  {
+    courseName: "Course 4",
+    instructor: "Instructor 4",
+    rating: 4.6,
+    views: 9,
+    category: "Category 3",
+    price: 2200
+  },
+  {
     courseName: "Course 5",
     instructor: "Instructor 5",
     rating: 4.6,
@@ -57,7 +73,6 @@ const courses = [
   }
 ];
     // Add more course objects as needed
-  
-  
+
+
   export default courses;
-  

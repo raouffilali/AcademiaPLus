@@ -10,7 +10,7 @@ function PackageCard() {
     <>
       <NavBar />
       {/* // first div just a text and description */}
-      <div className=" container  p-6 flex flex-col justify-start items-center mx-auto mt-10 mb-20">
+      <div className=" container  p-6 flex flex-col justify-start items-center mx-auto mt-10 ">
         <h3>
           <span className=" text-lightYelloPal text-4xl font-medium">
             Subscription{" "}
@@ -47,7 +47,7 @@ function PackageCard() {
           alt="statistics"
         />
       </div>
-      <Footer />
+
     </>
   );
 }
