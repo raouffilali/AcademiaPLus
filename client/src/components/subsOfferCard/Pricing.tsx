@@ -1,6 +1,6 @@
 export const Pricing = () => {
   return (
-    <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 scroll-smooth">
       <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
         <div>
           <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
@@ -58,8 +58,8 @@ export const Pricing = () => {
           </div>
           <div>
             <a
-              href="/"
-              className="inline-flex items-center justify-center w-full h-12 px-6 mt-6 font-medium tracking-wide text-white transition duration-200 bg-gray-800 rounded shadow-md hover:bg-gray-900 focus:shadow-outline focus:outline-none"
+              href="#checkout"
+              className="scroll-smooth inline-flex items-center justify-center w-full h-12 px-6 mt-6 font-medium tracking-wide text-white transition duration-200 bg-gray-800 rounded shadow-md hover:bg-gray-900 focus:shadow-outline focus:outline-none"
             >
               Start for free
             </a>
@@ -96,10 +96,10 @@ export const Pricing = () => {
           </div>
           <div>
             <a
-              href="/"
+              href="#checkout"
               className="inline-flex items-center justify-center w-full h-12 px-6 mt-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-lightYelloPal hover:bg-yellow-500 focus:shadow-outline focus:outline-none"
             >
-              Subscribe to Pro
+              Subscribe to Gold
             </a>
             <p className="max-w-xs mt-6 text-xs text-gray-600 sm:text-sm sm:text-center sm:max-w-sm sm:mx-auto">
               Unlock exclusive benefits with Gold membership.
@@ -131,10 +131,10 @@ export const Pricing = () => {
           </div>
           <div>
             <a
-              href="/"
+              href="#checkout"
               className="inline-flex items-center justify-center w-full h-12 px-6 mt-6 font-medium tracking-wide text-white transition duration-200 bg-gray-800 rounded shadow-md hover:bg-gray-900 focus:shadow-outline focus:outline-none"
             >
-              Buy Business
+             Subscribe
             </a>
             <p className="max-w-xs mt-6 text-xs text-gray-600 sm:text-sm sm:text-center sm:max-w-sm sm:mx-auto">
               Take advantage of our most comprehensive offering with Diamond.
