@@ -66,7 +66,7 @@ function CourseCard({
             <span className="text-gray-500 ml-2">{views}K views</span>{" "}
             {/* Pricing information */}
           </div>
-          <div className="text-black font-medium ml-2">{price}</div>{" "}
+          <div className="text-black font-medium ml-2">{price} DA</div>{" "}
         
        
       </div>

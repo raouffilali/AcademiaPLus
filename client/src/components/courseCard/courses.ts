@@ -1,5 +1,6 @@
 const courses = [
   {
+    
     courseName: "Course 1",
     instructor: "Instructor 1",
     rating: 4.5,
@@ -26,6 +27,29 @@ const courses = [
   {
     courseName: "Course 4",
     instructor: "Instructor 4",
+    rating: 4.6,
+    views: 9,
+    category: "Category 3",
+    price: 2200
+  },
+  {
+    courseName: "Course 5",
+    instructor: "Instructor 5",
+    rating: 4.6,
+    views: 9,
+    category: "Category 4",
+    price: 2200
+  },
+  {
+    courseName: "Course 6",
+    instructor: "Instructor 6",
+    rating: 4.6,
+    views: 9,
+    category: "Category 3",
+    price: 2200
+  },{
+    courseName: "Course 7",
+    instructor: "Instructor 7",
     rating: 4.6,
     views: 9,
     category: "Category 3",

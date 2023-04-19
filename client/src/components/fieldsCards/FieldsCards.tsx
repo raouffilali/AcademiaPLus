@@ -5,7 +5,7 @@ function FieldsCards() {
     <div className="flex justify-between space-x-4  pt-2 pb-5 flex-start">
       {/* primary School Card*/}
       <a href="">
-      <div className="bg-gradient-to-b from-darkBluePLusPal via-DarkBluePal to bg-blue-300 w-[250px] h-[300px] shadow-xl shadow-gray-300 rounded-md flex flex-col items-center pt-20">
+      <div className="bg-gradient-to-b from-darkBluePLusPal opacity-90 via-DarkBluePal to bg-blue-300 w-[250px] h-[300px] shadow-xl shadow-gray-300 rounded-md flex flex-col items-center pt-20">
         <div className='rounded-full bg-gray-100 w-[90px] h-[90px] overflow-hidden flex items-center justify-center'>
         <img
             src="./public/assets/child-student.png" 
