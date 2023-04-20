@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Footer, NavBar } from "../../components";
 import FieldsCards from "../../components/fieldsCards/FieldsCards";
 import CourseCard from "../../components/courseCard/CourseCard";
@@ -10,8 +10,8 @@ import {
 import courses from "../../components/courseCard/courses";
 import Instructor from "../../components/instructor/Instructor";
 import { instructors } from "../../components/instructor/instructors";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; 
-import { Carousel } from "react-responsive-carousel"; 
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
 import { Testimonials } from "../../components/testmonialsCard/Testemonials";
 import TestemonialsCard from "../../components/testmonialsCard/TestemonialsCard";
 import StatsContainer from "../../components/statsContainer/StatsContainer";
@@ -39,29 +39,29 @@ function LandingPage() {
     }
   };
   //instructors slide
-    const [startIndex, setStartIndex] = useState(0);
+  const [startIndex, setStartIndex] = useState(0);
 
-    const handleNextButtonClick = () => {
-      setStartIndex((prevIndex) => prevIndex + 4);
-    };
+  const handleNextButtonClick = () => {
+    setStartIndex((prevIndex) => prevIndex + 4);
+  };
 
-    const handlePrevButtonClick = () => {
-      setStartIndex((prevIndex) => prevIndex - 4);
-    };
+  const handlePrevButtonClick = () => {
+    setStartIndex((prevIndex) => prevIndex - 4);
+  };
 
   return (
-    <div className="bg-white overflow-hidden flex flex-col items-start relative pb-[755px]">
+    <div className="bg-white overflow-hidden flex flex-col items-start relative ">
       <div className="px-[12px] py-0   items-start">
         <NavBar />
-      </div> 
+      </div>
       <div className=" w-full py-[18px] pr-[80px] pl-[80px] items-start ">
-      <p className=" font-Lato text-[42px] font-extrabold text-gray-800 flex absolute  left-20  top-[115px] ">
-            Lets
-            <br/>
-             E-learning
-            <br />
-            at your home
-          </p>
+        <p className=" font-Lato text-[42px] font-extrabold text-gray-800 flex absolute  left-20  top-[115px] ">
+          Lets
+          <br />
+          E-learning
+          <br />
+          at your home
+        </p>
         <div className="mt-[196px] mr-[185px]">
           <button className="text-white absolute  top-[480px] bg-yelloPal rounded-full px-8 py-1 ">
             {" "}
@@ -82,14 +82,14 @@ function LandingPage() {
               Learn more
             </button>
           </div>
-        
-        <div className="w-[8px] h-[8px] bg-DarkBluePal mt-[40px]  ml-[507px]  mr-[8px] rounded-full" />
-        <div className="w-[8px] h-[8px] bg-gray-300 -mt-[8px] ml-[520px]  mr-[8px] rounded-full" />
-        <img
-          alt="presentation section picture"
-          className="w-[620px] h-[480px] absolute inset-y-0 top-12 right-10 "
-          src="./public/assets/presPic.gif"
-        />
+
+          <div className="w-[8px] h-[8px] bg-DarkBluePal mt-[40px]  ml-[507px]  mr-[8px] rounded-full" />
+          <div className="w-[8px] h-[8px] bg-gray-300 -mt-[8px] ml-[520px]  mr-[8px] rounded-full" />
+          <img
+            alt="presentation section picture"
+            className="w-[620px] h-[480px] absolute inset-y-0 top-12 right-10 "
+            src="./public/assets/presPic.gif"
+          />
         </div>
         <p className=" mt-32 mb-6 font-Lato text-[28px] font-extrabold text-gray-800">
           Academic Field
@@ -244,47 +244,78 @@ function LandingPage() {
             Instructors
           </p>
         </div>
-      <div className="pt-2 " >
+        <div className="pt-2 ">
+          <Carousel
+            showStatus={false}
+            showThumbs={false}
+            infiniteLoop={true}
+            autoPlay={true}
+            interval={3000}
+            transitionTime={500}
+            selectedItem={startIndex}
+            onChange={(index) => setStartIndex(index)}
+            showArrows={false} // Hide default carousel arrows
+            showIndicators={true} // Hide default carousel indicators
+            centerMode={true} // Enable center mode to show only one instructor in focus
+            centerSlidePercentage={25} // Set percentage width for center slide
+            swipeable={true}
+          >
+            {instructors.map((instructor, index) => (
+              <Instructor
+                key={index}
+                rating={instructor.rating}
+                name={instructor.name}
+                job={instructor.job}
+                avatarSrc={instructor.avatarSrc}
+              />
+            ))}
+          </Carousel>
+          <div className="flex  space-x-32">
+            <div className="mt-36 mb-36 flex flex-col ">
+              <p className="font-extrabold text-4xl text-gray-800 ">
+                Become an instructor
+              </p>
+              <p className="mt-3 text-gray-400">
+                Are you interested to be a part of our community? You can be a{" "}
+                <br /> part of our community by signing up as an instructor or{" "}
+                <br /> organization.
+              </p>
+              <div>
+              <button className="mt-10 rounded-lg text-white bg-yelloPal px-5 p-2 mr-5 shadow-md">
+                Become an Instructor
+              </button>
+              <button className="mt-10 rounded-lg text-yelloPal border border-yelloPal bg-white px-12 p-2 hover:bg-yelloPal hover:text-white">
+                Learn more
+              </button>
+              </div> 
+            </div>
+            <div className="col-12 col-lg-6 mt-10 ">
+              <div className=" position-relative mt-12 w-[340px] h-[420px]">
+              <img className=" w-full h-full rounded-tl-[50px] rounded-br-[50px]" src="./public/assets/becomeInstructor.jpg" alt="" />
+              <img className=" relative -right-[240px] -top-[500px] " src="./public/assets/circle.png" alt="Circle" />
+              
+              </div>
+            </div>  
+            
+            
+            
+          </div>  
         
-        <Carousel 
-        
-          showStatus={false}
-          showThumbs={false}
-          infiniteLoop={true}
-          autoPlay={true}
-          interval={3000}
-          transitionTime={500}
-          selectedItem={startIndex}
-          onChange={(index) => setStartIndex(index)}
-          showArrows={false} // Hide default carousel arrows
-          showIndicators={true} // Hide default carousel indicators
-          centerMode={true} // Enable center mode to show only one instructor in focus
-          centerSlidePercentage={25} // Set percentage width for center slide
-          swipeable={true} 
-        >
-          {instructors.map((instructor, index) => (
-            <Instructor
-              key={index}
-              rating={instructor.rating}
-              name={instructor.name}
-              job={instructor.job}
-              avatarSrc={instructor.avatarSrc}
-            />
-          ))}
-        </Carousel>
-        
-      </div>
-      <TestemonialsCard/>
-      <p className="font-Lato mb-2 mt-20 text-[28px] font-extrabold text-gray-800">
+        <TestemonialsCard />
+
+        <p className="font-Lato mb-2 mt-10 text-[28px] font-extrabold text-gray-800">
           Why Us ?
         </p>
         <div className="mt-10"></div>
-      <StatsContainer/>  
-     
-     
+        <StatsContainer />
+      </div>
+      <div className="mt-32">
+        
       </div>
       
     </div>
+    <Footer/>
+  </div> 
   );
 }
 

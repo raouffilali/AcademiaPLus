@@ -3,7 +3,37 @@ import React from "react";
 function Footer() {
   return (
     // <!-- Footer container -->
-    <footer className="bg-neutral-100 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left">
+    <footer className="bg-neutral-100 text-center text-neutral-600  dark:bg-DarkBluePal dark:text-neutral-200 lg:text-left">
+      <div className="container w-full pr-[15px] pl-[15px] mr-auto ml-auto ">
+        <div className="flex flex-col">
+          <div className="relative top-[-100px] h-[200px rounded-[15px] p-[25px] flex flex-col justify-center bg-[url('./public/assets/background.jpg')]">
+            <strong className="  text-white text-3xl font-bold pointer-events-none">
+              Join us today
+            </strong>
+            <span className="text-gray-500 block mt-[5px]">
+              #We will send the best deals and offers to your email.
+            </span>
+            <div className=" bg-white w-50 p-[10px] mt-[10px] rounded-[38px] shadow-md">
+              <input type="hidden" name="" />
+              <div className="mb-1rem flex items-center m-0">
+                <div className=" w-full">
+                  <input
+                    type="text"
+                    className=" mb-1rem border-none"
+                    placeholder="Enter your email here"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className=" bg-darkBluePLusPal p-2 px-7  rounded-full"
+                >
+                  Join
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between">
         <div className="mr-12 hidden lg:block">
           <span>Get connected with us on social networks:</span>
@@ -213,13 +243,13 @@ function Footer() {
       </div>
 
       {/* <!--Copyright section--> */}
-      <div className="bg-neutral-200 p-6 text-center dark:bg-neutral-700">
+      <div className="bg-neutral-200 p-6 text-center dark:bg-neutral-500">
         <span>© 2023 Copyright:</span>
         <a
           className="font-semibold text-neutral-600 dark:text-neutral-400"
           href="https://tailwind-elements.com/"
         >
-          VBOARD DEVELOPERS TEAM 
+          VBOARD DEVELOPERS TEAM
         </a>
       </div>
     </footer>

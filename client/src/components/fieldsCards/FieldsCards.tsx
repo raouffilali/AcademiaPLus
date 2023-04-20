@@ -14,7 +14,7 @@ function FieldsCards() {
             className="w-full h-full object-cover"
           />
         </div>
-        <p className="text-white font-bold text-[30px] pt-10 flex justify-center">Primary School</p>
+        <p className="text-white font-bold text-[25px] pt-10 flex justify-center">Primary  School</p>
       </div></a>
       {/* Middle  School Card*/}
       <a href="">
@@ -26,7 +26,7 @@ function FieldsCards() {
             className="w-16 h-16 object-cover"
           />
         </div>
-        <p className="text-white font-bold text-[30px] pt-10 flex justify-center">Middle School</p>
+        <p className="text-white font-bold text-[25px] pt-10 flex justify-center">Middle School</p>
       </div></a>
       {/* high School Card */}
       <a href="">
@@ -38,7 +38,7 @@ function FieldsCards() {
             className="w-16 h-16 object-cover"
           />
         </div>
-        <p className="text-white font-bold text-[30px] pt-10 flex justify-center">High School</p>
+        <p className="text-white font-bold text-[25px] pt-10 flex justify-center">High School</p>
       </div></a>
       {/* University*/}
       <a href="">
@@ -50,7 +50,7 @@ function FieldsCards() {
             className="w-16 h-16 object-cover"
           />
         </div>
-        <p className="text-white font-bold text-[30px] pt-10 flex justify-center">University</p>
+        <p className="text-white font-bold text-[25px] pt-10 flex justify-center">University</p>
       </div></a>
     </div>
   )
