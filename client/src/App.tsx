@@ -11,7 +11,7 @@ import StudentProfilePage from "./scenes/studentProfilePage/StudentProfilePage";
 function App() {
   return (
     <>
-      <SubscriptionPackagesPage />
+      <LandingPage />
     </>
   );
 }

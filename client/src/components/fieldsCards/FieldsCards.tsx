@@ -2,11 +2,12 @@ import React from 'react'
 
 function FieldsCards() {
   return (
-    <div className="flex justify-between space-x-4  pt-2 pb-5 flex-start">
+    <div className="flex justify-between space-x-4  pt-2 pb-5 flex-start ">
       {/* primary School Card*/}
       <a href="">
-      <div className="bg-gradient-to-b from-darkBluePLusPal opacity-90 via-DarkBluePal to bg-blue-300 w-[250px] h-[300px] shadow-xl shadow-gray-300 rounded-md flex flex-col items-center pt-20">
-        <div className='rounded-full bg-gray-100 w-[90px] h-[90px] overflow-hidden flex items-center justify-center'>
+      {/* primary School Card*/}
+      <div className="bg-gradient-to-b from-darkBluePLusPal  via-DarkBluePal to bg-blue-300 w-[210px] h-[280px] shadow-md shadow-gray-300 rounded-md flex flex-col items-center pt-20  text-center  transition-all duration-500 ease-in-out transform hover:-translate-y-4 hover:shadow-xl">
+        <div className='rounded-full bg-gray-100 w-[70px] h-[70px] overflow-hidden flex items-center justify-center'>
         <img
             src="./public/assets/child-student.png" 
             alt="Avatar"
@@ -17,8 +18,8 @@ function FieldsCards() {
       </div></a>
       {/* Middle  School Card*/}
       <a href="">
-      <div className="bg-gradient-to-b from-lightBluePal to bg-blue-200 w-[250px] h-[300px] shadow-lg rounded-md flex flex-col items-center pt-20">
-        <div className='rounded-full bg-gray-100 w-[90px] h-[90px] overflow-hidden flex items-center justify-center '>
+      <div className="bg-gradient-to-b from-lightBluePal to bg-blue-200 w-[210px] h-[280px] shadow-md shadow-gray-300  rounded-md flex flex-col items-center pt-20  text-center  transition-all duration-500 ease-in-out transform hover:-translate-y-4 hover:shadow-xl">
+        <div className='rounded-full bg-gray-100 w-[70px] h-[70px] overflow-hidden flex items-center justify-center '>
         <img
             src="./public/assets/middle school.png" 
             alt="Avatar"
@@ -29,8 +30,8 @@ function FieldsCards() {
       </div></a>
       {/* high School Card */}
       <a href="">
-      <div className="bg-gradient-to-b from-bluePal via-bluePal to bg-blue-200 w-[250px] h-[300px] shadow-lg rounded-md flex flex-col items-center pt-20">
-        <div className='rounded-full bg-gray-100 w-[90px] h-[90px] overflow-hidden flex items-center justify-center '>
+      <div className="bg-gradient-to-b from-bluePal via-bluePal to bg-blue-200 w-[210px] h-[280px] shadow-md shadow-gray-300 rounded-md flex flex-col items-center pt-20  text-center  transition-all duration-500 ease-in-out transform hover:-translate-y-4 hover:shadow-xl">
+        <div className='rounded-full bg-gray-100 w-[70px] h-[70px] overflow-hidden flex items-center justify-center '>
         <img
             src="./public/assets/student.png" 
             alt="Avatar"
@@ -41,8 +42,8 @@ function FieldsCards() {
       </div></a>
       {/* University*/}
       <a href="">
-      <div className="bg-gradient-to-b from-yelloPal  via-lightYelloPal to bg-orange-200 w-[250px] h-[300px] shadow-lg rounded-md flex flex-col items-center pt-20">
-        <div className='rounded-full bg-gray-100 w-[90px] h-[90px] overflow-hidden flex items-center justify-center '>
+      <div className="bg-gradient-to-b from-yelloPal  via-lightYelloPal to bg-orange-200 w-[210px] h-[280px] shadow-sm shadow-gray-300 rounded-md flex flex-col items-center pt-20  text-center  transition-all duration-500 ease-in-out transform hover:-translate-y-4 hover:shadow-xl">
+        <div className='rounded-full bg-gray-100 w-[70px] h-[70px] overflow-hidden flex items-center justify-center '>
         <img
             src="./public/assets/university.png" 
             alt="Avatar"

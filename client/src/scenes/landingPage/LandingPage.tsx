@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import { NavBar } from "../../components";
+import { Footer, NavBar } from "../../components";
 import FieldsCards from "../../components/fieldsCards/FieldsCards";
 import CourseCard from "../../components/courseCard/CourseCard";
 import { HiArrowSmRight } from "react-icons/hi";
@@ -12,6 +12,9 @@ import Instructor from "../../components/instructor/Instructor";
 import { instructors } from "../../components/instructor/instructors";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { Carousel } from "react-responsive-carousel"; 
+import { Testimonials } from "../../components/testmonialsCard/Testemonials";
+import TestemonialsCard from "../../components/testmonialsCard/TestemonialsCard";
+import StatsContainer from "../../components/statsContainer/StatsContainer";
 
 type Tab = "popular" | "trending" | "new";
 function LandingPage() {
@@ -45,39 +48,25 @@ function LandingPage() {
     const handlePrevButtonClick = () => {
       setStartIndex((prevIndex) => prevIndex - 4);
     };
-  // useEffect(() => {
-  //   // Use setInterval to automatically slide instructors every 3 seconds
-  //   const interval = setInterval(() => {
-  //     setStartIndex((prevIndex) =>
-  //       prevIndex + 4 >= instructors.length ? 0 : prevIndex + 4
-  //     );
-  //   }, 3000);
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, []);
 
   return (
     <div className="bg-white overflow-hidden flex flex-col items-start relative pb-[755px]">
       <div className="px-[12px] py-0   items-start">
         <NavBar />
-      </div>
+      </div> 
       <div className=" w-full py-[18px] pr-[80px] pl-[80px] items-start ">
+      <p className=" font-Lato text-[42px] font-extrabold text-gray-800 flex absolute  left-20  top-[115px] ">
+            Lets
+            <br/>
+             E-learning
+            <br />
+            at your home
+          </p>
         <div className="mt-[196px] mr-[185px]">
           <button className="text-white absolute  top-[480px] bg-yelloPal rounded-full px-8 py-1 ">
             {" "}
             Try a demo
           </button>
-
-          <p className=" font-Lato text-[42px] font-extrabold text-gray-800 flex absolute  left-20  top-[115px] ">
-            Lets
-            <br />
-            E-learning
-            <br />
-            at your home
-            <br />
-            <br />
-          </p>
           <p
             className={
               "h-[200px] w-[426px] font-Lato text-[16px] font-normal text-gray-500 flex items-center relative"
@@ -93,15 +82,16 @@ function LandingPage() {
               Learn more
             </button>
           </div>
-        </div>
+        
         <div className="w-[8px] h-[8px] bg-DarkBluePal mt-[40px]  ml-[507px]  mr-[8px] rounded-full" />
         <div className="w-[8px] h-[8px] bg-gray-300 -mt-[8px] ml-[520px]  mr-[8px] rounded-full" />
         <img
           alt="presentation section picture"
-          className="w-[604px] h-[567px] absolute inset-y-0 right-0 "
-          src="./public/assets/sectionPic.png"
+          className="w-[620px] h-[480px] absolute inset-y-0 top-12 right-10 "
+          src="./public/assets/presPic.gif"
         />
-        <p className=" mt-24 font-Lato text-[28px] font-extrabold text-gray-800">
+        </div>
+        <p className=" mt-32 mb-6 font-Lato text-[28px] font-extrabold text-gray-800">
           Academic Field
         </p>
         <FieldsCards />
@@ -249,14 +239,15 @@ function LandingPage() {
           )}
         </div>
         {/* instructors */}
-        <div className="flex justify-center space-y-5">
-          <p className=" mt-20 mb-10 font-Lato text-[28px] font-extrabold text-gray-800">
+        <div className="flex justify-center space-y-2 ">
+          <p className=" mt-20 font-Lato text-[28px] font-extrabold text-gray-800">
             Instructors
           </p>
         </div>
-        <div className="flex justify-between space-x-2 pt-2 pb-5 flex-start " >
+      <div className="pt-2 " >
         
-        <Carousel
+        <Carousel 
+        
           showStatus={false}
           showThumbs={false}
           infiniteLoop={true}
@@ -265,10 +256,10 @@ function LandingPage() {
           transitionTime={500}
           selectedItem={startIndex}
           onChange={(index) => setStartIndex(index)}
-          showArrows={true} // Hide default carousel arrows
+          showArrows={false} // Hide default carousel arrows
           showIndicators={true} // Hide default carousel indicators
           centerMode={true} // Enable center mode to show only one instructor in focus
-          centerSlidePercentage={33.3} // Set percentage width for center slide
+          centerSlidePercentage={25} // Set percentage width for center slide
           swipeable={true} 
         >
           {instructors.map((instructor, index) => (
@@ -283,9 +274,16 @@ function LandingPage() {
         </Carousel>
         
       </div>
+      <TestemonialsCard/>
+      <p className="font-Lato mb-2 mt-20 text-[28px] font-extrabold text-gray-800">
+          Why Us ?
+        </p>
+        <div className="mt-10"></div>
+      <StatsContainer/>  
      
      
       </div>
+      
     </div>
   );
 }
