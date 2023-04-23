@@ -27,7 +27,7 @@ function CourseCard({
         />
       </a>
       <div className="p-1">
-          <a href="#">
+          <a href="">
             <h5 className="ml-2 mt-2 text-lg font-medium tracking-tight text-gray-900">
               {courseName}
             </h5>
