@@ -7,11 +7,12 @@ import SignupPage from "./scenes/SignupPage/SignupPage";
 import LandingPage from "./scenes/landingPage/LandingPage";
 import InstructorProfilePage from "./scenes/instructorProfilePage/InstructorProfilePage";
 import StudentProfilePage from "./scenes/studentProfilePage/StudentProfilePage";
+import GeneralCoursesPage from "./scenes/generalCoursesPage/GeneralCoursesPage";
 
 function App() {
   return (
     <>
-      <SubscriptionPackagesPage />
+      <GeneralCoursesPage />
     </>
   );
 }

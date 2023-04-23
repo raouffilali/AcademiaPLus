@@ -219,7 +219,7 @@ function Footer() {
           className="font-semibold text-neutral-600 dark:text-neutral-400"
           href="https://tailwind-elements.com/"
         >
-          VBOARD DEVELOPERS TEAM 
+          VBOARD DEVELOPERS TEAM
         </a>
       </div>
     </footer>
