@@ -1,6 +1,6 @@
 const courses = [
   {
-    
+
     courseName: "Course 1",
     instructor: "Instructor 1",
     rating: 4.5,
@@ -70,7 +70,7 @@ const courses = [
     views: 9,
     category: "Category 3",
     price: 2200
-  }
+  },
 ];
     // Add more course objects as needed
 
