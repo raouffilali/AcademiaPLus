@@ -8,7 +8,7 @@ interface InstructorProps {
 function Instructor( {name, job, avatarSrc,rating} :InstructorProps) {
     return (
       
-        <div className=" py-20 flex flex-col  items-center text-center">
+        <div className="py-20 flex flex-col  items-center text-center">
           <div className=' w-[140px] h-[140px]'>
           <img
             src={avatarSrc} 
@@ -33,7 +33,7 @@ function Instructor( {name, job, avatarSrc,rating} :InstructorProps) {
           <span className="text-gray-500">{rating}</span>{" "}
           <h5 className="mb-1 text-lg font-medium leading-tight">{name}</h5>
           <p className="text-sm text-neutral-500 dark:text-neutral-400">{job}</p>
-          <button className='mt-2 text-sm  bg-DarkBluePal rounded-full w-16 h-6 text-white'>
+          <button className='mt-2 text-sm  bg-DarkBluePal hover:bg-darkBluePLusPal rounded-full w-28 h-8 text-white'>
               Profile
           </button>
             

@@ -51,7 +51,7 @@ function LandingPage() {
 
   return (
     <div className="bg-white overflow-hidden flex flex-col items-start relative ">
-      <div className="px-[12px] py-0   items-start">
+      <div className="  items-start">
         <NavBar />
       </div>
       <div className=" w-full py-[18px] pr-[80px] pl-[80px] items-start ">
@@ -63,7 +63,7 @@ function LandingPage() {
           at your home
         </p>
         <div className="mt-[196px] mr-[185px]">
-          <button className="text-white absolute  top-[480px] bg-yelloPal rounded-full px-8 py-1 ">
+          <button className="text-white absolute  shadow-md top-[480px] bg-lightYelloPal hover:bg-yelloPal rounded-full px-8 py-1 ">
             {" "}
             Try a demo
           </button>
@@ -78,7 +78,7 @@ function LandingPage() {
             <br />
           </p>
           <div>
-            <button className="border-[1px] flex items-center absolute left-[250px] top-[480px] text-yelloPal border-solid border-yelloPal rounded-full px-8 py-1   ">
+            <button className="border-[1px] flex items-center absolute left-[250px] top-[480px] hover:bg-yelloPal hover:text-white text-yelloPal border-solid border-yelloPal rounded-full px-8 py-1   ">
               Learn more
             </button>
           </div>
@@ -281,41 +281,47 @@ function LandingPage() {
                 <br /> organization.
               </p>
               <div>
-              <button className="mt-10 rounded-lg text-white bg-yelloPal px-5 p-2 mr-5 shadow-md">
-                Become an Instructor
-              </button>
-              <button className="mt-10 rounded-lg text-yelloPal border border-yelloPal bg-white px-12 p-2 hover:bg-yelloPal hover:text-white">
-                Learn more
-              </button>
-              </div> 
+                <button className="mt-10 rounded-lg hover:bg-yelloPal text-white bg-lightYelloPal px-5 p-2 mr-5 shadow-md">
+                  Become an Instructor
+                </button>
+                <button className="mt-10 rounded-lg text-yelloPal border border-yelloPal bg-white px-12 p-2 hover:bg-yelloPal hover:text-white">
+                  Learn more
+                </button>
+              </div>
             </div>
             <div className="col-12 col-lg-6 mt-10 ">
               <div className=" position-relative mt-12 w-[340px] h-[420px]">
-              <img className=" w-full h-full rounded-tl-[50px] rounded-br-[50px]" src="./public/assets/becomeInstructor.jpg" alt="" />
-              <img className=" relative -right-[240px] -top-[500px] " src="./public/assets/circle.png" alt="Circle" />
-              
+                <img
+                  className=" z-10 w-full h-full rounded-tl-[50px] rounded-br-[50px]"
+                  src="./public/assets/becomeInstructor.jpg"
+                  alt=""
+                />
+                <img
+                  className=" relative -right-[240px] -top-[500px] "
+                  src="./public/assets/circle.png"
+                  alt="Circle"
+                />
               </div>
-            </div>  
-            
-            
-            
-          </div>  
-        
-        <TestemonialsCard />
+            </div>
+          </div>
 
-        <p className="font-Lato mb-2 mt-10 text-[28px] font-extrabold text-gray-800">
-          Why Us ?
-        </p>
-        <div className="mt-10"></div>
-        <StatsContainer />
+          <TestemonialsCard />
+
+          <p className="font-Lato mb-2 mt-10 text-[28px] font-extrabold text-gray-800">
+            Why We Are Different From Others?
+          </p>
+          <p className="mt-3 text-gray-400">
+            We have highly professional mentors around the globe. We havegreat
+            features <br /> than any other platform.
+          </p>
+
+          <div className="mt-10"></div>
+          <StatsContainer />
+        </div>
+        <div className="mt-32"></div>
       </div>
-      <div className="mt-32">
-        
-      </div>
-      
+      <Footer />
     </div>
-    <Footer/>
-  </div> 
   );
 }
 

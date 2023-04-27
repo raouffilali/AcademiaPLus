@@ -20,6 +20,7 @@ export default {
         blueWhitePLusPal: "#D8EBF1",
         darkBluePLusPal: "#062835",
         blueLink:"#037498",
+        background:"#F0EBE8",
       },
     },
   },
