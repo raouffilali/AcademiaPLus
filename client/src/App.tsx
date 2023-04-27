@@ -8,12 +8,15 @@ import LandingPage from "./scenes/landingPage/LandingPage";
 import InstructorProfilePage from "./scenes/instructorProfilePage/InstructorProfilePage";
 import StudentProfilePage from "./scenes/studentProfilePage/StudentProfilePage";
 import GeneralCoursesPage from "./scenes/generalCoursesPage/GeneralCoursesPage";
+import CatCard from "./components/difrrentCategoriesCard/CatCard";
+import CategoryPage from "./scenes/categoryPage/CategoryPage";
 
 function App() {
+  
   return (
     <>
-      <GeneralCoursesPage />
-      
+    <CategoryPage/>
+
     </>
   );
 }

@@ -123,7 +123,6 @@ function GeneralCoursesPage() {
               secTitle="Featured"
               titelText="Graphic Design"
             />
-
             <SectionContent secTitle="Trendng" titelText="Graphic Design" />
             <SectionContent secTitle="Popular" titelText="Graphic Design" />
           </div>
