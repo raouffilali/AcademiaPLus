@@ -3,10 +3,10 @@ import React from "react";
 function Footer() {
   return (
     // <!-- Footer container -->
-    <footer className="bg-neutral-100 text-center text-neutral-600  dark:bg-DarkBluePal dark:text-neutral-200 lg:text-left">
+    <footer className="bg-neutral-100 text-center text-neutral-600  dark:bg-gray-800 dark:text-neutral-200 lg:text-left">
       <div className="container w-full pr-[15px] pl-[15px] mr-auto ml-auto ">
         <div className="flex flex-col">
-          <div className="relative top-[-100px] h-[200px rounded-[15px] p-[25px] flex flex-col justify-center bg-[url('./public/assets/background.jpg')]">
+          <div className="relative top-[-100px] h-[200px rounded-[15px] p-[25px] flex flex-col justify-center bg-[url('./public/assets/textture.jpg')]">
             <strong className="  text-white text-3xl font-bold pointer-events-none">
               Join us today
             </strong>

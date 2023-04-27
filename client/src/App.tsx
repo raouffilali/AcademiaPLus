@@ -7,26 +7,13 @@ import SignupPage from "./scenes/SignupPage/SignupPage";
 import LandingPage from "./scenes/landingPage/LandingPage";
 import InstructorProfilePage from "./scenes/instructorProfilePage/InstructorProfilePage";
 import StudentProfilePage from "./scenes/studentProfilePage/StudentProfilePage";
-import BecomeaTeacherPage from "./scenes/BecomeaTeacherPage/BecomeaTeacherPage";
-import TeacherStudioPage from "./scenes/teacherStudioPage/TeacherStudioPage";
-import TeacherStudioPageB from "./scenes/teacherStudioPage/TeacherStudioPageB";
-import AddNewLesson from "./scenes/teacherStudioPage/AddNewLesson";
-import SideBar from "./components/sideBar/SideBar";
-
-import EditDetailLesson from "./scenes/teacherStudioPage/EditDetailLesson";
-import Form from "./components/BecomeInstructorForm/Form";
-import AcademicfieldPage from "./scenes/academicfieldPage/AcademicfieldPage";
-
+import GeneralCoursesPage from "./scenes/generalCoursesPage/GeneralCoursesPage";
 
 function App() {
   return (
     <>
-    {/* <SignupPage/> */}
-    {/* <LandingPage/> */}
-    {/* <BecomeaTeacherPage/> */}
-    <Form/>
-      {/* <AddNewLesson/> */}
-      {/* <EditDetailLesson/> */}
+      <GeneralCoursesPage />
+      
     </>
   );
 }
