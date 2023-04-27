@@ -1,13 +1,40 @@
-import React, { useState } from "react";
+import React, {ChangeEvent, useState } from "react";
 import "./SignupPage.css";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import axios from "axios";
+interface FormDataType {
+  [key: string]: any;
+}
 function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
+  };
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSignup = async () => {
+    try {
+      const response = await axios.post("/api/signup", formData);
+      // handle success
+      console.log(response.data); // 
+    } catch (error) {
+      // handle error
+      console.error(error);
+    }
   };
 
   return (
@@ -41,21 +68,33 @@ function SignupPage() {
             type="text"
             className="border-b-2 border-gray-400 focus:border-blue-500 outline-none px-2 py-1 placeholder-gray-400 "
             placeholder="First Name"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
           />
           <input
             type="text"
             className="border-b-2 border-gray-400 focus:border-blue-500 outline-none px-2 py-1 placeholder-gray-400"
             placeholder="Last Name"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
           />
           <input
             type="email"
             className="border-b-2 border-gray-400 focus:border-blue-500 outline-none px-2 py-1 placeholder-gray-400"
             placeholder="Email Address"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
           />
           <input
             type={showPassword ? "text" : "password"}
             className="border-b-2 border-gray-400 focus:border-blue-500 outline-none px-2 py-1 placeholder-gray-400"
             placeholder="Password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
           />
           <VisibilityOffIcon
             color="disabled"
@@ -63,7 +102,9 @@ function SignupPage() {
             className="absolute right-[109px] top-[146px] cursor-pointer"
             onClick={handleTogglePassword}
           />
-          <button className=" bg-DarkBluePal text-white px-12 py-1 hover:bg-darkBluePLusPal   rounded-2xl font-Lato text-[13px] font-semibold  drop-shadow-xl shadow-stone-700 ">
+          <button className=" bg-DarkBluePal text-white px-12 py-1 hover:bg-darkBluePLusPal   rounded-2xl font-Lato text-[13px] font-semibold  drop-shadow-xl shadow-stone-700 "
+          onClick={handleSignup}>
+
             Create Account
           </button>
           <p className=" text-gray-400 text-sm mt-0 ">

@@ -19,7 +19,7 @@ function Footer() {
                 <div className=" w-full">
                   <input
                     type="text"
-                    className=" mb-1rem border-none"
+                    className="w-full mb-1rem border-none"
                     placeholder="Enter your email here"
                   />
                 </div>
