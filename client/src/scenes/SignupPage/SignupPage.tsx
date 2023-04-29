@@ -25,10 +25,14 @@ function SignupPage() {
       [e.target.name]: e.target.value,
     });
   };
-
+  const apiUrl = "http://127.0.0.1:5174/api/signup";
   const handleSignup = async () => {
     try {
-      const response = await axios.post("/api/signup", formData);
+      const response = await axios.post("apiUrl", formData,{
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       // handle success
       console.log(response.data); // 
     } catch (error) {

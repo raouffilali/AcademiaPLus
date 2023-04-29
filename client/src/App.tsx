@@ -12,7 +12,7 @@ import GeneralCoursesPage from "./scenes/generalCoursesPage/GeneralCoursesPage";
 function App() {
   return (
     <>
-      <GeneralCoursesPage />
+      <LandingPage />
       
     </>
   );

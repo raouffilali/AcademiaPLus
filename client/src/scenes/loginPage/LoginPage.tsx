@@ -12,7 +12,6 @@ function LoginPage() {
   const handleToggleRememberMe = () => {
     setRememberMe(!rememberMe);
   }; 
-  
   return (
     <div className="flex justify-center item-center  min-h-screen overflow-hidden mt-2  bg-blue-50">
       <div className="flex flex-row  w-[680px] h-[480px]  bg-DarkBluePal shadow-md rounded-2xl relative">
