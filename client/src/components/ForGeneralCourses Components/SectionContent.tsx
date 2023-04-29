@@ -21,7 +21,7 @@ function SectionContent({ secTitle, titelText }: SectionContentTYpe) {
   return (
     <>
       <SectionTitle genreTitle={secTitle} typeText={titelText} />
-      <div className=" flex flex-wrap lg:justify-evenly lg:gap-7 xl:items-center xl:justify-evenly xl:gap-7 lg:items-center mb-16   mt-14   sm:space-y-4  sm:justify-center sm:items-end sm:gap-[6px]">
+      <div className=" flex flex-wrap lg:justify-evenly lg:gap-7 xl:items-end xl:justify-evenly xl:gap-7 lg:items-center mb-16   mt-14   sm:space-y-4  sm:justify-center sm:items-start sm:gap-[6px]">
         {courses
           .slice(
             (currentPage - 1) * coursesPerPage,
