@@ -1,9 +1,20 @@
 import React, {ChangeEvent, useState } from "react";
 import "./SignupPage.css";
+import { Link } from "react-router-dom";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import axios from "axios";
+// import {isEmpty, isEmail, isLength, isMatch} from "client/src/components/utils/validation/Validation.js";
+// import {showErrMsg, showSuccessMsg}  from "../../components/utils/notification/Notification.js";
+const initialState = {
+  name: '',
+  email: '',
+  password: '',
+  cf_password: '',
+  err: '',
+  success: ''
+}
 interface FormDataType {
   [key: string]: any;
 }
@@ -25,21 +36,43 @@ function SignupPage() {
       [e.target.name]: e.target.value,
     });
   };
-  const apiUrl = "http://127.0.0.1:5174/api/signup";
-  const handleSignup = async () => {
-    try {
-      const response = await axios.post("apiUrl", formData,{
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      // handle success
-      console.log(response.data); // 
-    } catch (error) {
-      // handle error
-      console.error(error);
-    }
-  };
+  
+  //register auth 
+  // const [user, setUser] = useState(initialState)
+
+  // const {name, email, password,cf_password, err, success} = user
+
+  // const handleChangeInput = e => {
+  //     const {name, value} = e.target
+  //     setUser({...user, [name]:value, err: '', success: ''})
+  // }
+
+
+  // const handleSubmit = async e => {
+  //     e.preventDefault()
+  //     if(isEmpty(name) || isEmpty(password))
+  //             return setUser({...user, err: "Please fill in all fields.", success: ''})
+
+  //     if(!isEmail(email))
+  //         return setUser({...user, err: "Invalid emails.", success: ''})
+
+  //     if(isLength(password))
+  //         return setUser({...user, err: "Password must be at least 6 characters.", success: ''})
+      
+  //     if(!isMatch(password, cf_password))
+  //         return setUser({...user, err: "Password did not match.", success: ''})
+
+  //     try {
+  //         const res = await axios.post('/user/register', {
+  //             name, email, password
+  //         })
+
+  //         setUser({...user, err: '', success: res.data.msg})
+  //     } catch (err) {
+  //         err.response.data.msg && 
+  //         setUser({...user, err: err.response.data.msg, success: ''})
+  //     }
+  // }
 
   return (
     <div className="flex justify-center item-center  min-h-screen overflow-hidden  bg-blue-50">
@@ -61,12 +94,11 @@ function SignupPage() {
           alt="SignUp Image"
           className=" w-[300px] h-[220px] absolute left-[25px] top-[180px]"
         />
-        <a
-          href="/login"
+        <Link to="/LoginPage">
           className="font-Lato text-[13px] font-semibold leading-normal  text-bluelink underline absolute right-[85px] top-[73px]"
-        >
+      
           Log in
-        </a>
+        </Link>
         <div className="absolute left-[330px] top-[110px] space-y-5 text-[15px]">
           <input
             type="text"
@@ -107,7 +139,7 @@ function SignupPage() {
             onClick={handleTogglePassword}
           />
           <button className=" bg-DarkBluePal text-white px-12 py-1 hover:bg-darkBluePLusPal   rounded-2xl font-Lato text-[13px] font-semibold  drop-shadow-xl shadow-stone-700 "
-          onClick={handleSignup}>
+          >
 
             Create Account
           </button>

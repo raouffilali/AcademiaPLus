@@ -15,7 +15,9 @@ import { Carousel } from "react-responsive-carousel";
 import { Testimonials } from "../../components/testmonialsCard/Testemonials";
 import TestemonialsCard from "../../components/testmonialsCard/TestemonialsCard";
 import StatsContainer from "../../components/statsContainer/StatsContainer";
-
+import {Routes, Route} from 'react-router-dom';
+import SignupPage from "../SignupPage/SignupPage";
+import LoginPage from "../loginPage/LoginPage";
 type Tab = "popular" | "trending" | "new";
 function LandingPage() {
   const [activeTab, setActiveTab] = useState("popular");
@@ -88,7 +90,7 @@ function LandingPage() {
           <img
             alt="presentation section picture"
             className="w-[620px] h-[480px] absolute inset-y-0 top-12 right-10 "
-            src="./public/assets/presPic.gif"
+            src="/assets/presPic.gif"
           />
         </div>
         <p className=" mt-32 mb-6 font-Lato text-[28px] font-extrabold text-gray-800">

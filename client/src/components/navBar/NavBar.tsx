@@ -3,10 +3,15 @@ import { FaSearch } from "react-icons/fa";
 import { GrLanguage } from "react-icons/gr";
 import { FaAngleDown } from "react-icons/fa";
 import { RiShoppingCart2Line } from "react-icons/ri";
-
+import {Routes, Route} from 'react-router-dom';
 import { useState } from "react";
-
+import SignupPage from "../../scenes/SignupPage/SignupPage";
+import LoginPage from "../../scenes/loginPage/LoginPage";
 import CategoriesMenu from "./CategoriesMenu";
+import { Link } from "react-router-dom";
+import {useSelector} from 'react-redux';
+import axios from 'axios';
+
 interface Language {
   id: number;
   label: string;
@@ -28,6 +33,20 @@ const NavBar = (props: any) => {
     setSelectedLanguage(language);
     setIsOpen(false);
   };
+  // const auth = useSelector((state:any )=> state.auth)
+
+  // const {user, isLogged} = auth
+
+
+  const handleLogout = async () => {
+      try {
+          await axios.get('/user/logout')
+          localStorage.removeItem('firstLogin')
+          window.location.href = "/";
+      } catch (err) {
+          window.location.href = "/";
+      }
+  }
 
   return (
     <nav className="flex items-center justify-between space-x-2 bg-white w-full h-[64px]  pr-[60px] pl-[60px]">
@@ -115,19 +134,20 @@ const NavBar = (props: any) => {
           <RiShoppingCart2Line size={18} />
         </div>
         {/* Login Button */}
-        <a
-          href="#login"
+      
+        <Link
+          to="/LoginPage"
           className=" text-[15px] mr-2 ml-2 text-lightYelloPal hover:text-yelloPal focus:outline-none"
         >
           Login
-        </a>
+        </Link>
         {/* Signup Button */}
-        <button
-          type="button"
+        <Link
+          to="/client/src/scenes/SignupPage"
           className=" text-[15px] focus:outline-none text-white bg-lightYelloPal hover:bg-yelloPal  font-medium rounded-lg  px-5 py-1 mr-2 ml-2  "
         >
           Sign Up
-        </button>
+        </Link>
       </div>
     </nav>
   );
