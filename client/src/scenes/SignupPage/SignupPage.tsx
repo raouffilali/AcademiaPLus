@@ -36,43 +36,17 @@ function SignupPage() {
       [e.target.name]: e.target.value,
     });
   };
-  
-  //register auth 
-  // const [user, setUser] = useState(initialState)
 
-  // const {name, email, password,cf_password, err, success} = user
-
-  // const handleChangeInput = e => {
-  //     const {name, value} = e.target
-  //     setUser({...user, [name]:value, err: '', success: ''})
-  // }
-
-
-  // const handleSubmit = async e => {
-  //     e.preventDefault()
-  //     if(isEmpty(name) || isEmpty(password))
-  //             return setUser({...user, err: "Please fill in all fields.", success: ''})
-
-  //     if(!isEmail(email))
-  //         return setUser({...user, err: "Invalid emails.", success: ''})
-
-  //     if(isLength(password))
-  //         return setUser({...user, err: "Password must be at least 6 characters.", success: ''})
-      
-  //     if(!isMatch(password, cf_password))
-  //         return setUser({...user, err: "Password did not match.", success: ''})
-
-  //     try {
-  //         const res = await axios.post('/user/register', {
-  //             name, email, password
-  //         })
-
-  //         setUser({...user, err: '', success: res.data.msg})
-  //     } catch (err) {
-  //         err.response.data.msg && 
-  //         setUser({...user, err: err.response.data.msg, success: ''})
-  //     }
-  // }
+  const handleSignup = async () => {
+    try {
+      const response = await axios.post("/api/signup", formData);
+      // handle success
+      console.log(response.data); // 
+    } catch (error) {
+      // handle error
+      console.error(error);
+    }
+  };
 
   return (
     <div className="flex justify-center item-center  min-h-screen overflow-hidden  bg-blue-50">
