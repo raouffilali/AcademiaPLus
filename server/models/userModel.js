@@ -3,18 +3,17 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  firstName: { type: String, required:[true,"Please enter your Firstname!"],trim:true},
-  lastName: { type: String, required:[true,"Please enter your Lastname!"] ,trim:true },
+  fname: { type: String, required:[true,"Please enter your Firstname!"],trim:true},
+  lname: { type: String, required:[true,"Please enter your Lastname!"] ,trim:true },
   email: { type: String, required:[true,"Please enter your Email!"], unique: true,trim:true },
   password: { type: String, required: true },
-  role: {
-    type: Number,
-    default: 0 // 0 = user, 1 = admin
-}
-},{
+},
+{
+  collection: "UserInfo",
+},
+{
   timestamps: true
 });
 
-const User = mongoose.model("User", userSchema);
+mongoose.model("UserInfo", userSchema);
 
-module.exports = User;
