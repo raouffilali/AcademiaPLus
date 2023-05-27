@@ -51,16 +51,17 @@ const NavBar = (props: any) => {
   return (
     <nav className="flex items-center justify-between space-x-2 bg-white w-full h-[64px]  pr-[60px] pl-[60px]">
       {/* Logo */}
-      <div className="flex items-center">
+      <Link to="/">
+      <div className="mt-[-8px]">
         <img
-          src="./public/assets/logo.png"
-          style={{ width: "100px", height: "90px" }}
+          src="/assets/logo.png"
+          style={{ width: "100px", height: "80px" }}
           alt="Logo"
         />
         {/*Categories Dropdown */}
-
+        </div></Link>
         <CategoriesMenu />
-      </div>
+      
       {/* Search Bar */}
       <div className="flex items-center">
         <div className="relative">
@@ -77,9 +78,10 @@ const NavBar = (props: any) => {
 
         <div style={{ visibility: props.visibility ? 'hidden'  : 'visible' }}>
           {" "}
+          <Link to="/BecomeaTeacherPage">
           <button className="ml-4 bg-lightBluePal  hover:bg-DarkBluePal  text-white text-[15px]  py-[6px] px-2 font-normal rounded-lg focus:outline-none">
             Become a Teacher
-          </button>
+          </button></Link>
         </div>
 
         {/* Language Dropdown */}
@@ -130,20 +132,21 @@ const NavBar = (props: any) => {
         </div>
 
         {/* cart Icon */}
+        <Link to="/CartPage" >
         <div className="ml-2 mr-2 text-gray-800  ">
           <RiShoppingCart2Line size={18} />
-        </div>
+        </div></Link>
         {/* Login Button */}
       
         <Link
-          to="/LoginPage"
+          to="/loginPage"
           className=" text-[15px] mr-2 ml-2 text-lightYelloPal hover:text-yelloPal focus:outline-none"
         >
           Login
         </Link>
         {/* Signup Button */}
         <Link
-          to="/client/src/scenes/SignupPage"
+          to="/SignupPage"
           className=" text-[15px] focus:outline-none text-white bg-lightYelloPal hover:bg-yelloPal  font-medium rounded-lg  px-5 py-1 mr-2 ml-2  "
         >
           Sign Up

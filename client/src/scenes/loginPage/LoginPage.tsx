@@ -28,7 +28,7 @@ function LoginPage() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        'Accept': "application/json",
+        Accept: "application/json",
       },
       body: JSON.stringify({
         email,
@@ -69,7 +69,10 @@ function LoginPage() {
             alt="Login Image"
             className=" w-[350px] h-[350px] absolute  -left-[40px] top-[70px]"
           />
-         <Link to="/" className="font-Lato text-[13px] font-semibold leading-normal  text-bluelink underline absolute right-[130px] top-[73px]">
+          <Link
+            to="/SignupPage"
+            className="font-Lato text-[13px] font-semibold leading-normal  text-bluelink underline absolute right-[130px] top-[73px]"
+          >
             Sign up
           </Link>
           <div className="absolute left-[330px] top-[110px] space-y-5 text-[15px] mt-12">
@@ -99,28 +102,32 @@ function LoginPage() {
             </div>
             <div className="flex items-center space-x-3">
               <button
-               type="submit" className=" bg-DarkBluePal text-white px-12 py-1 hover:bg-darkBluePLusPal   rounded-2xl font-Lato text-[13px] font-semibold  drop-shadow-xl shadow-stone-700 "
+                type="submit"
+                className=" bg-DarkBluePal text-white px-12 py-1 hover:bg-darkBluePLusPal   rounded-2xl font-Lato text-[13px] font-semibold  drop-shadow-xl shadow-stone-700 "
               >
                 Log in
               </button>
-              <Link to="/forgotPassword" className="font-Lato text-[13px] font-semibold leading-normal text-blueLink  px-5 py-2 rounded-md  hover:bg-gray-100 transition-colors">
+              <Link
+                to="/forgotPassword"
+                className="font-Lato text-[13px] font-semibold leading-normal text-blueLink  px-5 py-2 rounded-md  hover:bg-gray-100 transition-colors"
+              >
                 Forgot password?
               </Link>
             </div>
             <p className=" text-gray-400 text-sm mt-0 ">
-            __________________ OR ____________________
-          </p>
+              __________________ OR ____________________
+            </p>
 
-          <div className="static flex justify-center space-x-6 mt-5 ml-0 ">
-            <button className=" absolute right-[200px]  bg-red-500 text-white py-1 px-4 rounded-full flex items-center  font-Lato text-[10px] ">
-              <GoogleIcon />
-              <span>Sign up with Google</span>
-            </button>
-            <button className=" absolute right-[30px] bg-blue-600 text-white px-4 py-1 rounded-full flex items-center  font-Lato text-[10px] ">
-              <FacebookIcon />
-              <span>Sign up with Facebook</span>
-            </button>
-          </div>
+            <div className="static flex justify-center space-x-6 mt-5 ml-0 ">
+              <button className=" absolute right-[200px]  bg-red-500 text-white py-1 px-4 rounded-full flex items-center  font-Lato text-[10px] ">
+                <GoogleIcon />
+                <span>Sign up with Google</span>
+              </button>
+              <button className=" absolute right-[30px] bg-blue-600 text-white px-4 py-1 rounded-full flex items-center  font-Lato text-[10px] ">
+                <FacebookIcon />
+                <span>Sign up with Facebook</span>
+              </button>
+            </div>
           </div>
         </div>
       </form>

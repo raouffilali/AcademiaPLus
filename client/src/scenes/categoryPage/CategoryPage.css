@@ -1,0 +1,11 @@
+/* Add transition to the content */
+.flex-wrap {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0; 
+  }
+  
+  /* Show the content when it becomes visible */
+  .flex-wrap.visible {
+    opacity: 1;
+  }
+  

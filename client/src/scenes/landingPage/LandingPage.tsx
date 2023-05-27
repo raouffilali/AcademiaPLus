@@ -15,9 +15,6 @@ import { Carousel } from "react-responsive-carousel";
 import { Testimonials } from "../../components/testmonialsCard/Testemonials";
 import TestemonialsCard from "../../components/testmonialsCard/TestemonialsCard";
 import StatsContainer from "../../components/statsContainer/StatsContainer";
-import {Routes, Route} from 'react-router-dom';
-import SignupPage from "../SignupPage/SignupPage";
-import LoginPage from "../loginPage/LoginPage";
 type Tab = "popular" | "trending" | "new";
 function LandingPage() {
   const [activeTab, setActiveTab] = useState("popular");

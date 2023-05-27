@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import PathPage from '../../components/PathPage/PathPage';
 
 interface ForgotPasswordProps {}
 
@@ -26,6 +27,7 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
           Forgot your password?

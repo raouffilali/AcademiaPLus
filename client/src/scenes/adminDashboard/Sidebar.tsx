@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BsArrowRight, BsArrowDown } from 'react-icons/bs';
 
 interface MenuItem {
   name: string;
@@ -56,8 +55,11 @@ const menuItems: MenuItem[] = [
     path: '/settings',
     submenu: [
       {
+        
         name: 'General Settings',
         path: '/settings/general',
+  
+      
       },
       {
         name: 'Security Settings',
@@ -68,34 +70,46 @@ const menuItems: MenuItem[] = [
 ];
 
 const Sidebar = () => {
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState<string[]>([]);
 
-  const toggleCollapse = () => {
-    setCollapsed(!collapsed);
+  const toggleCollapse = (path: string) => {
+    if (collapsed.includes(path)) {
+      setCollapsed((prev) => prev.filter((p) => p !== path));
+    } else {
+      setCollapsed((prev) => [...prev, path]);
+    }
   };
 
   const renderMenuItems = (items: MenuItem[], level: number = 1) => {
     return (
-      <ul className={`pl-${level * 4} pt-2 items-start flex flex-col space-y-8`}>
+      <div className='relative'>
+      <ul className={`pl-${level * 4} pt-2 flex inset-y-0 left-0 absolute flex-col space-y-4`}>
         {items.map((item) => (
           <li key={item.path}>
-            <Link to={item.path} className="flex items-start  justify-between text-gray-600 hover:text-gray-800">
-              <span className="flex items-start ">
+            <div
+              className="flex items-center justify-between text-gray-600 hover:text-gray-800 cursor-pointer"
+              onClick={() => item.submenu && toggleCollapse(item.path)}
+            >
+              <div className="flex items-center">
                 {item.icon && <span className="mr-2">{item.icon}</span>}
                 <span>{item.name}</span>
-              </span>
+              </div>
               {item.submenu ? (
-                <span className="text-xs">
-                  {collapsed ? <BsArrowRight /> : <BsArrowDown />}
-                </span>
+                <div className="text-[15px]">
+                
+                </div>
               ) : null}
-            </Link>
-            {item.submenu && !collapsed ? renderMenuItems(item.submenu, level + 1) : null}
+            </div>
+            {item.submenu && collapsed.includes(item.path) && (
+              renderMenuItems(item.submenu, level + 1)
+            )}
           </li>
         ))}
       </ul>
+      </div>
     );
   };
+
 
   return (
     <div className="h-full bg-white shadow-md">

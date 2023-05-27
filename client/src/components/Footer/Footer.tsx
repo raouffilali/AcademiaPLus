@@ -3,10 +3,10 @@ import React from "react";
 function Footer() {
   return (
     // <!-- Footer container -->
-    <footer className="bg-neutral-100 text-center text-neutral-600  dark:bg-gray-800 dark:text-neutral-200 lg:text-left">
+    <footer className="bg-neutral-100 text-center text-neutral-800  dark:bg-gray-950 dark:text-white lg:text-left">
       <div className="container w-full pr-[15px] pl-[15px] mr-auto ml-auto ">
         <div className="flex flex-col">
-          <div className="relative top-[-100px] h-[200px rounded-[15px] p-[25px] flex flex-col justify-center bg-[url('./public/assets/textture.jpg')]">
+          <div className="relative top-[-100px] h-[200px] rounded-[15px] p-[25px] flex flex-col justify-center bg-[url('./public/assets/textture.jpg')]">
             <strong className="  text-white text-3xl font-bold pointer-events-none">
               Join us today
             </strong>
@@ -34,13 +34,13 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between">
+      <div className="flex items-center justify-center border-b-2 border-neutral-200 p-4 dark:border-neutral-500 lg:justify-between">
         <div className="mr-12 hidden lg:block">
           <span>Get connected with us on social networks:</span>
         </div>
         {/* <!-- Social network icons container --> */}
         <div className="flex justify-center">
-          <a href="#!" className="mr-6 text-neutral-600 dark:text-neutral-200">
+          <a href="#!" className="mr-6 text-neutral-800 dark:text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4"
