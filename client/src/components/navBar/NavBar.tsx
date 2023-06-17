@@ -59,7 +59,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
+    <nav className={`navbar ${isScrolled ? "scrolled" : ""}`} style={{  zIndex: 1 }}>
       <div className="flex items-center  lg:px-[80px] ">
         <div className="z-50  md:w-auto w-full flex ">
           <Link to="/">

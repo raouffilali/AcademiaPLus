@@ -47,22 +47,23 @@ const RatingSection: React.FC = () => {
 
   return (
     <div className="text-gray-900 font-bold text-5xl flex items-start absolute" ref={ref}>
-      {inView ? (
-        <>
-          <CountUp
-            end={1000}
-            duration={2}
-            start={rating.current}
-            onEnd={increaseRating}
-          />
-          <p className="ml-2">+</p>
-          <p className="ml-10 mr-2">4.4</p>
-          {renderStars(5)}
-        </>
-      ) : (
-        <span>0</span>
-      )}
-    </div>
+  {inView ? (
+    <>
+      <CountUp
+        end={1000}
+        duration={2}
+        start={rating.current}
+        onEnd={increaseRating}
+      />
+      <p className="ml-2">+</p>
+      <p className="ml-10 mr-2">4.4</p>
+      {renderStars(5)}
+    </>
+  ) : (
+    <span>0</span>
+  )}
+</div>
+
   );
 };
 

@@ -22,7 +22,7 @@ function BecomeaTeacherPage() {
   };
   return (
     <>
-      <NavBar visibility="" />
+      <NavBar />
       <div
       >
         {isFormVisible && (
@@ -237,6 +237,7 @@ function BecomeaTeacherPage() {
             Join one of the world’s largest online learning <br /> marketplaces.
           </p> 
         </div>
+        <Footer/>
       </div>
     </>
   );
