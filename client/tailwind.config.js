@@ -11,9 +11,9 @@ export default {
     },
     extend: {
       colors: {
-        goldPal: "#FB7200",
-        yelloPal: "#F58D01",
-        lightYelloPal: "#F7A015",
+        goldPal: "#FFB54A",
+        redPal: "#F6697B",
+        lightredPal: "#F5B88F",
         DarkBluePal: "#034B68",
         lightBluePal: "#037498",
         bluePal: "#6DB8D5",
@@ -23,6 +23,10 @@ export default {
         background:"#F0EBE8",
         buttons:"#F7B54A",
         buttonsHover:"#E19B36",
+        greenish:'#DDFED3',
+        button:"#e4f9f2",
+        pechelight:"#f58156",
+        peche:"#F57B4D",
       },
     },
   },

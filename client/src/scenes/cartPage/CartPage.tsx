@@ -5,7 +5,7 @@ function CartPage() {
     <>
       <NavBar />
 
-      <div className="container mx-10 mt-8 mb-8 ">
+      <div className="container mx-[80px] mt-8 mb-8 ">
         <EmptyCart />
         <br />
         <h3 className=" text-[17px]  text-gray-800 mb-1	 font-[700] leading-2">

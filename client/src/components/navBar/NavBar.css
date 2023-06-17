@@ -1,0 +1,13 @@
+.navbar {
+    position: sticky  ;
+    top: 14px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar.scrolled {
+    background-color: white;
+    top:0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  }

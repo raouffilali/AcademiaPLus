@@ -3,45 +3,69 @@ import NavBar from "../../components/navBar/NavBar";
 import StatsContainer from "../../components/statsContainer/StatsContainer";
 import { useState } from "react";
 import { Footer } from "../../components";
+import "./BecomeaTeacherPage.css";
+import Form from "../../components/BecomeInstructorForm/Form";
+
 type Tab = "Plan" | "Record" | "Launch";
 
 function BecomeaTeacherPage() {
+  const [isFormVisible, setFormVisible] = useState(false);
+
+  const toggleFormVisibility = () => {
+    setFormVisible(!isFormVisible);
+  };
+
   const [activeTab, setActiveTab] = useState("Plan");
-  // State to track the active tab
+
   const handleTabClick = (tab: Tab) => {
     setActiveTab(tab);
-    // Update the active tab state when a tab is clicked
   };
   return (
     <>
       <NavBar visibility="" />
-      <div className=" flex flex-row  bg-gray-50 w-full h-[520px] justify-between   ">
-        <div className=" ml-[138px] flex flex-col">
-          <p className="font-Lato text-[46px] mt-40  text-gray-800 font-bold">
+      <div
+      >
+        {isFormVisible && (
+          <div className="blur-overlay" onClick={toggleFormVisibility} />
+        )}
+      </div>
+      <div className=" flex flex-row mt-14 justify-between   ">
+        <div className=" mx-[85px] flex flex-col">
+          <p className="font-Lato text-[46px] mt-20  text-gray-800 font-bold">
             Come teach <br /> with us
           </p>
           <p className="text-gray-500">
             Become an instructor and change <br /> lives — including your own
           </p>
-          <button className="mt-5 p-4 rounded-md text-white font-normal bg-DarkBluePal hover:bg-darkBluePLusPal">
+          <button
+            className="mt-5 p-4 rounded-md text-white font-normal bg-blueLink hover:bg-DarkBluePal"
+            onClick={toggleFormVisibility}
+          >
             Get Started
           </button>
+          {isFormVisible && (
+            <div className="popup">
+              <button
+                className=" text-white close-button px-3"
+                onClick={toggleFormVisibility}
+              >
+                x
+              </button>
+              <Form />
+            </div>
+          )}
         </div>
-        {/* <div className=" ">
-            <img
-              src="./public/assets/BecomeInstructorPage.png"
-              alt=""
-              className="w-[620px] h-[420px]"
-            />
-          </div> */}
+        <div className="">
+          <img src="/assets/Teach.jpg" alt="" className="w-[620px] h-[435px]" />
+        </div>
       </div>
-      <div className="ml-[80px] mr-[80px] bg-white text-gray-800 flex flex-col  relative  ">
+      <div className="mx-[80px] bg-white text-gray-800 flex flex-col  relative  ">
         <p className="mt-20 flex justify-center items-center font-Lato text-[38px] font-bold">
           So many reasons to start
         </p>
-        <div className=" mt-20 mb-20 flex justify-between space-x-5">
+        <div className=" mt-20 mb-20 flex justify-between w-full">
           <div className="justify-center items-center flex flex-col space-y-2 ">
-            <img src="" alt="" />
+            <img src="assets/instruct.png" alt="" className="h-18" />
             <p className=" font-extrabold">Teach your way</p>
             <p className="text-sm">
               Publish the course you want, in the way you <br /> want, and
@@ -49,7 +73,7 @@ function BecomeaTeacherPage() {
             </p>
           </div>
           <div className="justify-center items-center flex flex-col space-y-2 ">
-            <img src="" alt="" />
+            <img src="assets/inspire.png" className="h-12 w-14" alt="" />
             <p className=" font-extrabold">Inspire learners</p>
             <p className="text-sm">
               Teach what you know and help learners explore <br /> their
@@ -57,7 +81,7 @@ function BecomeaTeacherPage() {
             </p>
           </div>
           <div className="justify-center items-center flex flex-col space-y-2 ">
-            <img src="" alt="" />
+            <img src="assets/rewarded.png" className="h-12 w-14" alt="" />
             <p className=" font-extrabold">Get rewarded</p>
             <p className=" text-sm">
               Expand your professional network, build your <br /> expertise, and
@@ -95,8 +119,8 @@ function BecomeaTeacherPage() {
           <p
             className={` ${
               activeTab === "Launch"
-                ? "border-b-2 border-black text-black "
-                : "text-gray-500 hover:text-black"
+                ? "border-b-2 border-green-600 text-green-600 "
+                : "text-gray-500 hover:text-green-600"
             }`}
             onClick={() => handleTabClick("Launch")}
           >
@@ -204,20 +228,16 @@ function BecomeaTeacherPage() {
           </p>
         </div>
       </div>
-      <div className=" bg-gray-50 w-full h-[420px]">
+      <div className=" bg-gray-50 w-full h-[320px]">
         <div className="mt-20 mb-40 flex flex-col justify-center items-center">
           <p className=" mt-20 font-Lato text-[38px] font-bold">
             Become an instructor today
           </p>
-          <p className="w-[580px] text-gray-800  text-[20px]">
+          <p className="text-gray-800  text-[20px]">
             Join one of the world’s largest online learning <br /> marketplaces.
-          </p>
-          <button className="mt-5 px-20 py-3 rounded-md text-white font-normal bg-DarkBluePal hover:bg-darkBluePLusPal">
-            Get Started
-          </button>
+          </p> 
         </div>
       </div>
-      <Footer />
     </>
   );
 }

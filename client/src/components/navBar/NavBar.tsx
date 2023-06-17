@@ -1,17 +1,13 @@
-import React from "react";
-import { FaSearch } from "react-icons/fa";
-import { GrLanguage } from "react-icons/gr";
-import { FaAngleDown } from "react-icons/fa";
-import { RiShoppingCart2Line } from "react-icons/ri";
-import {Routes, Route} from 'react-router-dom';
-import { useState } from "react";
-import SignupPage from "../../scenes/SignupPage/SignupPage";
-import LoginPage from "../../scenes/loginPage/LoginPage";
-import CategoriesMenu from "./CategoriesMenu";
-import { Link } from "react-router-dom";
-import {useSelector} from 'react-redux';
-import axios from 'axios';
 
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import NavLinks from "./NavLinks";
+import { FaSearch } from "react-icons/fa";
+import "./NavBar.css";
+import { GrLanguage } from "react-icons/gr";
+import { RiShoppingCart2Line } from "react-icons/ri";
+import { FaTimes, FaBars } from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa";
 interface Language {
   id: number;
   label: string;
@@ -22,138 +18,183 @@ const LANGUAGES: Language[] = [
   { id: 2, label: "Fr" },
   { id: 3, label: "En" },
 ];
-const NavBar = (props: any) => {
-  // State for toggling dropdown menus
+
+const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState<Language>(
     LANGUAGES[0]
   );
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const shouldBeScrolled = scrollPosition > 0;
+
+      setIsScrolled(shouldBeScrolled);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup the event listener when the component is unmounted
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const navbar = document.querySelector(".navbar");
+
+    if (navbar) {
+      if (isScrolled) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    }
+  }, [isScrolled]);
 
   const handleLanguageSelect = (language: Language) => {
     setSelectedLanguage(language);
     setIsOpen(false);
+    // Here you can add logic to change the page language
   };
-  // const auth = useSelector((state:any )=> state.auth)
-
-  // const {user, isLogged} = auth
-
-
-  const handleLogout = async () => {
-      try {
-          await axios.get('/user/logout')
-          localStorage.removeItem('firstLogin')
-          window.location.href = "/";
-      } catch (err) {
-          window.location.href = "/";
-      }
-  }
 
   return (
-    <nav className="flex items-center justify-between space-x-2 bg-white w-full h-[64px]  pr-[60px] pl-[60px]">
-      {/* Logo */}
-      <Link to="/">
-      <div className="mt-[-8px]">
-        <img
-          src="/assets/logo.png"
-          style={{ width: "100px", height: "80px" }}
-          alt="Logo"
-        />
-        {/*Categories Dropdown */}
-        </div></Link>
-        <CategoriesMenu />
-      
-      {/* Search Bar */}
-      <div className="flex items-center">
-        <div className="relative">
-          <input
-            className="bg-white border-solid  text-[15px] border-2 border-gray-300 rounded-[15px]   w-[470px] text-gray-800 px-4 py-2  focus:outline-none"
-            type="text"
-            placeholder="Search course .."
+    <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
+      <div className="flex items-center  lg:px-[80px] ">
+        <div className="z-50  md:w-auto w-full flex ">
+          <Link to="/">
+          <img
+            src="assets/logo.svg"
+            alt="logo"
+            className=" md:cursor-pointer h-8"
           />
-          <div className="w-4 h-4 absolute top-1/2 transform -translate-y-1/2 right-3">
-            <FaSearch size={18} color="#b3b3b3" />
+          </Link>
+          
+          <div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
+            {open ? <FaTimes /> : <FaBars />}
           </div>
         </div>
-        {/* Become a Teacher Button */}
+        <ul className="md:flex hidden items-center gap-2">
+          <NavLinks />
+          <div className="hidden md:flex items-center">
+            {/* Search Bar */}
+            <div className={`searchBar relative `}>
+              <input
+                className={`bg-white  ${
+                  isScrolled ? " border border-gray-200" : "border-gray-300"
+                }  border-solid text-sm border-1 rounded-[15px] w-[370px] text-gray-800 px-4 py-2 focus:outline-none`}
+                type="text"
+                placeholder="Search course .."
+              />
+              <div className="w-4 h-4 absolute top-1/2 transform -translate-y-1/2 right-3">
+                <FaSearch size={18} color="#b3b3b3" />
+              </div>{" "}
+            </div>
+          </div>
+        </ul>
+        <div className="md:hidden lg:flex hidden">
+          {/* Become a Teacher Button */}
 
-        <div style={{ visibility: props.visibility ? 'hidden'  : 'visible' }}>
-          {" "}
-          <Link to="/BecomeaTeacherPage">
-          <button className="ml-4 bg-lightBluePal  hover:bg-DarkBluePal  text-white text-[15px]  py-[6px] px-2 font-normal rounded-lg focus:outline-none">
-            Become a Teacher
-          </button></Link>
-        </div>
+          <Link to="/BecomeaTeacherPage" className="ml-2">
+            <button className="bg-greenish  hover:bg-bluePal text-DarkBluePal hover:text-white text-sm py-2 px-2 font-normal rounded-2xl focus:outline-none">
+              Become a Teacher
+            </button>
+          </Link>
 
-        {/* Language Dropdown */}
-        <div className="z-10 relative inline-block text-left">
-          <div>
+          {/* Language Dropdown */}
+          <div className="relative inline-block text-left">
             <button
               type="button"
-              className="inline-flex justify-center  rounded-md  mx-2 px-2 py-2 text-[15px] font-Lato  text-gray-700 hover:text-gray-500 focus:outline-none "
+              className="inline-flex items-center justify-center rounded-md  px-2 py-2 text-sm font-Lato text-gray-700 hover:text-gray-500 focus:outline-none"
               id="language-menu"
               aria-expanded="true"
               aria-haspopup="true"
               onClick={() => setIsOpen(!isOpen)}
             >
-              <GrLanguage className=" mt-1 mr-1" size={16} />
+              <GrLanguage className="mr-1" size={16} />
               {selectedLanguage.label}
-              <FaAngleDown
-                className=" mt-[6px] -mr-1 ml-1 h-4 w-3"
-                aria-hidden="true"
-              />
+              <FaAngleDown className="ml-1" aria-hidden="true" size={12} />
             </button>
+
+            {isOpen && (
+              <div className="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div className="py-1" role="none">
+                  {LANGUAGES.map((language) => (
+                    <button
+                      key={language.id}
+                      className={`${
+                        selectedLanguage.id === language.id
+                          ? "bg-gray-100 text-gray-900"
+                          : "text-gray-700"
+                      } block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none`}
+                      role="menuitem"
+                      onClick={() => handleLanguageSelect(language)}
+                    >
+                      {language.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
-          {isOpen && (
-            <div
-              className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="language-menu"
-            >
-              <div className="py-1" role="none">
-                {LANGUAGES.map((language) => (
-                  <button
-                    key={language.id}
-                    className={`${
-                      selectedLanguage.id === language.id
-                        ? "bg-gray-100 text-gray-900"
-                        : "text-gray-700"
-                    } block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none`}
-                    role="menuitem"
-                    onClick={() => handleLanguageSelect(language)}
-                  >
-                    {language.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
+          {/* Cart Icon */}
+          <Link to="/CartPage" className="ml-2 mr-2 text-gray-800">
+            <RiShoppingCart2Line size={18} />
+          </Link>
 
-        {/* cart Icon */}
-        <Link to="/CartPage" >
-        <div className="ml-2 mr-2 text-gray-800  ">
-          <RiShoppingCart2Line size={18} />
-        </div></Link>
-        {/* Login Button */}
-      
-        <Link
-          to="/loginPage"
-          className=" text-[15px] mr-2 ml-2 text-lightYelloPal hover:text-yelloPal focus:outline-none"
+          {/* Login Button */}
+          <Link
+            to="/loginPage"
+            className="mr-2 ml-2 text-gray-800 bg-button rounded-2xl  hover:text-white hover:bg-redPal px-4  py-2 focus:outline-none"
+          >
+            Login
+          </Link>
+
+          {/* Signup Button */}
+          <Link
+            to="/SignupPage"
+            className="text-redPal hover:text-white border-2 border-button hover:bg-redPal hover:border-redPal rounded-2xl px-4  py-2 mr-2 ml-2"
+          >
+            Sign Up
+          </Link>
+        </div>
+        {/* Mobile nav */}
+        <ul
+          className={`
+         lg-hidden bg-white fixed w-full top-0 overflow-y-auto bottom-0 py-24 pl-4
+        duration-500 ${open ? "left-0" : "left-[-100%]"}
+        `}
         >
-          Login
-        </Link>
-        {/* Signup Button */}
-        <Link
-          to="/SignupPage"
-          className=" text-[15px] focus:outline-none text-white bg-lightYelloPal hover:bg-yelloPal  font-medium rounded-lg  px-5 py-1 mr-2 ml-2  "
-        >
-          Sign Up
-        </Link>
+          <NavLinks />
+          <div className="py-5  ">
+            {/* Login Button */}
+            <Link
+              to="/loginPage"
+              className=" text-gray-800 bg-button rounded-2xl   hover:text-white hover:bg-redPal px-4  py-2 focus:outline-none"
+            >
+              Login
+            </Link>
+
+            {/* Signup Button */}
+            <Link
+              to="/SignupPage"
+              className="text-redPal hover:text-white border-2 border-button hover:bg-redPal hover:border-redPal rounded-2xl px-4  py-2 "
+            >
+              Sign Up
+            </Link>
+            {/* Become a Teacher Button */}
+
+          <Link to="/BecomeaTeacherPage" className="ml-2">
+            <button className="bg-greenish  hover:bg-bluePal text-DarkBluePal hover:text-white text-sm py-2 px-2 font-normal rounded-2xl focus:outline-none">
+              Become a Teacher
+            </button>
+          </Link>
+          </div>
+        </ul>
       </div>
     </nav>
   );
 };
 
-export default NavBar;
+export default Navbar;
