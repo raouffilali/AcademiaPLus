@@ -332,6 +332,8 @@ import React from "react";
 import NavBar from "../../components/navBar/NavBar";
 import RatingSection from "../../components/RatingSection/RatingSection";
 import StatsContainer from "../../components/statsContainer/StatsContainer";
+import { categories } from "../../components/topCategoryCarousel/categoriesData";
+import TopCategoryCarousel from "../../components/topCategoryCarousel/TopCategoryCarousel";
 
 function LandingPage() {
   return (
@@ -374,23 +376,27 @@ function LandingPage() {
           </div>
         </div>
       </div>
-      <div className=" mt-36 mx-[80px] pb-80 flex space-x-32 ">
-        <div className="space-y-6">
-          <p className="text-redPal font-medium text-lg">Favourite Course</p>
-          <p className="font-bold text-4xl ">Top Category</p>
-          <p className="text-gray-500">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget aenean
-            accumsan bibendum gravida maecenas augue elementum et neque.
-            Suspendisse imperdiet.
-          </p>
+      <div className=" mt-36 mx-[80px] ">
+        <div className=" flex space-x-32">
+          <div className="space-y-6">
+            <p className="text-redPal font-medium text-lg">Favourite Course</p>
+            <p className="font-bold text-4xl ">Top Category</p>
+            <p className="text-gray-500">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget
+              aenean accumsan bibendum gravida maecenas augue elementum et
+              neque. Suspendisse imperdiet.
+            </p>
+          </div>
+          <div>
+            <button className="flex items-center text-lightBluePal hover:text-white hover:bg-bluePal border-4 border-bluePal px-4 py-2 rounded-3xl">
+              <span className="mr-2">All</span>
+              Categories
+            </button>
+          </div>
         </div>
-        <div>
-          <button className="flex items-center text-lightBluePal hover:text-white hover:bg-bluePal border-4 border-bluePal px-4 py-2 rounded-3xl">
-            <span className="mr-2">All</span>
-            Categories
-          </button>
-        </div>
+        <TopCategoryCarousel categories={categories} />
       </div>
+      
     </div>
   );
 }

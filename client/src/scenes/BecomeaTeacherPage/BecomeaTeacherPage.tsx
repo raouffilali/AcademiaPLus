@@ -228,7 +228,7 @@ function BecomeaTeacherPage() {
           </p>
         </div>
       </div>
-      <div className=" bg-gray-50 w-full h-[320px]">
+      <div className=" bg-[url('assets/bg/banner-bg.png')] w-full h-[320px]">
         <div className="mt-20 mb-40 flex flex-col justify-center items-center">
           <p className=" mt-20 font-Lato text-[38px] font-bold">
             Become an instructor today
