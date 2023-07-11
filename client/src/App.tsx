@@ -27,12 +27,16 @@ import NotFound from "./components/Error/NotFound";
 import ServerError from "./components/Error/ServerError";
 import UnderConstr from "./components/Error/UnderConstr";
 import Form from "./components/BecomeInstructorForm/Form";
+import AcademicfieldPage from "./scenes/academicfieldPage/AcademicfieldPage";
+import MyCoursesPage from "./scenes/myCoursesPage/MyCoursesPage";
+import EnrollCourse from "./components/EnrollCourse/EnrollCourse";
+import Test from "./scenes/test/Test";
 function App() {
   return (
     <Router>
       
       <Routes>
-        <Route path="/" element={< LandingPage/>} />
+        <Route path="/" element={<LandingPage/>} />
         <Route path="/loginPage" element={<LoginPage />} />
         <Route path="/landingPage" element={<LandingPage />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />

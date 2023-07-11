@@ -1,14 +1,20 @@
-.custom-dot {
-    margin: 10px;
-    width: 40px;
-    height: 4px;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 2px;
-    cursor: pointer;
-  }
-  
-  .custom-dot.active,
-  .custom-dot:hover {
-    background: red;
-  }
-  
+.slick-dots.slick-thumb {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.slick-dots.slick-thumb li {
+  width: 12px;
+  height: 12px;
+  margin: 0 4px;
+  border-radius: 50%;
+  transition: all 0.5s ease-in-out;
+  background-color: rgba(255, 199, 173, 0.596);
+}
+
+.slick-dots.slick-thumb li:hover,
+.slick-dots.slick-thumb li.slick-active {
+  background-color: rgb(252, 109, 90);
+  width: 16px;
+}

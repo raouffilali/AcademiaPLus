@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Footer } from "../../components";
 import "./BecomeaTeacherPage.css";
 import Form from "../../components/BecomeInstructorForm/Form";
+import StatsContainer2 from "../../components/statsContainer2/StatsContainer2";
 
 type Tab = "Plan" | "Record" | "Launch";
 
@@ -23,8 +24,7 @@ function BecomeaTeacherPage() {
   return (
     <>
       <NavBar />
-      <div
-      >
+      <div>
         {isFormVisible && (
           <div className="blur-overlay" onClick={toggleFormVisibility} />
         )}
@@ -90,8 +90,6 @@ function BecomeaTeacherPage() {
           </div>
         </div>
 
-        <StatsContainer />
-
         <p className="mt-20 flex justify-center items-center font-Lato text-[38px] font-bold">
           How to begin
         </p>
@@ -149,7 +147,7 @@ function BecomeaTeacherPage() {
                 <div>
                   <img
                     className="w-[380px] h-[320px]"
-                    src="./public/assets/teach.png"
+                    src="/assets/teach.png"
                     alt="plan-pic"
                   />
                 </div>
@@ -176,7 +174,7 @@ function BecomeaTeacherPage() {
                 <div>
                   <img
                     className="w-[280px] h-[380px]"
-                    src="./public/assets/record.png"
+                    src="/assets/record.png"
                     alt="record-pic"
                   />
                 </div>
@@ -205,7 +203,7 @@ function BecomeaTeacherPage() {
                 <div>
                   <img
                     className="w-[350px] h-[320px]"
-                    src="./public/assets/Launch.png"
+                    src="/assets/Launch.png"
                     alt="Launch-pic"
                   />
                 </div>
@@ -228,6 +226,8 @@ function BecomeaTeacherPage() {
           </p>
         </div>
       </div>
+      <div className="mx-[80px]"><StatsContainer2 apiUrl={""} /></div>
+      
       <div className=" bg-[url('assets/bg/banner-bg.png')] w-full h-[320px]">
         <div className="mt-20 mb-40 flex flex-col justify-center items-center">
           <p className=" mt-20 font-Lato text-[38px] font-bold">
@@ -235,9 +235,9 @@ function BecomeaTeacherPage() {
           </p>
           <p className="text-gray-800  text-[20px]">
             Join one of the world’s largest online learning <br /> marketplaces.
-          </p> 
+          </p>
         </div>
-        <Footer/>
+        <Footer />
       </div>
     </>
   );

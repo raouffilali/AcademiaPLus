@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./carouselStyle.css";
 
 interface Category {
@@ -17,92 +16,81 @@ interface CarouselProps {
 
 const TopCategoryCarousel: React.FC<CarouselProps> = ({ categories }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderRef = useRef<Slider>(null); // Create a ref for the Slider component
 
-  const renderIndicator = (onClickHandler: any, isSelected: boolean, index: number) => {
+  const handleDotClick = (index: number) => {
+    if (sliderRef.current) {
+      sliderRef.current.slickGoTo(index); // Go to the desired slide using the slickGoTo method
+      setCurrentSlide(index);
+    }
+  };
+
+  const renderIndicator = (
+    onClickHandler: any,
+    isSelected: boolean,
+    index: number
+  ) => {
     const handleIndicatorClick = () => {
       onClickHandler();
-      setCurrentSlide(index);
+      handleDotClick(index); // Call the custom handleDotClick function
     };
-
     const indicatorClassName = isSelected ? "active" : "";
 
-    return (
-      <li
-        key={index}
-        className={`custom-dot ${indicatorClassName}`}
-        onClick={handleIndicatorClick}
-        onMouseEnter={() => setCurrentSlide(index)}
-      />
-    );
+    
   };
 
   const settings = {
     dots: true,
-    arrows: false,
+    arrows: true,
     infinite: true,
-    speed: 500,
-    slidesToShow: 1,
+    speed: 800,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    appendDots: (dots: any) => (
-      <div className="custom-dots">
-        <ul style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
-          {dots.map((dot: any, index: number) => (
-            <li key={index} style={{ listStyleType: "none" }}>
-              {renderIndicator(
-                () => dot.props.onClick(),
-                index === currentSlide,
-                index
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
-    ),
-    afterChange: (current: number) => {
-      setCurrentSlide(current);
+    pauseOnHover: true,
+    cssEase: "linear",
+    focusOnSelect:true,
+    customPaging: function (i: number) {
+      return (
+        <div
+          className={`dot ${currentSlide === i ? "active" : ""}`}
+          onClick={() => handleDotClick(i)} // Call handleDotClick when the dot is clicked
+        ></div>
+      );
     },
+    dotsClass: "slick-dots slick-thumb mt-6",
+    
+   
   };
 
-  // Group the categories into chunks of 4 for each slide
-  const groupedCategories = Array.from(
-    { length: Math.ceil(categories.length / 4) },
-    (_, index) => categories.slice(index * 4, index * 4 + 4)
-  );
-
   return (
-    <div className="max-w-screen-xl mx-auto py-4">
-      <Carousel {...settings}>
-        {groupedCategories.map((group, index) => (
-          <div key={index} className="p-4">
-            <div className="grid grid-cols-4 gap-4">
-              {group.map((category, categoryIndex) => (
-                <div
-                  key={categoryIndex}
-                  className="border-gray-200 border rounded-lg overflow-hidden hover:border-darkBluePLusPal hover:bg-darkBluePLusPal duration-500 hover:text-white"
-                  style={{ width: "235px", height: "250px" }}
-                >
-                  <div className="relative">
-                    <img
-                      src={category.image}
-                      alt={category.name}
-                      className="w-full h-auto"
-                      style={{ width: "100%", height: "70%" }}
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="text-lg font-semibold">{category.name}</h3>
-                    <p className="text-gray-500">
-                      Instructors: {category.instructors}
-                    </p>
-                  </div>
+    <div className="max-w-screen-xl mx-auto mt-10">
+      <Slider ref={sliderRef} {...settings}>
+        {categories.map((category, index) => (
+          <div key={index} className="px-2">
+            <div
+              className="border-gray-200 border rounded-lg overflow-hidden hover:border-cyan-900 hover:bg-cyan-900 duration-500 hover:text-white"
+              style={{ width: "235px", height: "250px" }}
+            >
+              <div className="pt-8 space-y-5 hover:text-white">
+                <div className="rounded-full bg-gray-50 w-[90px] h-[90px] overflow-hidden">
+                  <img
+                    src={category.image}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              ))}
+                <p className="text-center font-bold text-[20px]">
+                  {category.name}
+                </p>
+                <p className="text-center text-gray-500 text-sm">
+                  Instructors: {category.instructors}
+                </p>
+              </div>
             </div>
           </div>
         ))}
-      </Carousel>
+      </Slider>
     </div>
   );
 };

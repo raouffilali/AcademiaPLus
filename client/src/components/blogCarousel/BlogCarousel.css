@@ -1,0 +1,24 @@
+.slick-dots.slick-thumb {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+  }
+  
+  .slick-dots.slick-thumb li {
+    width: 14px; /* Increase the width */
+    height: 14px; /* Increase the height */
+    margin: -40px 5px; /* Increase the margin */
+    border-radius: 999px;
+    transition: all 0.5s ease-in-out;
+    will-change: width;
+    background-color: rgba(255, 199, 173, 0.596);
+    
+  }
+  
+  .slick-dots.slick-thumb li:hover,
+  .slick-dots.slick-thumb li.slick-active {
+    background-color: rgb(252, 109, 90);
+    width: 45px;
+  }
+  

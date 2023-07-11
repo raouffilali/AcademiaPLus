@@ -1,46 +1,54 @@
-import React from 'react'
+import React from "react";
+import { FaStar, FaUsers } from "react-icons/fa";
+
 interface InstructorProps {
-    rating: number;
-    name: string;
+  rating: number;
+  name: string;
   job: string;
   avatarSrc: string;
-  }
-function Instructor( {name, job, avatarSrc,rating} :InstructorProps) {
-    return (
-      
-        <div className="py-20 flex flex-col  items-center text-center">
-          <div className=' w-[140px] h-[140px]'>
-          <img
-            src={avatarSrc} 
-            className="mx-auto mb-2 w-full h-full rounded-full"
-            alt="Avatar"
-          />
+  studentsEnrolled: number;
+}
 
-          </div>
-          <div className='flex flex-row '>
+function Instructor({
+  name,
+  job,
+  avatarSrc,
+  rating,
+  studentsEnrolled,
+}: InstructorProps) {
+  return (
+    <div className="bg-gray-50 w-60 rounded-xl border border-gray-200 shadow-sm items-start text-center">
+      <img
+        src={avatarSrc}
+        className="mx-auto h-56 rounded-t-xl w-full"
+        alt="Avatar"
+      />
+      <div className="space-y-2 p-6">
+        <div className="flex flex-row space-x-2">
           {Array.from({ length: 5 }, (_, index) => (
-              <span
-                key={index}
-                className={`text-yellow-500 mr-1 ${
-                  index < rating ? "opacity-100" : "opacity-30"
-                }`}
-              >
-                &#9733;
-              </span>
-            ))}
-            </div>
-          
-          <span className="text-gray-500">{rating}</span>{" "}
-          <h5 className="mb-1 text-lg font-medium leading-tight">{name}</h5>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400">{job}</p>
-          <button className='mt-2 text-sm  bg-DarkBluePal hover:bg-darkBluePLusPal rounded-full w-28 h-8 text-white'>
-              Profile
-          </button>
-            
+            <FaStar
+              key={index}
+              className={`text-goldPal mr-1 ${
+                index < rating ? "opacity-100" : "opacity-30"
+              }`}
+            />
+          ))}
+          <span className="text-gray-500">({rating})</span>{" "}
         </div>
-     
-    );
-  }
-  
-  export default Instructor;
-  
+
+        <h5 className="mb-1 text-xl font-medium leading-tight">{name}</h5>
+        <p className="text-sm text-neutral-500 dark:text-neutral-400">{job}</p>
+
+        <p className="text-sm text-gray-500">
+          <span className="">
+            <FaUsers className="text-redPal inline-block mr-1" />
+            {studentsEnrolled}
+          </span>{" "}
+          Students
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export default Instructor;

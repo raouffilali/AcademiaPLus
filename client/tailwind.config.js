@@ -21,8 +21,6 @@ export default {
         darkBluePLusPal: "#062835",
         blueLink:"#037498",
         background:"#F0EBE8",
-        buttons:"#F7B54A",
-        buttonsHover:"#E19B36",
         greenish:'#DDFED3',
         button:"#e4f9f2",
         pechelight:"#f58156",
