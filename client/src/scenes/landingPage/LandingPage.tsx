@@ -327,8 +327,6 @@
 // }
 
 // export default LandingPage;
-import { sizeHeight } from "@mui/system";
-import React from "react";
 import { Link } from "react-router-dom";
 import CourseCard from "../../components/courseCard/CourseCard";
 import FieldsCards from "../../components/fieldsCards/FieldsCards";
@@ -339,13 +337,9 @@ import { categories } from "../../components/topCategoryCarousel/categoriesData"
 import TopCategoryCarousel from "../../components/topCategoryCarousel/TopCategoryCarousel";
 import courses from "../../components/courseCard/courses";
 import Footer from "../../components/Footer/Footer";
-import InstructorCard from "../../components/InstructorCard/InsructorCard";
-import Instructor from "../../components/instructor/Instructor";
 import InstructorCarousel from "../../components/instructorCarousel/InstructorCarousel";
 import SponsorsCarousel from "../../components/SponsorsCarousel/SponsorsCarousel";
 import { sponsorsData } from "../../components/SponsorsCarousel/SponsorsData";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { FaCheckCircle } from "react-icons/fa";
 import TestemonialsCard from "../../components/testmonialsCard/TestemonialsCard";
 import BlogCarousel from "../../components/blogCarousel/BlogCarousel";
@@ -538,6 +532,16 @@ function LandingPage() {
               aenean accumsan bibendum gravida maecenas augue elementum et
               neque. Suspendisse imperdiet.
             </p>
+            <iframe
+             width="760"
+             height="415"
+            src="https://www.youtube.com/embed/your-video-id"
+            title="Video"
+            className='rounded-2xl'
+          
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          
+          ></iframe>
           </div>
           <div className="mt-24 space-y-5 ">
             <p className="font-bold text-4xl text-center">
@@ -599,7 +603,7 @@ function LandingPage() {
                   </span>
                 </div>
 
-                <Link to="/BecomeaTeacher">
+                <Link to="/BecomeaTeacherPage">
                   <button className=" mt-10 items-center text-lightBluePal hover:text-white hover:bg-bluePal border-4 border-bluePal px-8 py-2 rounded-3xl">
                     <span className="mr-2">Become</span>a Mentor
                   </button>

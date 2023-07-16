@@ -1,9 +1,35 @@
-import React from 'react'
+// AcademicfieldPage.tsx
+import React from 'react';
+import PrimarySchoolPage from './PrimarySchoolPage';
+import MiddleSchoolPage from './MiddleSchoolPage';
+import HighSchoolPage from './HighSchoolPage';
+import UniversityPage from './UniversityPage';
 
-function AcademicfieldPage() {
-  return (
-    <div>AcademicfieldPage</div>
-  )
-}
+type AcademicFieldPageProps = {
+  selectedCard: string;
+};
 
-export default AcademicfieldPage
+const AcademicFieldPage: React.FC<AcademicFieldPageProps> = ({ selectedCard }) => {
+  let content = null;
+
+  switch (selectedCard) {
+    case 'Primary School':
+      content = <PrimarySchoolPage />;
+      break;
+    case 'Middle School':
+      content = <MiddleSchoolPage />;
+      break;
+    case 'High School':
+      content = <HighSchoolPage />;
+      break;
+    case 'University':
+      content = <UniversityPage />;
+      break;
+    default:
+      content = null;
+  }
+
+  return <div>{content}</div>;
+};
+
+export default AcademicFieldPage;

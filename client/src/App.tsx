@@ -31,6 +31,10 @@ import AcademicfieldPage from "./scenes/academicfieldPage/AcademicfieldPage";
 import MyCoursesPage from "./scenes/myCoursesPage/MyCoursesPage";
 import EnrollCourse from "./components/EnrollCourse/EnrollCourse";
 import Test from "./scenes/test/Test";
+import PrimarySchoolPage from "./scenes/academicfieldPage/PrimarySchoolPage";
+import HighSchoolPage from "./scenes/academicfieldPage/HighSchoolPage";
+import MiddleSchoolPage from "./scenes/academicfieldPage/MiddleSchoolPage";
+import UniversityPage from "./scenes/academicfieldPage/UniversityPage";
 function App() {
   return (
     <Router>
@@ -43,6 +47,13 @@ function App() {
         <Route path="BecomeaTeacherPage" element={<BecomeaTeacherPage/>} />
         <Route path="/CartPage" element={<CartPage />} />
         <Route path="/SignupPage" element={<SignupPage />} />
+        <Route path="/CategoryPage" element={<CategoryPage />} />
+        <Route path="/CourseDetails" element={<CourseDetails />} />
+        <Route path="/PrimarySchoolPage" element={<PrimarySchoolPage />} />
+        <Route path="/MiddleSchoolPage" element={<MiddleSchoolPage />} />
+        <Route path="/HighSchoolPage" element={<HighSchoolPage/>} />
+        <Route path="/UniversityPage" element={<UniversityPage/>} />
+        
       </Routes>
     </Router>
   );

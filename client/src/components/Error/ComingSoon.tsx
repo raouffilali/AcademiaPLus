@@ -22,7 +22,7 @@ function ComingSoon() {
 
   return (
     <div className="bg-gradient-to-r from-amber-50 to-blue-50 min-h-screen">
-      <div className="p-10 flex flex-col space-y-4 items-center">
+      <div className="p-5 flex flex-col space-y-4 items-center">
         <img src="assets/logo.svg" alt="" className="h-8" />
         <p className="text-2xl">WE ARE COMING SOON!!</p>
         <p>Stay tuned for something amazing</p>

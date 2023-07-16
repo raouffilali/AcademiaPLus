@@ -8,7 +8,7 @@ const PathPage = () => {
 
   return (
     <div>
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center pt-24">
         <hr className="w-[1108px]" />
       </div>
       <div className="flex ml-[80px]">
@@ -27,7 +27,7 @@ const PathPage = () => {
               <li key={index}>
                 <Link
                   to={url}
-                  className={`${isLast ? 'font-semibold' : 'text-gray-800 hover:underline'}`}
+                  className={`${isLast ? 'font-medium ' : 'text-gray-800 hover:underline'}`}
                 >
                   {path}
                 </Link>

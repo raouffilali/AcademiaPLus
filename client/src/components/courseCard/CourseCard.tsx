@@ -28,16 +28,16 @@ function CourseCard({
   const navigate = useNavigate();
 
   const handleCourseClick = (courseName: string) => {
-    navigate(`/course-details/${courseName}`);
+    navigate(`/courseDetails/${courseName}`);
   };
 
   return (
     <div
-      className="w-full hover:bg-cyan-950 hover:text-white h-full space-y-5 p-5 bg-white rounded-lg hover:border-cyan-950 duration-500 shadow-sm border border-gray-200 dark:border-gray-200"
+      className="w-full hover:text-white hover:bg-cyan-950  h-full space-y-5 p-5 bg-white rounded-lg hover:border-cyan-950 duration-500 shadow-sm border border-gray-200 dark:border-gray-200"
       onClick={() => handleCourseClick(`${courseName}`)}
     >
       <div className="relative">
-        <Link to="">
+        <Link to="/CourseDetails">
           <img
             className="rounded-lg h-48"
             src={courseThumbnailSrc}
@@ -49,7 +49,7 @@ function CourseCard({
         </div>
       </div>
 
-      <div className="p-1">
+      <div className="p-1 ">
         <Link to="" className="absolute flex items-center ml-2 mb-2">
           <img
             className="w-12 h-12 rounded-full inline-block"
@@ -57,7 +57,7 @@ function CourseCard({
             alt="instructorAvatar"
           />
           <div className="ml-2">
-            <p className="mb-0 font-medium text-gray-800 dark:text-gray-800 hover:text-white">
+            <p className="mb-0 font-medium text-gray-800 ">
               {instructor}
             </p>
             <p className="text-gray-500 text-sm">{instructorJob}</p>
