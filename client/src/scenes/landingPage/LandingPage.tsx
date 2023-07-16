@@ -349,7 +349,7 @@ import StatsContainer2 from "../../components/statsContainer2/StatsContainer2";
 function LandingPage() {
   return (
     <div>
-      <div className="w-full top-14 h-[920px] bg-[url(/assets/bg/landingbanner.png)]">
+      <div className="w-full top-14 h-[920px] bg-[url(/assets/bg/landingbanner2.png)]">
         <NavBar />
         <div>
           <div className="text-gray-900 mx-[80px]">

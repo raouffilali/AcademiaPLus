@@ -7,7 +7,7 @@ import {
   Button,
   CardFooter,
 } from "@material-tailwind/react";
-import { ArrowLongRightIcon, StarIcon } from "@heroicons/react/24/outline";
+import { ArrowLongRightIcon, ArrowRightIcon, StarIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 
 interface CustomCardProps {
@@ -16,6 +16,7 @@ interface CustomCardProps {
   rating: string;
   description: string;
   year: string;
+  subject: string;
 }
 
 const CustomCard = ({
@@ -24,7 +25,12 @@ const CustomCard = ({
   rating,
   description,
   year,
+  subject,
 }: CustomCardProps) => {
+  const handleClick = () => {
+    // Handle card click event here
+  };
+
   if (title === "الألعاب التعليمية" || title === "فروض و امتحانات") {
     return (
       <Card className="flex-row w-full hover:bg-greenish  max-w-[48rem] border-dashed border">
@@ -47,16 +53,18 @@ const CustomCard = ({
           </Typography>
         </CardHeader>
         <CardBody>
-          <Typography variant="h6"  className=" text-emerald-500 uppercase mb-4">
+          <Typography variant="h6" className="text-emerald-500 uppercase mb-4">
             {title}
           </Typography>
-          
           <Typography className="text-gray-600 font-light text-sm mb-8">
             {description}
           </Typography>
-          <Link to="#" className="hover:bg-emerald-500 rounded-xl bg-gray-100  inline-block">
-            <Button variant="text" className="flex text-emerald-500 hover:text-white  items-center gap-2">
-              Learn More
+          <Link to="#" className="hover:bg-emerald-500 rounded-xl bg-gray-100 inline-block">
+            <Button
+              variant="text"
+              className="flex text-emerald-500 hover:text-white items-center gap-2"
+            >
+              استكشف المزيد
               <ArrowLongRightIcon strokeWidth={2} className="w-4 h-4" />
             </Button>
           </Link>
@@ -65,7 +73,7 @@ const CustomCard = ({
     );
   } else {
     return (
-      <Card className="w-full hover:bg-greenish   px-3 max-w-[26rem] border-dashed border">
+      <Card className="w-full hover:bg-greenish px-3 max-w-[26rem] border-dashed border">
         <CardHeader
           shadow={false}
           floated={false}
@@ -100,10 +108,18 @@ const CustomCard = ({
           </div>
           <Typography className="text-gray-600 font-light text-sm">{description}</Typography>
         </CardBody>
+        <hr className="border border-dashed" />
         <CardFooter className="pt-3">
-          <Button className="bg-emerald-500 hover:bg-emerald-600 w-full" >
-            Reserve
-          </Button>
+          <Link to={`/details/${year}/${subject}`}>
+          <Button
+        className="bg-emerald-500 hover:bg-emerald-600 w-full rounded-b-lg py-3 flex items-center justify-center"
+        
+      >
+        
+        ابدأ التعلم
+        <ArrowRightIcon className="w-5 h-4 text-white ml-2" />
+      </Button>
+          </Link>
         </CardFooter>
       </Card>
     );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navbar from "../../components/navBar/NavBar";
 import PathPage from "../../components/PathPage/PathPage";
 import {
@@ -43,8 +43,10 @@ const years = [
 ];
 
 function PrimarySchoolPage() {
-  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedYear, setSelectedYear] = useState("السنة الأولى");
   const [selectedSubject, setSelectedSubject] = useState("");
+  const [isMenuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const handleYearChange = (year: React.SetStateAction<string>) => {
     setSelectedYear(year);
@@ -53,7 +55,22 @@ function PrimarySchoolPage() {
 
   const handleSubjectChange = (subject: React.SetStateAction<string>) => {
     setSelectedSubject(subject);
+    setMenuOpen(false);
   };
+
+  const handleClickOutsideMenu = (event: MouseEvent) => {
+    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      setMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.body.addEventListener("click", handleClickOutsideMenu);
+
+    return () => {
+      document.body.removeEventListener("click", handleClickOutsideMenu);
+    };
+  }, []);
 
   return (
     <div>
@@ -75,11 +92,10 @@ function PrimarySchoolPage() {
           </p>
           <div className="space-y-6 mx-[80px] mt-3">
             <iframe
-              
               height="415"
               src="https://www.youtube.com/embed/your-video-id"
               title="Video"
-              className="w-2/3  rounded-2xl"
+              className="w-2/3 rounded-2xl"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             ></iframe>
             <button className="border-2 border-white rounded-2xl text-xl text-white font-bold p-2 px-16 bg-gradient-to-r from-emerald-600 to bg-emerald-300">
@@ -98,11 +114,11 @@ function PrimarySchoolPage() {
             المحاور الدراسية للمرحلة الابتدائية
           </p>
           <div className="flex justify-center my-8">
-            <div className="flex justify-between w-full mx-[80px] bg-gray-50 border border-emerald-500   rounded-xl">
+            <div className="flex justify-between w-full mx-[80px] bg-gray-50 border border-emerald-500 rounded-xl">
               {years.map((year) => (
                 <button
                   key={year}
-                  className={`py-2 md:px-12 hover:bg-emerald-500 rounded-s-xl rounded-e-xl  duration-500 hover:text-white ${
+                  className={`py-2 md:px-12 hover:bg-emerald-500 rounded-s-xl rounded-e-xl duration-500 hover:text-white ${
                     selectedYear === year ? "bg-emerald-500 text-white" : ""
                   }`}
                   style={{ fontFamily: "Tajawal", fontWeight: 600 }}
@@ -114,40 +130,38 @@ function PrimarySchoolPage() {
             </div>
           </div>
           <div className="p-4 text-center">
-            <div className="relative inline-block">
-              <button
-                className="flex items-center justify-between w-48 p-2 bg-white border-2 border-emerald-500 rounded-xl cursor-pointer"
-                onClick={() =>
-                  setSelectedSubject(selectedSubject === "" ? subjects[0] : "")
-                }
-              >
-                <span className="mr-4 text-emerald-500">
-                  {selectedSubject || "المادة"}
-                </span>
-                <svg
-                  className={`w-5 h-5 text-emerald-500 fill-current transform transition-transform ${
-                    selectedSubject ? "rotate-180" : ""
-                  }`}
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
+          <div className="relative inline-block" ref={menuRef}>
+          <button
+            className="flex items-center justify-between w-48 p-2 bg-white border-2 border-emerald-500 rounded-xl cursor-pointer"
+            onClick={() => setMenuOpen(!isMenuOpen)}
+          >
+            <span className="mr-4 text-emerald-500">
+              {selectedSubject ? selectedSubject : "المادة"}
+            </span>
+            <svg
+              className={`w-5 h-5 text-emerald-500 fill-current transform transition-transform ${
+                isMenuOpen ? "rotate-180" : ""
+              }`}
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path d="M6 8l4 4 4-4z" />
+            </svg>
+          </button>
+          {isMenuOpen && (
+            <div className="z-10 absolute w-48 mt-2 bg-white border border-emerald-500 rounded-md shadow-lg">
+              {subjects.map((subject) => (
+                <button
+                  key={subject}
+                  className="w-full px-4 py-2 text-left hover:bg-emerald-500 hover:text-white"
+                  onClick={() => handleSubjectChange(subject)}
                 >
-                  <path d="M6 8l4 4 4-4z" />
-                </svg>
-              </button>
-              {selectedSubject && (
-                <div className="z-10 absolute w-48 mt-2 bg-white border border-emerald-500 rounded-md shadow-lg">
-                  {subjects.map((subject) => (
-                    <button
-                      key={subject}
-                      className="w-full px-4 py-2 text-left hover:bg-emerald-500 hover:text-white"
-                      onClick={() => handleSubjectChange(subject)}
-                    >
-                      {subject}
-                    </button>
-                  ))}
-                </div>
-              )}
+                  {subject}
+                </button>
+              ))}
             </div>
+          )}
+        </div>
           </div>
         </div>
       </div>
@@ -160,6 +174,7 @@ function PrimarySchoolPage() {
             rating="4.5"
             description="Enter a description for الملخصات المكتوبة."
             year={selectedYear}
+            subject={selectedSubject}
           />
         </Link>
 
@@ -171,9 +186,10 @@ function PrimarySchoolPage() {
             rating="4.0"
             description="Enter a description for ملخصات بالفيديو."
             year={selectedYear}
+            subject={selectedSubject}
           />
         </Link>
-         {/* Card 1 */}
+        {/* Card 1 */}
         <Link to="/card1">
           <CustomCard
             imageSrc="/assets/academicfield/dawra.png"
@@ -181,9 +197,9 @@ function PrimarySchoolPage() {
             rating="5.0"
             description="Enter a description for الدورات التعليمية."
             year={selectedYear}
+            subject={selectedSubject}
           />
         </Link>
-       
 
         {/* Card 4 */}
         <div className="col-span-1">
@@ -194,6 +210,7 @@ function PrimarySchoolPage() {
               rating="4.8"
               description="Enter a description for الألعاب التعليمية."
               year={selectedYear}
+              subject={selectedSubject}
             />
           </Link>
         </div>
@@ -206,12 +223,10 @@ function PrimarySchoolPage() {
               rating="4.2"
               description="Enter a description for فروض و امتحانات."
               year={selectedYear}
+              subject={selectedSubject}
             />
           </Link>
         </div>
-
-        
-        
       </div>
     </div>
   );
