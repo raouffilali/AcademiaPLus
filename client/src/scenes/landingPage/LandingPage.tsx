@@ -1,4 +1,3 @@
-
 import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
@@ -21,7 +20,7 @@ import { categories } from "../../components/topCategoryCarousel/categoriesData"
 function LandingPage() {
   return (
     <div>
-      <div className="w-full top-14 h-[920px] bg-[url(/assets/bg/landingbanner2.png)]">
+      <div className="w-full top-14 h-[920px] bg-gradient-to-l from-blue-300 to-indigo-300]">
         <NavBar />
         <div>
           <div className="text-gray-900 mx-[80px]">
@@ -136,7 +135,11 @@ function LandingPage() {
                 rating={course.rating}
                 views={course.views}
                 category={course.category}
-                price={course.price.toString()} courseThumbnailSrc={course.courseThumbnailSrc} instructorAvtr={course.instructorAvtr} instructorJob={course.instructorJob}              />
+                price={course.price.toString()}
+                courseThumbnailSrc={course.courseThumbnailSrc}
+                instructorAvtr={course.instructorAvtr}
+                instructorJob={course.instructorJob}
+              />
             ))}
           </div>
         </div>
@@ -205,15 +208,13 @@ function LandingPage() {
               neque. Suspendisse imperdiet.
             </p>
             <iframe
-             width="760"
-             height="415"
-            src="https://www.youtube.com/embed/your-video-id"
-            title="Video"
-            className='rounded-2xl'
-
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-
-          ></iframe>
+              width="760"
+              height="415"
+              src="https://www.youtube.com/embed/your-video-id"
+              title="Video"
+              className="rounded-2xl"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            ></iframe>
           </div>
           <div className="mt-24 space-y-5 ">
             <p className="font-bold text-4xl text-center">
