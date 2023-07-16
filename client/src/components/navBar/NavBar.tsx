@@ -1,13 +1,11 @@
 
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import NavLinks from "./NavLinks";
-import { FaSearch } from "react-icons/fa";
-import "./NavBar.css";
+import { useEffect, useState } from "react";
+import { FaAngleDown, FaBars, FaSearch, FaTimes } from "react-icons/fa";
 import { GrLanguage } from "react-icons/gr";
 import { RiShoppingCart2Line } from "react-icons/ri";
-import { FaTimes, FaBars } from "react-icons/fa";
-import { FaAngleDown } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import "./NavBar.css";
+import NavLinks from "./NavLinks";
 interface Language {
   id: number;
   label: string;
@@ -69,7 +67,7 @@ const Navbar = () => {
             className=" md:cursor-pointer h-8"
           />
           </Link>
-          
+
           <div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
             {open ? <FaTimes /> : <FaBars />}
           </div>

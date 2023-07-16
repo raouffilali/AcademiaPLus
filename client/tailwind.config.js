@@ -4,10 +4,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
-      sm: "480px",
+      sm: "576px",
       md: "768px",
-      lg: "976px",
-      xl: "1440px",
+      lg: "992px",
+      xl: "1200px",
     },
     extend: {
       colors: {
@@ -19,16 +19,14 @@ export default {
         bluePal: "#6DB8D5",
         blueWhitePLusPal: "#D8EBF1",
         darkBluePLusPal: "#062835",
-        blueLink:"#037498",
-        background:"#F0EBE8",
-        greenish:'#DDFED3',
-        button:"#e4f9f2",
-        pechelight:"#f58156",
-        peche:"#F57B4D",
+        blueLink: "#037498",
+        background: "#F0EBE8",
+        greenish: "#DDFED3",
+        button: "#e4f9f2",
+        pechelight: "#f58156",
+        peche: "#F57B4D",
       },
     },
   },
-  plugins: [
-    require('tailwind-scrollbar')
-  ],
+  plugins: [require("tailwind-scrollbar")],
 };
