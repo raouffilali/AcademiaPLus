@@ -33,33 +33,36 @@ const CustomCard = ({
 
   if (title === "الألعاب التعليمية" || title === "فروض و امتحانات") {
     return (
-      <Card className="flex-row w-full hover:bg-greenish  max-w-[48rem] border-dashed border">
-        <CardHeader
-          shadow={false}
-          floated={false}
-          className="w-2/5 shrink-0 m-0 rounded-r-none "
-        >
-          <img
-            src={imageSrc}
-            alt="image"
-            className="w-full h-full object-cover bg-gray-200"
-          />
-          <Typography
-            variant="h6"
-            color="white"
-            className="absolute top-0 left-0 px-2 py-1 bg-emerald-500   rounded-tr-lg text-sm font-medium"
+      <Link to={`/details/${year}/${subject}`} className="hover:bg-greenish">
+        <Card className="hover:bg-greenish flex-row w-full max-w-[48rem] border-dashed border" >
+          <CardHeader
+            shadow={false}
+            floated={false}
+            className="w-2/5 shrink-0 m-0 rounded-r-none"
           >
-            {year}
-          </Typography>
-        </CardHeader>
-        <CardBody>
-          <Typography variant="h6" className="text-emerald-500 uppercase mb-4">
-            {title}
-          </Typography>
-          <Typography className="text-gray-600 font-light text-sm mb-8">
-            {description}
-          </Typography>
-          <Link to="#" className="hover:bg-emerald-500 rounded-xl bg-gray-100 inline-block">
+            <img
+              src={imageSrc}
+              alt="image"
+              className="w-full h-full object-cover bg-gray-200"
+            />
+            <Typography
+              variant="h6"
+              color="white"
+              className="absolute top-0 left-0 px-2 py-1 bg-emerald-500 rounded-tl-lg text-sm font-medium"
+            >
+              {year}
+            </Typography>
+          </CardHeader>
+          <CardBody>
+            <Typography
+              variant="h6"
+              className="text-emerald-500 uppercase mb-4"
+            >
+              {title}
+            </Typography>
+            <Typography className="text-gray-600 font-light text-sm mb-8">
+              {description}
+            </Typography>
             <Button
               variant="text"
               className="flex text-emerald-500 hover:text-white items-center gap-2"
@@ -67,61 +70,61 @@ const CustomCard = ({
               استكشف المزيد
               <ArrowLongRightIcon strokeWidth={2} className="w-4 h-4" />
             </Button>
-          </Link>
-        </CardBody>
-      </Card>
+          </CardBody>
+        </Card>
+      </Link>
     );
   } else {
     return (
-      <Card className="w-full hover:bg-greenish px-3 max-w-[26rem] border-dashed border">
-        <CardHeader
-          shadow={false}
-          floated={false}
-          color="blue-gray"
-          className="relative"
-        >
-          <img
-            src={imageSrc}
-            alt="image"
-            className="bg-blue-200 object-cover h-40 w-full rounded-t-xl"
-          />
-          <Typography
-            variant="h6"
-            color="white"
-            className="absolute top-0 right-0 px-2 py-1 bg-emerald-500 rounded-tr-lg text-sm font-medium"
+      <Link to={`/details/${year}/${subject}`} className="hover:bg-greenish">
+        <Card className="w-full max-w-[26rem] hover:bg-greenish border-dashed border">
+          <CardHeader
+            shadow={false}
+            floated={false}
+            color="blue-gray"
+            className="relative"
           >
-            {year}
-          </Typography>
-        </CardHeader>
-        <CardBody>
-          <div className="mb-3 flex items-center justify-between">
-            <Typography variant="h5" color="blue-gray" className="font-medium">
-              {title}
-            </Typography>
+            <img
+              src={imageSrc}
+              alt="image"
+              className="bg-blue-200 object-cover h-40 w-full rounded-t-xl"
+            />
             <Typography
-              color="blue-gray"
-              className="flex items-center gap-1.5 font-normal"
+              variant="h6"
+              color="white"
+              className="absolute top-0 right-0 px-2 py-1 bg-emerald-500 rounded-tr-lg text-sm font-medium"
             >
-              <StarIcon className="-mt-0.5 h-5 w-5 text-yellow-500" />
-              {rating}
+              {year}
             </Typography>
-          </div>
-          <Typography className="text-gray-600 font-light text-sm">{description}</Typography>
-        </CardBody>
-        <hr className="border border-dashed" />
-        <CardFooter className="pt-3">
-          <Link to={`/details/${year}/${subject}`}>
-          <Button
-        className="bg-emerald-500 hover:bg-emerald-600 w-full rounded-b-lg py-3 flex items-center justify-center"
-        
-      >
-        
-        ابدأ التعلم
-        <ArrowRightIcon className="w-5 h-4 text-white ml-2" />
-      </Button>
-          </Link>
-        </CardFooter>
-      </Card>
+          </CardHeader>
+          <CardBody>
+            <div className="mb-3 flex items-center justify-between">
+              <Typography variant="h5" color="blue-gray" className="font-medium">
+                {title}
+              </Typography>
+              <Typography
+                color="blue-gray"
+                className="flex items-center gap-1.5 font-normal"
+              >
+                <StarIcon className="-mt-0.5 h-5 w-5 text-yellow-500" />
+                {rating}
+              </Typography>
+            </div>
+            <Typography className="text-gray-600 font-light text-sm">
+              {description}
+            </Typography>
+          </CardBody>
+          <hr className="border border-dashed" />
+          <CardFooter className="pt-3">
+            <Button
+              className="bg-white border-2 border-emerald-500 text-emerald-500 hover:text-white hover:bg-emerald-500 w-full px-20 rounded-full py-3 flex items-center justify-center"
+            >
+              ابدأ التعلم
+              <ArrowRightIcon className="w-5 h-5 ml-2" />
+            </Button>
+          </CardFooter>
+        </Card>
+      </Link>
     );
   }
 };

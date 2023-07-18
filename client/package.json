@@ -43,7 +43,8 @@
     "react-youtube": "^10.1.0",
     "slick-carousel": "^1.8.1",
     "swiper": "^9.2.3",
-    "tailwind-scrollbar": "^3.0.0"
+    "tailwind-scrollbar": "^3.0.0",
+    "three": "^0.154.0"
   },
   "devDependencies": {
     "@types/jquery": "^3.5.16",

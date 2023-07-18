@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Navbar from "../../components/navBar/NavBar";
 import PathPage from "../../components/PathPage/PathPage";
+import { motion } from "framer-motion";
 import {
   Card,
   CardHeader,
@@ -22,6 +23,8 @@ import {
 } from "@heroicons/react/24/solid";
 import CustomCard from "../../components/CustomCard/CustomCard";
 import { Link } from "react-router-dom";
+import Footer from "../../components/Footer/Footer";
+import VirtualLabSection from "../../components/VirtualLabSection/VirtualLabSection";
 
 const subjects = [
   "الرياضيات",
@@ -73,11 +76,12 @@ function PrimarySchoolPage() {
   }, []);
 
   return (
-    <div>
+    <div className="font-tajawal">
       <Navbar />
       <PathPage />
-      <div className="text-center">
-        <div className="w-full mt-5 top-14 h-[680px] bg-gray-50">
+      <div  style={{ fontFamily: "Tajawal", fontWeight: 700 }}>
+      <div className="text-center ">
+        <div className="w-full mt-5 top-14 h-[680px] bg-blue-50 bg-[url(assets/bg/academic_bg.png)]">
           <p
             className="pt-16 font-medium text-3xl text-emerald-500"
             style={{ fontFamily: "Tajawal", fontWeight: 700 }}
@@ -98,7 +102,7 @@ function PrimarySchoolPage() {
               className="w-2/3 rounded-2xl"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             ></iframe>
-            <button className="border-2 border-white rounded-2xl text-xl text-white font-bold p-2 px-16 bg-gradient-to-r from-emerald-600 to bg-emerald-300">
+            <button className="border-2 border-white rounded-2xl text-xl text-white font-bold p-2 px-16 hover:bg-emerald-500 bg-gradient-to-r from-emerald-600 to bg-emerald-300">
               اشترك الان
             </button>
           </div>
@@ -130,42 +134,42 @@ function PrimarySchoolPage() {
             </div>
           </div>
           <div className="p-4 text-center">
-          <div className="relative inline-block" ref={menuRef}>
-          <button
-            className="flex items-center justify-between w-48 p-2 bg-white border-2 border-emerald-500 rounded-xl cursor-pointer"
-            onClick={() => setMenuOpen(!isMenuOpen)}
-          >
-            <span className="mr-4 text-emerald-500">
-              {selectedSubject ? selectedSubject : "المادة"}
-            </span>
-            <svg
-              className={`w-5 h-5 text-emerald-500 fill-current transform transition-transform ${
-                isMenuOpen ? "rotate-180" : ""
-              }`}
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-            >
-              <path d="M6 8l4 4 4-4z" />
-            </svg>
-          </button>
-          {isMenuOpen && (
-            <div className="z-10 absolute w-48 mt-2 bg-white border border-emerald-500 rounded-md shadow-lg">
-              {subjects.map((subject) => (
-                <button
-                  key={subject}
-                  className="w-full px-4 py-2 text-left hover:bg-emerald-500 hover:text-white"
-                  onClick={() => handleSubjectChange(subject)}
+            <div className="relative inline-block" ref={menuRef}>
+              <button
+                className="flex items-center justify-between w-48 p-2 bg-white border-2 border-emerald-500 rounded-xl cursor-pointer"
+                onClick={() => setMenuOpen(!isMenuOpen)}
+              >
+                <span className="mr-4 text-emerald-500">
+                  {selectedSubject ? selectedSubject : "المادة"}
+                </span>
+                <svg
+                  className={`w-5 h-5 text-emerald-500 fill-current transform transition-transform ${
+                    isMenuOpen ? "rotate-180" : ""
+                  }`}
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
                 >
-                  {subject}
-                </button>
-              ))}
+                  <path d="M6 8l4 4 4-4z" />
+                </svg>
+              </button>
+              {isMenuOpen && (
+                <div className="z-10 absolute w-48 mt-2 bg-white border border-emerald-500 rounded-md shadow-lg">
+                  {subjects.map((subject) => (
+                    <button
+                      key={subject}
+                      className="w-full px-4 py-2 text-left hover:bg-emerald-500 hover:text-white"
+                      onClick={() => handleSubjectChange(subject)}
+                    >
+                      {subject}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
-          )}
-        </div>
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-8 md:grid-cols-3 mx-[80px]">
+      <div className="grid grid-cols-2 gap-8 md:grid-cols-3 mx-[80px] ">
         {/* Card 2 */}
         <Link to="/card2">
           <CustomCard
@@ -215,7 +219,7 @@ function PrimarySchoolPage() {
           </Link>
         </div>
         {/* Card 5 */}
-        <div className="col-span-2 mb-5">
+        <div className="col-span-2 mb-5 ">
           <Link to="/card4">
             <CustomCard
               imageSrc="/assets/academicfield/exams.jpg"
@@ -228,6 +232,15 @@ function PrimarySchoolPage() {
           </Link>
         </div>
       </div>
+      <div className="mt-24 ">
+
+      <VirtualLabSection/>
+      </div>
+
+      </div>
+      
+
+      <Footer />
     </div>
   );
 }
