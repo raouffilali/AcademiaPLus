@@ -92,7 +92,7 @@ function PrimarySchoolPage() {
       <PathPage />
       <div style={{ fontFamily: "Tajawal", fontWeight: 700 }}>
         <div className="text-center ">
-          <div className="w-full mt-5 top-14 h-[680px] bg-blue-50 bg-[url(assets/bg/academic_bg.png)]">
+          <div className="w-full mt-5 top-14 h-[680px] bg-slate-50 bg-[url(assets/bg/academic_bg.png)]">
             <p
               className="pt-16 font-medium text-3xl text-emerald-500"
               style={{ fontFamily: "Tajawal", fontWeight: 700 }}
@@ -202,7 +202,7 @@ function PrimarySchoolPage() {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-7 md:grid-cols-3 mx-[80px] ">
+        <div className="grid grid-cols-1  gap-7 md:grid-cols-3 mx-[80px] ">
           {/* Card 2 */}
           <Link to="/card2">
             <CustomCard

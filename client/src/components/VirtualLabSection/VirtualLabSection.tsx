@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const VirtualLabSection = () => {
   return (
-    <div className="w-full  flex my-10  bg-blue-50 bg-[url(assets/bg/academic_bg.png)]">
+    <div className="w-full  flex my-10  bg-slate-50 bg-[url(assets/bg/academic_bg.png)]">
         <img
         src="assets/lab/primaryLab.jpg"
         alt="Virtual Lab"

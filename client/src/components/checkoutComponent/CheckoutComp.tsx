@@ -7,9 +7,10 @@ function CheckoutComp() {
   return (
     <>
       <form id="checkout">
-        <div className="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-md">
+        <div className="max-w-lg mx-auto bg-white rounded-lg overflow-hidden md:px-12 md:max-w-2xl">
           <div className="md:flex">
             <div className="w-full p-3 px-6 py-10">
+              <img src="assets/baridi-logo.png" className="h-36" alt="" />
               <div className="text-center">
                 <span className="text-2xl font-semibold  text-gray-700">
                   Fill the Form below
@@ -22,7 +23,7 @@ function CheckoutComp() {
                 </span>
                 <input
                   type="text"
-                  className="h-12 px-2 w-full border-2 rounded focus:outline-none focus:border-blue-600"
+                  className="h-12 px-2 w-full border-2 rounded focus:outline-none focus:border-emerald-600"
                 />
               </div>
 
@@ -32,7 +33,7 @@ function CheckoutComp() {
                 </span>
                 <input
                   type="text"
-                  className="h-12 px-2 w-full border-2 rounded focus:outline-none focus:border-blue-600"
+                  className="h-12 px-2 w-full border-2 rounded focus:outline-none focus:border-emerald-500"
                 />
               </div>
 
@@ -42,13 +43,13 @@ function CheckoutComp() {
                 </span>
                 <input
                   type="text"
-                  className="h-12 px-2 w-full border-2 rounded focus:outline-none focus:border-blue-600"
+                  className="h-12 px-2 w-full border-2 rounded focus:outline-none focus:border-emerald-500"
                 />
               </div>
 
               <div className="mt-4 relative">
                 <select
-                  className=" h-12 px-2 w-full border-2 rounded focus:outline-none focus:border-blue-600"
+                  className=" h-12 px-2 w-full border-2 rounded focus:outline-none focus:border-emerald-500"
                   name="cars"
                   id="cars"
                 >
@@ -65,7 +66,7 @@ function CheckoutComp() {
                   type="text"
                   value={myRipValue}
                   disabled={true}
-                  className="h-12 px-2 w-full border-2 rounded focus:outline-none focus:border-blue-600"
+                  className="h-12 px-2 w-full border-2 rounded focus:outline-none focus:border-emerald-500"
                 />
               </div>
               <div className="mt-4 relative">
@@ -76,12 +77,12 @@ function CheckoutComp() {
                   type="text"
                   value={myCCPValue}
                   disabled={true}
-                  className="h-12 px-2 w-full border-2 rounded focus:outline-none focus:border-blue-600"
+                  className="h-12 px-2 w-full border-2 rounded focus:outline-none focus:border-emerald-500"
                 />
               </div>
               <div className="mt-2">
                 {" "}
-                <button className="h-12 w-full bg-blue-800 text-white rounded hover:bg-blue-700">
+                <button className="h-12 w-full bg-emerald-500 text-white rounded hover:bg-emerald-600">
                   Send Confirmation
                 </button>
               </div>
@@ -92,14 +93,14 @@ function CheckoutComp() {
                 <div className="flex justify-center items-center">
                   <h5 className="text-2xl font-semiBold text-gray-700 mb-4 py-2 px-4 bg-white ">
                     Let's get in touch in{" "}
-                    <span className=" text-blue-800">Telegram</span>{" "}
+                    <span className=" text-emerald-500">Telegram</span>{" "}
                   </h5>
-                  <FaTelegram size={"25px"} color="blue" />
+                  <FaTelegram size={"25px"} color="emerald" />
                 </div>
               </div>
 
               <div>
-                <button className="h-12 w-full bg-blue-800 text-white rounded hover:bg-blue-700">
+                <button className="h-12 w-full bg-emerald-500 text-white rounded hover:bg-emerald-600">
                   Go to Telegram
                 </button>
               </div>
