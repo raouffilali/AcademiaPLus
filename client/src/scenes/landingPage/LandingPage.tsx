@@ -1,22 +1,21 @@
 import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import CourseCard from "../../components/courseCard/CourseCard";
-import FieldsCards from "../../components/fieldsCards/FieldsCards";
-import NavBar from "../../components/navBar/NavBar";
-import RatingSection from "../../components/RatingSection/RatingSection";
-import StatsContainer from "../../components/statsContainer/StatsContainer";
-import { categories } from "../../components/topCategoryCarousel/categoriesData";
-import TopCategoryCarousel from "../../components/topCategoryCarousel/TopCategoryCarousel";
-import courses from "../../components/courseCard/courses";
 import Footer from "../../components/Footer/Footer";
-import InstructorCarousel from "../../components/instructorCarousel/InstructorCarousel";
+import RatingSection from "../../components/RatingSection/RatingSection";
 import SponsorsCarousel from "../../components/SponsorsCarousel/SponsorsCarousel";
 import { sponsorsData } from "../../components/SponsorsCarousel/SponsorsData";
-import { FaCheckCircle } from "react-icons/fa";
-import TestemonialsCard from "../../components/testmonialsCard/TestemonialsCard";
 import BlogCarousel from "../../components/blogCarousel/BlogCarousel";
 import { blogData } from "../../components/blogCarousel/blogData";
+import CourseCard from "../../components/courseCard/CourseCard";
+import courses from "../../components/courseCard/courses";
+import FieldsCards from "../../components/fieldsCards/FieldsCards";
+import InstructorCarousel from "../../components/instructorCarousel/InstructorCarousel";
+import NavBar from "../../components/navBar/NavBar";
+import StatsContainer from "../../components/statsContainer/StatsContainer";
 import StatsContainer2 from "../../components/statsContainer2/StatsContainer2";
+import TestemonialsCard from "../../components/testmonialsCard/TestemonialsCard";
+import TopCategoryCarousel from "../../components/topCategoryCarousel/TopCategoryCarousel";
+import { categories } from "../../components/topCategoryCarousel/categoriesData";
 
 function LandingPage() {
   return (

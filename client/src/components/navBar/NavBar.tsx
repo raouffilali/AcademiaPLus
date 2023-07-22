@@ -57,7 +57,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed navbar ${isScrolled ? "scrolled" : ""}`} style={{  zIndex: 1 }}>
+    <nav className={`fixed navbar ${isScrolled ? "scrolled" : ""} w-full`} style={{  zIndex: 1 }}>
       <div className="flex items-center  lg:px-[80px] ">
         <div className="z-50  md:w-auto w-full flex ">
           <Link to="/">
