@@ -1,4 +1,6 @@
 import React from "react";
+import { ArrowRightIcon, StarIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardHeader,
@@ -7,8 +9,6 @@ import {
   Button,
   CardFooter,
 } from "@material-tailwind/react";
-import { ArrowLongRightIcon, ArrowRightIcon, StarIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
 
 interface CustomCardProps {
   imageSrc: string;
@@ -30,99 +30,118 @@ const CustomCard = ({
   const handleClick = () => {
     // Handle card click event here
   };
-
-  if (title === "الألعاب التعليمية" || title === "فروض و امتحانات") {
+  if (title === "مجموعة المراجعة") {
     return (
-      <Card className="flex-row w-full hover:bg-greenish  max-w-[48rem] border-dashed border">
-        <CardHeader
-          shadow={false}
-          floated={false}
-          className="w-2/5 shrink-0 m-0 rounded-r-none "
-        >
-          <img
-            src={imageSrc}
-            alt="image"
-            className="w-full h-full object-cover bg-gray-200"
-          />
-          <Typography
-            variant="h6"
-            color="white"
-            className="absolute top-0 left-0 px-2 py-1 bg-emerald-500   rounded-tr-lg text-sm font-medium"
+      <Link to={`/details/${year}/${subject}`} className="hover:bg-greenish">
+        <Card className="w-full max-w-[26rem] h-full p-5   hover:bg-greenish border-dashed border">
+          <CardHeader 
+            shadow={false}
+            floated={false}
+            color="blue-gray"
+            className="relative"
           >
-            {year}
-          </Typography>
-        </CardHeader>
-        <CardBody>
-          <Typography variant="h6" className="text-emerald-500 uppercase mb-4">
-            {title}
-          </Typography>
-          <Typography className="text-gray-600 font-light text-sm mb-8">
-            {description}
-          </Typography>
-          <Link to="#" className="hover:bg-emerald-500 rounded-xl bg-gray-100 inline-block">
-            <Button
-              variant="text"
-              className="flex text-emerald-500 hover:text-white items-center gap-2"
+            <img
+              src={imageSrc}
+              alt="image"
+              className="bg-blue-200 object-cover h-40 w-full rounded-t-xl"
+            />
+            <Typography
+              variant="h6"
+              color="white"
+              className="absolute top-0 right-0 px-2 py-1 bg-emerald-500 rounded-tr-lg text-sm font-medium"
             >
-              استكشف المزيد
-              <ArrowLongRightIcon strokeWidth={2} className="w-4 h-4" />
-            </Button>
-          </Link>
-        </CardBody>
-      </Card>
+              {year}
+            </Typography>
+          </CardHeader>
+          <CardBody>
+            <div className="mb-3 flex items-center justify-between">
+              <Typography variant="h5" color="blue-gray" className="font-medium" style={{ fontFamily: "Tajawal", fontWeight: 600 }}>
+                {title}
+              </Typography>
+              <Typography
+                color="blue-gray"
+                className="flex items-center gap-1.5 font-normal"
+              >
+                <StarIcon className="-mt-0.5 h-5 w-5 text-yellow-500" />
+                {rating}
+              </Typography>
+            </div>
+            <Typography className="text-gray-600 font-light text-sm">
+              {description}
+            </Typography>
+          </CardBody>
+          <hr className="border border-dashed" />
+          <CardFooter className="pt-3">
+            <div className="flex  justify-between space-x-16">
+              {/* Group of User Avatars */}
+              <div className="flex -space-x-2">
+                <img src="/assets/instructor/user8.jpg" alt="User 1" className="w-8 h-8 rounded-full" />
+                <img src="/assets/instructor/user1.jpg" alt="User 2" className="w-8 h-8 rounded-full" />
+                <img src="/assets/instructor/user4.jpg" alt="User 3" className="w-8 h-8 rounded-full" />
+                <img src="/assets/instructor/user7.jpg" alt="User 3" className="w-8 h-8 rounded-full" />
+                <a className="flex items-center justify-center w-10 h-10 text-xs font-medium text-white bg-gray-700 border-2 border-white rounded-full hover:bg-gray-600 dark:border-gray-800" href="#">+99</a>
+              </div>
+              {/* Circular Button with White Arrow */}
+              <div className="bg-emerald-500 hover:bg-emerald-600  rounded-full p-2">
+                <ArrowRightIcon className="w-6 h-6 text-white" />
+              </div>
+            </div>
+          </CardFooter>
+        </Card>
+      </Link>
     );
   } else {
-    return (
-      <Card className="w-full hover:bg-greenish px-3 max-w-[26rem] border-dashed border">
-        <CardHeader
-          shadow={false}
-          floated={false}
-          color="blue-gray"
-          className="relative"
-        >
-          <img
-            src={imageSrc}
-            alt="image"
-            className="bg-blue-200 object-cover h-40 w-full rounded-t-xl"
-          />
-          <Typography
-            variant="h6"
-            color="white"
-            className="absolute top-0 right-0 px-2 py-1 bg-emerald-500 rounded-tr-lg text-sm font-medium"
+  return (
+    <Link to={`/details/${year}/${subject}`} className="hover:bg-greenish">
+        <Card className=" w-full  max-w-[26rem] h-full p-4 hover:bg-greenish border-dashed border">
+          <CardHeader 
+            shadow={false}
+            floated={false}
+            color="blue-gray"
+            className="relative"
           >
-            {year}
-          </Typography>
-        </CardHeader>
-        <CardBody>
-          <div className="mb-3 flex items-center justify-between">
-            <Typography variant="h5" color="blue-gray" className="font-medium">
-              {title}
-            </Typography>
+            <img
+              src={imageSrc}
+              alt="image"
+              className="bg-blue-200 object-cover h-40 w-full rounded-t-xl"
+            />
             <Typography
-              color="blue-gray"
-              className="flex items-center gap-1.5 font-normal"
+              variant="h6"
+              color="white"
+              className="absolute top-0 right-0 px-2 py-1 bg-emerald-500 rounded-tr-lg text-sm font-medium"
             >
-              <StarIcon className="-mt-0.5 h-5 w-5 text-yellow-500" />
-              {rating}
+              {year}
             </Typography>
-          </div>
-          <Typography className="text-gray-600 font-light text-sm">{description}</Typography>
-        </CardBody>
-        <hr className="border border-dashed" />
-        <CardFooter className="pt-3">
-          <Link to={`/details/${year}/${subject}`}>
-          <Button
-        className="bg-emerald-500 hover:bg-emerald-600 w-full rounded-b-lg py-3 flex items-center justify-center"
-        
-      >
-        
-        ابدأ التعلم
-        <ArrowRightIcon className="w-5 h-4 text-white ml-2" />
-      </Button>
-          </Link>
-        </CardFooter>
-      </Card>
-    );
+          </CardHeader>
+          <CardBody>
+            <div className="mb-3 flex items-center justify-between">
+              <Typography variant="h5" color="blue-gray" className=" font-medium"style={{ fontFamily: "Tajawal", fontWeight: 600 }}>
+                {title}
+              </Typography>
+              <Typography
+                color="blue-gray"
+                className="flex items-center gap-1.5 font-normal"
+              >
+                <StarIcon className="-mt-0.5 h-5 w-5 text-yellow-500" />
+                {rating}
+              </Typography>
+            </div>
+            <Typography className="text-gray-600 font-light text-sm">
+              {description}
+            </Typography>
+          </CardBody>
+          <hr className="border border-dashed" />
+          <CardFooter className="pt-3">
+            <Button
+              className="bg-white border-2 border-emerald-500 text-emerald-500 hover:text-white hover:bg-emerald-500 w-full px-20 rounded-full py-3 flex items-center justify-center"
+            >
+              ابدأ التعلم
+              <ArrowRightIcon className="w-5 h-5 ml-2" />
+            </Button>
+          </CardFooter>
+        </Card>
+      </Link>
+  );
   }
 };
 

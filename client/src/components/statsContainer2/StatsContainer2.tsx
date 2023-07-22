@@ -126,7 +126,7 @@ const StatsContainer2: React.FC<StatsContainer2Props> = ({ apiUrl }) => {
   return (
     <div
       ref={containerRef}
-      className={`bg-gradient-to-r from-blue-200 to bg-blue-50  flex items-center p-6 rounded-lg shadow-md ${
+      className={`bg-gradient-to-r from-blue-200 to bg-blue-50  flex items-center w-full p-6 rounded-lg  shadow-md ${
         isVisible ? "animate-fade-in-up" : "opacity-0"
       }`}
     >

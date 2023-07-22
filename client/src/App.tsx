@@ -13,6 +13,7 @@ import CategoryPage from "./scenes/categoryPage/CategoryPage";
 import ForgotPassword from "./scenes/forgotPassword/ForgotPassword";
 import LandingPage from "./scenes/landingPage/LandingPage";
 import LoginPage from "./scenes/loginPage/LoginPage";
+import SubscriptionPackagesPage from "./scenes/subscriptionPackagesPage/SubscriptionPackagesPage";
 function App() {
   return (
     <Router>
@@ -31,6 +32,7 @@ function App() {
         <Route path="/MiddleSchoolPage" element={<MiddleSchoolPage />} />
         <Route path="/HighSchoolPage" element={<HighSchoolPage/>} />
         <Route path="/UniversityPage" element={<UniversityPage/>} />
+        <Route path="/subscriptionPackagesPage" element={<SubscriptionPackagesPage/>} />
 
       </Routes>
     </Router>

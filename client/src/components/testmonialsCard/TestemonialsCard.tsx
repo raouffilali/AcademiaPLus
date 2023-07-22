@@ -27,7 +27,7 @@ function TestemonialsCard() {
             <div key={index}>
               <p className="text-lg text-white font-medium italic mt-8 p-4">{testimonial.testimonial}</p>
               <img
-                src="./public/assets/Instructor.png"
+                src={testimonial.imgURl}
                 alt={testimonial.name}
                 className="h-16 w-16 mx-auto rounded-full mb-2"
               />

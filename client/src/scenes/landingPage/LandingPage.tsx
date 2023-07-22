@@ -1,27 +1,27 @@
-
 import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Footer from "../../components/Footer/Footer";
+import CourseCard from "../../components/courseCard/CourseCard";
+import FieldsCards from "../../components/fieldsCards/FieldsCards";
+import NavBar from "../../components/navBar/NavBar";
 import RatingSection from "../../components/RatingSection/RatingSection";
+import StatsContainer from "../../components/statsContainer/StatsContainer";
+import { categories } from "../../components/topCategoryCarousel/categoriesData";
+import TopCategoryCarousel from "../../components/topCategoryCarousel/TopCategoryCarousel";
+import courses from "../../components/courseCard/courses";
+import Footer from "../../components/Footer/Footer";
+import InstructorCarousel from "../../components/instructorCarousel/InstructorCarousel";
 import SponsorsCarousel from "../../components/SponsorsCarousel/SponsorsCarousel";
 import { sponsorsData } from "../../components/SponsorsCarousel/SponsorsData";
+import { FaCheckCircle } from "react-icons/fa";
+import TestemonialsCard from "../../components/testmonialsCard/TestemonialsCard";
 import BlogCarousel from "../../components/blogCarousel/BlogCarousel";
 import { blogData } from "../../components/blogCarousel/blogData";
-import CourseCard from "../../components/courseCard/CourseCard";
-import courses from "../../components/courseCard/courses";
-import FieldsCards from "../../components/fieldsCards/FieldsCards";
-import InstructorCarousel from "../../components/instructorCarousel/InstructorCarousel";
-import NavBar from "../../components/navBar/NavBar";
-import StatsContainer from "../../components/statsContainer/StatsContainer";
 import StatsContainer2 from "../../components/statsContainer2/StatsContainer2";
-import TestemonialsCard from "../../components/testmonialsCard/TestemonialsCard";
-import TopCategoryCarousel from "../../components/topCategoryCarousel/TopCategoryCarousel";
-import { categories } from "../../components/topCategoryCarousel/categoriesData";
 
 function LandingPage() {
   return (
     <div>
-      <div className="w-full top-14 h-[920px] bg-[url(/assets/bg/landingbanner2.png)]">
+      <div className="w-full top-14 h-[920px] bg-gradient-to-l from-blue-300 to-indigo-300]">
         <NavBar />
         <div>
           <div className="text-gray-900 mx-[80px]">
@@ -37,7 +37,7 @@ function LandingPage() {
                   Own your future learning new skills online
                 </h2>
                 <div className="space-x-4 justify-start ">
-                  <Link to="/subscriptionPackagesPage">
+                  <Link to="/SubscriptionPackagesPage">
                     <button className="bg-redPal  hover:bg-lightredPal  hover:text-gray-900 text-white font-medium py-2 px-16 rounded-2xl">
                       Try a Demo
                     </button>
@@ -204,16 +204,15 @@ function LandingPage() {
               aenean accumsan bibendum gravida maecenas augue elementum et
               neque. Suspendisse imperdiet.
             </p>
+
             <iframe
-             width="760"
-             height="415"
-            src="https://www.youtube.com/embed/your-video-id"
-            title="Video"
-            className='rounded-2xl'
-
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-
-          ></iframe>
+              width="760"
+              height="415"
+              src="https://www.youtube.com/embed/your-video-id"
+              title="Video"
+              className="rounded-2xl"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            ></iframe>
           </div>
           <div className="mt-24 space-y-5 ">
             <p className="font-bold text-4xl text-center">
