@@ -7,6 +7,7 @@ import StatsContainer from "../../components/statsContainer/StatsContainer";
 import { Pricing } from "../../components/subsOfferCard/Pricing";
 import FAQ from "../../components/FAQ/FAQ";
 import { Testimonials } from "../../components/testmonialsCard/Testemonials";
+import PathPage from "../../components/PathPage/PathPage";
 
 function SubscriptionPackagesPage() {
   const [displayMonthly, setDisplayMonthly] = useState(true); // State for selected option
@@ -18,7 +19,8 @@ function SubscriptionPackagesPage() {
   return (
     <>
       <NavBar />
-      <div className="mt-32 w-full  top-14 h-full bg-slate-50 bg-[url(assets/bg/academic_bg.png)]">
+      <PathPage />
+      <div className="w-full  top-14 h-full bg-slate-50 bg-[url(assets/bg/academic_bg.png)]">
         <div className=" container  p-6 flex flex-col justify-start items-center mx-auto mt-10">
           <h3>
             <span className="text-lightYelloPal text-4xl font-medium">

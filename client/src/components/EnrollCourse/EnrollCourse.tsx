@@ -1,15 +1,18 @@
 import React from "react";
 import { useState } from "react";
 import { FiHeart,FiShare2 } from 'react-icons/fi';
+import { addToCart } from "../../scenes/cartPage/cartItems";
 type CourseCardProps = {
   videoUrl: string;
   discount?: string;
   price: number;
+  onAddToCart: () => void;
 };
 const EnrollCourse: React.FC<CourseCardProps> = ({
   videoUrl,
   discount,
   price,
+  onAddToCart,
 }) => {
   const [isWishlist, setIsWishlist] = useState(false);
 
@@ -41,9 +44,11 @@ const EnrollCourse: React.FC<CourseCardProps> = ({
         </div>
         <div className="flex space-x-6 ">
           <button className="p-2 w-32 border border-red-400 rounded-full text-red-400 text-[13px] hover:bg-red-400 hover:text-white"
-          onClick={handleWishlistClick}>
+         
+          >
           <FiHeart className="float-left hover:text-white  " color="red-400" size={16} />
-            Add to Wishlist
+            Add to Cart 
+
           </button>
           <button className="p-2 w-32 border border-red-400 rounded-full text-red-400 text-[13px]  hover:bg-red-400 hover:text-white">
             {" "}

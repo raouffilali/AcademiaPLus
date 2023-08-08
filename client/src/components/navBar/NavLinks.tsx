@@ -39,6 +39,7 @@ const NavLinks = () => {
                       <div>
                         <h1 className="text-md font-semibold text-blueLink">
                           {mysublinks.Head}
+
                         </h1>
                         {mysublinks.sublink.map((slink) => (
                           <li className="text-sm hover:bg-blue-50 p-2 text-gray-600 my-1">

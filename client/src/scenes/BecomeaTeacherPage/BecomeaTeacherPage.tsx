@@ -6,6 +6,7 @@ import { Footer } from "../../components";
 import "./BecomeaTeacherPage.css";
 import Form from "../../components/BecomeInstructorForm/Form";
 import StatsContainer2 from "../../components/statsContainer2/StatsContainer2";
+import PathPage from "../../components/PathPage/PathPage";
 
 type Tab = "Plan" | "Record" | "Launch";
 
@@ -24,12 +25,13 @@ function BecomeaTeacherPage() {
   return (
     <>
       <NavBar />
+      <PathPage/>
       <div>
         {isFormVisible && (
           <div className="blur-overlay" onClick={toggleFormVisibility} />
         )}
       </div>
-      <div className=" flex flex-row mt-14 justify-between   ">
+      <div className=" flex flex-row  justify-between   ">
         <div className=" mx-[85px] flex flex-col">
           <p className="font-Lato text-[46px] mt-20  text-gray-800 font-bold">
             Come teach <br /> with us

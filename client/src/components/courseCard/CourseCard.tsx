@@ -2,7 +2,7 @@ import { ImgHTMLAttributes } from "react";
 import { FaStar } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 
-interface CourseCardProps {
+export interface CourseCardProps {
   courseName: string;
   instructor: string;
   instructorAvtr: string;
@@ -12,6 +12,8 @@ interface CourseCardProps {
   price: string;
   courseThumbnailSrc: string;
   instructorJob: string;
+  numLessons: number;
+  duration: string;
 }
 
 function CourseCard({
@@ -24,27 +26,65 @@ function CourseCard({
   price,
   courseThumbnailSrc,
   instructorJob,
+  numLessons,
+  duration,
 }: CourseCardProps) {
   const navigate = useNavigate();
+  function truncateText(text: string, maxLines: number) {
+    const words = text.split(' ');
+    const truncated = words.slice(0,4).join(' ');
+    if (words.length > maxLines) {
+      return `${truncated} ..`;
+    }
+    return truncated;
+  }
+  
 
-  const handleCourseClick = (courseName: string) => {
-    navigate(`/courseDetails/${courseName}`);
+  const handleCourseClick = () => {
+    console.log("Navigating to CourseDetails with data:", {
+      courseName,
+      instructor,
+      rating,
+      views,
+      category,
+      price,
+      courseThumbnailSrc,
+      instructorJob,
+      numLessons,
+      duration,
+    });
+    navigate(
+      `/CourseDetails/${encodeURIComponent(courseName.replace(/\s/g, "-"))}`,
+      {
+        state: {
+          courseName,
+          instructor,
+          instructorAvtr,
+          rating,
+          views,
+          category,
+          price,
+          courseThumbnailSrc,
+          instructorJob,
+          numLessons,
+          duration,
+        },
+      }
+    );
   };
 
   return (
     <div
       className="w-full hover:text-white hover:bg-cyan-950  h-full space-y-5 p-5 bg-white rounded-lg hover:border-cyan-950 duration-500 shadow-sm border border-gray-200 dark:border-gray-200"
-      onClick={() => handleCourseClick(`${courseName}`)}
+      onClick={handleCourseClick}
     >
       <div className="relative">
-        <Link to="/CourseDetails">
-          <img
-            className="rounded-lg h-48"
-            src={courseThumbnailSrc}
-            alt="courseThumbnail"
-          />
-        </Link>
-        <div className="absolute bottom-2 right-4 text-white rounded-xl p-2 w-36  bg-red-500 text-center font-bold text-xl">
+        <img
+          className="rounded-lg  md:h-48"
+          src={courseThumbnailSrc}
+          alt="courseThumbnail"
+        />
+        <div className="absolute bottom-2 right-4 text-white rounded-xl p-2 w-36 bg-red-500 text-center font-bold text-xl">
           {price} Da
         </div>
       </div>
@@ -57,14 +97,12 @@ function CourseCard({
             alt="instructorAvatar"
           />
           <div className="ml-2">
-            <p className="mb-0 font-medium text-gray-800 ">
-              {instructor}
-            </p>
+            <p className="mb-0 font-medium text-gray-800 ">{instructor}</p>
             <p className="text-gray-500 text-sm">{instructorJob}</p>
           </div>
         </Link>
-        <h5 className="ml-2 mt-14 text-lg font-medium tracking-tight text-gray-900">
-          {courseName}
+        <h5 className="ml-2 mt-14 text-lg font-medium tracking-tight text-gray-900 max-h-16">
+          {truncateText(courseName, 2)}
         </h5>
 
         {/* Category of the course */}
@@ -94,6 +132,7 @@ function CourseCard({
           <span className="text-gray-500 ml-2">{views}K views</span>
           {/* Pricing information */}
         </div>
+
         <button className="rounded-full border-4 m-2 border-bluePal px-8 p-2 hover:bg-bluePal hover:text-white text-bluePal font-bold">
           BUY NOW
         </button>

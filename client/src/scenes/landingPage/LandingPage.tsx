@@ -420,7 +420,7 @@ function LandingPage() {
           </div>
 
           <Link to="/CategoryPage">
-            <button className="flex items-center text-lightBluePal hover:text-white hover:bg-bluePal border-4 border-bluePal px-4 py-2 rounded-3xl">
+            <button className="flex items-center text-lightBluePal hover:text-white hover:bg-bluePal border-2 border-bluePal px-3 py-2 rounded-3xl">
               <span className="mr-2">All</span>
               Categories
             </button>
@@ -448,8 +448,8 @@ function LandingPage() {
                 neque. Suspendisse imperdiet.
               </p>
             </div>
-            <Link to="/AllCoursesPage">
-              <button className="flex items-center text-lightBluePal hover:text-white hover:bg-bluePal border-4 border-bluePal px-4 py-2 rounded-3xl">
+            <Link to="/AllCourses">
+              <button className="flex items-center text-lightBluePal hover:text-white hover:bg-bluePal border-2 border-bluePal px-4 py-2 rounded-3xl">
                 <span className="mr-2">All</span>
                 Courses
               </button>
@@ -464,7 +464,7 @@ function LandingPage() {
                 rating={course.rating}
                 views={course.views}
                 category={course.category}
-                price={course.price.toString()} courseThumbnailSrc={course.courseThumbnailSrc} instructorAvtr={course.instructorAvtr} instructorJob={course.instructorJob}              />
+                price={course.price.toString()} courseThumbnailSrc={course.courseThumbnailSrc} instructorAvtr={course.instructorAvtr} instructorJob={course.instructorJob} numLessons={0} duration={""}              />
             ))}
           </div>
         </div>
@@ -535,7 +535,7 @@ function LandingPage() {
             
             <iframe
              width="760"
-             height="515"
+             height="492"
             src="https://www.youtube.com/embed/your-video-id"
             title="Video"
             className='rounded-2xl w-full mx-[0px]'

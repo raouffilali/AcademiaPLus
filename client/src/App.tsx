@@ -14,26 +14,28 @@ import ForgotPassword from "./scenes/forgotPassword/ForgotPassword";
 import LandingPage from "./scenes/landingPage/LandingPage";
 import LoginPage from "./scenes/loginPage/LoginPage";
 import SubscriptionPackagesPage from "./scenes/subscriptionPackagesPage/SubscriptionPackagesPage";
+import WishList from "./scenes/WishList/WishList";
+import AllCourses from "./scenes/AllCourses/AllCourses";
 function App() {
   return (
     <Router>
-
       <Routes>
         <Route path="/" element={<LandingPage/>} />
         <Route path="/loginPage" element={<LoginPage />} />
         <Route path="/landingPage" element={<LandingPage />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
-        <Route path="BecomeaTeacherPage" element={<BecomeaTeacherPage/>} />
+        <Route path="/BecomeaTeacherPage" element={<BecomeaTeacherPage/>} />
         <Route path="/CartPage" element={<CartPage />} />
+        <Route path="/WishList" element={<WishList />} />
         <Route path="/SignupPage" element={<SignupPage />} />
         <Route path="/CategoryPage" element={<CategoryPage />} />
-        <Route path="/CourseDetails" element={<CourseDetails />} />
+        <Route path="/CourseDetails/:courseName" element={<CourseDetails/>} />
+        <Route path="/AllCourses" element={<AllCourses/>} />
         <Route path="/PrimarySchoolPage" element={<PrimarySchoolPage />} />
         <Route path="/MiddleSchoolPage" element={<MiddleSchoolPage />} />
         <Route path="/HighSchoolPage" element={<HighSchoolPage/>} />
         <Route path="/UniversityPage" element={<UniversityPage/>} />
         <Route path="/subscriptionPackagesPage" element={<SubscriptionPackagesPage/>} />
-
       </Routes>
     </Router>
   );

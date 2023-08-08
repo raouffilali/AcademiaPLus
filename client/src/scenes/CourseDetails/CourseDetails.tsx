@@ -1,41 +1,39 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Footer, NavBar } from "../../components";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import PathPage from "../../components/PathPage/PathPage";
 import CourseDetail from "../../components/CourseDetail/CourseDetail";
 import EnrollCourse from "../../components/EnrollCourse/EnrollCourse";
 import CourseContentCard from "../../components/CourseContentCard/CourseContentCard";
 
 function CourseDetails() {
-  const { courseName } = useParams();
+  const { courseName } = useParams<{ courseName: string }>();
+  const decodedCourseName = courseName || "";
+
+  const location = useLocation();
+  const {
+    courseName: selectedCourseName,
+    instructor,
+    instructorAvtr,
+    rating,
+    views,
+    category,
+    price,
+    courseThumbnailSrc,
+    instructorJob,
+    numLessons,
+    duration,
+    courseDesc: initialCourseDesc, // Rename it to avoid confusion with the local state
+  } = location.state || {};
+
+  const [courseDesc, setCourseDesc] = useState(initialCourseDesc || "");
+  const [videos, setVideos] = useState(views || 0);
+  const [resources, setResources] = useState(0); // Update this value as needed
+  const [studentsEnrolled, setStudentsEnrolled] = useState(0); // Update this value as needed
+
+  const [level, setLevel] = useState(""); // Update this value as needed
 
   const items = ["Home", "Courses", "All Courses", courseName];
-  const [videos, setVideos] = useState(0);
-  const [resources, setResources] = useState(0);
-  const [studentsEnrolled, setStudentsEnrolled] = useState(0);
-  const [duration, setDuration] = useState("");
-  const [level, setLevel] = useState("");
-  const [numLessons, setNumLessons] = useState(0);
-  const [courseDesc, setCourseDesc] = useState("");
-
-  useEffect(() => {
-    fetch(`your-backend-endpoint/courses/${courseName}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setVideos(data.videos);
-        setResources(data.resources);
-        setStudentsEnrolled(data.studentsEnrolled);
-        setDuration(data.duration);
-        setLevel(data.level);
-        setNumLessons(data.numLessons);
-        setCourseDesc(data.coursedesc);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, [courseName]);
-
   return (
     <div>
       <NavBar />
@@ -52,17 +50,17 @@ function CourseDetails() {
           <div className=" items-start absolute top-10 space-x-24 ">
             <div className="ml-[80px]">
               <CourseDetail
-                instructorAvatar="/assets/Instructor.png"
-                instructor="John Doe"
-                speciality="UI/UX Designer"
-                category="Web Development"
-                courseName="The Complete Web Developer Course 2.0"
-                description="Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL & more!"
+                instructorAvatar={instructorAvtr}
+                instructor={instructor}
+                speciality={instructorJob}
+                category={category}
+                courseName={decodedCourseName}
+                description={courseDesc} // Pass the actual course description as a prop
                 numRatings={15}
-                rating={3.5}
-                numLessons={12}
+                rating={rating}
+                numLessons={numLessons}
                 studentsEnrolled={32}
-                duration=" 9h30min"
+                duration={duration}
               />
             </div>
             {/* Elements below CourseDetail */}
@@ -89,7 +87,7 @@ function CourseDetails() {
                   Requirements
                 </p>
               </div>
-              
+
               <div className="bg-white rounded-lg w-full absolute items-start border border-neutral-200 mt-12">
                 <div className="pl-6 mt-6 mb-6 justify-between space-y-4 ">
                   <p className="font-bold text-DarkBluePal">Course Content</p>
@@ -101,8 +99,11 @@ function CourseDetails() {
           <div className="absolute top-10 right-[80px]">
             <EnrollCourse
               discount="100% Off"
-              price={0}
+              price={price}
               videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              onAddToCart={function (): void {
+                throw new Error("Function not implemented.");
+              }}
             />
             {/* Elements below EnrollCourse */}
             <div className="space-y-6 mt-6 flex-col mb-10">

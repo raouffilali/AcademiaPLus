@@ -7,7 +7,7 @@ export const links = [
       {
         Head: "General Courses",
         sublink: [
-          { name: "Design", link: "/design" },
+          { name: "Design", link: "/CategoryPage" },
           { name: "Development", link: "/development" },
           { name: "Marketing", link: "/marketing" },
           { name: "IT and Software", link: "/it-software" },
@@ -20,10 +20,10 @@ export const links = [
       {
         Head: "Academeic Fields",
         sublink: [
-          { name: "Primary School", link: "/primary-school" },
-          { name: "Middle School", link: "/middle-school" },
-          { name: "High School", link: "/high-school" },
-          { name: "University", link: "/university" },
+          { name: "Primary School", link: "/primarySchoolPage" },
+          { name: "Middle School", link: "/middleSchoolPage" },
+          { name: "High School", link: "/highSchoolPage" },
+          { name: "University", link: "/universityPage" },
         ],
       },
     ],
