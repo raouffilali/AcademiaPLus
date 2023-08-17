@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import MongoStore from "connect-mongo";
 import "dotenv/config";
 import express, { NextFunction, Request, Response } from "express";
@@ -5,6 +6,7 @@ import session from "express-session";
 import createHttpError, { isHttpError } from "http-errors";
 import morgan from "morgan";
 import env from "./utils/validateEnv";
+import blogsRouter from "./routes/BlogsRoute";
 
 const app = express();
 
@@ -12,22 +14,21 @@ app.use(morgan("dev"));
 
 app.use(express.json());
 
-app.use(session({
-    secret: env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        maxAge: 60 * 60 * 1000,
-    },
-    rolling: true,
-    store: MongoStore.create({
-        mongoUrl: env.MONGO_CONNECTION_STRING
-    }),
-}));
+// app.use(session({
+//     secret: env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//         maxAge: 60 * 60 * 1000,
+//     },
+//     rolling: true,
+//     store: MongoStore.create({
+//         mongoUrl: env.MONGO_CONNECTION_STRING
+//     }),
+// }));
 
-app.get("/", (req, res) => {
-    res.send("Hello world!");
-});
+app.use("/api/blogs", blogsRouter);
+
 
 
 app.use((req, res, next) => {
