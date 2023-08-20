@@ -9,6 +9,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import courses from "../../components/courseCard/courses";
 import CourseCard from "../../components/courseCard/CourseCard";
 import latestCourses from "./latestCoursesData";
+import UrgentNews from "../../components/urgenNews/UrgentNews";
 
 interface Option {
   label: string;
@@ -112,6 +113,9 @@ function AllCourses() {
     { category: "Business", numCourses: 16 },
     { category: "Video & Animation", numCourses: 13 },
     { category: "Programming & Tech", numCourses: 20 },
+    { category: "Primary School", numCourses: 82 },
+    { category: "Middle School", numCourses:75 },
+    { category: "High Shool", numCourses: 124 },
   ];
   const instructors = [
     { instructor: "Sanaa Ardjane", numCourses: 22 },
@@ -155,6 +159,7 @@ function AllCourses() {
 
   return (
     <div>
+      <UrgentNews />
       <NavBar />
       <PathPage />
       <div className="my-12 bg-neutral-50 h-full">
@@ -245,7 +250,7 @@ function AllCourses() {
               {generatePaginationControls()}
             </div>
           </div>
-          <div className="flex-none w-[22%] space-y-4 ">
+          <div className="flex-none w-[22%] space-y-8 ">
             <div className="flex justify-between  text-gray-800">
               <p className="text-xl font-medium flex ">
                 <FiFilter /> Filters

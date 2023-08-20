@@ -1,8 +1,0 @@
-.element {
-    overflow: auto; /* enable scrolling */
-  }
-
-  /* Hide scrollbar */
-  .element::-webkit-scrollbar {
-    display: none;
-  }
