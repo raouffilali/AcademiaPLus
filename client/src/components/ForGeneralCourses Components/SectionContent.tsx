@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SectionTitle from "./SectionTitle";
-import courses from "../data/courses";
+import courses from "../../data/courses";
 import CourseCard from "../courseCard/CourseCard";
 
 

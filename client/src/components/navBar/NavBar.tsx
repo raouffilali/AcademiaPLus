@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import "./NavBar.css";
 import NavLinks from "./NavLinks";
 import { ILanguage } from "../../constants/interfaces";
+import {images} from "../../../public/constants"
 
 // Define language options
 const LANGUAGES: ILanguage[] = [
@@ -33,7 +34,7 @@ const Navbar = () => {
       setIsScrolled(shouldBeScrolled);
     };
     window.addEventListener("scroll", handleScroll);
-    
+
     // Cleanup the event listener when the component is unmounted
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -66,7 +67,7 @@ const Navbar = () => {
         <div className="z-50 md:w-auto w-full flex ">
           <Link to="/">
             <img
-              src="assets/logo.svg"
+              src={images.Logo}
               alt="logo"
               className="md:cursor-pointer h-8"
             />

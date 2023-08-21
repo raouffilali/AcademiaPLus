@@ -1,10 +1,10 @@
 
 // index.ts
 // Export data
-export { blogData } from "../components/data/blogData";
-export { courses } from "../components/data/courses";
-export { sponsorsData } from "../components/data/SponsorsData";
-export { categories } from "../components/data/categoriesData";
+export { blogData } from "../data/blogData";
+export { courses } from "../data/courses";
+export { sponsorsData } from "../data/SponsorsData";
+export { categories } from "../data/categoriesData";
 
 // Export components
 export { default as Footer } from "../components/Footer/Footer";
