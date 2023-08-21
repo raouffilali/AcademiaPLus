@@ -21,7 +21,7 @@ import TopCategoryCarousel from "../../components/topCategoryCarousel/TopCategor
 function LandingPage() {
   return (
     <div>
-      <div className="lg:w-full top-14 md:h-[920px] bg-gradient-to-r from-blue-100 to-indigo-300">
+      <div className="lg:w-full top-14 md:h-[920px] bg-gradient-to-r from-blue-50 to-[#97C7FD]">
         <NavBar />
         <div>
           <ScrollToTopButton />
