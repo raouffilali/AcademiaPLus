@@ -223,7 +223,7 @@ function LandingPage() {
             <iframe
               src="https://www.youtube.com/embed/your-video-id"
               title="Video"
-              className="rounded-2xl w-[258px] lg:w-[760px] lg:h-[415px]"
+              className="rounded-2xl w-[245px] lg:w-[760px] lg:h-[415px]"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             ></iframe>
           </div>
