@@ -22,17 +22,17 @@ function App() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/forgotPassword" element={<ForgotPassword />} />
-      <Route path="/BecomeaTeacher" element={<BecomeaTeacherPage />} />
-      <Route path="/Cart" element={<CartPage />} />
-      <Route path="/WishList" element={<WishList />} />
+      <Route path="/becomeaTeacher" element={<BecomeaTeacherPage />} />
+      <Route path="/cart" element={<CartPage />} />
+      <Route path="/wishList" element={<WishList />} />
       <Route path="/signup" element={<SignupPage />} />
-      <Route path="/Category" element={<CategoryPage />} />
-      <Route path="/CourseDetails/:courseName" element={<CourseDetails />} />
-      <Route path="/AllCourses" element={<AllCourses />} />
-      <Route path="/PrimarySchool" element={<PrimarySchoolPage />} />
-      <Route path="/MiddleSchool" element={<MiddleSchoolPage />} />
-      <Route path="/HighSchool" element={<HighSchoolPage />} />
-      <Route path="/University" element={<UniversityPage />} />
+      <Route path="/category" element={<CategoryPage />} />
+      <Route path="/courseDetails/:courseName" element={<CourseDetails />} />
+      <Route path="/allCourses" element={<AllCourses />} />
+      <Route path="/primarySchool" element={<PrimarySchoolPage />} />
+      <Route path="/middleSchool" element={<MiddleSchoolPage />} />
+      <Route path="/highSchool" element={<HighSchoolPage />} />
+      <Route path="/university" element={<UniversityPage />} />
       <Route
         path="/subscription"
         element={<SubscriptionPackagesPage />}
