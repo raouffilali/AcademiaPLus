@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FiFilter } from "react-icons/fi";
 import { FaSearch } from "react-icons/fa";
-import { Footer } from "../../components";
+import { Footer } from "../../constants";
 import NavBar from "../../components/navBar/NavBar";
 import PathPage from "../../components/PathPage/PathPage";
 import { FaAngleDown, FaChevronUp, FaChevronDown } from "react-icons/fa";

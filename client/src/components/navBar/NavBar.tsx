@@ -1,71 +1,75 @@
-
-import { useEffect, useState } from "react";
+// Importing required modules and components
+import React, { useEffect, useState } from "react";
 import { FaAngleDown, FaBars, FaSearch, FaTimes } from "react-icons/fa";
 import { GrLanguage } from "react-icons/gr";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 import NavLinks from "./NavLinks";
-interface Language {
-  id: number;
-  label: string;
-}
+import { ILanguage } from "../../constants/interfaces";
 
-const LANGUAGES: Language[] = [
+// Define language options
+const LANGUAGES: ILanguage[] = [
   { id: 1, label: "Ar" },
   { id: 2, label: "Fr" },
   { id: 3, label: "En" },
 ];
 
+// Navbar component
 const Navbar = () => {
+  // State variables
   const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState<Language>(
+  const [selectedLanguage, setSelectedLanguage] = useState<ILanguage>(
     LANGUAGES[0]
   );
+
+  // Effect to handle scrolling and update state accordingly
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const shouldBeScrolled = scrollPosition > 0;
-
+      const shouldBeScrolled = scrollPosition > 0; // 
       setIsScrolled(shouldBeScrolled);
     };
-
     window.addEventListener("scroll", handleScroll);
-
+    
     // Cleanup the event listener when the component is unmounted
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Effect to update the Navbar's appearance based on scroll state
   useEffect(() => {
     const navbar = document.querySelector(".navbar");
 
     if (navbar) {
-      if (isScrolled) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
-      }
+      isScrolled
+        ? navbar.classList.add("scrolled")
+        : navbar.classList.remove("scrolled");
     }
   }, [isScrolled]);
 
-  const handleLanguageSelect = (language: Language) => {
+  // Function to handle language selection
+  const handleLanguageSelect = (language: ILanguage) => {
     setSelectedLanguage(language);
     setIsOpen(false);
     // Here you can add logic to change the page language
   };
 
+  // Return the JSX for the Navbar
   return (
-    <nav className={`navbar ${isScrolled ? "scrolled" : ""} w-full`} style={{  zIndex: 1 }}>
-      <div className="flex items-center  lg:px-[80px] ">
-        <div className="z-50  md:w-auto w-full flex ">
+    <nav
+      className={`navbar ${isScrolled ? "scrolled" : ""} w-full`}
+      style={{ zIndex: 1 }}
+    >
+      <div className="flex items-center lg:px-[80px] ">
+        <div className="z-50 md:w-auto w-full flex ">
           <Link to="/">
-          <img
-            src="assets/logo.svg"
-            alt="logo"
-            className=" md:cursor-pointer h-8"
-          />
+            <img
+              src="assets/logo.svg"
+              alt="logo"
+              className="md:cursor-pointer h-8"
+            />
           </Link>
 
           <div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
@@ -73,9 +77,11 @@ const Navbar = () => {
           </div>
         </div>
         <ul className="md:flex hidden items-center gap-2">
+          {/* Display navigation links */}
           <NavLinks />
+
+          {/* Search Bar */}
           <div className="hidden md:flex items-center">
-            {/* Search Bar */}
             <div className={`searchBar relative `}>
               <input
                 className={`bg-white  ${
@@ -90,11 +96,12 @@ const Navbar = () => {
             </div>
           </div>
         </ul>
+
+        {/* Display buttons and dropdown for larger screens */}
         <div className="md:hidden lg:flex hidden">
           {/* Become a Teacher Button */}
-
           <Link to="/BecomeaTeacherPage" className="ml-2">
-            <button className="bg-greenish  hover:bg-bluePal text-DarkBluePal hover:text-white text-sm py-2 px-2 font-normal rounded-2xl focus:outline-none">
+            <button className="bg-greenish hover:bg-bluePal text-DarkBluePal hover:text-white text-sm py-2 px-2 font-normal rounded-2xl focus:outline-none">
               Become a Teacher
             </button>
           </Link>
@@ -103,7 +110,7 @@ const Navbar = () => {
           <div className="relative inline-block text-left">
             <button
               type="button"
-              className="inline-flex items-center justify-center rounded-md  px-2 py-2 text-sm font-Lato text-gray-700 hover:text-gray-500 focus:outline-none"
+              className="inline-flex items-center justify-center rounded-md px-2 py-2 text-sm font-Lato text-gray-700 hover:text-gray-500 focus:outline-none"
               id="language-menu"
               aria-expanded="true"
               aria-haspopup="true"
@@ -117,6 +124,7 @@ const Navbar = () => {
             {isOpen && (
               <div className="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <div className="py-1" role="none">
+                  {/* Display language options */}
                   {LANGUAGES.map((language) => (
                     <button
                       key={language.id}
@@ -157,6 +165,7 @@ const Navbar = () => {
             Sign Up
           </Link>
         </div>
+
         {/* Mobile nav */}
         <ul
           className={`
@@ -165,7 +174,7 @@ const Navbar = () => {
         `}
         >
           <NavLinks />
-          <div className="py-5  ">
+          <div className="py-5">
             {/* Login Button */}
             <Link
               to="/loginPage"
@@ -181,13 +190,13 @@ const Navbar = () => {
             >
               Sign Up
             </Link>
-            {/* Become a Teacher Button */}
 
-          <Link to="/BecomeaTeacherPage" className="ml-2">
-            <button className="bg-greenish  hover:bg-bluePal text-DarkBluePal hover:text-white text-sm py-2 px-2 font-normal rounded-2xl focus:outline-none">
-              Become a Teacher
-            </button>
-          </Link>
+            {/* Become a Teacher Button */}
+            <Link to="/BecomeaTeacherPage" className="ml-2">
+              <button className="bg-greenish hover:bg-bluePal text-DarkBluePal hover:text-white text-sm py-2 px-2 font-normal rounded-2xl focus:outline-none">
+                Become a Teacher
+              </button>
+            </Link>
           </div>
         </ul>
       </div>

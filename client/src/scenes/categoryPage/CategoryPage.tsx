@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Footer, NavBar } from "../../components";
+import { Footer, NavBar } from "../../constants";
 import PathPage from "../../components/PathPage/PathPage";
 import categories from "./CategoriesData";
 
