@@ -126,36 +126,43 @@ const StatsContainer2: React.FC<StatsContainer2Props> = ({ apiUrl }) => {
   return (
     <div
       ref={containerRef}
-      className={`bg-gradient-to-r from-blue-200 to bg-blue-50  flex items-center w-full p-6 rounded-lg  shadow-md ${
+      className={`bg-gradient-to-r from-blue-200 to bg-blue-50  space-y-4 lg:flex  lg:items-center w-full p-6 rounded-lg  shadow-md ${
         isVisible ? "animate-fade-in-up" : "opacity-0"
       }`}
     >
+      <div className="flex space-x-4">
       <div className="p-4 rounded-xl bg-white">
-        <img src={StudentsIcon} alt="Students Icon" className="h-16" />
+        <img src={StudentsIcon} alt="Students Icon" className="lg:h-16 h-22" />
       </div>
       <div>
-        <h4 className="text-5xl font-medium">
+        <h4 className="lg:text-5xl text-3xl font-medium">
           {formatNumberWithCommas(studentsCount)}
         </h4>
         <p className="text-xl text-gray-700">students enrolled</p>
       </div>
+      </div>
+      <div className="flex">
       <div className="p-4 rounded-xl bg-white">
-        <img src={CoursesIcon} alt="Courses Icon" className="h-16" />
+        <img src={CoursesIcon} alt="Courses Icon" className="lg:h-16 h-14" />
       </div>
       <div>
-        <h4 className="text-5xl font-medium">
+        <h4 className="lg:text-5xl text-3xl font-medium">
           {formatNumberWithCommas(coursesCount)}
         </h4>
         <p className="text-xl text-gray-700">total courses</p>
       </div>
+      </div>
+      <div className="flex">
       <div className="p-4 rounded-xl bg-white">
-        <img src={CountryIcon} alt="Country Icon" className="h-16" />
+        <img src={CountryIcon} alt="Country Icon" className="lg:h-16 h-14" />
       </div>
       <div>
-        <h4 className="text-5xl font-medium">
+        <h4 className="lg:text-5xl text-3xl font-medium">
           {formatNumberWithCommas(countriesCount)}
         </h4>
         <p className="text-xl text-gray-700">countries</p>
+      </div>
+
       </div>
     </div>
   );

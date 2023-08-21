@@ -133,7 +133,7 @@ function CourseCard({
           {/* Pricing information */}
         </div>
 
-        <button className="rounded-full border-4 m-2 border-bluePal px-8 p-2 hover:bg-bluePal hover:text-white text-bluePal font-bold">
+        <button className="rounded-full lg:border-4 border-2 text-sm lg:text-lg m-2 border-bluePal px-8 lg:px-8 lg:p-2 p-1 hover:bg-bluePal hover:text-white text-bluePal font-bold">
           BUY NOW
         </button>
       </div>

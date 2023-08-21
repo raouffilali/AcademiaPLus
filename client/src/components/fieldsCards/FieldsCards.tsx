@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 
 function FieldsCards() {
   return (
-    <div className="flex mt-10 flex-start ">
+    <div className="lg:flex mt-6 lg:mt-10 lg:flex-start ">
       <Link to="/PrimarySchoolPage">
       {/* primary School Card*/}
-      <div className=" hover:bg-gradient-to-b  hover:from-blue-300 to hover:bg-blue-100 text-redPal hover:text-white w-[210px] h-[280px] shadow-sm shadow-gray-400 rounded-md  space-y-4 pt-12  transition-all duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-lg">
+      <div className=" mt-4 lg:mt-0 hover:bg-gradient-to-b  hover:from-blue-300 to hover:bg-blue-100 text-redPal hover:text-white p-2 w-full h-full lg:w-[210px] lg:h-[280px] shadow-sm shadow-gray-400 rounded-md  space-y-4 pt-12  transition-all duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-lg">
         <div className='rounded-full bg-gray-200 w-[90px] h-[90px] overflow-hidden '>
         <img
             src="/assets/child-student.png" 
@@ -19,7 +19,7 @@ function FieldsCards() {
       </div></Link>
       {/* Middle  School Card*/}
       <Link to="/MiddleSchoolPage">
-      <div className="bg-gradient-to-b hover:from-bluePal  to hover:bg-blue-100   text-redPal hover:text-white w-[210px] h-[280px] shadow-sm shadow-gray-400 rounded-md  space-y-4 pt-12  transition-all duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-lg">
+      <div className="mt-4 lg:mt-0 bg-gradient-to-b hover:from-bluePal  to hover:bg-blue-100   text-redPal hover:text-white p-2 w-full h-full lg:w-[210px] lg:h-[280px] shadow-sm shadow-gray-400 rounded-md  space-y-4 pt-12  transition-all duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-lg">
         <div className='rounded-full bg-gray-200 w-[90px] h-[90px] overflow-hidden flex items-center justify-center '>
         <img
             src="/assets/middle school.png" 
@@ -32,7 +32,7 @@ function FieldsCards() {
       </div></Link>
       {/* high School Card */}
       <Link to="/HighSchoolPage">
-      <div className="bg-gradient-to-b hover:from-lightBluePal to hover:bg-blue-200 text-redPal hover:text-white w-[210px] h-[280px] shadow-sm shadow-gray-400 rounded-md  space-y-4 pt-12  transition-all duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-lg">
+      <div className="mt-4 lg:mt-0 bg-gradient-to-b hover:from-lightBluePal to hover:bg-blue-200 text-redPal hover:text-white p-2 w-full h-full lg:w-[210px] lg:h-[280px] shadow-sm shadow-gray-400 rounded-md  space-y-4 pt-12  transition-all duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-lg">
         <div className='rounded-full bg-gray-200 w-[90px] h-[90px] overflow-hidden flex items-center justify-center '>
         <img
             src="/assets/student.png" 
@@ -45,7 +45,7 @@ function FieldsCards() {
       </div></Link>
       {/* University*/}
       <Link to="/UniversityPage">
-      <div className="bg-gradient-to-b hover:from-greenish to hover:bg-button  text-redPal hover:text-black w-[210px] h-[280px] shadow-sm shadow-gray-400 rounded-md  space-y-4 pt-12  transition-all duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-lg">
+      <div className="mt-4 lg:mt-0 bg-gradient-to-b hover:from-greenish to hover:bg-button  text-redPal hover:text-black p-2 w-full h-full lg:w-[210px] lg:h-[280px] shadow-sm shadow-gray-400 rounded-md  space-y-4 pt-12  transition-all duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-lg">
         <div className='rounded-full bg-gray-200 w-[90px] h-[90px] overflow-hidden flex items-center justify-center '>
         <img
             src="/assets/university.png" 
