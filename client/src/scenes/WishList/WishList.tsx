@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { NavBar } from "../../constants";
 import CourseCard from "../../components/courseCard/CourseCard";
-import courses from "../../components/courseCard/courses";
+import courses from "../../components/data/courses";
 import PathPage from "../../components/PathPage/PathPage";
 import { cartItems } from "../cartPage/cartItems";
 function WishList() {
