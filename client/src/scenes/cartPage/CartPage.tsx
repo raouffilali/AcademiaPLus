@@ -4,7 +4,7 @@ import PathPage from "../../components/PathPage/PathPage";
 import CourseCard, {
   CourseCardProps,
 } from "../../components/courseCard/CourseCard";
-import courses from "../../components/courseCard/courses";
+import courses from "../../components/data/courses";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { addToCart,cartItems } from "./cartItems";

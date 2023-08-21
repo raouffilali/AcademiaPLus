@@ -6,7 +6,7 @@ import NavBar from "../../components/navBar/NavBar";
 import PathPage from "../../components/PathPage/PathPage";
 import { FaAngleDown, FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import courses from "../../components/courseCard/courses";
+import courses from "../../components/data/courses";
 import CourseCard from "../../components/courseCard/CourseCard";
 import latestCourses from "./latestCoursesData";
 import UrgentNews from "../../components/urgenNews/UrgentNews";

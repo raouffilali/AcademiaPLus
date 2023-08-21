@@ -1,4 +1,4 @@
-const courses = [
+export const courses = [
   {
 
     courseName: "Information About UI/UX Design Degree",

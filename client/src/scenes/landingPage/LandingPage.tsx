@@ -1,22 +1,24 @@
 import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import BlogCarousel from "../../components/blogCarousel/BlogCarousel";
-import { blogData } from "../../components/blogCarousel/blogData";
-import CourseCard from "../../components/courseCard/CourseCard";
-import courses from "../../components/courseCard/courses";
-import FieldsCards from "../../components/fieldsCards/FieldsCards";
-import Footer from "../../components/Footer/Footer";
-import InstructorCarousel from "../../components/instructorCarousel/InstructorCarousel";
-import NavBar from "../../components/navBar/NavBar";
-import RatingSection from "../../components/RatingSection/RatingSection";
-import ScrollToTopButton from "../../components/Scroll to top/ScrollToTopButton";
-import SponsorsCarousel from "../../components/SponsorsCarousel/SponsorsCarousel";
-import { sponsorsData } from "../../components/SponsorsCarousel/SponsorsData";
-import StatsContainer from "../../components/statsContainer/StatsContainer";
-import StatsContainer2 from "../../components/statsContainer2/StatsContainer2";
-import TestemonialsCard from "../../components/testmonialsCard/TestemonialsCard";
-import { categories } from "../../components/topCategoryCarousel/categoriesData";
-import TopCategoryCarousel from "../../components/topCategoryCarousel/TopCategoryCarousel";
+import {
+  BlogCarousel,
+  blogData,
+  CourseCard,
+  courses,
+  FieldsCards,
+  Footer,
+  InstructorCarousel,
+  NavBar,
+  RatingSection,
+  ScrollToTopButton,
+  SponsorsCarousel,
+  sponsorsData,
+  StatsContainer,
+  StatsContainer2,
+  categories,
+  TopCategoryCarousel,
+  TestemonialsCard,
+} from "../../constants/";
 
 function LandingPage() {
   return (

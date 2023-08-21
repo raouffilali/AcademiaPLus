@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-import { blogData } from "./blogData";
+import { blogData } from "../data/blogData";
 import "./BlogCarousel.css";
 import { Link } from "react-router-dom";
 
