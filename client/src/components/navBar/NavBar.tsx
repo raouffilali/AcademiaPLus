@@ -44,11 +44,9 @@ const Navbar = () => {
     const navbar = document.querySelector(".navbar");
 
     if (navbar) {
-      if (isScrolled) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
-      }
+      isScrolled
+        ? navbar.classList.add("scrolled")
+        : navbar.classList.remove("scrolled");
     }
   }, [isScrolled]);
 
