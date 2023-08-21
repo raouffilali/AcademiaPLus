@@ -1,28 +1,30 @@
 import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Footer from "../../components/Footer/Footer";
-import RatingSection from "../../components/RatingSection/RatingSection";
-import SponsorsCarousel from "../../components/SponsorsCarousel/SponsorsCarousel";
-import { sponsorsData } from "../../components/SponsorsCarousel/SponsorsData";
 import BlogCarousel from "../../components/blogCarousel/BlogCarousel";
 import { blogData } from "../../components/blogCarousel/blogData";
 import CourseCard from "../../components/courseCard/CourseCard";
 import courses from "../../components/courseCard/courses";
 import FieldsCards from "../../components/fieldsCards/FieldsCards";
+import Footer from "../../components/Footer/Footer";
 import InstructorCarousel from "../../components/instructorCarousel/InstructorCarousel";
 import NavBar from "../../components/navBar/NavBar";
+import RatingSection from "../../components/RatingSection/RatingSection";
+import ScrollToTopButton from "../../components/Scroll to top/ScrollToTopButton";
+import SponsorsCarousel from "../../components/SponsorsCarousel/SponsorsCarousel";
+import { sponsorsData } from "../../components/SponsorsCarousel/SponsorsData";
 import StatsContainer from "../../components/statsContainer/StatsContainer";
 import StatsContainer2 from "../../components/statsContainer2/StatsContainer2";
 import TestemonialsCard from "../../components/testmonialsCard/TestemonialsCard";
-import TopCategoryCarousel from "../../components/topCategoryCarousel/TopCategoryCarousel";
 import { categories } from "../../components/topCategoryCarousel/categoriesData";
+import TopCategoryCarousel from "../../components/topCategoryCarousel/TopCategoryCarousel";
 
 function LandingPage() {
   return (
     <div>
-      <div className="lg:w-full top-14 md:h-[920px] bg-gradient-to-l from-blue-100 to-indigo-300]">
+      <div className="lg:w-full top-14 md:h-[920px] bg-gradient-to-r from-blue-100 to-indigo-300">
         <NavBar />
         <div>
+          <ScrollToTopButton />
           <div className="text-gray-900 mx-[12px] lg:mx-[80px]">
             <div className="lg:flex justify-between flex-row space-x-4 lg:space-x-10">
               <div className="lg:space-y-8 space-y-4 mt-20 lg:mt-36 ">

@@ -29,12 +29,11 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const shouldBeScrolled = scrollPosition > 0;
+      const shouldBeScrolled = scrollPosition > 0; // 
       setIsScrolled(shouldBeScrolled);
     };
-
     window.addEventListener("scroll", handleScroll);
-
+    
     // Cleanup the event listener when the component is unmounted
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
