@@ -1,6 +1,6 @@
 import "./App.css";
 // import {Footer} from "./components/index"
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {  Route, Routes } from "react-router-dom";
 import HighSchoolPage from "./scenes/academicfieldPage/HighSchoolPage";
 import MiddleSchoolPage from "./scenes/academicfieldPage/MiddleSchoolPage";
 import PrimarySchoolPage from "./scenes/academicfieldPage/PrimarySchoolPage";

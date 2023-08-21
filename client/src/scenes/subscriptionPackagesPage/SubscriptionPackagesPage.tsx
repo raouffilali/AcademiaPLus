@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Footer, NavBar } from "../../components";
+import { Footer, NavBar } from "../../constants";
 import PackageCard from "../../components/Package card/PackageCard";
 import CheckoutComp from "../../components/checkoutComponent/CheckoutComp";
 import TestemonialsCard from "../../components/testmonialsCard/TestemonialsCard";

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Footer, NavBar } from "../../components";
+import { Footer, NavBar } from "../../constants";
 import { useParams, useLocation } from "react-router-dom";
 import PathPage from "../../components/PathPage/PathPage";
 import CourseDetail from "../../components/CourseDetail/CourseDetail";

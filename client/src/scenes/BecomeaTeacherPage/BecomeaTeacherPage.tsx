@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "../../components/navBar/NavBar";
 import StatsContainer from "../../components/statsContainer/StatsContainer";
 import { useState } from "react";
-import { Footer } from "../../components";
+import { Footer } from "../../constants";
 import "./BecomeaTeacherPage.css";
 import Form from "../../components/BecomeInstructorForm/Form";
 import StatsContainer2 from "../../components/statsContainer2/StatsContainer2";

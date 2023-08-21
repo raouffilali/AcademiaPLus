@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavBar, Footer, EmptyCart } from "../../components/index";
+import { NavBar, Footer, EmptyCart } from "../../constants/index";
 import PathPage from "../../components/PathPage/PathPage";
 import CourseCard, {
   CourseCardProps,

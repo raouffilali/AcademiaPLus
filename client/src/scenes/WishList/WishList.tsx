@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { NavBar } from "../../components";
+import { NavBar } from "../../constants";
 import CourseCard from "../../components/courseCard/CourseCard";
 import courses from "../../components/courseCard/courses";
 import PathPage from "../../components/PathPage/PathPage";

@@ -1,6 +1,6 @@
 import React from "react";
 import YouTubeFrame from "../../components/YoutubeFrame/YoutubeFRame";
-import { Footer, NavBar } from "../../components";
+import { Footer, NavBar } from "../../constants";
 import VideoPage from "../../components/YoutubeFrame/YoutubeFRame";
 import CourseCard from "../../components/courseCard/CourseCard";
 import courses from "../../components/courseCard/courses";
