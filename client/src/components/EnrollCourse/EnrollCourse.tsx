@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { FiHeart,FiShare2 } from 'react-icons/fi';
-import { addToCart } from "../../scenes/cartPage/cartItems";
+import { addToCart } from "../../pages/cartPage/cartItems";
 type CourseCardProps = {
   videoUrl: string;
   discount?: string;

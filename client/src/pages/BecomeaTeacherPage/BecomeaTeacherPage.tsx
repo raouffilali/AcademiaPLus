@@ -1,12 +1,11 @@
-import React from "react";
-import NavBar from "../../components/navBar/NavBar";
-import StatsContainer from "../../components/statsContainer/StatsContainer";
 import { useState } from "react";
+import { images } from "../../../public/constants";
+import Form from "../../components/BecomeInstructorForm/Form";
+import NavBar from "../../components/navBar/NavBar";
+import PathPage from "../../components/PathPage/PathPage";
+import StatsContainer2 from "../../components/statsContainer2/StatsContainer2";
 import { Footer } from "../../constants";
 import "./BecomeaTeacherPage.css";
-import Form from "../../components/BecomeInstructorForm/Form";
-import StatsContainer2 from "../../components/statsContainer2/StatsContainer2";
-import PathPage from "../../components/PathPage/PathPage";
 
 type Tab = "Plan" | "Record" | "Launch";
 
@@ -25,7 +24,7 @@ function BecomeaTeacherPage() {
   return (
     <>
       <NavBar />
-      <PathPage/>
+      <PathPage />
       <div>
         {isFormVisible && (
           <div className="blur-overlay" onClick={toggleFormVisibility} />
@@ -58,7 +57,11 @@ function BecomeaTeacherPage() {
           )}
         </div>
         <div className="">
-          <img src="/assets/Teach.jpg" alt="" className="w-[620px] h-[435px]" />
+          <img
+            src={images.teacherSidePhoto}
+            alt=""
+            className="w-[620px] h-[435px]"
+          />
         </div>
       </div>
       <div className="mx-[80px] bg-white text-gray-800 flex flex-col  relative  ">
@@ -228,8 +231,10 @@ function BecomeaTeacherPage() {
           </p>
         </div>
       </div>
-      <div className="mx-[80px]"><StatsContainer2 apiUrl={""} /></div>
-      
+      <div className="mx-[80px]">
+        <StatsContainer2 apiUrl={""} />
+      </div>
+
       <div className=" bg-[url('assets/bg/banner-bg.png')] w-full h-[320px]">
         <div className="mt-20 mb-40 flex flex-col justify-center items-center">
           <p className=" mt-20 font-Lato text-[38px] font-bold">

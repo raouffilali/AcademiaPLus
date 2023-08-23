@@ -1,21 +1,21 @@
 import "./App.css";
 // import {Footer} from "./components/index"
 import {  Route, Routes } from "react-router-dom";
-import HighSchoolPage from "./scenes/academicfieldPage/HighSchoolPage";
-import MiddleSchoolPage from "./scenes/academicfieldPage/MiddleSchoolPage";
-import PrimarySchoolPage from "./scenes/academicfieldPage/PrimarySchoolPage";
-import UniversityPage from "./scenes/academicfieldPage/UniversityPage";
-import AllCourses from "./scenes/AllCourses/AllCourses";
-import BecomeaTeacherPage from "./scenes/BecomeaTeacherPage/BecomeaTeacherPage";
-import CartPage from "./scenes/cartPage/CartPage";
-import CategoryPage from "./scenes/categoryPage/CategoryPage";
-import CourseDetails from "./scenes/CourseDetails/CourseDetails";
-import ForgotPassword from "./scenes/forgotPassword/ForgotPassword";
-import LandingPage from "./scenes/landingPage/LandingPage";
-import LoginPage from "./scenes/loginPage/LoginPage";
-import SignupPage from "./scenes/SignupPage/SignupPage";
-import SubscriptionPackagesPage from "./scenes/subscriptionPackagesPage/SubscriptionPackagesPage";
-import WishList from "./scenes/WishList/WishList";
+import HighSchoolPage from "./pages/academicfieldPage/HighSchoolPage";
+import MiddleSchoolPage from "./pages/academicfieldPage/MiddleSchoolPage";
+import PrimarySchoolPage from "./pages/academicfieldPage/PrimarySchoolPage";
+import UniversityPage from "./pages/academicfieldPage/UniversityPage";
+import AllCourses from "./pages/AllCourses/AllCourses";
+import BecomeaTeacherPage from "./pages/BecomeaTeacherPage/BecomeaTeacherPage";
+import CartPage from "./pages/cartPage/CartPage";
+import CategoryPage from "./pages/categoryPage/CategoryPage";
+import CourseDetails from "./pages/CourseDetails/CourseDetails";
+import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
+import LandingPage from "./pages/landingPage/LandingPage";
+import LoginPage from "./pages/loginPage/LoginPage";
+import SignupPage from "./pages/SignupPage/SignupPage";
+import SubscriptionPackagesPage from "./pages/subscriptionPackagesPage/SubscriptionPackagesPage";
+import WishList from "./pages/WishList/WishList";
 function App() {
   return (
     <Routes>

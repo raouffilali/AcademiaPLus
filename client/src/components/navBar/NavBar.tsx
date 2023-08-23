@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import "./NavBar.css";
 import NavLinks from "./NavLinks";
 import { ILanguage } from "../../constants/interfaces";
-import {images} from "../../../public/constants"
+import { images } from "../../../public/constants";
 
 // Define language options
 const LANGUAGES: ILanguage[] = [
@@ -30,7 +30,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const shouldBeScrolled = scrollPosition > 0; // 
+      const shouldBeScrolled = scrollPosition > 0; //
       setIsScrolled(shouldBeScrolled);
     };
     window.addEventListener("scroll", handleScroll);
@@ -101,7 +101,7 @@ const Navbar = () => {
         {/* Display buttons and dropdown for larger screens */}
         <div className="md:hidden lg:flex hidden">
           {/* Become a Teacher Button */}
-          <Link to="/BecomeaTeacherPage" className="ml-2">
+          <Link to="/becomeaTeacher" className="ml-2">
             <button className="bg-greenish hover:bg-bluePal text-DarkBluePal hover:text-white text-sm py-2 px-2 font-normal rounded-2xl focus:outline-none">
               Become a Teacher
             </button>
@@ -193,7 +193,7 @@ const Navbar = () => {
             </Link>
 
             {/* Become a Teacher Button */}
-            <Link to="/BecomeaTeacherPage" className="ml-2">
+            <Link to="/becomeaTeacher" className="ml-2">
               <button className="bg-greenish hover:bg-bluePal text-DarkBluePal hover:text-white text-sm py-2 px-2 font-normal rounded-2xl focus:outline-none">
                 Become a Teacher
               </button>

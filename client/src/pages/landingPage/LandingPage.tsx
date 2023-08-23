@@ -2,8 +2,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import {
   BlogCarousel,
-  blogData,
-  CourseCard,
+  blogData, categories, CourseCard,
   courses,
   FieldsCards,
   Footer,
@@ -14,15 +13,13 @@ import {
   SponsorsCarousel,
   sponsorsData,
   StatsContainer,
-  StatsContainer2,
-  categories,
-  TopCategoryCarousel,
-  TestemonialsCard,
-} from "../../constants/";
+  StatsContainer2, TestemonialsCard, TopCategoryCarousel
+} from "../../constants";
 
 function LandingPage() {
   return (
-    <div>
+    
+    <div >
       <div className="lg:w-full top-14 md:h-[920px] bg-gradient-to-r from-blue-50 to-[#97C7FD]">
         <NavBar />
         <div>
