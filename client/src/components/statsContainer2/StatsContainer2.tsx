@@ -141,7 +141,7 @@ const StatsContainer2: React.FC<StatsContainer2Props> = ({ apiUrl }) => {
         <p className="text-xl text-gray-700">students enrolled</p>
       </div>
       </div>
-      <div className="flex">
+      <div className="flex space-x-4">
       <div className="p-4 rounded-xl bg-white">
         <img src={CoursesIcon} alt="Courses Icon" className="lg:h-16 h-14" />
       </div>
@@ -152,7 +152,7 @@ const StatsContainer2: React.FC<StatsContainer2Props> = ({ apiUrl }) => {
         <p className="text-xl text-gray-700">total courses</p>
       </div>
       </div>
-      <div className="flex">
+      <div className="flex ">
       <div className="p-4 rounded-xl bg-white">
         <img src={CountryIcon} alt="Country Icon" className="lg:h-16 h-14" />
       </div>

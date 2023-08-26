@@ -18,18 +18,18 @@ import {
   categories,
   TopCategoryCarousel,
   TestemonialsCard,
-} from "../../constants/";
+} from "../../constants";
 
 function LandingPage() {
   return (
     <div>
-      <div className="lg:w-full top-14 md:h-[920px] bg-gradient-to-r from-blue-50 to-[#97C7FD]">
+      <div className="lg:w-full top-14 md:h-[920px] bg-gradient-to-r from-red-50 to-[#bedbfc]">
         <NavBar />
         <div>
           <ScrollToTopButton />
           <div className="text-gray-900 mx-[12px] lg:mx-[80px]">
             <div className="lg:flex justify-between flex-row space-x-4 lg:space-x-10">
-              <div className="lg:space-y-8 space-y-4 mt-20 lg:mt-36 ">
+              <div className="lg:space-y-8 space-y-4 mt-20 lg:mt-32 ">
                 <h2 className="text-gray-600 lg:text-lg">
                   The Leader in Online Virtual interactive Learning
                 </h2>
@@ -39,14 +39,14 @@ function LandingPage() {
                 <h2 className="text-gray-600 text-lg">
                   Own your future learning new skills online
                 </h2>
-                <div className="lg:space-x-4 mt-6 space-y-2 justify-start ">
-                  <Link to="/SubscriptionPackagesPage">
-                    <button className="bg-redPal  hover:bg-lightredPal  hover:text-gray-900 text-white font-medium py-2 px-16 rounded-2xl">
+                <div className="lg:space-x-4 mt-6 space-y-2 lg:justify-start ">
+                  <Link to="/subscription">
+                    <button className="bg-redPal justify-center items-center   hover:bg-bluePal  hover:text-gray-900 text-white font-medium py-2 px-16 rounded-2xl">
                       Try a Demo
                     </button>
                   </Link>
-                  <Link to="/About">
-                    <button className=" border-redPal border-2 hover:border-lightredPal hover:bg-lightredPal hover:text-gray-800 text-redPal font-medium py-2 px-16 rounded-2xl">
+                  <Link to="/about">
+                    <button className=" justify-center items-center  border-redPal border-2 hover:border-bluePal hover:bg-bluePal hover:text-gray-800 text-redPal font-medium py-2 px-16 rounded-2xl">
                       Learn more
                     </button>
                   </Link>
@@ -61,7 +61,7 @@ function LandingPage() {
             </div>
             <RatingSection />
 
-            <div className=" lg:mt-60 mt-12 pb-2 lg:pb-44">
+            <div className=" lg:mt-40 mt-12 pb-2 lg:pb-44">
               <StatsContainer />
             </div>
           </div>
@@ -96,7 +96,7 @@ function LandingPage() {
             </p>
           </div>
 
-          <Link to="/CategoryPage">
+          <Link to="/category">
             <button className="mt-2 lg:mt-0 flex items-center text-lightBluePal hover:text-white font-medium  hover:bg-bluePal border-4 border-bluePal px-3 lg:py-2 py-1 rounded-3xl">
               <span className="mr-2">All</span>
               Categories
@@ -127,14 +127,14 @@ function LandingPage() {
                 neque. Suspendisse imperdiet.
               </p>
             </div>
-            <Link to="/AllCourses">
+            <Link to="/allCourses">
               <button className="mt-2 lg:mt-0 flex items-center text-lightBluePal hover:text-white hover:bg-bluePal border-4 font-medium  border-bluePal py-1 px-4 lg:py-2 rounded-3xl">
                 <span className="mr-2">All</span>
                 Courses
               </button>
             </Link>
           </div>
-          <div className="lg:mt-16 mt-8 grid grid-cols-1 md:grid-cols-3 gap-7">
+          <div className="lg:mt-16 mt-8 grid grid-cols-1  md:grid-cols-3 gap-7">
             {courses.slice(0, 6).map((course, index) => (
               <CourseCard
                 key={index}
@@ -291,7 +291,7 @@ function LandingPage() {
                   </span>
                 </div>
 
-                <Link to="/BecomeaTeacherPage">
+                <Link to="/becomeaTeacher">
                   <button className=" lg:mt-10 mt-4 items-center text-lightBluePal hover:text-white hover:bg-bluePal lg:border-4 border-2 text-sm lg:text-lg border-bluePal lg:px-8 px-6 py-2 rounded-3xl">
                     <span className="mr-2">Become</span>a Mentor
                   </button>
@@ -327,7 +327,7 @@ function LandingPage() {
                 recommendations and promotions.
               </p>
             </div>
-            <img className="lg:h-44 " src="assets/become-01.png" alt="" />
+            <img className="lg:h-44  " src="assets/become-01.png" alt="" />
           </div>
         </div>
       </div>

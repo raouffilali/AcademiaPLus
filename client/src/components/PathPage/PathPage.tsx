@@ -8,7 +8,7 @@ const PathPage = () => {
 
   return (
     <div>
-      <div className="flex justify-center pt-24">
+      <div className="flex justify-center pt-4">
         <hr className="w-[1108px]" />
       </div>
       <div className="flex ml-[80px]">

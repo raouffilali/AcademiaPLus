@@ -1,11 +1,12 @@
 import React from "react";
+import { images } from "../../../public/constants";
 
 function Footer() {
   return (
     // <!-- Footer container -->
     <footer className="bg-white text-center text-neutral-800  text-sm lg:text-left">
       
-      <div className="flex items-center justify-center border-b-2 border-neutral-200 p-4  lg:justify-between">
+      <div className="lg:flex items-center justify-center border-b-2 border-neutral-200 p-4  lg:justify-between">
         <div className="mr-12 hidden lg:block">
           <span>Get connected with us on social networks:</span>
         </div>
@@ -81,14 +82,14 @@ function Footer() {
       </div>
 
       {/* <!-- Main container div: holds the entire content of the footer, including four sections (Tailwind Elements, Products, Useful links, and Contact), with responsive styling and appropriate padding/margins. --> */}
-      <div className="mx-[80px] py-10  text-center md:text-left">
+      <div className="lg:mx-[80px]  py-10  text-center md:text-left">
         <div className="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* <!-- Tailwind Elements section --> */}
           <div className="flex flex-col items-start ">
             <img
-              src="assets/logo.svg"
+              src={images.Logo}
               alt=""
-              className="mb-4 md:justify-start md:items-start items-center justify-center   h-8"
+              className="mb-4 md:justify-start md:items-start items-center justify-center   h-6"
             />
 
             <p >

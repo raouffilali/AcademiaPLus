@@ -167,7 +167,7 @@ function AllCourses() {
           
         </div>
         <div className="py-16 mx-[80px] flex space-x-6  ">
-          <div className="flex-none w-[78%] space-y-8 h-full ">
+          <div className="flex-none w-[78%] sticky space-y-8 h-full ">
             <div className="flex">
               <p className=" w-1/3 text-md my-2 items-center ">
                 Showing 1-9 of results
@@ -250,7 +250,7 @@ function AllCourses() {
               {generatePaginationControls()}
             </div>
           </div>
-          <div className="flex-none w-[22%] space-y-8 ">
+          <div className="flex-none w-[22%] sticky space-y-8 ">
             <div className="flex justify-between  text-gray-800">
               <p className="text-xl font-medium flex ">
                 <FiFilter /> Filters

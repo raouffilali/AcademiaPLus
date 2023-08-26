@@ -1,6 +1,7 @@
 import { ImgHTMLAttributes } from "react";
 import { FaStar } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import  "./CourseCard.css";
 
 export interface CourseCardProps {
   courseName: string;
@@ -53,29 +54,33 @@ function CourseCard({
       numLessons,
       duration,
     });
-    navigate(
-      `/CourseDetails/${encodeURIComponent(courseName.replace(/\s/g, "-"))}`,
-      {
-        state: {
-          courseName,
-          instructor,
-          instructorAvtr,
-          rating,
-          views,
-          category,
-          price,
-          courseThumbnailSrc,
-          instructorJob,
-          numLessons,
-          duration,
-        },
-      }
+    // navigate(
+    //   `/courseDetails/${encodeURIComponent(courseName.replace(/\s/g, "-"))}`,
+      navigate(
+        `/courseDetails`,
+      // {
+      //   state: {
+      //     courseName,
+      //     instructor,
+      //     instructorAvtr,
+      //     rating,
+      //     views,
+      //     category,
+      //     price,
+      //     courseThumbnailSrc,
+      //     instructorJob,
+      //     numLessons,
+      //     duration,
+      //   },
+      // }
     );
   };
 
   return (
+    
     <div
-      className="w-full hover:text-white hover:bg-cyan-950  h-full space-y-5 p-5 bg-white rounded-lg hover:border-cyan-950 duration-500 shadow-sm border border-gray-200 dark:border-gray-200"
+    
+      className="w-full hover:bg-cyan-950 hover:text-white h-full space-y-5 p-5 bg-white rounded-lg duration-500 shadow-sm border border-gray-200 dark:border-gray-200"
       onClick={handleCourseClick}
     >
       <div className="relative">
@@ -89,7 +94,7 @@ function CourseCard({
         </div>
       </div>
 
-      <div className="p-1 ">
+      <div className="p-1">
         <Link to="" className="absolute flex items-center ml-2 mb-2">
           <img
             className="w-12 h-12 rounded-full inline-block"

@@ -9,6 +9,7 @@ import "./InstructorCarousel.css";
 function InstructorCarousel() {
   const settings = {
     dots: true,
+    arrows: false,
     infinite: true,
     speed: 800,
     slidesToShow: 4,
