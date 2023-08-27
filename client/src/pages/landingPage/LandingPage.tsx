@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {
   BlogCarousel,
   blogData,
+  categories,
   CourseCard,
   courses,
   FieldsCards,
@@ -15,10 +16,11 @@ import {
   sponsorsData,
   StatsContainer,
   StatsContainer2,
-  categories,
+ 
   TopCategoryCarousel,
   TestemonialsCard,
 } from "../../constants";
+
 
 function LandingPage() {
   return (
