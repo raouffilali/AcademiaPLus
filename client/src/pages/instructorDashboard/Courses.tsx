@@ -1,3 +1,4 @@
+import { useState } from "react";
 import CourseFilter from "../../components/CourseFilter/CourseFilter";
 import Pagination from "../../components/Pagination/Pagination";
 import { bestSellingCoursesData } from "../../data/bestSellingCoursesData";
@@ -5,6 +6,7 @@ import { instructorCourses } from "../../data/instructorCourses";
 import CourseItem from "./CourseItem";
 
 const Courses = ({}) => {
+  const [filteredCourses, setFilteredCourses] = useState(instructorCourses);
   // Event handler for removing a course
   const handleRemoveCourse = (id: number) => {
     // Implement the logic to remove the course with the given id
@@ -17,7 +19,13 @@ const Courses = ({}) => {
     // You might navigate to an edit page or open a modal
   };
   // Placeholder data, you can replace this with actual courses data
-  
+  // Event handler for filtering courses
+  const handleFilterCourses = (searchTerm: string) => {
+    const filtered = instructorCourses.filter(course =>
+      course.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredCourses(filtered);
+  };
     
 
   return (
@@ -27,10 +35,10 @@ const Courses = ({}) => {
         Manage your courses and its update like live, draft and pending.
       </p>
       <hr className="py-2" />
-      <CourseFilter />
+      <CourseFilter onFilter={handleFilterCourses} />
       <div className="">
         <CourseItem
-          courses={instructorCourses}
+            courses={filteredCourses}
           onRemoveCourse={handleRemoveCourse}
           onEditCourse={handleEditCourse}
         />
