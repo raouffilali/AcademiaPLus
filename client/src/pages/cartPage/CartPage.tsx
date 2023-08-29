@@ -81,7 +81,7 @@ function CartPage() {
               <hr />
               <div className="flex justify-between">
                 <p className="ml-5 my-5 text-xl font-bold text-gray-800">Subtotal</p>
-                <p className="mx-5  my-5 text-xl font-bold text-gray-800"> {calculateTotalPrice()} DA</p> 
+                <p className="mx-5  my-5 text-xl font-bold text-gray-800"> {calculateTotalPrice()} DA</p>
               </div>
               <div className="flex flex-col md:flex-row p-5 space-y-4 md:space-y-0 md:space-x-4 justify-between">
                 <button className="bg-redPal w-full p-3 text-white hover:bg-red-500 font-medium rounded-md">
