@@ -1,19 +1,19 @@
 import "./App.css";
 // import {Footer} from "./components/index"
 import { Route, BrowserRouter as Router, Routes, } from "react-router-dom";
-import BecomeaTeacherPage from "./scenes/BecomeaTeacherPage/BecomeaTeacherPage";
-import CourseDetails from "./scenes/CourseDetails/CourseDetails";
-import SignupPage from "./scenes/SignupPage/SignupPage";
-import HighSchoolPage from "./scenes/academicfieldPage/HighSchoolPage";
-import MiddleSchoolPage from "./scenes/academicfieldPage/MiddleSchoolPage";
-import PrimarySchoolPage from "./scenes/academicfieldPage/PrimarySchoolPage";
-import UniversityPage from "./scenes/academicfieldPage/UniversityPage";
-import CartPage from "./scenes/cartPage/CartPage";
-import CategoryPage from "./scenes/categoryPage/CategoryPage";
-import ForgotPassword from "./scenes/forgotPassword/ForgotPassword";
-import LandingPage from "./scenes/landingPage/LandingPage";
-import LoginPage from "./scenes/loginPage/LoginPage";
-import SubscriptionPackagesPage from "./scenes/subscriptionPackagesPage/SubscriptionPackagesPage";
+import BecomeaTeacherPage from "./pages/BecomeaTeacherPage/BecomeaTeacherPage";
+import CourseDetails from "./pages/CourseDetails/CourseDetails";
+import SignupPage from "./pages/SignupPage/SignupPage";
+import HighSchoolPage from "./pages/academicfieldPage/HighSchoolPage";
+import MiddleSchoolPage from "./pages/academicfieldPage/MiddleSchoolPage";
+import PrimarySchoolPage from "./pages/academicfieldPage/PrimarySchoolPage";
+import UniversityPage from "./pages/academicfieldPage/UniversityPage";
+import CartPage from "./pages/cartPage/CartPage";
+import CategoryPage from "./pages/categoryPage/CategoryPage";
+import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
+import LandingPage from "./pages/landingPage/LandingPage";
+import LoginPage from "./pages/loginPage/LoginPage";
+import SubscriptionPackagesPage from "./pages/subscriptionPackagesPage/SubscriptionPackagesPage";
 function App() {
   return (
     <Router>
