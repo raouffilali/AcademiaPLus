@@ -9,14 +9,15 @@ import Students from "./Students";
 import Payouts from "./Payouts";
 import Quiz from "./Quiz";
 import QuizResults from "./QuizResults";
-import EditProfile from "./EditProfile";
-import Security from "./Security";
-import SocialProfiles from "./SocialProfiles";
-import Notifications from "./Notifications";
-import ProfilePrivacy from "./ProfilePrivacy";
-import DeleteProfile from "./DeleteProfile";
 import { Footer, NavBar } from "../../constants";
+import EditProfile from "./AccountSettings/EditProfile";
+import Security from "./AccountSettings/Security";
+import SocialProfiles from "./AccountSettings/SocialProfiles";
+import Notifications from "./Notifications";
+import ProfilePrivacy from "./AccountSettings/ProfilePrivacy";
+import DeleteProfile from "./AccountSettings/DeleteProfile";
 import ProfileSection from "./ProfileSection";
+
 
 const InstructorDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -42,7 +43,17 @@ const InstructorDashboard: React.FC = () => {
       case "quizresults":
         return <QuizResults />;
       case "editprofile":
-        return <EditProfile />;
+        return <EditProfile user={{
+          avatar: "assets/avatar/avatar-4.jpg",
+          firstName: "",
+          lastName: "",
+          phone: "",
+          birthday: "",
+          addressLine1: "",
+          addressLine2: "",
+          state: "",
+          country: ""
+        }} />;
       case "security":
         return <Security />;
       case "socialprofiles":
@@ -71,7 +82,7 @@ const InstructorDashboard: React.FC = () => {
         coverImageUrl="assets/profile-bg.jpg"
         onCreateCourse={() => console.log("Create New Course clicked")}
       />
-      <div className="lg:flex space-x-6">
+      <div className="lg:flex lg:space-x-6">
         <Sidebar setActiveTab={setActiveTab} activeTab={activeTab} />
         <div className="flex-grow mt-8">{renderContent()}</div>
       </div>
