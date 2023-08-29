@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Footer, NavBar } from "../../components";
+import { Footer, NavBar } from "../../constants";
 import PathPage from "../../components/PathPage/PathPage";
 import categories from "./CategoriesData";
 
@@ -17,7 +17,7 @@ function CategoryPage() {
     );
 
     return filteredCategories.map((category, index) => (
-      <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/5 p-1" key={index}>
+      <div className="w-full sm:w-1/2 md:w-1/3  p-1" key={index}>
         <div className="bg-white flex shadow-md rounded-lg overflow-hidden">
           <img
             src={category.thumbnail}
@@ -47,7 +47,7 @@ function CategoryPage() {
     <>
       <NavBar />
       <PathPage />
-      <div className="mt-5 flex flex-wrap justify-between items-center bg-gray-50">
+      <div className="mt-5 flex flex-wrap justify-between  items-center bg-gray-50">
         <div className="ml-[80px] mr-[80px]">
           <div className="flex flex-col space-y-6">
             <h1 className="font-bold text-4xl mt-16 text-gray-950">
@@ -94,6 +94,16 @@ function CategoryPage() {
                 onClick={() => handleButtonClick("Video & Animation")}
               >
                 Video & Animation
+              </button>
+              <button
+                className={`text-xl bg-gray-200 py-2 px-10 hover:bg-red-400 hover:text-white font-medium ${
+                  selectedButton === "Fitness & Art"
+                    ? "bg-red-400 text-white active-button"
+                    : ""
+                }`}
+                onClick={() => handleButtonClick("Fitness & Art")}
+              >
+                Fitness & Art
               </button>
             </div>
             {selectedButton && contentVisible && (

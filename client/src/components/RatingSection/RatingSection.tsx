@@ -21,7 +21,7 @@ const RatingSection: React.FC = () => {
     const stars = [];
     for (let i = 0; i < count; i++) {
       stars.push(
-        <FaStar key={i} className="ml-4 text-goldPal text-[20px]" />
+        <FaStar key={i} className="lg:ml-4 ml-2 text-goldPal lg:text-[20px] text-sm " />
       );
     }
     return stars;
@@ -46,7 +46,7 @@ const RatingSection: React.FC = () => {
   }, []);
 
   return (
-    <div className="text-gray-900 font-bold text-5xl flex items-start absolute" ref={ref}>
+    <div className="text-gray-900 font-bold lg:text-5xl text-3xl flex items-start lg:absolute" ref={ref}>
   {inView ? (
     <>
       <CountUp
@@ -56,7 +56,7 @@ const RatingSection: React.FC = () => {
         onEnd={increaseRating}
       />
       <p className="ml-2">+</p>
-      <p className="ml-10 mr-2">4.4</p>
+      <p className="ml-2 mr-2">4.4</p>
       {renderStars(5)}
     </>
   ) : (

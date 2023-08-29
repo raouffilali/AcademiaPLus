@@ -9,10 +9,11 @@ const NavLinks = () => {
   const [subHeading, setSubHeading] = useState("");
   return (
     <>
-      {links.map((link) => (
+      {links.map((link, index) => (
         <div>
           <div className=" px-3 text-left md:cursor-pointer group">
             <h1
+              key={index}
               className="py-7 md:text-sm text-DarkBluePal hover:text-gray-500 flex justify-between items-center md:pr-0 pr-5 group"
               onClick={() => {
                 heading !== link.name ? setHeading(link.name) : setHeading("");
@@ -35,13 +36,16 @@ const NavLinks = () => {
                     ></div>
                   </div>
                   <div className="bg-white rounded-sm p-5 grid grid-cols-2 gap-14">
-                    {link.sublinks.map((mysublinks) => (
-                      <div>
+                    {link.sublinks.map((mysublinks, index) => (
+                      <div key={index} className="">
                         <h1 className="text-md font-semibold text-blueLink">
                           {mysublinks.Head}
                         </h1>
-                        {mysublinks.sublink.map((slink) => (
-                          <li className="text-sm hover:bg-blue-50 p-2 text-gray-600 my-1">
+                        {mysublinks.sublink.map((slink, index) => (
+                          <li
+                            key={index}
+                            className="text-sm hover:bg-blue-50 p-2 text-gray-600 my-1"
+                          >
                             <Link
                               to={slink.link}
                               className="hover:text-gray-800"
@@ -64,9 +68,9 @@ const NavLinks = () => {
           `}
           >
             {/* sublinks */}
-            {link.sublinks.map((slinks) => (
+            {link.sublinks.map((slinks, index) => (
               <div>
-                <div>
+                <div key={index}>
                   <h1
                     onClick={() =>
                       subHeading !== slinks.Head
@@ -90,8 +94,8 @@ const NavLinks = () => {
                       subHeading === slinks.Head ? "md:hidden" : "hidden"
                     }`}
                   >
-                    {slinks.sublink.map((slink) => (
-                      <li className="py-3 pl-14">
+                    {slinks.sublink.map((slink, index) => (
+                      <li key={index} className="py-3 pl-14">
                         <Link to={slink.link}>{slink.name}</Link>
                       </li>
                     ))}

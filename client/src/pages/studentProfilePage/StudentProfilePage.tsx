@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import { Footer, NavBar } from "../../components";
+import { Footer, NavBar } from "../../constants";
 import YouTubeFrame from "../../components/YoutubeFrame/YoutubeFRame";
 import PersonalinfoSec from "../../components/PersonalinfoSec/PersonalinfoSec";
 import axios from 'axios'
