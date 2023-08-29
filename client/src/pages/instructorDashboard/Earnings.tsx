@@ -54,7 +54,7 @@ function Earnings() {
       <div className="w-ful ">
         <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 justify-center">
           {/* Revenue Card */}
-          <div className="bg-white p-6 rounded-lg shadow flex-1">
+          <div className="bg-white w-full p-6 rounded-lg shadow flex-1">
             <div className="flex items-center">
               <div className="ml-0 flex w-8 h-6 rounded bg-emerald-100 text-white ">
                 <FiFolder className="text-xs text-emerald-500" />
@@ -71,7 +71,7 @@ function Earnings() {
           </div>
 
           {/* Students Enrollments Card */}
-          <div className="bg-white p-6 rounded-lg shadow flex-1">
+          <div className="bg-white w-full p-6 rounded-lg shadow flex-1">
             <div className="flex items-center">
               <div className="ml-0 flex w-8 h-6 rounded bg-red-100 text-white ">
                 <LuShoppingBag className="text-xs text-redPal" />
@@ -88,7 +88,7 @@ function Earnings() {
           </div>
 
           {/* Courses Rating Card */}
-          <div className="bg-white p-6 rounded-lg shadow flex-1">
+          <div className="bg-white w-full p-6 rounded-lg shadow flex-1">
             <div className="flex items-center">
               <div className="ml-0 flex w-8 h-6 rounded bg-orange-100 text-white ">
                 <LiaTelegramPlane className="text-md text-orange-500" />

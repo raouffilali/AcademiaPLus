@@ -27,16 +27,16 @@ const BestSellingCourses: React.FC<BestSellingCoursesProps> = ({
     setMenuOpen((prev) => !prev);
   };
   return (
-    <div className="w-full h-full bg-gray-50 rounded-b-lg shadow">
+    <div className="w-full  h-full bg-gray-50 rounded-b-lg shadow">
       <p className="text-sm p-4 rounded-t-lg bg-white font-semibold">
         Best Selling Courses
       </p>
       <hr className="py-4" />
-      <div className="flex items-center text-sm">
-        <table className="w-full">
+      <div className="flex overflow-x-auto items-center text-sm">
+        <table className="min-w-full">
           <thead>
            <tr className="text-gray-800">
-              <th className="text-left py-2 px-4">COURSES</th>
+              <th className="text-left py-2 lg:px-4 px-32">COURSES</th>
               <th className="text-left py-2 px-4 ">SALES</th>
               <th className="text-left py-2 px-4">AMOUNT</th>
         

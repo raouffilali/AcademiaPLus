@@ -53,47 +53,49 @@ const StudentCard: React.FC<StudentCardProps> = ({ student, viewType }) => {
         </div>
       ) : (
         // Table structure for "list" view
-        <table className="w-full">
-          <thead>
-            <tr className="text-gray-800 text-sm">
-              <th className="text-left py-2 px-4">Name</th>
-              <th className="text-left py-2 px-4">Enrolled</th>
-              <th className="text-left py-2 px-4">Progress</th>
-              <th className="text-left py-2 px-4">Q/A</th>
-              <th className="text-left py-2 px-4">Location</th>
-              <th className="text-left py-2 px-4">Message</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="text-gray-500 text-xs">
-              <td className=" flex py-2 px-4">
-                {" "}
-                <img
-                  src={student.avatar}
-                  alt={`${student.username} Avatar`}
-                  className="h-10 w-10 rounded-full ml-0 mb-2"
-                />
-                <span className="text-sm font-medium text-black">
-                  {student.username}
-                </span>
-              </td>
-              <td className="py-2 px-4">{student.dateEnrolled}</td>
-              <td className="py-2 px-4">{student.progress}%</td>
-              <td className="py-2 px-4">
-                <FaComment className="inline" /> 10
-              </td>
-              <td className="py-2 px-4">{student.location}</td>
-              <td className="py-2 px-4">
-                <div className="text-gray-500 text-sm my-2">
-                  <button className="border border-gray-800 rounded hover:bg-gray-800 hover:text-white  p-1">
-                    <FaEnvelope className="mr-1 inline" />
-                    Message
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="overflow-x-auto">
+          <table className="min-w-full">
+            <thead>
+              <tr className="text-gray-800  text-sm">
+                <th className="text-left py-2 lg:px-4 px-6">Name</th>
+                <th className="text-left py-2 px-4">Enrolled</th>
+                <th className="text-left py-2 px-4">Progress</th>
+                <th className="text-left py-2 px-4">Q/A</th>
+                <th className="text-left py-2 px-4">Location</th>
+                <th className="text-left py-2 px-4">Message</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="text-gray-500 text-xs">
+                <td className=" flex py-2 px-4">
+                  {" "}
+                  <img
+                    src={student.avatar}
+                    alt={`${student.username} Avatar`}
+                    className="h-10 w-10 rounded-full ml-0 mb-2"
+                  />
+                  <span className="text-sm font-medium text-black">
+                    {student.username}
+                  </span>
+                </td>
+                <td className="py-2 px-4">{student.dateEnrolled}</td>
+                <td className="py-2 px-4">{student.progress}%</td>
+                <td className="py-2 px-4">
+                  <FaComment className="inline" /> 10
+                </td>
+                <td className="py-2 px-4">{student.location}</td>
+                <td className="py-2 px-4">
+                  <div className="text-gray-500 text-sm my-2">
+                    <button className="border border-gray-800 rounded hover:bg-gray-800 hover:text-white  p-1">
+                      <FaEnvelope className="mr-1 inline" />
+                      Message
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

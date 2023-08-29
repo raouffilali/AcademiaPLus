@@ -35,11 +35,11 @@ const CourseItem: React.FC<CourseItemProps> = ({
   const displayedCourses = courses.slice(startIndex, endIndex);
 
   return (
-    <div className="bg-gray-50">
-      <table className="w-full">
+    <div className="overflow-x-auto bg-gray-50">
+      <table className="min-w-full">
         <thead>
-          <tr className="text-gray-800 text-sm">
-            <th className="text-left py-2 px-4">Courses</th>
+          <tr className="text-gray-800 text-sm ">
+            <th className="text-left py-2 lg:px-4 px-32">Courses</th>
             <th className="text-left py-2 px-4">Students</th>
             <th className="text-left py-2 px-4">Rating</th>
             <th className="text-left py-2 px-4">Status</th>

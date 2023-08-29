@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  HiOutlineChartBar,
-  HiOutlineUserAdd,
-  HiOutlineStar,
-} from "react-icons/hi";
+
 import BestSellingCourses from "../../components/BestSellingCourses/BestSellingCourses";
 import EarningsChart from "../../components/EarningsChart/EarningsChart";
 import OrdersChart from "../../components/ordersCart/OrdersCart";
@@ -27,9 +23,9 @@ const Dashboard: React.FC<DashboardProps> = () => {
   return (
     <div className="space-y-6 ">
       <div className="w-ful ">
-        <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 justify-center">
+        <div className="flex flex-col md:flex-row w-full space-y-6 md:space-y-0 md:space-x-6 justify-center">
           {/* Revenue Card */}
-          <div className="bg-white p-6 rounded-lg shadow flex-1">
+          <div className="bg-white w-full  p-6 rounded-lg shadow lg:flex-1">
             <div className="flex items-center">
               <p className="text-gray-600 text-xs font-medium ">REVENUE</p>
             </div>
@@ -46,7 +42,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
           </div>
 
           {/* Students Enrollments Card */}
-          <div className="bg-white p-6 rounded-lg shadow flex-1">
+          <div className="bg-white w-full  p-6 rounded-lg shadow flex-1">
             <div className="flex items-center">
               <p className="text-gray-600 text-xs font-medium">
                 STUDENTS ENROLLMENTS
@@ -63,7 +59,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
           </div>
 
           {/* Courses Rating Card */}
-          <div className="bg-white p-6 rounded-lg shadow flex-1">
+          <div className="bg-white w-full p-6 rounded-lg shadow flex-1">
             <div className="flex items-center">
               <p className="text-gray-600 text-xs font-medium">
                 COURSES RATING

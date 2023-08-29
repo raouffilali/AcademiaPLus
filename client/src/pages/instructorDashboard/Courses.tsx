@@ -36,7 +36,7 @@ const Courses = ({}) => {
       </p>
       <hr className="py-2" />
       <CourseFilter onFilter={handleFilterCourses} />
-      <div className="">
+      <div className=" ">
         <CourseItem
             courses={filteredCourses}
           onRemoveCourse={handleRemoveCourse}

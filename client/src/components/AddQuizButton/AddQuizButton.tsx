@@ -21,7 +21,7 @@ const AddQuizButton = () => {
         Add New Quiz
       </button>
       {showAddQuizPage && (
-            <div className="popup bg-white p-4 w-1/3 rounded-lg">
+            <div className="popup bg-white p-4 w-5/6 lg:w-1/3 rounded-lg">
               <button
                 className=" text-white close-button rounded-md px-2"
                 onClick={toggleQuizVisibility}

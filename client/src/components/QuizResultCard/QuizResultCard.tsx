@@ -18,7 +18,7 @@ const QuizResultCard: React.FC<QuizResultCardProps> = ({ title, value }) => {
     icon = <HiClock className="text-2xl text-purple-500" />;
   }
   return (
-    <div className="flex-1 bg-slate-100 p-4 py-6 space-y-8 rounded shadow">
+    <div className="flex-1 w-full bg-slate-100 p-4 py-6 space-y-8 rounded shadow">
       <p className="text-md font-semibold text-gray-700">{title}</p>
       <div className="flex">
       <p className="text-xl flex-1 font-semibold text-gray-700 mt-2">{value}</p>

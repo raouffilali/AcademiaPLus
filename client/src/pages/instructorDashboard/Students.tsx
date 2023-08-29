@@ -27,8 +27,8 @@ const Students = () => {
     indexOfLastStudent
   );
 
-  const paginate = (pageNumber: React.SetStateAction<number>) => setCurrentPage(pageNumber);
-
+  const paginate = (pageNumber: React.SetStateAction<number>) =>
+    setCurrentPage(pageNumber);
 
   return (
     <div className="mb-6 space-y-6 ">

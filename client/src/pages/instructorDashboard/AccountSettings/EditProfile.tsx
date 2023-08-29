@@ -69,7 +69,7 @@ const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       <div className="bg-white text-sm p-4 rounded shadow mb-4">
         <p className="text-xl font-medium text-gray-800">Personal Details</p>
         <p className="text-gray-500">Edit your personal information and address.</p>
-          <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1  my-4  gap-6 ">
+          <div className="lg:grid lg:grid-cols-2    my-4  gap-6 ">
             <label>
               First Name
               <input
