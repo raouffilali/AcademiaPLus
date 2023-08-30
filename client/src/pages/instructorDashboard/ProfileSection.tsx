@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface ProfileSectionProps {
   username: string;
@@ -32,12 +33,14 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
           </div>
         </div>
         <div className="flex-grow"></div>
-        <button
-          onClick={onCreateCourse}
-          className="bg-redPal text-white px-4 py-2 text-xs font-semibold  rounded-md hover:bg-red-500"
-        >
-          Create New Course
-        </button>
+        <Link to="/create-course">
+          <button
+            onClick={onCreateCourse}
+            className="bg-redPal text-white px-4 py-2 text-xs font-semibold rounded-md hover:bg-red-500"
+          >
+            Create New Course
+          </button>
+        </Link>
       </div>
     </div>
   );

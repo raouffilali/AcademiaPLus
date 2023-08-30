@@ -17,12 +17,14 @@ import SignupPage from "./pages/SignupPage/SignupPage";
 import SubscriptionPackagesPage from "./pages/subscriptionPackagesPage/SubscriptionPackagesPage";
 import WishList from "./pages/WishList/WishList";
 import InstructorDashboard from "./pages/instructorDashboard/InstructorDashboard";
+import CreateCourse from "./pages/instructorDashboard/CreateCourse";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<InstructorDashboard/>} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/create-course" element={<CreateCourse/>} />
       <Route path="/landing" element={<LandingPage />} />
       <Route path="/forgotPassword" element={<ForgotPassword />} />
       <Route path="/becomeaTeacher" element={<BecomeaTeacherPage />} />
