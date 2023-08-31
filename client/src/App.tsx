@@ -18,11 +18,12 @@ import SubscriptionPackagesPage from "./pages/subscriptionPackagesPage/Subscript
 import WishList from "./pages/WishList/WishList";
 import InstructorDashboard from "./pages/instructorDashboard/InstructorDashboard";
 import CreateCourse from "./pages/instructorDashboard/CreateCourse";
+import StudentDashboard from "./pages/StudentDashboard/StudentDashboard";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<InstructorDashboard/>} />
+      <Route path="/" element={<StudentDashboard/>} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/create-course" element={<CreateCourse/>} />
       <Route path="/landing" element={<LandingPage />} />
