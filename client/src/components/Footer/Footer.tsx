@@ -5,7 +5,7 @@ function Footer() {
   return (
     // <!-- Footer container -->
     <footer className="bg-white text-center text-neutral-800  text-sm lg:text-left">
-      
+
       <div className="lg:flex items-center justify-center border-b-2 border-neutral-200 p-4  lg:justify-between">
         <div className="mr-12 hidden lg:block">
           <span>Get connected with us on social networks:</span>
@@ -94,7 +94,7 @@ function Footer() {
 
             <p >
               The FIRST Algerian platform to learn and practice at the same time
-             
+
             </p>
           </div>
           {/* <!-- Products section --> */}
