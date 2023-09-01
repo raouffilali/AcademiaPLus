@@ -22,7 +22,8 @@ import CreateCourse from "./pages/instructorDashboard/CreateCourse";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<InstructorDashboard/>} />
+      <Route path="/" element={<LandingPage/>} />
+      <Route path="/instructor-dashboard" element={<InstructorDashboard/>} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/create-course" element={<CreateCourse/>} />
       <Route path="/landing" element={<LandingPage />} />

@@ -1,9 +1,8 @@
-import { LuShoppingBag } from "react-icons/lu";
-import { LiaTelegramPlane } from "react-icons/lia";
-import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { FiFolder } from "react-icons/fi";
 import { GrLineChart } from "react-icons/gr";
+import { LiaTelegramPlane } from "react-icons/lia";
+import { LuShoppingBag } from "react-icons/lu";
 import BestSellingCourses from "../../components/BestSellingCourses/BestSellingCourses";
 import EarningsChart from "../../components/EarningsChart/EarningsChart";
 import { bestSellingCoursesData } from "../../data/bestSellingCoursesData";
