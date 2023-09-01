@@ -18,6 +18,7 @@ import SubscriptionPackagesPage from "./pages/subscriptionPackagesPage/Subscript
 import WishList from "./pages/WishList/WishList";
 import InstructorDashboard from "./pages/instructorDashboard/InstructorDashboard";
 import CreateCourse from "./pages/instructorDashboard/CreateCourse";
+import StudentDashboard from "./pages/StudentDashboard/StudentDashboard";
 
 function App() {
   return (

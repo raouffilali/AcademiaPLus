@@ -1,26 +1,26 @@
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
-import Dashboard from "./Dashboard";
-import Courses from "./Courses";
-import Reviews from "./Reviews";
-import Earnings from "./Earnings";
-import Orders from "./Orders";
-import Students from "./Students";
-import Payouts from "./Payouts";
-import Quiz from "./Quiz";
-import QuizResults from "./QuizResults";
+
 import { Footer, NavBar } from "../../constants";
 import EditProfile from "./AccountSettings/EditProfile";
 import Security from "./AccountSettings/Security";
 import SocialProfiles from "./AccountSettings/SocialProfiles";
-import Notifications from "./AccountSettings/Notifications";
+
 import ProfilePrivacy from "./AccountSettings/ProfilePrivacy";
 import DeleteProfile from "./AccountSettings/DeleteProfile";
-import ProfileSection from "./ProfileSection";
+
 import LinkedAccounts from "./AccountSettings/LinkedAccounts";
 import { useNavigate } from "react-router-dom";
+import Notifications from "./AccountSettings/Notifications";
+import ProfileSection from "./ProfileSection";
+import MySubscriptions from "./MySubscriptions";
+import BillingInfo from "./BillingInfo";
+import Invoice from "./Invoice";
+import MyQuizAttempt from "./MyQuizAttempt";
+import Payment from "./Payment";
+import Dashboard from "./Dashboard";
 
-const InstructorDashboard: React.FC = () => {
+const StudentDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
   const navigate = useNavigate();
 
@@ -34,22 +34,17 @@ const InstructorDashboard: React.FC = () => {
     switch (activeTab) {
       case "dashboard":
         return <Dashboard />;
-      case "courses":
-        return <Courses />;
-      case "reviews":
-        return <Reviews />;
-      case "earnings":
-        return <Earnings />;
-      case "orders":
-        return <Orders />;
-      case "students":
-        return <Students />;
-      case "payouts":
-        return <Payouts />;
-      case "quiz":
-        return <Quiz />;
-      case "quizresults":
-        return <QuizResults />;
+      case "mysubscriptions":
+        return <MySubscriptions />;
+      case "billinginfo":
+        return <BillingInfo />;
+      case "payment":
+        return <Payment />;
+      case "invoice":
+        return <Invoice/>;
+      case "myquizattempt":
+        return <MyQuizAttempt/>;
+      
       case "editprofile":
         return (
           <EditProfile
@@ -108,4 +103,4 @@ const InstructorDashboard: React.FC = () => {
   );
 };
 
-export default InstructorDashboard;
+export default StudentDashboard;
