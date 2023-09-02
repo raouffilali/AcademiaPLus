@@ -16,6 +16,7 @@ import LoginPage from "./pages/loginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import SubscriptionPackagesPage from "./pages/subscriptionPackagesPage/SubscriptionPackagesPage";
 import WishList from "./pages/WishList/WishList";
+import CommingSoonv2 from "./pages/CommingSoon/CommingSoonv2";
 function App() {
   return (
     <Routes>
@@ -33,10 +34,8 @@ function App() {
       <Route path="/middleSchool" element={<MiddleSchoolPage />} />
       <Route path="/highSchool" element={<HighSchoolPage />} />
       <Route path="/university" element={<UniversityPage />} />
-      <Route
-        path="/subscription"
-        element={<SubscriptionPackagesPage />}
-      />
+      <Route path="/coming-soon" element={<CommingSoonv2 />} />
+      <Route path="/subscription" element={<SubscriptionPackagesPage />} />
     </Routes>
   );
 }

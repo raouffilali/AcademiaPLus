@@ -13,7 +13,7 @@ import {
   SponsorsCarousel,
   sponsorsData,
   StatsContainer,
-  StatsContainer2, TestemonialsCard, TopCategoryCarousel
+  StatsContainer2, TestemonialsCard as TestimonialsCard, TopCategoryCarousel
 } from "../../constants";
 
 function LandingPage() {
@@ -303,7 +303,7 @@ function LandingPage() {
             backgroundImage: " url(/assets/testemo.jpg)",
           }}
         >
-          <TestemonialsCard />
+          <TestimonialsCard />
         </div>
         <div className="grid lg:grid-cols-2 grid-cols-1 lg:space-x-6 space-y-6 mb-20 mx-[12px]  lg:mx-[80px]">
           <div className="lg:flex bg-red-100 p-4 rounded-3xl ">

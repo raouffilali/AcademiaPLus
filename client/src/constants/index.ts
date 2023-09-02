@@ -7,6 +7,7 @@ export { sponsorsData } from "../data/SponsorsData";
 export { categories } from "../data/categoriesData";
 
 // Export components
+export {default as MainLayout} from '../components/MainLayout';
 export { default as Footer } from "../components/Footer/Footer";
 export { default as NavBar } from "../components/navBar/NavBar";
 export { default as EmptyCart } from "../components/empty cart/EmptyCart";
