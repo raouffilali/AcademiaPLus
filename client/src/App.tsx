@@ -26,6 +26,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage/>} />
+      <Route path="/" element={<LandingPage/>} />
+      <Route path="/instructor-dashboard" element={<InstructorDashboard/>} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/educational-courses" element={<EducationalCoursesPage />} />
       <Route path="/create-course" element={<CreateCourse/>} />
