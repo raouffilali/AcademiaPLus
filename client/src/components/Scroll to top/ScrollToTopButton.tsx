@@ -36,7 +36,7 @@ const ScrollToTopButton = () => {
     "z-50",
     "bg-redPal",
     "text-white",
-    "rounded-lg",
+    "rounded-full",
     "shadow-md",
     "transition-opacity",
     { "opacity-100": isVisible, "opacity-0": !isVisible }

@@ -1,6 +1,6 @@
 import "./App.css";
 // import {Footer} from "./components/index"
-import {  Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import HighSchoolPage from "./pages/academicfieldPage/HighSchoolPage";
 import MiddleSchoolPage from "./pages/academicfieldPage/MiddleSchoolPage";
 import PrimarySchoolPage from "./pages/academicfieldPage/PrimarySchoolPage";
@@ -16,12 +16,22 @@ import LoginPage from "./pages/loginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import SubscriptionPackagesPage from "./pages/subscriptionPackagesPage/SubscriptionPackagesPage";
 import WishList from "./pages/WishList/WishList";
-import CommingSoonv2 from "./pages/CommingSoon/CommingSoonv2";
+import InstructorDashboard from "./pages/instructorDashboard/InstructorDashboard";
+import CreateCourse from "./pages/instructorDashboard/CreateCourse";
+import StudentDashboard from "./pages/StudentDashboard/StudentDashboard";
+import EducationalCoursesPage from "./pages/academicfieldPage/ EducationalCoursesPage/ EducationalCoursesPage";
+import AcademicCourseDetails from "./components/AcademicCourseDetails/AcademicCourseDetails";
+
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
+      <Route path="/" element={<LandingPage/>} />
+      <Route path="/" element={<LandingPage/>} />
+      <Route path="/instructor-dashboard" element={<InstructorDashboard/>} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/educational-courses" element={<EducationalCoursesPage />} />
+      <Route path="/create-course" element={<CreateCourse/>} />
+      <Route path="/landing" element={<LandingPage />} />
       <Route path="/forgotPassword" element={<ForgotPassword />} />
       <Route path="/becomeaTeacher" element={<BecomeaTeacherPage />} />
       <Route path="/cart" element={<CartPage />} />
@@ -29,12 +39,12 @@ function App() {
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/category" element={<CategoryPage />} />
       <Route path="/courseDetails/:courseName" element={<CourseDetails />} />
+      <Route path="/course-details/:courseId" element={<AcademicCourseDetails />} />
       <Route path="/allCourses" element={<AllCourses />} />
       <Route path="/primarySchool" element={<PrimarySchoolPage />} />
       <Route path="/middleSchool" element={<MiddleSchoolPage />} />
       <Route path="/highSchool" element={<HighSchoolPage />} />
       <Route path="/university" element={<UniversityPage />} />
-      <Route path="/coming-soon" element={<CommingSoonv2 />} />
       <Route path="/subscription" element={<SubscriptionPackagesPage />} />
     </Routes>
   );

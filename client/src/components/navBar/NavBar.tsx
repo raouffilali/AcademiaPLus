@@ -69,7 +69,7 @@ const Navbar = () => {
             <img
               src={images.Logo}
               alt="logo"
-              className="md:cursor-pointer h-8"
+              className="md:cursor-pointer h-6"
             />
           </Link>
 
@@ -146,13 +146,13 @@ const Navbar = () => {
           </div>
 
           {/* Cart Icon */}
-          <Link to="/CartPage" className="ml-2 mr-2 text-gray-800">
+          <Link to="/cart" className="ml-2 mr-2 text-gray-800">
             <RiShoppingCart2Line size={18} />
           </Link>
 
           {/* Login Button */}
           <Link
-            to="/loginPage"
+            to="/login"
             className="mr-2 ml-2 text-gray-800 bg-button rounded-2xl  hover:text-white hover:bg-redPal px-4  py-2 focus:outline-none"
           >
             Login
@@ -160,7 +160,7 @@ const Navbar = () => {
 
           {/* Signup Button */}
           <Link
-            to="/SignupPage"
+            to="/signup"
             className="text-redPal hover:text-white border-2 border-button hover:bg-redPal hover:border-redPal rounded-2xl px-4  py-2 mr-2 ml-2"
           >
             Sign Up
@@ -178,7 +178,7 @@ const Navbar = () => {
           <div className="py-5">
             {/* Login Button */}
             <Link
-              to="/loginPage"
+              to="/login"
               className=" text-gray-800 bg-button rounded-2xl   hover:text-white hover:bg-redPal px-4  py-2 focus:outline-none"
             >
               Login
@@ -186,17 +186,17 @@ const Navbar = () => {
 
             {/* Signup Button */}
             <Link
-              to="/SignupPage"
+              to="/signup"
               className="text-redPal hover:text-white border-2 border-button hover:bg-redPal hover:border-redPal rounded-2xl px-4  py-2 "
             >
               Sign Up
             </Link>
 
             {/* Become a Teacher Button */}
-            <Link to="/becomeaTeacher" className="ml-2">
+            <Link to="becomeaTeacher" className="ml-2">
               <button className="bg-greenish hover:bg-bluePal text-DarkBluePal hover:text-white text-sm py-2 px-2 font-normal rounded-2xl focus:outline-none">
                 Become a Teacher
-              </button>
+              </button >
             </Link>
           </div>
         </ul>

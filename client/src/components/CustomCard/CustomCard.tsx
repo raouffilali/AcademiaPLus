@@ -92,7 +92,7 @@ const CustomCard = ({
     );
   } else {
   return (
-    <Link to={`/details/${year}/${subject}`} className="hover:bg-greenish">
+    <div className="hover:bg-greenish">
         <Card className=" w-full  max-w-[26rem] h-full p-4 hover:bg-greenish border-dashed border">
           <CardHeader 
             shadow={false}
@@ -140,7 +140,7 @@ const CustomCard = ({
             </Button>
           </CardFooter>
         </Card>
-      </Link>
+      </div>
   );
   }
 };
