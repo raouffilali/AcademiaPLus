@@ -19,12 +19,15 @@ import WishList from "./pages/WishList/WishList";
 import InstructorDashboard from "./pages/instructorDashboard/InstructorDashboard";
 import CreateCourse from "./pages/instructorDashboard/CreateCourse";
 import StudentDashboard from "./pages/StudentDashboard/StudentDashboard";
+import EducationalCoursesPage from "./pages/academicfieldPage/ EducationalCoursesPage/ EducationalCoursesPage";
+import AcademicCourseDetails from "./components/AcademicCourseDetails/AcademicCourseDetails";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<StudentDashboard/>} />
+      <Route path="/" element={<LandingPage/>} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/educational-courses" element={<EducationalCoursesPage />} />
       <Route path="/create-course" element={<CreateCourse/>} />
       <Route path="/landing" element={<LandingPage />} />
       <Route path="/forgotPassword" element={<ForgotPassword />} />
@@ -34,6 +37,7 @@ function App() {
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/category" element={<CategoryPage />} />
       <Route path="/courseDetails/:courseName" element={<CourseDetails />} />
+      <Route path="/course-details/:courseId" element={<AcademicCourseDetails />} />
       <Route path="/allCourses" element={<AllCourses />} />
       <Route path="/primarySchool" element={<PrimarySchoolPage />} />
       <Route path="/middleSchool" element={<MiddleSchoolPage />} />

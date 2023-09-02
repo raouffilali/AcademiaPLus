@@ -41,14 +41,14 @@ function LandingPage() {
                 <h2 className="text-gray-600 text-lg">
                   Own your future learning new skills online
                 </h2>
-                <div className="lg:space-x-4 mt-6 space-y-2 lg:justify-start ">
+                <div className=" lg:space-x-4 mt-6  space-y-2 lg:justify-start ">
                   <Link to="/subscription">
-                    <button className="bg-redPal justify-center items-center   hover:bg-bluePal  hover:text-gray-900 text-white font-medium py-2 px-16 rounded-2xl">
+                    <button className="bg-redPal  lg:mb-0 mb-2 justify-center items-center hover:shadow-xl  text-white font-medium py-2 px-16 rounded-xl">
                       Try a Demo
                     </button>
                   </Link>
                   <Link to="/about">
-                    <button className=" justify-center items-center  border-redPal border-2 hover:border-bluePal hover:bg-bluePal hover:text-gray-800 text-redPal font-medium py-2 px-16 rounded-2xl">
+                    <button className=" justify-center items-center  border-redPal border-2  hover:bg-redPal hover:text-white text-redPal font-medium py-2 px-16 rounded-xl">
                       Learn more
                     </button>
                   </Link>

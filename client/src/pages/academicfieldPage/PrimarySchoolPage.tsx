@@ -1,32 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import Navbar from "../../components/navBar/NavBar";
 import PathPage from "../../components/PathPage/PathPage";
-import { motion } from "framer-motion";
 import "plyr/dist/plyr.css";
 import Plyr from "plyr";
 
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-  Button,
-  Tooltip,
-  IconButton,
-} from "@material-tailwind/react";
-import {
-  BanknotesIcon,
-  StarIcon,
-  HeartIcon,
-  WifiIcon,
-  HomeIcon,
-  TvIcon,
-  FireIcon,
-  PlayIcon,
-} from "@heroicons/react/24/solid";
 import CustomCard from "../../components/CustomCard/CustomCard";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import VirtualLabSection from "../../components/VirtualLabSection/VirtualLabSection";
 
@@ -54,6 +33,8 @@ function PrimarySchoolPage() {
   const [selectedSubject, setSelectedSubject] = useState("");
   const [isMenuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+
 
   const handleYearChange = (year: React.SetStateAction<string>) => {
     setSelectedYear(year);
@@ -92,7 +73,7 @@ function PrimarySchoolPage() {
       <PathPage />
       <div style={{ fontFamily: "Tajawal", fontWeight: 700 }}>
         <div className="text-center ">
-          <div className="w-full mt-5 top-14 h-[680px] bg-slate-50 bg-[url(assets/bg/academic_bg.png)]">
+          <div className="w-full mt-5 top-14 pb-2 lg:h-[680px] bg-slate-50 bg-[url(assets/bg/academic_bg.png)]">
             <p
               className="pt-16 font-medium text-3xl text-emerald-500"
               style={{ fontFamily: "Tajawal", fontWeight: 700 }}
@@ -105,7 +86,7 @@ function PrimarySchoolPage() {
             >
               برامج الجيل الثاني
             </p>
-            <div className="space-y-6 mx-[80px] mt-3">
+            <div className="space-y-6 lg:mx-[80px] mt-3">
               <div className="w-2/3 mx-auto rounded-2xl border-2 border-dashed border-emerald-500 relative">
                 <video
                   controls
@@ -134,7 +115,7 @@ function PrimarySchoolPage() {
                 </div>
               </div>
             </div>
-            <Link to="/subscriptionPackagesPage">
+            <Link to="/subscription">
               <button className="border-2 mt-5  border-white rounded-2xl text-xl text-white font-bold p-4 px-16 hover:bg-emerald-500 bg-gradient-to-r from-emerald-600 to bg-emerald-300">
                 اشترك الان
               </button>
@@ -151,7 +132,7 @@ function PrimarySchoolPage() {
               المحاور الدراسية للمرحلة الابتدائية
             </p>
             <div className="flex justify-center my-8">
-              <div className="flex justify-between w-full mx-[80px] bg-gray-50 border border-emerald-500 rounded-xl">
+              <div className="flex justify-between w-full lg:mx-[80px] bg-gray-50 border border-emerald-500 rounded-xl">
                 {years.map((year) => (
                   <button
                     key={year}
@@ -202,41 +183,37 @@ function PrimarySchoolPage() {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-1  gap-7 md:grid-cols-3 mx-[80px] ">
-          {/* Card 2 */}
-          <Link to="/card2">
-            <CustomCard
-              imageSrc="/assets/academicfield/molakhasat.jpg"
-              title="الملخصات المكتوبة"
-              rating="4.5"
-              description="Enter a description for الملخصات المكتوبة."
-              year={selectedYear}
-              subject={selectedSubject}
-            />
-          </Link>
+        <div className="grid grid-cols-1  gap-7 md:grid-cols-3 lg:mx-[80px] ">
+          <CustomCard
+            imageSrc="/assets/academicfield/molakhasat.jpg"
+            title="الملخصات المكتوبة"
+            rating="4.5"
+            description="Enter a description for الملخصات المكتوبة."
+            year={selectedYear}
+            subject={selectedSubject}
+          />
 
-          {/* Card 3 */}
-          <Link to="/card3">
-            <CustomCard
-              imageSrc="/assets/academicfield/videoCourse.jpg"
-              title="ملخصات بالفيديو"
-              rating="4.0"
-              description="Enter a description for ملخصات بالفيديو."
-              year={selectedYear}
-              subject={selectedSubject}
-            />
+          <CustomCard
+            imageSrc="/assets/academicfield/videoCourse.jpg"
+            title="ملخصات بالفيديو"
+            rating="4.0"
+            description="Enter a description for ملخصات بالفيديو."
+            year={selectedYear}
+            subject={selectedSubject}
+            
+          />
+          <Link to={`/educational-courses?year=${selectedYear}&subject=${selectedSubject}`}><CustomCard
+            imageSrc="/assets/academicfield/dawra.png"
+            title="الدورات التعليمية"
+            rating="5.0"
+            description="Enter a description for الدورات التعليمية."
+            year={selectedYear}
+            subject={selectedSubject}
+          />
+
           </Link>
-          {/* Card 1 */}
-          <Link to="/card1">
-            <CustomCard
-              imageSrc="/assets/academicfield/dawra.png"
-              title="الدورات التعليمية"
-              rating="5.0"
-              description="Enter a description for الدورات التعليمية."
-              year={selectedYear}
-              subject={selectedSubject}
-            />
-          </Link>
+          
+
           {/* Card for "مجموعة المراجعة" */}
           <CustomCard
             imageSrc="/assets/academicfield/revision.jpg"
@@ -246,31 +223,24 @@ function PrimarySchoolPage() {
             year={selectedYear}
             subject={selectedSubject}
           />
-          {/* Card 4 */}
 
-          <Link to="/card5">
-            <CustomCard
-              imageSrc="/assets/academicfield/games.jpg"
-              title="الألعاب التعليمية"
-              rating="4.8"
-              description="Enter a description for الألعاب التعليمية."
-              year={selectedYear}
-              subject={selectedSubject}
-            />
-          </Link>
+          <CustomCard
+            imageSrc="/assets/academicfield/games.jpg"
+            title="الألعاب التعليمية"
+            rating="4.8"
+            description="Enter a description for الألعاب التعليمية."
+            year={selectedYear}
+            subject={selectedSubject}
+          />
 
-          {/* Card 5 */}
-
-          <Link to="/card4">
-            <CustomCard
-              imageSrc="/assets/academicfield/exams.jpg"
-              title="فروض و امتحانات"
-              rating="4.2"
-              description="Enter a description for فروض و امتحانات."
-              year={selectedYear}
-              subject={selectedSubject}
-            />
-          </Link>
+          <CustomCard
+            imageSrc="/assets/academicfield/exams.jpg"
+            title="فروض و امتحانات"
+            rating="4.2"
+            description="Enter a description for فروض و امتحانات."
+            year={selectedYear}
+            subject={selectedSubject}
+          />
         </div>
         <div className="mt-24 ">
           <VirtualLabSection />
