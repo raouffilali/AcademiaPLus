@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import "./NavBar.css";
 import NavLinks from "./NavLinks";
 import { ILanguage } from "../../constants/interfaces";
-import { images } from "../../../public/constants";
+import { images } from "../../constants/";
 
 // Define language options
 const LANGUAGES: ILanguage[] = [

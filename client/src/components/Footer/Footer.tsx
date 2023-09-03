@@ -1,5 +1,5 @@
 import React from "react";
-import { images } from "../../../public/constants";
+import { images } from "../../constants/";
 
 function Footer() {
   return (

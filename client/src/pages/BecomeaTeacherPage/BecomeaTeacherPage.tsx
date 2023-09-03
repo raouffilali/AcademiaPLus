@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { images } from "../../../public/constants";
+import { images } from "../../constants/";
 import Form from "../../components/BecomeInstructorForm/Form";
 import NavBar from "../../components/navBar/NavBar";
 import PathPage from "../../components/PathPage/PathPage";
