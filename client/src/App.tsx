@@ -25,11 +25,11 @@ import AcademicCourseDetails from "./components/AcademicCourseDetails/AcademicCo
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage/>} />
-      <Route path="/instructor-dashboard" element={<InstructorDashboard/>} />
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/instructor-dashboard" element={<InstructorDashboard />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/educational-courses" element={<EducationalCoursesPage />} />
-      <Route path="/create-course" element={<CreateCourse/>} />
+      <Route path="/create-course" element={<CreateCourse />} />
       <Route path="/landing" element={<LandingPage />} />
       <Route path="/forgotPassword" element={<ForgotPassword />} />
       <Route path="/becomeaTeacher" element={<BecomeaTeacherPage />} />
@@ -38,7 +38,10 @@ function App() {
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/category" element={<CategoryPage />} />
       <Route path="/courseDetails/:courseName" element={<CourseDetails />} />
-      <Route path="/course-details/:courseId" element={<AcademicCourseDetails />} />
+      <Route
+        path="/course-details/:courseId"
+        element={<AcademicCourseDetails />}
+      />
       <Route path="/allCourses" element={<AllCourses />} />
       <Route path="/primarySchool" element={<PrimarySchoolPage />} />
       <Route path="/middleSchool" element={<MiddleSchoolPage />} />

@@ -16,7 +16,7 @@ export interface IStudent {
   addressLine2?: string;
   city: string;
   zipCode: string;
-  profileImage: Buffer;
+  profileImage: string;
   socialProfiles: {
     twitter?: string;
     facebook?: string;
@@ -67,7 +67,7 @@ const UserSchema = new Schema<IStudent>({
       message: "Zip code must be a 5-digit number.",
     },
   },
-  profileImage: { type: Buffer },
+  profileImage: { type: String },
   socialProfiles: {
     twitter: { type: String },
     facebook: { type: String },

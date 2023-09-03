@@ -6,17 +6,13 @@ import { IStudent } from "./Student";
 export interface IInstractor extends IStudent {
   // Courses created by the instructor
   createdCourses: string[];
-
   // Revenue and earnings related fields
   totalRevenue: number; // Total revenue generated from instructor's courses
   totalEarnings: number; // Total earnings for the instructor
-
   // Students enrolled in the instructor's courses
   enrolledStudents: string[];
-
   // Number of students taught
   studentsTaught: number;
-
   // Payouts information
   payouts: [
     {
@@ -36,12 +32,7 @@ const UserSchema = new Schema<IInstractor>({
   lastName: { type: String, required: true },
   password: { type: String, required: true },
   email: { type: String, unique: true, required: true },
-  enrolledCourses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
-  completedCourses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
-  achievements: [{ type: Schema.Types.ObjectId, ref: "Achievement" }],
-  progress: [{ type: Schema.Types.ObjectId, ref: "Progress" }],
-
-  phone: {
+    phone: {
     type: String,
     required: true,
     validate: {
@@ -49,6 +40,15 @@ const UserSchema = new Schema<IInstractor>({
       message: "Phone number must be a 10-digit number.",
     },
   },
+  education: { type: String  },
+  experience: { type: String },
+  qualifications: { type: String },
+  coverLetter: { type: String },
+  cv : { type: String },
+  enrolledCourses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
+  completedCourses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
+  achievements: [{ type: Schema.Types.ObjectId, ref: "Achievement" }],
+  progress: [{ type: Schema.Types.ObjectId, ref: "Progress" }],
   birthday: { type: Date },
   country: { type: String },
   addressLine1: { type: String },
@@ -56,13 +56,12 @@ const UserSchema = new Schema<IInstractor>({
   city: { type: String },
   zipCode: {
     type: String,
-
     validate: {
       validator: (value: string) => /^[0-9]{5}$/.test(value),
       message: "Zip code must be a 5-digit number.",
     },
   },
-  profileImage: { type: Buffer },
+  profileImage: { type: String },
   socialProfiles: {
     twitter: { type: String },
     facebook: { type: String },
@@ -84,7 +83,6 @@ const UserSchema = new Schema<IInstractor>({
     },
     country: { type: String },
   },
-
   // New fields
   createdCourses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
   totalRevenue: { type: Number, default: 0 },
