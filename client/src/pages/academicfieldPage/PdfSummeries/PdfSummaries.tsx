@@ -7,14 +7,14 @@ import VideoPlayer from "../../../components/VideoPlayer/VideoPlayer";
 import VideoSummariesDetailsSection from "../../../components/VideoSummariesDetailsSection/VideoSummariesDetailsSection";
 import { NavBar } from "../../../constants";
 
-const ExamsPage: React.FC = () => {
+const PdfSummaries: React.FC = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const selectedYear = queryParams.get("year");
   const selectedSubject = queryParams.get("subject");
 
   // Mock data for video summaries based on the selected year and subject
-  const examsData = [
+  const pdfSummariesData = [
     {
       id: 1,
       subject: selectedSubject,
@@ -28,7 +28,7 @@ const ExamsPage: React.FC = () => {
   ];
 
   // Find the selected video summary based on year and subject
-  const selectedVideoSummary = examsData.find(
+  const selectedVideoSummary = pdfSummariesData.find(
     (summary) =>
       summary.subject === selectedSubject && summary.year === selectedYear
   );
@@ -44,7 +44,7 @@ const ExamsPage: React.FC = () => {
           className="text-2xl"
           style={{ fontFamily: "Tajawal", fontWeight: 600 }}
         >
-      فروض و امتحانات
+          ملخصات مكتوبة
         </h2>
 
         <div className="lg:flex lg:space-x-10 md:space-x-8 justify-between">
@@ -59,7 +59,7 @@ const ExamsPage: React.FC = () => {
           </div>
 
           <div className="mr-0 mt-0 flex-1">
-            <img src="assets/academicfield/exams.jpg" className="w-full rounded" alt="" /> {/* Display video player */}
+            <img src="assets/summaries.jpg" className="w-full rounded" alt="" /> {/* Display video player */}
             <div className="mt-6 space-y-4">
               <p className="text-emerald-500 underline underline-offset-[23px]">
                 محتويات الدورة
@@ -75,4 +75,4 @@ const ExamsPage: React.FC = () => {
   );
 };
 
-export default ExamsPage;
+export default PdfSummaries;

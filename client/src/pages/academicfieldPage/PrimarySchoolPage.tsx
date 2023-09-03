@@ -183,16 +183,20 @@ function PrimarySchoolPage() {
           </div>
         </div>
         <div className="grid grid-cols-1  gap-7 md:grid-cols-3 lg:mx-[80px] ">
-          <CustomCard
-            imageSrc="/assets/academicfield/molakhasat.jpg"
-            title="الملخصات المكتوبة"
-            rating="4.5"
-            description="Enter a description for الملخصات المكتوبة."
-            year={selectedYear}
-            subject={selectedSubject}
-          />
           <Link
-             to={`/video-summaries?year=${selectedYear}&subject=${selectedSubject}`}
+            to={`/pdf-summaries?year=${selectedYear}&subject=${selectedSubject}`}
+          >
+            <CustomCard
+              imageSrc="/assets/academicfield/molakhasat.jpg"
+              title="الملخصات المكتوبة"
+              rating="4.5"
+              description="Enter a description for الملخصات المكتوبة."
+              year={selectedYear}
+              subject={selectedSubject}
+            />
+          </Link>
+          <Link
+            to={`/video-summaries?year=${selectedYear}&subject=${selectedSubject}`}
           >
             <CustomCard
               imageSrc="/assets/academicfield/videoCourse.jpg"
@@ -234,15 +238,18 @@ function PrimarySchoolPage() {
             year={selectedYear}
             subject={selectedSubject}
           />
-
-          <CustomCard
-            imageSrc="/assets/academicfield/exams.jpg"
-            title="فروض و امتحانات"
-            rating="4.2"
-            description="Enter a description for فروض و امتحانات."
-            year={selectedYear}
-            subject={selectedSubject}
-          />
+          <Link
+            to={`/exams?year=${selectedYear}&subject=${selectedSubject}`}
+          >
+            <CustomCard
+              imageSrc="/assets/academicfield/exams.jpg"
+              title="فروض و امتحانات"
+              rating="4.2"
+              description="Enter a description for فروض و امتحانات."
+              year={selectedYear}
+              subject={selectedSubject}
+            />
+          </Link>
         </div>
         <div className="mt-24 ">
           <VirtualLabSection />

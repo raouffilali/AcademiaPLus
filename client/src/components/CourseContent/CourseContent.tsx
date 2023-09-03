@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaVideo, FaAngleDown, FaAngleUp } from "react-icons/fa"; // Import the required icons
+import { FaVideo, FaFileAlt, FaAngleDown, FaAngleUp } from "react-icons/fa"; // Import the required icons
 import "./CourseContent.css"; // Import CSS for animations
 
 interface CourseChapter {
@@ -7,7 +7,11 @@ interface CourseChapter {
   lessons: string[];
 }
 
-const CourseContent: React.FC = () => {
+interface CourseContentProps {
+  useVideoIcons?: boolean;
+}
+
+const CourseContent: React.FC<CourseContentProps> = ({ useVideoIcons = true }) => {
   const chapters: CourseChapter[] = [
     {
       title: "المقدمة",
@@ -41,7 +45,7 @@ const CourseContent: React.FC = () => {
                 activeIndex === index ? "bg-emerald-500 text-white duration-300" : "bg-gray-50 text-gray-600"
               }`}
             >
-            <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between">
                 {activeIndex === index ? (
                   <FaAngleUp className="text-emerald-500 ml-2" />
                 ) : (
@@ -57,9 +61,12 @@ const CourseContent: React.FC = () => {
             >
               {chapter.lessons.map((lesson, lessonIndex) => (
                 <div key={lessonIndex} className="flex border-b py-1 items-center">
-                  <FaVideo className="ml-2 text-emerald-500" />
+                  {useVideoIcons ? (
+                    <FaVideo className="ml-2 text-emerald-500" />
+                  ) : (
+                    <FaFileAlt className="ml-2 text-emerald-500" />
+                  )}
                   <p>{lesson}</p>
-
                 </div>
               ))}
             </div>

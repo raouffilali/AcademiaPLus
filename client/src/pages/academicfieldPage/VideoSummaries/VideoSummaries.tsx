@@ -7,7 +7,6 @@ import VideoPlayer from "../../../components/VideoPlayer/VideoPlayer";
 import VideoSummariesDetailsSection from "../../../components/VideoSummariesDetailsSection/VideoSummariesDetailsSection";
 import { NavBar } from "../../../constants";
 
-
 const VideoSummaries: React.FC = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -24,14 +23,14 @@ const VideoSummaries: React.FC = () => {
       numLessons: 10,
       duration: "2 hours",
       rating: 4.5,
-      
     },
     // Add more data for different video summaries
   ];
 
   // Find the selected video summary based on year and subject
   const selectedVideoSummary = videoSummariesData.find(
-    (summary) => summary.subject === selectedSubject && summary.year === selectedYear
+    (summary) =>
+      summary.subject === selectedSubject && summary.year === selectedYear
   );
 
   if (!selectedVideoSummary) {
@@ -44,17 +43,22 @@ const VideoSummaries: React.FC = () => {
         <h2
           className="text-2xl"
           style={{ fontFamily: "Tajawal", fontWeight: 600 }}
-        >ملخصات الفيديو
+        >
+          ملخصات الفيديو
         </h2>
-{/*          
-      <div className="lg:flex lg:space-x-10 md:space-x-8 justify-between">
-        <div className="mt-0 ml-0">
-        <VideoSummariesDetailsSection courseName={""} instructor={""} rating={0} views={0} price={""}       
-      />
-        </div>
-      </div> */}
-      
-      <div className="mr-0 mt-0 flex-1">
+
+        <div className="lg:flex lg:space-x-10 md:space-x-8 justify-between">
+          <div className="mt-0 ml-0">
+            <VideoSummariesDetailsSection
+              courseName={""}
+              instructor={""}
+              rating={0}
+              views={0}
+              price={""}
+            />
+          </div>
+          
+          <div className="mr-0 mt-0 flex-1">
         <VideoPlayer /> {/* Display video player */}
         <div className="mt-6 space-y-4">
           <p className="text-emerald-500 underline underline-offset-[23px]">
@@ -65,6 +69,7 @@ const VideoSummaries: React.FC = () => {
           {/* Display course content */}
         </div>
       </div>
+        </div>
       </div>
     </div>
   );

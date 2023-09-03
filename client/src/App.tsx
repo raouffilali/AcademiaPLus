@@ -22,6 +22,8 @@ import StudentDashboard from "./pages/StudentDashboard/StudentDashboard";
 import EducationalCoursesPage from "./pages/academicfieldPage/ EducationalCoursesPage/ EducationalCoursesPage";
 import AcademicCourseDetails from "./components/AcademicCourseDetails/AcademicCourseDetails";
 import VideoSummaries from "./pages/academicfieldPage/VideoSummaries/VideoSummaries";
+import ExamsPage from "./pages/academicfieldPage/examsPage/ExamsPage";
+import PdfSummaries from "./pages/academicfieldPage/PdfSummeries/PdfSummaries";
 
 function App() {
   return (
@@ -44,6 +46,8 @@ function App() {
         element={<AcademicCourseDetails />}
       />
        <Route path="/video-summaries" element={<VideoSummaries/>} />
+       <Route path="/pdf-summaries" element={<PdfSummaries/>} />
+       <Route path="/exams" element={<ExamsPage/>} />
       <Route path="/allCourses" element={<AllCourses />} />
       <Route path="/primarySchool" element={<PrimarySchoolPage />} />
       <Route path="/middleSchool" element={<MiddleSchoolPage />} />
