@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import AcademicCourseCard from "../../../components/AcademicCourseCard/AcademicCourseCard";
 import CustomCard from "../../../components/CustomCard/CustomCard";
 import { NavBar } from "../../../constants";
-import { courses_year1_arabic } from "../../../data/primarySchoolCourses/courses_year1_arabic";
+import { courses_year1_arabic } from "../../../data/primarySchool/courses_year1_arabic";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 // Import your course data here
-import { courses_year1_math } from "../../../data/primarySchoolCourses/courses_year1_math";
-import { courses_year1_tech } from "../../../data/primarySchoolCourses/courses_year1_tech";
+import { courses_year1_math } from "../../../data/primarySchool/courses_year1_math";
+import { courses_year1_tech } from "../../../data/primarySchool/courses_year1_tech";
 
 // Add similar imports for other combinations of year and subject
 
@@ -18,11 +18,11 @@ interface Course {
   year: string;
   subject: string;
   price: string;
-  views:number;
-  instructor:string;
-  instructorAvtr:string;
-  instructorJob:string;
-  lab?:boolean;
+  views: number;
+  instructor: string;
+  instructorAvtr: string;
+  instructorJob: string;
+  lab?: boolean;
 }
 
 function EducationalCoursesPage() {
@@ -32,59 +32,75 @@ function EducationalCoursesPage() {
   const initialSubject = queryParams.get("subject") || "الرياضيات";
 
   const [selectedYear, setSelectedYear] = useState<string>(initialYear);
-  const [selectedSubject, setSelectedSubject] = useState<string>(initialSubject);
+  const [selectedSubject, setSelectedSubject] =
+    useState<string>(initialSubject);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const coursesPerPage: number = 6;
   const navigate = useNavigate();
-// Define a function to find course data by ID
-const findCourseDataById = (courseId: number) => {
-  // Search for the course in all your course data arrays
-  const allCourseData = [...courses_year1_math, ...courses_year1_arabic /* Add other course data arrays */];
+  // Define a function to find course data by ID
+  const findCourseDataById = (courseId: number) => {
+    // Search for the course in all your course data arrays
+    const allCourseData = [
+      ...courses_year1_math,
+      ...courses_year1_arabic /* Add other course data arrays */,
+    ];
 
-  // Find the course with the matching ID
-  const selectedCourse = allCourseData.find((course) => course.id === courseId);
+    // Find the course with the matching ID
+    const selectedCourse = allCourseData.find(
+      (course) => course.id === courseId
+    );
 
-  return selectedCourse;
-};
+    return selectedCourse;
+  };
   const handleCourseClick = (courseId: any) => {
     // Use courseId to find the selected course data
     const selectedCourse = findCourseDataById(courseId); // Implement this function
-    navigate(`/course-details/${courseId}`, { state: { courseData: selectedCourse } });
+    navigate(`/course-details/${courseId}`, {
+      state: { courseData: selectedCourse },
+    });
   };
   const [lab, setLab] = useState(false);
 
   // Function to filter courses based on selectedYear and selectedSubject
- // Function to filter courses based on selectedYear, selectedSubject, and lab
-const filterCourses = () => {
-  // Logic to filter courses based on selectedYear, selectedSubject, and lab
-  let filtered: Course[] = [];
-  if (selectedYear === "السنة الأولى" && selectedSubject === "الرياضيات") {
-    filtered = [...courses_year1_math, ...courses_year1_arabic];
-  } else if (selectedYear === "السنة الأولى" && selectedSubject === "العربية") {
-    filtered = courses_year1_arabic;
-  } else if (selectedYear === "السنة الأولى" && selectedSubject === "العلوم التكنولوجية") {
-    filtered = courses_year1_tech;
-  }
-  // Add similar conditions for other combinations of year and subject
+  // Function to filter courses based on selectedYear, selectedSubject, and lab
+  const filterCourses = () => {
+    // Logic to filter courses based on selectedYear, selectedSubject, and lab
+    let filtered: Course[] = [];
+    if (selectedYear === "السنة الأولى" && selectedSubject === "الرياضيات") {
+      filtered = [...courses_year1_math, ...courses_year1_arabic];
+    } else if (
+      selectedYear === "السنة الأولى" &&
+      selectedSubject === "العربية"
+    ) {
+      filtered = courses_year1_arabic;
+    } else if (
+      selectedYear === "السنة الأولى" &&
+      selectedSubject === "العلوم التكنولوجية"
+    ) {
+      filtered = courses_year1_tech;
+    }
+    // Add similar conditions for other combinations of year and subject
 
-  // Apply search query filter
-  if (searchQuery !== "") {
-    filtered = filtered.filter((course) => course.title.includes(searchQuery));
-  }
+    // Apply search query filter
+    if (searchQuery !== "") {
+      filtered = filtered.filter((course) =>
+        course.title.includes(searchQuery)
+      );
+    }
 
-  // Filter based on the lab property
-  if (lab) {
-    filtered = filtered.filter((course) => course.lab === true);
-  }
+    // Filter based on the lab property
+    if (lab) {
+      filtered = filtered.filter((course) => course.lab === true);
+    }
 
-  setFilteredCourses(filtered);
-};
-// Inside your component, you can toggle the lab filter based on user interactions
-const handleLabFilterToggle = () => {
-  setLab(!lab);
-};
+    setFilteredCourses(filtered);
+  };
+  // Inside your component, you can toggle the lab filter based on user interactions
+  const handleLabFilterToggle = () => {
+    setLab(!lab);
+  };
 
   useEffect(() => {
     filterCourses();
@@ -147,24 +163,26 @@ const handleLabFilterToggle = () => {
           {/* Course cards */}
           <div className="grid grid-cols-1 gap-7 md:grid-cols-3 ">
             {currentCourses.map((course) => (
-              <Link to={`/course-details/${course.id}`} onClick={() => handleCourseClick(course.id)}>
-              <AcademicCourseCard
-                key={course.id}
-                courseName={course.title}
-                instructor={course.instructor}
-                instructorAvtr={course.instructorAvtr}
-                rating={course.rating}
-                views={0}
-                price={course.price}
-                courseThumbnailSrc={course.imageSrc}
-                instructorJob={course.instructorJob}
-                numLessons={0}
-                duration={""}
-                year={course.year}
-                subject={course.subject}
-                lab={course.lab}
-              
-              />
+              <Link
+                to={`/course-details/${course.id}`}
+                onClick={() => handleCourseClick(course.id)}
+              >
+                <AcademicCourseCard
+                  key={course.id}
+                  courseName={course.title}
+                  instructor={course.instructor}
+                  instructorAvtr={course.instructorAvtr}
+                  rating={course.rating}
+                  views={0}
+                  price={course.price}
+                  courseThumbnailSrc={course.imageSrc}
+                  instructorJob={course.instructorJob}
+                  numLessons={0}
+                  duration={""}
+                  year={course.year}
+                  subject={course.subject}
+                  lab={course.lab}
+                />
               </Link>
             ))}
           </div>

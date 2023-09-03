@@ -29,3 +29,10 @@ export interface AcademicCourseDetailsProps {
   subject: string;
 }
 
+export interface VideoSummariesDetailsProps{
+  courseName: string;
+  instructor: string;
+  rating: number;
+  views: number;
+  price: string;
+}

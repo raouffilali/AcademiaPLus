@@ -21,6 +21,7 @@ import CreateCourse from "./pages/instructorDashboard/CreateCourse";
 import StudentDashboard from "./pages/StudentDashboard/StudentDashboard";
 import EducationalCoursesPage from "./pages/academicfieldPage/ EducationalCoursesPage/ EducationalCoursesPage";
 import AcademicCourseDetails from "./components/AcademicCourseDetails/AcademicCourseDetails";
+import VideoSummaries from "./pages/academicfieldPage/VideoSummaries/VideoSummaries";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         path="/course-details/:courseId"
         element={<AcademicCourseDetails />}
       />
+       <Route path="/video-summaries" element={<VideoSummaries/>} />
       <Route path="/allCourses" element={<AllCourses />} />
       <Route path="/primarySchool" element={<PrimarySchoolPage />} />
       <Route path="/middleSchool" element={<MiddleSchoolPage />} />

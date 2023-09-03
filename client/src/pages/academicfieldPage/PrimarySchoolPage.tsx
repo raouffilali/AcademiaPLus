@@ -30,11 +30,10 @@ const years = [
 
 function PrimarySchoolPage() {
   const [selectedYear, setSelectedYear] = useState("السنة الأولى");
-  const [selectedSubject, setSelectedSubject] = useState("");
+  const [selectedSubject, setSelectedSubject] = useState("الرياضيات");
   const [isMenuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-
 
   const handleYearChange = (year: React.SetStateAction<string>) => {
     setSelectedYear(year);
@@ -192,27 +191,30 @@ function PrimarySchoolPage() {
             year={selectedYear}
             subject={selectedSubject}
           />
-
-          <CustomCard
-            imageSrc="/assets/academicfield/videoCourse.jpg"
-            title="ملخصات بالفيديو"
-            rating="4.0"
-            description="Enter a description for ملخصات بالفيديو."
-            year={selectedYear}
-            subject={selectedSubject}
-            
-          />
-          <Link to={`/educational-courses?year=${selectedYear}&subject=${selectedSubject}`}><CustomCard
-            imageSrc="/assets/academicfield/dawra.png"
-            title="الدورات التعليمية"
-            rating="5.0"
-            description="Enter a description for الدورات التعليمية."
-            year={selectedYear}
-            subject={selectedSubject}
-          />
-
+          <Link
+             to={`/video-summaries?year=${selectedYear}&subject=${selectedSubject}`}
+          >
+            <CustomCard
+              imageSrc="/assets/academicfield/videoCourse.jpg"
+              title="ملخصات بالفيديو"
+              rating="4.0"
+              description="Enter a description for ملخصات بالفيديو."
+              year={selectedYear}
+              subject={selectedSubject}
+            />
           </Link>
-          
+          <Link
+            to={`/educational-courses?year=${selectedYear}&subject=${selectedSubject}`}
+          >
+            <CustomCard
+              imageSrc="/assets/academicfield/dawra.png"
+              title="الدورات التعليمية"
+              rating="5.0"
+              description="Enter a description for الدورات التعليمية."
+              year={selectedYear}
+              subject={selectedSubject}
+            />
+          </Link>
 
           {/* Card for "مجموعة المراجعة" */}
           <CustomCard
