@@ -19,7 +19,9 @@ const EnrollCourse: React.FC<CourseCardProps> = ({
   const handleWishlistClick = () => {
     setIsWishlist(!isWishlist);
   };
-  const formattedPrice = price === 0 ? "FREE" : `$${price.toFixed(2)}`;
+  const formattedPrice =
+  typeof price === "number" && price !== 0 ? `$${price.toFixed(2)}` : "FREE";
+
   return (
     <div className=" bg-white rounded-lg w-[320px] h-[350px] border border-neutral-200 ">
       <div className="flex flex-col space-y-3 ">
