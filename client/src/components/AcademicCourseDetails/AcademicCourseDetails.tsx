@@ -12,9 +12,9 @@ import {
 } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { AcademicCourseDetailsProps } from "../../constants/interfaces";
-import { courses_year1_arabic } from "../../data/primarySchoolCourses/courses_year1_arabic";
-import { courses_year1_math } from "../../data/primarySchoolCourses/courses_year1_math";
-import { courses_year1_tech } from "../../data/primarySchoolCourses/courses_year1_tech";
+import { courses_year1_arabic } from "../../data/primarySchool/courses_year1_arabic";
+import { courses_year1_math } from "../../data/primarySchool/courses_year1_math";
+import { courses_year1_tech } from "../../data/primarySchool/courses_year1_tech";
 import AcademicCourseDetailsSection from "../AcademicCourseDetailsSection/AcademicCourseDetailsSection";
 import CourseContent from "../CourseContent/CourseContent";
 import CourseContentCard from "../CourseContentCard/CourseContentCard";
@@ -72,9 +72,11 @@ const AcademicCourseDetails: React.FC<AcademicCourseDetailsProps> = ({
           <div className="mr-0 mt-0 flex-1">
             <VideoPlayer /> {/* Display video player */}
             <div className="mt-6 space-y-4">
-              <p className="text-emerald-500 underline underline-offset-[23px]">محتويات الدورة</p>
+              <p className="text-emerald-500 underline underline-offset-[23px]">
+                محتويات الدورة
+              </p>
               <hr className="my-0.5" />
-              <CourseContent/>
+              <CourseContent />
               {/* Display course content */}
             </div>
           </div>
