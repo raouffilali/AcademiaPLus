@@ -18,6 +18,7 @@ interface AcademicCourseCardProps {
   subject: string; // Add subject prop
   progress?: number; // Make progress optional
   isLearningCourses?: boolean; // Add a new prop to indicate learning page
+  lab?: boolean;
 }
 
 const AcademicCourseCard: React.FC<AcademicCourseCardProps> = ({
@@ -35,6 +36,7 @@ const AcademicCourseCard: React.FC<AcademicCourseCardProps> = ({
   year, // Receive year prop
   subject, // Receive subject prop
   progress,
+  lab,
   isLearningCourses = false,
 }) => {
   function truncateText(text: string, maxLines: number) {
@@ -49,7 +51,7 @@ const AcademicCourseCard: React.FC<AcademicCourseCardProps> = ({
     <div className="w-full hover:bg-greenish hover:text-white h-full space-y-3 p-3 bg-white rounded-lg duration-500 shadow-sm border border-gray-200 dark:border-gray-200">
       <div className=" bg-blue-100 rounded-lg relative">
         <img
-          className="rounded-lg md:h-48"
+          className="rounded-lg md:w-80 md:h-48"
           src={courseThumbnailSrc}
           alt="courseThumbnail"
         />
@@ -78,10 +80,15 @@ const AcademicCourseCard: React.FC<AcademicCourseCardProps> = ({
         </h5>
 
         {/* year and subject of the course */}
-        <div className="px-2">
+        <div className={`px-2 ${lab ? 'flex ' : ''}`}>
           <span className="bg-blue-100 text-blueLink text-xs px-2 py-1 rounded-md">
             {year} {subject}
           </span>
+          {lab && (
+            <button className=" text-sm bg-emerald-500 text-white rounded px-3 font-medium hover:bg-emerald-600 hover:scale-110">
+              جرب في المختبر
+            </button>
+          )}
         </div>
         <hr className="my-2" />
         <div className="flex justify-between items-center mb-0">

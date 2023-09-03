@@ -22,6 +22,7 @@ interface Course {
   instructor:string;
   instructorAvtr:string;
   instructorJob:string;
+  lab?:boolean;
 }
 
 function EducationalCoursesPage() {
@@ -52,34 +53,37 @@ const findCourseDataById = (courseId: number) => {
     const selectedCourse = findCourseDataById(courseId); // Implement this function
     navigate(`/course-details/${courseId}`, { state: { courseData: selectedCourse } });
   };
+  const [lab, setLab] = useState(false);
+
   // Function to filter courses based on selectedYear and selectedSubject
- // Function to filter courses based on selectedYear and selectedSubject
+ // Function to filter courses based on selectedYear, selectedSubject, and lab
 const filterCourses = () => {
-  // Logic to filter courses based on selectedYear and selectedSubject
+  // Logic to filter courses based on selectedYear, selectedSubject, and lab
   let filtered: Course[] = [];
   if (selectedYear === "السنة الأولى" && selectedSubject === "الرياضيات") {
     filtered = [...courses_year1_math, ...courses_year1_arabic];
-  } else if (
-    selectedYear === "السنة الأولى" &&
-    selectedSubject === "العربية"
-  ) {
+  } else if (selectedYear === "السنة الأولى" && selectedSubject === "العربية") {
     filtered = courses_year1_arabic;
-  }else if (
-    selectedYear === "السنة الأولى" &&
-    selectedSubject === "العلوم التكنولوجية"
-  ) {
+  } else if (selectedYear === "السنة الأولى" && selectedSubject === "العلوم التكنولوجية") {
     filtered = courses_year1_tech;
   }
   // Add similar conditions for other combinations of year and subject
 
   // Apply search query filter
   if (searchQuery !== "") {
-    filtered = filtered.filter((course) =>
-      course.title.includes(searchQuery)
-    );
+    filtered = filtered.filter((course) => course.title.includes(searchQuery));
+  }
+
+  // Filter based on the lab property
+  if (lab) {
+    filtered = filtered.filter((course) => course.lab === true);
   }
 
   setFilteredCourses(filtered);
+};
+// Inside your component, you can toggle the lab filter based on user interactions
+const handleLabFilterToggle = () => {
+  setLab(!lab);
 };
 
   useEffect(() => {
@@ -158,6 +162,8 @@ const filterCourses = () => {
                 duration={""}
                 year={course.year}
                 subject={course.subject}
+                lab={course.lab}
+              
               />
               </Link>
             ))}
