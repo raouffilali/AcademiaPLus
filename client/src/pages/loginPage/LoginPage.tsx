@@ -1,3 +1,281 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+interface FormData {
+  email: string;
+  password: string;
+  rememberMe?: boolean;
+}
+function SignupPage() {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [userFormData, setUserFormData] = useState<FormData>({
+    email: "",
+    password: "",
+    rememberMe: false,
+  });
+  // const [password, setPassword] = useState("");
+  const [activeInput, setActiveInput] = useState("");
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [formErrors, setFormErrors] = useState<FormData>({
+    email: "",
+    password: "",
+  });
+  const [globalError, setGlobalError] = useState("");
+
+  const handleInputFocus = (inputId: any) => {
+    setActiveInput(inputId);
+  };
+
+  const handleInputBlur = () => {
+    setActiveInput("");
+  };
+
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUserFormData({
+      ...userFormData,
+      password: event.target.value,
+    });
+  };
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUserFormData({
+      ...userFormData,
+      email: event.target.value,
+    });
+  };
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  const handleCheckboxChange = () => {
+    setAgreedToTerms(!agreedToTerms);
+  };
+
+  // Submit handler for the form
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    // Clear previous errors
+    setFormErrors({ email: "", password: "" });
+    setGlobalError("");
+
+    // Validation
+    let isValid = true;
+    let concatenatedError = "";
+
+    if (!userFormData.email && !userFormData.password) {
+      concatenatedError = "Email and password are required.";
+      isValid = false;
+    } else {
+      if (!userFormData.email) {
+        setFormErrors((prevErrors) => ({
+          ...prevErrors,
+          email: "Email is required.",
+        }));
+        isValid = false;
+      }
+
+      if (!userFormData.password) {
+        setFormErrors((prevErrors) => ({
+          ...prevErrors,
+          password: "Password is required.",
+        }));
+        isValid = false;
+      }
+    }
+
+    if (isValid) {
+      // Send the formData to your backend API here and handle the response
+      // You can use fetch or any other method to make the API request
+      const apiUrl = "your_api_endpoint_here";
+      try {
+        const response = await fetch(`${apiUrl}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userFormData),
+        });
+
+        if (response.ok) {
+          // Handle success, e.g., redirect to a dashboard
+        } else {
+          // Handle API errors and set appropriate error messages
+          // Example:
+          const data = await response.json();
+          if (data.error) {
+            setGlobalError(data.error);
+          }
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        setGlobalError("An error occurred while processing your request.");
+      }
+    } else {
+      setGlobalError(concatenatedError); // Set the concatenated error message
+    }
+  };
+  return (
+    <div className="flex flex-col lg:flex-row">
+      {/* leftSite */}
+      <div
+        className="lg:w-1/2 p-20 h-screen"
+        style={{ backgroundImage: "url(assets/bg/login-bg.png)" }}
+      >
+        <img src="assets/login-img.png" alt="" className="h-1/2 lg:mt-12" />
+        <h1 className="text-center  mt-6 text-2xl font-medium text-gray-900 ">
+          Welcome To <br /> Academia Plus Platform!
+        </h1>
+        <p className="mt-4 text-sm font-light lg:text-left">
+          Lorem ipsum is placeholder text commonly used in the graphic, print,
+          and publishing industries for previewing layouts and visual mockups.
+        </p>
+      </div>
+      {/* rightSide */}
+      <div className="lg:w-1/2 h-screen lg:overflow-y-scroll  ">
+        <form onSubmit={handleSubmit}>
+          <div className="p-20">
+            <div className="flex space-x-4 lg:space-x-48">
+              <img className="h-8" src="assets/logo.svg" alt="" />
+              <Link to="/">
+                <p className="font-light text-sm underline">Back to Home</p>
+              </Link>
+            </div>
+            <p className="mt-12 text-3xl font-medium">Sign up</p>
+            <div className="space-y-4 mt-8">
+              <div>
+                <label htmlFor="email" className="text-gray-500 mb-2 block">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Enter your email"
+                  className={`rounded-md px-4 py-3 w-full border ${
+                    activeInput === "email" ? "border-redPal" : "border-red-100"
+                  } ::placeholder text-sm focus:border-redPal focus:outline-none`}
+                  value={userFormData.email}
+                  onChange={handleEmailChange}
+                  onFocus={() => handleInputFocus("email")}
+                  onBlur={handleInputBlur}
+                />
+              </div>
+              <div>
+                <label htmlFor="password" className="text-gray-500 mb-2 block">
+                  Password
+                </label>
+                <div className="relative">
+                  <input
+                    type={passwordVisible ? "text" : "password"}
+                    id="password"
+                    placeholder="Enter your password"
+                    className={`rounded-md px-4 py-3 w-full border ${
+                      activeInput === "password"
+                        ? "border-redPal"
+                        : "border-red-100"
+                    } ::placeholder text-sm focus:border-redPal focus:outline-none`}
+                    value={userFormData.password}
+                    onChange={handlePasswordChange}
+                    onFocus={() => handleInputFocus("password")}
+                    onBlur={handleInputBlur}
+                  />
+                  <div
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                    onClick={togglePasswordVisibility}
+                  >
+                    <FontAwesomeIcon
+                      icon={passwordVisible ? faEyeSlash : faEye}
+                      size="sm"
+                      className={`${
+                        passwordVisible ? "text-redPal" : "text-gray-500"
+                      }`}
+                    />
+                  </div>
+                </div>
+                <Link to="/forgotPassword">
+                  <p className="text-sm text-blueLink mt-3 font-medium hover:text-redPal">
+                    Forgot Password?
+                  </p>
+                </Link>
+              </div>
+              <div className="flex items-center  pt-2 pb-4 space-x-2">
+                <input
+                  type="checkbox"
+                  id="termsCheckbox"
+                  className="form-checkbox h-4 w-4  accent-red-500 checked:bg-red-500 focus:ring-red-500"
+                  checked={agreedToTerms}
+                  onChange={handleCheckboxChange}
+                />
+                <label
+                  htmlFor="termsCheckbox"
+                  className="text-sm text-gray-500 "
+                >
+                  Remember me{" "}
+                </label>
+              </div>
+              <div>
+                {formErrors.email && (
+                  <div className="text-red-500 bg-red-100 border border-red-500 p-2 mb-4 rounded-lg">
+                    {formErrors.email}
+                  </div>
+                )}
+                {formErrors.password && (
+                  <div className="text-red-500 bg-red-100 border border-red-500 p-2 mb-4 rounded-lg">
+                    {formErrors.password}
+                  </div>
+                )}
+                {globalError && (
+                  <div className="text-red-500 bg-red-100 border border-red-500 p-2 mb-4 rounded-lg">
+                    {globalError}
+                  </div>
+                )}
+              </div>
+              <button
+                type="submit"
+                className=" font-medium w-full p-3 bg-pechelight hover:bg-peche  text-white  rounded-md"
+              >
+                Sign In
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div className=" bg-amber-50 text-sm p-10 text-gray-700 text-center w-full">
+          <span>Or sign in with</span>
+          <div className="flex justify-center mt-6 items-center ">
+            <img
+              src="assets/socialMedia/google.svg"
+              alt="Google Icon"
+              className="h-7 w-7"
+            />
+            <Link to="" className=" hover:text-gray-800 text-black ">
+              Sign In using Google
+            </Link>
+            <div className="h-8 w-px bg-gray-800"></div> {/* Divider */}
+            <img
+              src="assets/socialMedia/facebook.svg"
+              alt="Facebook Icon"
+              className="h-8 w-8"
+            />
+            <Link to="" className="text-black hover-gray-800">
+              Sign In using Facebook
+            </Link>
+          </div>
+          <p className="mt-4">
+            New user?{" "}
+            <Link to="/Signup" className="text-red-500 ">
+              Create Account
+            </Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default SignupPage;
+
 // import React, { useState } from "react";
 // import "./LoginPage.css";
 // import { VisibilityOff, Google, Facebook } from "@mui/icons-material";
@@ -134,213 +412,3 @@
 //     </div>
 //   );
 // }
-
-// export default LoginPage;
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-
-function SignupPage() {
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const [password, setPassword] = useState("");
-  const [activeInput, setActiveInput] = useState("");
-  const [agreedToTerms, setAgreedToTerms] = useState(false);
- 
-  const handleInputFocus = (inputId:any) => {
-    setActiveInput(inputId);
-  };
-
-  const handleInputBlur = () => {
-    setActiveInput("");
-  };
-
-  const handlePasswordChange = (event:any) => {
-    setPassword(event.target.value);
-  };
-
-  const checkPasswordStrength = () => {
-    let strength = 0;
-    let message = "";
-
-    if (password.length < 8) {
-      message = "Weak. Must contain at least 8 characters";
-    } else if (/[A-Z]/.test(password) && /[0-9]/.test(password)) {
-      strength += 1;
-    } else {
-      message = "Average. Must contain at least 1 uppercase letter and number";
-    }
-
-    if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-      strength += 1;
-    } else if (message === "") {
-      message = "Almost. Must contain special symbol";
-    }
-
-    if (strength === 2) {
-      message = "Awesome! You have a secure password.";
-    }
-
-    return message;
-  };
-
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
-  };
-
-  const getPasswordStrengthColor = () => {
-    if (password.length === 0) {
-      return "text-gray-500";
-    } else if (password.length < 8) {
-      return "text-red-500";
-    } else if (!/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
-      return "text-orange-500";
-    } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-      return "text-blue-500";
-    } else {
-      return "text-green-500";
-    }
-  };
-
-  const handleCheckboxChange = () => {
-    setAgreedToTerms(!agreedToTerms);
-  };
-
-  return (
-    <div className="flex flex-col lg:flex-row">
-      {/* leftSite */}
-      <div
-        className="lg:w-1/2 p-20 h-screen"
-        style={{ backgroundImage: "url(assets/bg/login-bg.png)" }}
-      >
-        <img src="assets/login-img.png" alt="" className="h-1/2 lg:mt-12" />
-        <h1 className="text-center  mt-6 text-2xl font-medium text-gray-900 ">
-          Welcome To <br /> Academia Plus Platform!
-        </h1>
-        <p className="mt-4 text-sm font-light lg:text-left">
-          Lorem ipsum is placeholder text commonly used in the graphic, print,
-          and publishing industries for previewing layouts and visual mockups.
-        </p>
-      </div>
-      {/* rightSide */}
-      <div className="lg:w-1/2 h-screen lg:overflow-y-scroll  ">
-        <div className="p-20">
-          <div className="flex space-x-4 lg:space-x-48">
-            <img className="h-8" src="assets/logo.svg" alt="" />
-            <Link to="/">
-              <p className="font-light text-sm underline">Back to Home</p>
-            </Link>
-          </div>
-          <p className="mt-12 text-3xl font-medium">Sign up</p>
-          <div className="space-y-4 mt-8">
-            
-            <div>
-              <label htmlFor="email" className="text-gray-500 mb-2 block">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                placeholder="Enter your email"
-                className={`rounded-md px-4 py-3 w-full border ${
-                  activeInput === "email" ? "border-redPal" : "border-red-100"
-                } ::placeholder text-sm focus:border-redPal focus:outline-none`}
-                onFocus={() => handleInputFocus("email")}
-                onBlur={handleInputBlur}
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="text-gray-500 mb-2 block">
-                Password
-              </label>
-              <div className="relative">
-                <input
-                  type={passwordVisible ? "text" : "password"}
-                  id="password"
-                  placeholder="Enter your password"
-                  className={`rounded-md px-4 py-3 w-full border ${
-                    activeInput === "password"
-                      ? "border-redPal"
-                      : "border-red-100"
-                  } ::placeholder text-sm focus:border-redPal focus:outline-none`}
-                  value={password}
-                  onChange={handlePasswordChange}
-                  onFocus={() => handleInputFocus("password")}
-                  onBlur={handleInputBlur}
-                />
-                <div
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer"
-                  onClick={togglePasswordVisibility}
-                >
-                  <FontAwesomeIcon
-                    icon={passwordVisible ? faEyeSlash : faEye}
-                    size="sm"
-                    className={`${
-                      passwordVisible ? "text-redPal" : "text-gray-500"
-                    }`}
-                  />
-                </div>
-              </div>
-              <Link to="/forgotPassword"  >
-                <p className="text-sm text-blueLink mt-3 font-medium hover:text-redPal">
-
-                Forgot Password?
-                </p>
-              </Link>
-              
-            </div>
-            <div className="flex items-center  pt-2 pb-4 space-x-2">
-              <input
-                type="checkbox"
-                id="termsCheckbox"
-                className="form-checkbox h-4 w-4  accent-red-500 checked:bg-red-500 focus:ring-red-500"
-                checked={agreedToTerms}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="termsCheckbox" className="text-sm text-gray-500 ">
-                Remember me{" "}
-                
-              </label>
-            </div>
-
-            <button className=" font-medium w-full p-3 bg-pechelight hover:bg-peche  text-white  rounded-md">
-              Sign In
-            </button>
-          </div>
-        </div>
-
-        <div className=" bg-amber-50 text-sm p-10 text-gray-700 text-center w-full">
-          <span>Or sign in with</span>
-          <div className="flex justify-center mt-6 items-center ">
-            <img
-              src="assets/socialMedia/google.svg"
-              alt="Google Icon"
-              className="h-7 w-7"
-            />
-            <Link to="" className=" hover:text-gray-800 text-black ">
-              Sign In using Google
-            </Link>
-            <div className="h-8 w-px bg-gray-800"></div> {/* Divider */}
-            <img
-              src="assets/socialMedia/facebook.svg"
-              alt="Facebook Icon"
-              className="h-8 w-8"
-            />
-            <Link to="" className="text-black hover-gray-800">
-              Sign In using Facebook
-            </Link>
-          </div>
-          <p className="mt-4">
-            New user?{" "}
-            <Link to="/SignupPage" className="text-red-500 ">
-              Create Account
-            </Link>
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default SignupPage;
-
