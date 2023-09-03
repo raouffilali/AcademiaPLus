@@ -1,0 +1,21 @@
+/* CourseContent.css */
+.chapter-lessons {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+  }
+  
+  .chapter-lessons.open {
+    max-height: 1000px; /* Adjust this value as needed */
+    animation: slide-down 0.3s ease-in-out;
+  }
+  
+  @keyframes slide-down {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  

@@ -6,6 +6,7 @@ import { courses_year1_arabic } from "../../../data/primarySchoolCourses/courses
 import { Link, useLocation, useNavigate } from "react-router-dom";
 // Import your course data here
 import { courses_year1_math } from "../../../data/primarySchoolCourses/courses_year1_math";
+import { courses_year1_tech } from "../../../data/primarySchoolCourses/courses_year1_tech";
 
 // Add similar imports for other combinations of year and subject
 
@@ -63,6 +64,11 @@ const filterCourses = () => {
     selectedSubject === "العربية"
   ) {
     filtered = courses_year1_arabic;
+  }else if (
+    selectedYear === "السنة الأولى" &&
+    selectedSubject === "العلوم التكنولوجية"
+  ) {
+    filtered = courses_year1_tech;
   }
   // Add similar conditions for other combinations of year and subject
 

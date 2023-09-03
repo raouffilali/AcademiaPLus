@@ -46,39 +46,23 @@ function CourseCard({
   
 
   const handleCourseClick = () => {
-    console.log("Navigating to CourseDetails with data:", {
-      courseName,
-      instructor,
-      rating,
-      views,
-      category,
-      price,
-      courseThumbnailSrc,
-      instructorJob,
-      numLessons,
-      duration,
+    navigate(`/courseDetails/${encodeURIComponent(courseName.replace(/\s/g, "-"))}`, {
+      state: {
+        courseName,
+        instructor,
+        instructorAvtr,
+        rating,
+        views,
+        category,
+        price,
+        courseThumbnailSrc,
+        instructorJob,
+        numLessons,
+        duration,
+      },
     });
-    // navigate(
-    //   `/courseDetails/${encodeURIComponent(courseName.replace(/\s/g, "-"))}`,
-      navigate(
-        `/courseDetails`,
-      // {
-      //   state: {
-      //     courseName,
-      //     instructor,
-      //     instructorAvtr,
-      //     rating,
-      //     views,
-      //     category,
-      //     price,
-      //     courseThumbnailSrc,
-      //     instructorJob,
-      //     numLessons,
-      //     duration,
-      //   },
-      // }
-    );
   };
+  
 
   return (
     
