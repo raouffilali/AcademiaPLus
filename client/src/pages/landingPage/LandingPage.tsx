@@ -16,7 +16,7 @@ import {
   sponsorsData,
   StatsContainer,
   StatsContainer2,
- 
+
   TopCategoryCarousel,
   TestemonialsCard,
 } from "../../constants";

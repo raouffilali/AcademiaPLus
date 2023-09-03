@@ -24,6 +24,7 @@
     "@types/swiper": "^6.0.0",
     "axios": "^1.3.6",
     "framer-motion": "^10.12.16",
+    "gapi-script": "^1.2.0",
     "material-auto-rotating-carousel": "^3.0.2",
     "owl.carousel": "^2.3.4",
     "plyr": "^3.7.8",
