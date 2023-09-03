@@ -221,6 +221,9 @@ function PrimarySchoolPage() {
           </Link>
 
           {/* Card for "مجموعة المراجعة" */}
+          <Link
+            to={`/group-chat?year=${selectedYear}&subject=${selectedSubject}`}
+          >
           <CustomCard
             imageSrc="/assets/academicfield/revision.jpg"
             title="مجموعة المراجعة"
@@ -228,8 +231,10 @@ function PrimarySchoolPage() {
             description="Enter a description for مجموعة المراجعة."
             year={selectedYear}
             subject={selectedSubject}
-          />
-
+          /></Link>
+           <Link
+            to={`/games?year=${selectedYear}&subject=${selectedSubject}`}
+          >
           <CustomCard
             imageSrc="/assets/academicfield/games.jpg"
             title="الألعاب التعليمية"
@@ -237,7 +242,8 @@ function PrimarySchoolPage() {
             description="Enter a description for الألعاب التعليمية."
             year={selectedYear}
             subject={selectedSubject}
-          />
+          /></Link>
+
           <Link
             to={`/exams?year=${selectedYear}&subject=${selectedSubject}`}
           >

@@ -70,7 +70,7 @@
     };
 
     return (
-      <div className=" mb-10 p-6 w-[480px] mt-4 border border-gray-300 rounded-lg bg-white text-gray-500 text-[15px]">
+      <div className=" mb-10 p-6 lg:w-[480px] mt-4 border border-gray-300 rounded-lg bg-white text-gray-500 text-[15px]">
         <p className="text-center font-semibold text-xl text-gray-900">
           Submit a Request
         </p>

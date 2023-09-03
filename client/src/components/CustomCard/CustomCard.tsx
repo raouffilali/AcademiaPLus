@@ -32,7 +32,7 @@ const CustomCard = ({
   };
   if (title === "مجموعة المراجعة") {
     return (
-      <Link to={`/details/${year}/${subject}`} className="hover:bg-greenish">
+      
         <Card className="w-full max-w-[26rem] h-full p-5   hover:bg-greenish border-dashed border">
           <CardHeader 
             shadow={false}
@@ -88,7 +88,7 @@ const CustomCard = ({
             </div>
           </CardFooter>
         </Card>
-      </Link>
+      
     );
   } else {
   return (

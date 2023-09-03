@@ -22,7 +22,7 @@ function BecomeaTeacherPage() {
     setActiveTab(tab);
   };
   return (
-    <>
+    < >
       <NavBar />
       <PathPage />
       <div>
@@ -30,8 +30,8 @@ function BecomeaTeacherPage() {
           <div className="blur-overlay" onClick={toggleFormVisibility} />
         )}
       </div>
-      <div className=" flex flex-row  justify-between   ">
-        <div className=" mx-[85px] flex flex-col">
+      <div className=" lg:flex flex-row  justify-between   ">
+        <div className=" lg:mx-[80px] mx-[12px] flex flex-col">
           <p className="font-Lato text-[46px] mt-20  text-gray-800 font-bold">
             Come teach <br /> with us
           </p>
@@ -64,11 +64,11 @@ function BecomeaTeacherPage() {
           />
         </div>
       </div>
-      <div className="mx-[80px] bg-white text-gray-800 flex flex-col  relative  ">
+      <div className="lg:mx-[80px] mx-[12px] bg-white text-gray-800 flex flex-col   ">
         <p className="mt-20 flex justify-center items-center font-Lato text-[38px] font-bold">
           So many reasons to start
         </p>
-        <div className=" mt-20 mb-20 flex justify-between w-full">
+        <div className=" lg:mt-20 mt-6 space-y-4 lg:space-y-0 lg:mb-20 mb-6 lg:flex justify-between w-full">
           <div className="justify-center items-center flex flex-col space-y-2 ">
             <img src="assets/instruct.png" alt="" className="h-18" />
             <p className=" font-extrabold">Teach your way</p>
@@ -98,7 +98,7 @@ function BecomeaTeacherPage() {
         <p className="mt-20 flex justify-center items-center font-Lato text-[38px] font-bold">
           How to begin
         </p>
-        <div className="flex justify-center items-center space-x-12 mb-[10px] mt-[30px] pl-[7px] font-Lato font-bold text-[20px] leading-normal cursor-pointer ">
+        <div className="flex justify-center items-center lg:space-x-12 mb-[10px] mt-[30px] pl-[7px] font-Lato font-bold text-sm lg:text-xl  cursor-pointer ">
           <p
             className={` font-Lato ${
               activeTab === "Plan"
@@ -132,10 +132,10 @@ function BecomeaTeacherPage() {
         </div>
         <div className="mb-24 flex justify-center  ">
           {activeTab === "Plan" && (
-            <div className="flex justify-between space-x-4 pt-2 pb-5 flex-start">
+            <div className="flex justify-between lg:space-x-4 pt-2 pb-5 flex-start">
               {/* content for "Plan" tab */}
-              <div className="flex flex-row justify-between items-center space-x-16 mt-20 ">
-                <div className="flex flex-col  w-[350px] space-y-10 ">
+              <div className="lg:flex flex-row justify-between items-center lg:space-x-16 mt-6 lg:mt-20 ">
+                <div className="flex flex-col  lg:w-[350px] space-y-10 ">
                   <p>
                     You start with your passion and knowledge. Then choose a
                     promising topic with the help of our Marketplace Insights
@@ -162,8 +162,8 @@ function BecomeaTeacherPage() {
           {activeTab === "Record" && (
             <div className="flex justify-between space-x-4 pt-2 pb-5 flex-start">
               {/* content for "Record" tab */}
-              <div className="flex flex-row justify-between space-x-16 items-center mt-20 ">
-                <div className="flex flex-col  w-[350px] space-y-10 ">
+              <div className="lg:flex flex-row justify-between space-x-16 items-center mt-6 lg:mt-20 ">
+                <div className="flex flex-col  lg:w-[350px] space-y-10 ">
                   <p>
                     Use basic tools like a smartphone or a DSLR camera. Add a
                     good microphone and you’re ready to start. If you don’t like
@@ -189,8 +189,8 @@ function BecomeaTeacherPage() {
           {activeTab === "Launch" && (
             <div className="flex justify-between space-x-4 pt-2 pb-5 flex-start">
               {/* content for "Launch" tab */}
-              <div className="flex flex-row justify-between items-center space-x-16 mt-20 ">
-                <div className="flex flex-col  w-[350px] space-y-10 ">
+              <div className="lg:flex flex-row justify-between items-center space-x-16 mt-6 lg:mt-20 ">
+                <div className="flex flex-col  lg:w-[350px] space-y-10 ">
                   <p>
                     Gather your first ratings and reviews by promoting your
                     course through social media and your professional networks.
@@ -217,10 +217,10 @@ function BecomeaTeacherPage() {
           )}
         </div>
         <div className="mt-20 mb-40 flex flex-col justify-center items-center">
-          <p className=" mb-3 font-Lato text-[38px] font-bold">
+          <p className=" mb-3 font-Lato lg:text-[38px] font-bold">
             You won’t have to do it alone
           </p>
-          <p className="w-[580px] items-center justify-center">
+          <p className="lg:w-[580px] items-center justify-center">
             Our{" "}
             <span className="font-bold text-lg">Instructor Support Team</span>{" "}
             is here to answer your questions and review your test video, while
@@ -231,16 +231,16 @@ function BecomeaTeacherPage() {
           </p>
         </div>
       </div>
-      <div className="mx-[80px]">
+      <div className="lg:mx-[80px]">
         <StatsContainer2 apiUrl={""} />
       </div>
 
       <div className=" bg-[url('assets/bg/banner-bg.png')] w-full h-[320px]">
         <div className="mt-20 mb-40 flex flex-col justify-center items-center">
-          <p className=" mt-20 font-Lato text-[38px] font-bold">
+          <p className=" mt-20 font-Lato lg:text-[38px] font-bold">
             Become an instructor today
           </p>
-          <p className="text-gray-800  text-[20px]">
+          <p className="text-gray-800  lg:text-[20px]">
             Join one of the world’s largest online learning <br /> marketplaces.
           </p>
         </div>

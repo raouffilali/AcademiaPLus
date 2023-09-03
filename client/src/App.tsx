@@ -24,6 +24,8 @@ import AcademicCourseDetails from "./components/AcademicCourseDetails/AcademicCo
 import VideoSummaries from "./pages/academicfieldPage/VideoSummaries/VideoSummaries";
 import ExamsPage from "./pages/academicfieldPage/examsPage/ExamsPage";
 import PdfSummaries from "./pages/academicfieldPage/PdfSummeries/PdfSummaries";
+import GrpChat from "./pages/academicfieldPage/grpChat/GrpChat";
+import GamesPage from "./pages/academicfieldPage/GamesPage/GamesPage";
 
 function App() {
   return (
@@ -47,6 +49,8 @@ function App() {
       />
        <Route path="/video-summaries" element={<VideoSummaries/>} />
        <Route path="/pdf-summaries" element={<PdfSummaries/>} />
+       <Route path="/games" element={<GamesPage/>} />
+       <Route path="/group-chat" element={<GrpChat/>} />
        <Route path="/exams" element={<ExamsPage/>} />
       <Route path="/allCourses" element={<AllCourses />} />
       <Route path="/primarySchool" element={<PrimarySchoolPage />} />

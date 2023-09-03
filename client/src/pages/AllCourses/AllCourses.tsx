@@ -4,7 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import { Footer } from "../../constants";
 import NavBar from "../../components/navBar/NavBar";
 import PathPage from "../../components/PathPage/PathPage";
-import { FaAngleDown, FaChevronUp, FaChevronDown } from "react-icons/fa";
+import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import courses from "../../data/courses";
 import CourseCard from "../../components/courseCard/CourseCard";
@@ -57,7 +57,7 @@ function AllCourses() {
   };
   const generatePaginationControls = () => {
     const controls = [];
-  
+
     // Always show the back arrow button
     controls.push(
       <button
@@ -69,7 +69,7 @@ function AllCourses() {
         <IoIosArrowBack />
       </button>
     );
-  
+
     for (let i = 1; i <= totalPages; i++) {
       controls.push(
         <button
@@ -83,7 +83,7 @@ function AllCourses() {
         </button>
       );
     }
-  
+
     // Always show the forward arrow button
     controls.push(
       <button
@@ -95,10 +95,9 @@ function AllCourses() {
         <IoIosArrowForward />
       </button>
     );
-  
+
     return controls;
   };
-  
 
   const options: Option[] = [
     { label: "Trending", value: "trending" },
@@ -114,7 +113,7 @@ function AllCourses() {
     { category: "Video & Animation", numCourses: 13 },
     { category: "Programming & Tech", numCourses: 20 },
     { category: "Primary School", numCourses: 82 },
-    { category: "Middle School", numCourses:75 },
+    { category: "Middle School", numCourses: 75 },
     { category: "High Shool", numCourses: 124 },
   ];
   const instructors = [
@@ -162,17 +161,15 @@ function AllCourses() {
       <UrgentNews />
       <NavBar />
       <PathPage />
-      <div className="my-12 bg-neutral-50 h-full">
-        <div>
-          
-        </div>
-        <div className="py-16 mx-[80px] flex space-x-6  ">
-          <div className="flex-none w-[78%] sticky space-y-8 h-full ">
-            <div className="flex">
-              <p className=" w-1/3 text-md my-2 items-center ">
+      <div className="my-6 bg-neutral-50 h-full">
+        <div className="py-6 lg:mx-[80px] mx-[12px] lg:flex lg:space-x-6  ">
+          <div className="flex-none mt-0 lg:w-[78%] space-y-5  h-full ">
+            {/*filter*/}
+            <div className="flex space-x-2 flex-grow">
+              <p className=" lg:w-1/3 lg:text-md text-sm my-2 items-center ">
                 Showing 1-9 of results
               </p>
-              <div></div>
+              
               <div className={`searchBar flex relative `}>
                 <input
                   className="border border-gray-200 border-solid text-sm border-1 rounded-md w-44 text-gray-800 px-4 py-2 focus:outline-none"
@@ -222,7 +219,7 @@ function AllCourses() {
                 )}
               </div>
             </div>
-            <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-7">
+            <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
               {courses
                 .slice(
                   (currentPage - 1) * coursesPerPage,
@@ -250,7 +247,7 @@ function AllCourses() {
               {generatePaginationControls()}
             </div>
           </div>
-          <div className="flex-none w-[22%] sticky space-y-8 ">
+          <div className="flex-none lg:w-[22%] mt-0  space-y-8 ">
             <div className="flex justify-between  text-gray-800">
               <p className="text-xl font-medium flex ">
                 <FiFilter /> Filters
