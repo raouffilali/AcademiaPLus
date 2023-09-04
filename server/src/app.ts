@@ -6,7 +6,7 @@ import session from "express-session";
 import createHttpError, { isHttpError } from "http-errors";
 import morgan from "morgan";
 import env from "./utils/validateEnv";
-import blogsRouter from "./routes/BlogsRoute";
+import studentRouter from "./routes/studentRoutes";
 import {
   errorResponseHandler,
   invalidPathHandler,
@@ -22,6 +22,8 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
+
+app.use("/api/student", studentRouter);
 
 app.use(invalidPathHandler);
 app.use(errorResponseHandler);

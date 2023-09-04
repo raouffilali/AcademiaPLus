@@ -15,6 +15,13 @@ const uploadPicture = multer({
   limits: {
     fileSize: 1024 * 1024 * 5, // 5MB
   },
+  onFileUploadStart: (file) => {
+    console.log(file.originalname + " is starting ...");
+  },
+  onFileUploadComplete: (file) => {
+    console.log(file.fieldname + " uploaded to " + file.path);
+  },
+
   fileFilter: (req, file, cb) => {
     // ? method1
     const fileTypes = /jpeg|jpg|png/;
@@ -36,6 +43,10 @@ const uploadPicture = multer({
     }
     cb(null, true);*/
     // --------------------------------------------------------------------
+  },
+  onError: (err, next) => {
+    console.log("error", err);
+    next(err);
   },
 });
 

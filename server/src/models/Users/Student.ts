@@ -1,4 +1,6 @@
-import { Schema, model } from "mongoose";
+import { Model, Schema, model } from "mongoose";
+import { hash, compare } from "bcrypt";
+import { sign } from "jsonwebtoken";
 
 export interface IStudent {
   firstName: string;
@@ -43,8 +45,27 @@ export interface IStudent {
 const userSchema = new Schema<IStudent>({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  password: { type: String, required: true },
-  email: { type: String, unique: true, required: true },
+  email: {
+    type: String,
+    unique: true,
+    required: true,
+    validate: {
+      validator: (value: string) =>
+        /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/.test(value),
+      message: "Email must be a valid email address.",
+    },
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 8,
+    validate: {
+      validator: (value: string) =>
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/.test(value),
+      message:
+        "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character.",
+    },
+  },
   avatar: { type: String },
   verified: { type: Boolean, default: false },
   verificationCode: { type: String, default: "" },
@@ -54,7 +75,6 @@ const userSchema = new Schema<IStudent>({
   progress: [{ type: Schema.Types.ObjectId, ref: "Progress" }],
   phone: {
     type: String,
-    required: true,
     validate: {
       validator: (value: string) => /^[0-9]{10}$/.test(value),
       message: "Phone number must be a 10-digit number.",
@@ -86,7 +106,6 @@ const userSchema = new Schema<IStudent>({
     city: { type: String },
     zipCode: {
       type: String,
-      required: true,
       validate: {
         validator: (value: string) => /^[0-9]{5}$/.test(value),
         message: "Zip code must be a 5-digit number.",
