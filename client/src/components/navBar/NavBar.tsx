@@ -172,7 +172,7 @@ const NavBarV2: React.FC<NavBarProps> = ({
                   <img
                     src="assets/avatar/avatar-1.jpg"
                     alt="User Avatar"
-                    className="w-14 h-14 border-4 border-gray-300 rounded-full"
+                    className="w-12 h-12 border-4 border-gray-300 rounded-full"
                   />
                 </button>
 

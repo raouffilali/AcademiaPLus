@@ -25,15 +25,15 @@ import {
 function LandingPage() {
   return (
     <div>
-      <div className="lg:w-full top-14 md:h-[920px] bg-gradient-to-r from-red-50 to-[#bedbfc]">
-        <NavBar isAuthenticated={true}  isFixed={true} isTeacher={false} handleLogout={function (): void {
+      <div className="lg:w-full xl:w-full 2xl:w-full top-14 md:h-[920px] bg-gradient-to-r from-red-50 to-[#bedbfc]">
+        <NavBar isAuthenticated={false}  isFixed={true} isTeacher={false} handleLogout={function (): void {
           throw new Error("Function not implemented.");
         } } />
         <div>
           <ScrollToTopButton />
           <div className="text-gray-900 mx-[12px] lg:mx-[80px]">
             <div className="lg:flex justify-between flex-row space-x-4 lg:space-x-10">
-              <div className="lg:space-y-8 space-y-4 mt-20 lg:mt-32 ">
+              <div className="lg:space-y-8 xl:space-y-10 2xl:space-y-10 xl:mt-52  space-y-4 mt-20 lg:mt-32 ">
                 <h2 className="text-gray-600 lg:text-lg">
                   The Leader in Online Virtual interactive Learning
                 </h2>
@@ -65,7 +65,7 @@ function LandingPage() {
             </div>
             <RatingSection />
 
-            <div className=" lg:mt-40 mt-12 pb-2 lg:pb-44">
+            <div className="lg:mt-60 xl:mt-24 mt-12 pb-2 lg:pb-44">
               <StatsContainer />
             </div>
           </div>

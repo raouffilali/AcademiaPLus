@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavBar } from "../../constants";
 import { useParams, useLocation } from "react-router-dom";
 import PathPage from "../../components/PathPage/PathPage";
@@ -36,6 +36,26 @@ function CourseDetails() {
   const [level, setLevel] = useState(""); // Update this value as needed
 
   const items = ["Home", "Courses", "All Courses", courseName];
+   // Define and set initial value for numLessons
+  //  const [duration, setDuration] = useState("");
+  
+  // const [numLessons, setNumLessons] = useState(0); 
+
+  useEffect(() => {
+    fetch(`your-backend-endpoint/courses/${courseName}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setVideos(data.videos);
+        setResources(data.resources);
+        setStudentsEnrolled(data.studentsEnrolled);
+        // setDuration(data.duration);
+        setLevel(data.level);
+        // setNumLessons(data.numLessons); // Set the value of numLessons from the response
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [courseName]);
   return (
     <div>
       <NavBar
