@@ -1,5 +1,6 @@
 // ChatWindow.tsx
 import React, { useState } from 'react';
+import CommingSoonv2 from '../../CommingSoon/CommingSoonv2';
 const ChatWindow: React.FC = () => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<string[]>([]);
@@ -12,24 +13,9 @@ const ChatWindow: React.FC = () => {
   };
 
   return (
-    <div className="chat-window">
-      <div className="chat-header">Chat with User 1</div>
-      <div className="chat-messages">
-        {messages.map((msg, index) => (
-          <div key={index} className="chat-message">
-            {msg}
-          </div>
-        ))}
-      </div>
-      <div className="chat-input">
-        <input
-          type="text"
-          placeholder="Type a message..."
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <button onClick={sendMessage}>Send</button>
-      </div>
+    <div className="">
+      <CommingSoonv2/>
+     
     </div>
   );
 };

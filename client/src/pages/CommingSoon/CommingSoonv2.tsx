@@ -7,6 +7,10 @@ import { MainLayout } from "../../constants";
 
 const CommingSoonv2 = () => {
   const targetDate = new Date("2023-12-31T23:59:59").getTime();
+  // Set the props to simulate a logged-in regular user
+  const isAuthenticated = true; // Set to true for a logged-in user
+  const isTeacher = false; // Set to false for a regular user
+
   return (
     <>
       {/* <header className="container mx-auto px-6 py-8 flex flex-wrap justify-between items-center gap-y-4">
@@ -30,7 +34,12 @@ const CommingSoonv2 = () => {
           </Link>
         </div>
       </header> */}
-      <NavBarV2 />
+      <NavBarV2   isAuthenticated={isAuthenticated}
+        isTeacher={isTeacher}
+        handleLogout={() => {
+          // Define a mock logout function if needed
+          console.log("User logged out"); // Display a message for testing
+        }} />
       <section className="container mx-auto flex flex-col lg:flex-row">
         <main className="flex flex-col gap-y-4 items-center lg:items-start justify-center mx-4 lg:mx-10">
           <div>

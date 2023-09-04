@@ -1,5 +1,6 @@
 import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import NavBarV2 from "../../components/navBar/NavBarV2";
 import {
   BlogCarousel,
   blogData,
@@ -26,7 +27,9 @@ function LandingPage() {
   return (
     <div>
       <div className="lg:w-full top-14 md:h-[920px] bg-gradient-to-r from-red-50 to-[#bedbfc]">
-        <NavBar />
+        <NavBarV2 isAuthenticated={false} isTeacher={true} handleLogout={function (): void {
+          throw new Error("Function not implemented.");
+        } } />
         <div>
           <ScrollToTopButton />
           <div className="text-gray-900 mx-[12px] lg:mx-[80px]">
