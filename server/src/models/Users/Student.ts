@@ -5,6 +5,9 @@ export interface IStudent {
   lastName: string;
   password: string;
   email: string;
+  avatar: string;
+  verified: boolean;
+  verificationCode: string;
   enrolledCourses: string[];
   completedCourses: string[];
   achievements: string[];
@@ -16,7 +19,6 @@ export interface IStudent {
   addressLine2?: string;
   city: string;
   zipCode: string;
-  profileImage: string;
   socialProfiles: {
     twitter?: string;
     facebook?: string;
@@ -34,18 +36,22 @@ export interface IStudent {
     zipCode: string;
     country: string;
   };
+  generateJWT(): string;
+  comparePassword(enteredPassword: string): Promise<boolean>;
 }
 
-const UserSchema = new Schema<IStudent>({
+const userSchema = new Schema<IStudent>({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   password: { type: String, required: true },
   email: { type: String, unique: true, required: true },
+  avatar: { type: String },
+  verified: { type: Boolean, default: false },
+  verificationCode: { type: String, default: "" },
   enrolledCourses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
   completedCourses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
   achievements: [{ type: Schema.Types.ObjectId, ref: "Achievement" }],
   progress: [{ type: Schema.Types.ObjectId, ref: "Progress" }],
-
   phone: {
     type: String,
     required: true,
@@ -67,7 +73,6 @@ const UserSchema = new Schema<IStudent>({
       message: "Zip code must be a 5-digit number.",
     },
   },
-  profileImage: { type: String },
   socialProfiles: {
     twitter: { type: String },
     facebook: { type: String },
@@ -91,4 +96,30 @@ const UserSchema = new Schema<IStudent>({
   },
 });
 
-export default model<IStudent>("Student", UserSchema);
+// hash the password
+userSchema.pre("save", async function (next) {
+  if (this.isModified("password")) {
+    this.password = await hash(this.password, 10);
+    return next();
+  }
+  return next();
+});
+
+// Define the methods on the schema
+userSchema.methods.generateJWT = async function (): Promise<string> {
+  return await sign({ id: this._id }, process.env.JWT_SECRET, {
+    expiresIn: "3d",
+  });
+};
+
+// compare Password
+
+userSchema.methods.comparePassword = async function (
+  enteredPassword: string
+): Promise<boolean> {
+  return await compare(enteredPassword, this.password);
+};
+
+const Student: Model<IStudent> = model<IStudent>("Student", userSchema);
+
+export default Student;
