@@ -63,7 +63,10 @@ const NavBarV2: React.FC<NavBarProps> = ({
   };
 
   return (
-    <nav className={`navbar fixed ${isScrolled ? "scrolled" : ""} w-full`} style={{ zIndex: 1 }}>
+    <nav
+      className={`navbar ${isScrolled ? "scrolled" : ""} w-full`}
+      style={{ zIndex: 1 }}
+    >
       <div className="flex items-center lg:mx-[80px] ">
         <div className="z-50 md:w-auto w-full flex">
           <Link to="/">
@@ -100,17 +103,19 @@ const NavBarV2: React.FC<NavBarProps> = ({
         <div className="md:hidden lg:flex hidden">
           {isAuthenticated ? (
             <>
-              {isTeacher ?(
-                <Link to="/instructordashboard">
+              {isTeacher ? (
+                <Link to="/instructor-dashboard">
                   <button className="bg-greenish hover:bg-bluePal text-DarkBluePal hover:text-white text-sm py-2 px-2 font-normal rounded-2xl focus:outline-none">
                     Instructor Dashboard
                   </button>
                 </Link>
-              ):(<Link to="/becomeaTeacher">
-              <button className="bg-greenish hover:bg-bluePal text-DarkBluePal hover:text-white text-sm py-2 px-2 font-normal rounded-2xl focus:outline-none">
-                Become a Teacher
-              </button>
-            </Link>)}
+              ) : (
+                <Link to="/becomeaTeacher">
+                  <button className="bg-greenish hover:bg-bluePal text-DarkBluePal hover:text-white text-sm py-2 px-2 font-normal rounded-2xl focus:outline-none">
+                    Become a Teacher
+                  </button>
+                </Link>
+              )}
               <div className="relative inline-block text-left">
                 <button
                   type="button"
@@ -120,11 +125,7 @@ const NavBarV2: React.FC<NavBarProps> = ({
                 >
                   <GrLanguage className="mr-1" size={16} />
                   {selectedLanguage.label}
-                  <FaAngleDown
-                    className="ml-1"
-                    aria-hidden="true"
-                    size={12}
-                  />
+                  <FaAngleDown className="ml-1" aria-hidden="true" size={12} />
                 </button>
 
                 {isLanguageMenuOpen && (
@@ -169,40 +170,63 @@ const NavBarV2: React.FC<NavBarProps> = ({
                     alt="User Avatar"
                     className="w-14 h-14 border-4 border-gray-300 rounded-full"
                   />
-                  
                 </button>
 
                 {isAvatarMenuOpen && (
                   <div className="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1" role="none">
-                      <Link to="/profile">
-                        <button
-                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none"
-                        >
+                    {isTeacher ? (
+                      <Link to="/edit-profile-instructor">
+                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
                           Profile
                         </button>
                       </Link>
-                      <Link to="/dashboard">
-                        <button
-                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none"
-                        >
-                          Dashboard
+                      ) : (
+                        <Link to="/edit-profile-student">
+                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
+                          Profile
                         </button>
                       </Link>
-                      <Link to="/subscriptions">
-                        <button
-                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none"
-                        >
+                      )}
+                      {isTeacher ? (
+                        <Link to="/instructor-dashboard">
+                          <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
+                          My Dashboard
+                          </button>
+                        </Link>
+                      ) : (
+                        <Link to="/student-dashboard">
+                          <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
+                            My Dashboard
+                          </button>
+                        </Link>
+                      )}
+                       {isTeacher ? (
+                      <Link to="/earnings">
+                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
+                          Earnings
+                        </button>
+                      </Link>
+                      ) : (
+                        <Link to="/subscriptions">
+                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
                           Subscriptions
                         </button>
                       </Link>
-                      <Link to="/settings">
-                        <button
-                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none"
-                        >
-                          Settings
+                      )}
+                       {isTeacher ? (
+                      <Link to="/instructor-settings">
+                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
+                          settings
                         </button>
                       </Link>
+                      ) : (
+                        <Link to="/student-settings">
+                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
+                          settings
+                        </button>
+                      </Link>
+                      )}
                       <button
                         className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none"
                         onClick={() => handleLogout()}
@@ -312,30 +336,22 @@ const NavBarV2: React.FC<NavBarProps> = ({
                   <div className="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1" role="none">
                       <Link to="/profile">
-                        <button
-                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none"
-                        >
+                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
                           Profile
                         </button>
                       </Link>
                       <Link to="/dashboard">
-                        <button
-                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none"
-                        >
+                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
                           Dashboard
                         </button>
                       </Link>
                       <Link to="/subscriptions">
-                        <button
-                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none"
-                        >
+                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
                           Subscriptions
                         </button>
                       </Link>
                       <Link to="/settings">
-                        <button
-                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none"
-                        >
+                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
                           Settings
                         </button>
                       </Link>
