@@ -125,7 +125,7 @@ const StatsContainer = () => {
   };
 
   return (
-    <div className="lg:flex space-y-4 lg:space-x-10 text-sm">
+    <div className="lg:flex 2xl:flex xl:flex  space-y-4 xl:space-x-36 ml-0 lg:space-y-0 xl-space-y-0 2xl:space-y-0 lg:absolute xl:absolute  2xl:absolute  lg:space-x-10  text-sm">
       <div className="bg-white w-[235px] h-[130px] border flex rounded-2xl transition-all duration-500 ease-in-out transform hover:-translate-y-2">
         <img src="assets/pencil-icon.svg" alt="" className="w-18 h-16" />
         <div>

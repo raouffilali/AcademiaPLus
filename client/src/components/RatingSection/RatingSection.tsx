@@ -46,7 +46,7 @@ const RatingSection: React.FC = () => {
   }, []);
 
   return (
-    <div className="text-gray-900 font-bold lg:text-5xl text-3xl flex items-start lg:absolute" ref={ref}>
+    <div className="text-gray-900 font-bold lg:text-5xl text-3xl flex items-start xl:absolute 2xl:absolute lg:absolute" ref={ref}>
   {inView ? (
     <>
       <CountUp

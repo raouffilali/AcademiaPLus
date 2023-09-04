@@ -43,7 +43,9 @@ const AcademicCourseDetails: React.FC<AcademicCourseDetailsProps> = ({
 
   return (
     <div>
-      <NavBar />
+      <NavBar isAuthenticated={false} isTeacher={false} handleLogout={function (): void {
+        throw new Error("Function not implemented.");
+      } } />
       <div className="lg:mx-[80px] text-right  mx-[12px] mt-16 space-y-10">
         <h2
           className="text-2xl"
