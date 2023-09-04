@@ -2,7 +2,6 @@ import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { images } from "../../../public/constants";
 import CountdownTimer from "../../components/Error/CountdownTimer";
-import NavBarV2 from "../../components/navBar/NavBarV2";
 import { MainLayout, NavBar } from "../../constants";
 
 const CommingSoonv2 = () => {

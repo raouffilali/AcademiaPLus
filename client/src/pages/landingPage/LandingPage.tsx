@@ -1,6 +1,5 @@
 import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import NavBarV2 from "../../components/navBar/NavBarV2";
 import {
   BlogCarousel,
   blogData,
