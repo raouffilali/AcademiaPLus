@@ -1,35 +1,85 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 // Course data
 const courseData = [
   {
-    title: 'Menu 1',
+    title: "In which areas do you operate?",
     lectures: [
-      { title: 'Lecture 1', duration: '30 mins', preview: 'Preview of Lecture 1' },
-      { title: 'Lecture 2', duration: '45 mins', preview: 'Preview of Lecture 2' },
-      { title: 'Lecture 3', duration: '60 mins', preview: 'Preview of Lecture 3' },
+      {
+        title: "Lecture1.1 Introduction to the User Experience Course",
+        duration: "30 mins",
+        preview: "Preview ",
+      },
+      {
+        title: "Lecture1.2 Exercise: Your first design challenge",
+        duration: "45 mins",
+        preview: "Preview ",
+      },
+      {
+        title: "Lecture1.3 How to solve the previous exercise",
+        duration: "60 mins",
+        preview: "Preview ",
+      },
+      {
+        title: "Lecture1.3 How to solve the previous exercise",
+        duration: "75 mins",
+        preview: "Preview ",
+      },
     ],
   },
   {
-    title: 'Menu 2',
+    title: "The Brief",
     lectures: [
-      { title: 'Lecture 1', duration: '30 mins', preview: 'Preview of Lecture 1' },
-      { title: 'Lecture 2', duration: '45 mins', preview: 'Preview of Lecture 2' },
+      {
+        title: "Lecture1.1 Introduction to the User Experience Course",
+        duration: "30 mins",
+        preview: "Preview ",
+      },
+      {
+        title: "Lecture1.2 Exercise: Your first design challenge",
+        duration: "45 mins",
+        preview: "Preview ",
+      },
+      {
+        title: "Lecture1.3 How to solve the previous exercise",
+        duration: "60 mins",
+        preview: "Preview ",
+      },
     ],
   },
   {
-    title: 'Menu 3',
+    title: "Wireframing Low Fidelity",
     lectures: [
-      { title: 'Lecture 1', duration: '30 mins', preview: 'Preview ' },
-      { title: 'Lecture 2', duration: '45 mins', preview: 'Preview ' },
-      { title: 'Lecture 3', duration: '60 mins', preview: 'Preview ' },
-      { title: 'Lecture 4', duration: '75 mins', preview: 'Preview ' },
+      {
+        title: "Lecture1.1 Introduction to the User Experience Course",
+        duration: "30 mins",
+        preview: "Preview ",
+      },
+      {
+        title: "Lecture1.2 Exercise: Your first design challenge",
+        duration: "45 mins",
+        preview: "Preview ",
+      },
+      {
+        title: "Lecture1.3 How to solve the previous exercise",
+        duration: "60 mins",
+        preview: "Preview ",
+      },
+      {
+        title: "Lecture1.3 How to solve the previous exercise",
+        duration: "75 mins",
+        preview: "Preview ",
+      },
     ],
   },
   {
-    title: 'Menu 4',
+    title: "Type, Color & Icon Introduction",
     lectures: [
-      { title: 'Lecture 1', duration: '30 mins', preview: 'Preview of Lecture 1' },
+      {
+        title: "Lecture1.1 Introduction to the User Experience Course",
+        duration: "30 mins",
+        preview: "Preview ",
+      },
     ],
   },
 ];
@@ -42,19 +92,21 @@ const CourseContentCard: React.FC = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="py-4 pr-4">
       <div className="space-y-4 font-semibold text-sm ">
         {courseData.map((menu, index) => (
           <div key={index}>
             <button
               className={`w-full flex justify-between items-center py-3 text-gray-800 px-4 rounded-sm focus:outline-none ${
-                index === selectedMenu ? 'bg-blue-100 ' : 'bg-blue-50 '
+                index === selectedMenu ? "bg-blue-100 " : "bg-blue-50 "
               }`}
               onClick={() => handleChangeMenu(index)}
             >
               {menu.title}
               <svg
-                className={`h-4 w-4  transform ${index === selectedMenu ? 'rotate-180' : ''}`}
+                className={`h-4 w-4 mr-0  transform ${
+                  index === selectedMenu ? "rotate-180" : ""
+                }`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -68,14 +120,25 @@ const CourseContentCard: React.FC = () => {
               </svg>
             </button>
             {index === selectedMenu && (
-              <div className="pl-4 mt-2">
+              <div className=" mt-2">
                 {menu.lectures.map((lecture, lectureIndex) => (
                   <div key={lectureIndex} className="">
                     <div className=" bg-gray-800 rounded-full " />
-                    <div className='flex space-x-56 '>
-                      <h4 className="font-medium">{lecture.title}</h4>
-                      <p className="text-gray-500">{lecture.duration}</p>
-                      <p className="text-gray-700">{lecture.preview}</p>
+                    <div className="flex justify-between border-b space-y-3 ">
+                      <h4 className="font-light">
+                        {" "}
+                        <img
+                          src="/assets/play.svg"
+                          className="mr-2  float-left h-5"
+                        />
+                        {lecture.title}
+                      </h4>
+                      <p className="text-gray-800 underline font-light">
+                        {lecture.preview}
+                      </p>
+                      <p className="text-gray-800  font-light">
+                        {lecture.duration}
+                      </p>
                     </div>
                   </div>
                 ))}

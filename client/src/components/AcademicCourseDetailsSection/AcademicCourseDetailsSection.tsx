@@ -93,13 +93,13 @@ const AcademicCourseDetailsSection: React.FC<AcademicCourseDetailsProps> = ({
         </div>
       </div>
       <div className="rounded text-gray-600 bg-white shadow space-y-2 text-sm p-4 border">
-        <img src="assets/key.svg" className="mr-2 float-left h-5" />
+        <img src="/assets/key.svg" className="mr-2 float-left h-5" />
         <p>الوصول مدى الحياة</p>
-        <img src="assets/mobile.svg" className="mr-2 float-left h-5" />
+        <img src="/assets/mobile.svg" className="mr-2 float-left h-5" />
         <p>الوصول على الهاتف المحمول والتلفزيون</p>
-        <img src="assets/cloud.svg" className="mr-2 float-left h-5" />
+        <img src="/assets/cloud.svg" className="mr-2 float-left h-5" />
         <p>المهام</p>
-        <img src="assets/teacher.svg" className="mr-2 float-left h-5" />
+        <img src="/assets/teacher.svg" className="mr-2 float-left h-5" />
         <p>شهادة الإكمال</p>
       </div>
     </div>

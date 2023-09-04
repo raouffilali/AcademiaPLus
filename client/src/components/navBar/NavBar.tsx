@@ -12,6 +12,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 interface NavBarProps {
   isAuthenticated: boolean;
   isTeacher: boolean;
+  isFixed?: boolean; 
   handleLogout: () => void;
   // Add other necessary props
 }
@@ -26,6 +27,7 @@ const NavBarV2: React.FC<NavBarProps> = ({
   handleLogout,
   isAuthenticated,
   isTeacher,
+  isFixed,
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -64,8 +66,10 @@ const NavBarV2: React.FC<NavBarProps> = ({
 
   return (
     <nav
-      className={`navbar ${isScrolled ? "scrolled" : ""} w-full`}
-      style={{ zIndex: 1 }}
+    className={`navbar ${isScrolled ? "scrolled" : ""} ${
+      isFixed ? "lg:fixed " : "" // Conditionally add the "fixed" class
+    } w-full`}
+    style={{ zIndex: 1 }}
     >
       <div className="flex items-center lg:mx-[80px] ">
         <div className="z-50 md:w-auto w-full flex">
@@ -73,7 +77,7 @@ const NavBarV2: React.FC<NavBarProps> = ({
             <img
               src={images.Logo}
               alt="logo"
-              className="md:cursor-pointer h-6"
+              className="md:cursor-pointer ml-0 h-6"
             />
           </Link>
 
@@ -310,7 +314,7 @@ const NavBarV2: React.FC<NavBarProps> = ({
         {/* Mobile nav */}
         <ul
           className={`
-         lg-hidden bg-white fixed w-full top-0 overflow-y-auto bottom-0 py-24 pl-4
+         lg:hidden bg-white fixed w-full top-0 overflow-y-auto bottom-0 py-24 pl-4
         duration-500 ${open ? "left-0" : "left-[-100%]"}
         `}
         >
@@ -325,9 +329,9 @@ const NavBarV2: React.FC<NavBarProps> = ({
                   onClick={() => setIsAvatarMenuOpen(!isAvatarMenuOpen)}
                 >
                   <img
-                    src="user_avatar_url_here"
+                    src="assets/avatar/avatar-1.jpg"
                     alt="User Avatar"
-                    className="w-6 h-6 rounded-full"
+                    className="w-8 h-8 rounded-full"
                   />
                   <FaAngleDown className="ml-1" aria-hidden="true" size={12} />
                 </button>
