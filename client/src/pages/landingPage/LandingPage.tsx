@@ -26,7 +26,7 @@ function LandingPage() {
   return (
     <div>
       <div className="lg:w-full xl:w-full 2xl:w-full top-14 md:h-[920px] bg-gradient-to-r from-red-50 to-[#bedbfc]">
-        <NavBar isAuthenticated={false}  isFixed={true} isTeacher={false} handleLogout={function (): void {
+        <NavBar isAuthenticated={true}  isFixed={true} isTeacher={false} handleLogout={function (): void {
           throw new Error("Function not implemented.");
         } } />
         <div>
@@ -147,7 +147,7 @@ function LandingPage() {
                 rating={course.rating}
                 views={course.views}
                 category={course.category}
-                price={course.price.toString()}
+                price={course.price}
                 courseThumbnailSrc={course.courseThumbnailSrc}
                 instructorAvtr={course.instructorAvtr}
                 instructorJob={course.instructorJob}

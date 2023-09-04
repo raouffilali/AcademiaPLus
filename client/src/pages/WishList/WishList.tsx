@@ -7,10 +7,14 @@ import courses from "../../data/courses";
 import PathPage from "../../components/PathPage/PathPage";
 import { cartItems } from "../cartPage/cartItems";
 function WishList() {
+  
   const [nmItems, setnmItems] = useState(0);
+  
   return (
     <div>
-      <NavBar />
+      <NavBar isAuthenticated={false} isTeacher={false} handleLogout={function (): void {
+        throw new Error("Function not implemented.");
+      } } />
       <PathPage />
       <div className="mt-5 flex flex-wrap justify-between items-center bg-gray-50">
         <div className=" mt-20 ml-[80px] mr-[80px] bg-white rounded-lg border border-neutral-200 h-full mb-10 pb-5 w-full ">

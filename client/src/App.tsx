@@ -26,6 +26,7 @@ import ExamsPage from "./pages/academicfieldPage/examsPage/ExamsPage";
 import PdfSummaries from "./pages/academicfieldPage/PdfSummeries/PdfSummaries";
 import GrpChat from "./pages/academicfieldPage/grpChat/GrpChat";
 import GamesPage from "./pages/academicfieldPage/GamesPage/GamesPage";
+import CheckoutComp from "./components/checkoutComponent/CheckoutComp";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
       <Route path="/wishList" element={<WishList />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/category" element={<CategoryPage />} />
+      <Route path="/checkout" element={<CheckoutComp />} />
       <Route path="/courseDetails/:courseName" element={<CourseDetails />} />
       <Route
         path="/course-details/:courseId"
