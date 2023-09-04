@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { images } from "../../../public/constants";
 import CountdownTimer from "../../components/Error/CountdownTimer";
 import NavBarV2 from "../../components/navBar/NavBarV2";
-import { MainLayout } from "../../constants";
+import { MainLayout, NavBar } from "../../constants";
 
 const CommingSoonv2 = () => {
   const targetDate = new Date("2023-12-31T23:59:59").getTime();
@@ -34,7 +34,7 @@ const CommingSoonv2 = () => {
           </Link>
         </div>
       </header> */}
-      <NavBarV2   isAuthenticated={isAuthenticated}
+      <NavBar   isAuthenticated={isAuthenticated}
         isTeacher={isTeacher}
         handleLogout={() => {
           // Define a mock logout function if needed
