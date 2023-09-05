@@ -1,6 +1,6 @@
-import uploadPicture from "../middleware/uploadPictureMiddleware";
+import uploadPicture from "../../middleware/uploadPictureMiddleware";
 import Student from "../../models/Users/Student";
-import fileRemover from "../utils/fileRemover";
+import fileRemover from "../../utils/fileRemover";
 
 // Custom error class for endpoint not found
 class NotFoundError extends Error {
@@ -12,6 +12,7 @@ class NotFoundError extends Error {
   }
 }
 
+// ?WORKING
 const registerUser = async (req, res, next) => {
   try {
     const { firstName, lastName, email, password } = req.body;
@@ -21,6 +22,16 @@ const registerUser = async (req, res, next) => {
       return res
         .status(400)
         .json({ message: "Full name, email, and password are required" });
+    }
+    //Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/.test(password);
+    // Validate password strength (regex) and it must be at least 8 characters long
+    if (!passwordRegex || password.length < 8) {
+      return res.status(400).json({
+        message:
+          "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character and must be at least 8 characters long",
+      });
     }
 
     // Check if the user already exists
@@ -53,11 +64,14 @@ const registerUser = async (req, res, next) => {
 
     // Return the sanitized user data along with the token
     return res.status(201).json({ user: sanitizedUser, token });
+    console.log(newUser);
   } catch (error) {
     next(error);
   }
 };
+// --------------------------------------------------------------------------------------
 
+// ?WORKING
 // login User
 const loginUser = async (req, res, next) => {
   try {
@@ -89,7 +103,6 @@ const loginUser = async (req, res, next) => {
         email: user.email,
         password: user.password,
         verified: user.verified,
-        admin: user.admin,
       };
       // Return the sanitized user data along with the token
       return res.status(201).json({ user: sanitizedUser, token });
@@ -100,7 +113,9 @@ const loginUser = async (req, res, next) => {
     next(error);
   }
 };
+// --------------------------------------------------------------------------------------
 
+// ?WORKING
 // get userProfile
 const userProfile = async (req, res, next) => {
   try {
@@ -140,8 +155,10 @@ const userProfile = async (req, res, next) => {
     next(error);
   }
 };
+// --------------------------------------------------------------------------------------
 
-// update userProfile
+// ?WORKING
+// update userProfile based on Student model
 const updateProfile = async (req, res, next) => {
   try {
     const user = await Student.findById(req.user._id);
@@ -149,8 +166,6 @@ const updateProfile = async (req, res, next) => {
       const {
         firstName,
         lastName,
-        email,
-        password,
         phone,
         birthday,
         country,
@@ -158,22 +173,12 @@ const updateProfile = async (req, res, next) => {
         addressLine2,
         city,
         zipCode,
-        twitter,
-        facebook,
-        instagram,
-        linkedin,
       } = req.body;
       if (firstName) {
         user.firstName = firstName;
       }
       if (lastName) {
         user.lastName = lastName;
-      }
-      if (email) {
-        user.email = email;
-      }
-      if (password) {
-        user.password = password;
       }
       if (phone) {
         user.phone = phone;
@@ -196,18 +201,6 @@ const updateProfile = async (req, res, next) => {
       if (zipCode) {
         user.zipCode = zipCode;
       }
-      if (twitter) {
-        user.socialProfiles.twitter = twitter;
-      }
-      if (facebook) {
-        user.socialProfiles.facebook = facebook;
-      }
-      if (instagram) {
-        user.socialProfiles.instagram = instagram;
-      }
-      if (linkedin) {
-        user.socialProfiles.linkedin = linkedin;
-      }
       await user.save();
       // Respond with a sanitized user object (omit sensitive fields)
       const sanitizedUser = {
@@ -241,6 +234,9 @@ const updateProfile = async (req, res, next) => {
     next(error);
   }
 };
+// --------------------------------------------------------------------------------------
+
+// ?WORKING
 
 const updatePassword = async (req, res, next) => {
   try {
@@ -250,7 +246,20 @@ const updatePassword = async (req, res, next) => {
       if (password) {
         user.password = password;
       }
+      //   password must contain at least one lowercase letter, one uppercase letter, one number, and one special character
+      const passwordRegex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/.test(password);
+      // Validate password strength (regex) and it must be at least 8 characters long
+      if (!passwordRegex || password.length < 8) {
+        return res.status(400).json({
+          message:
+            "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character and must be at least 8 characters long",
+        });
+      }
       await user.save();
+
+      //   if password is updated, then console.log success message
+      console.log("Password updated successfully");
       // Respond with a sanitized user object (omit sensitive fields)
       const sanitizedUser = {
         _id: user._id,
@@ -284,15 +293,30 @@ const updatePassword = async (req, res, next) => {
   }
 };
 
+// --------------------------------------------------------------------------------------
+// ?WORKING
 // update Email and send verification code
 const updateEmail = async (req, res, next) => {
   try {
     const user = await Student.findById(req.user._id);
     if (user) {
       const { email } = req.body;
+      //   Validate input data
+      if (!email) {
+        return res.status(400).json({ message: "Email is required" });
+      }
+
       if (email) {
         user.email = email;
       }
+      // validate updated email
+      const emailRegex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/.test(email);
+      if (!emailRegex) {
+        return res.status(400).json({
+          message: "Email must be a valid email address.",
+        });
+      }
+
       await user.save();
       // Respond with a sanitized user object (omit sensitive fields)
       const sanitizedUser = {
@@ -327,10 +351,12 @@ const updateEmail = async (req, res, next) => {
   }
 };
 
+// --------------------------------------------------------------------------------------
+// ?WORKING
 // get all users function only if user is authorized
 const getUsers = async (req, res, next) => {
   try {
-    const users = await User.find({});
+    const users = await Student.find({});
     if (users) {
       return res.status(201).json(users);
     } else {
@@ -339,6 +365,30 @@ const getUsers = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+// --------------------------------------------------------------------------------------
+// ?WORKING
+const getUserById = async (req, res, next) => {
+  try {
+    const user = await Student.findById(req.params.id);
+    if (user) {
+      return res.status(201).json(user);
+    } else {
+      throw new NotFoundError("User not found", 404);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+const uploadDirectoies = {
+  files: "files",
+  multiple_files: "multiple_files",
+  multiple_vides: "multiple_videos",
+  pictures: "pictures",
+  videos: "videos",
+  audios: "audios",
 };
 
 // updateProfilePicture
@@ -354,10 +404,10 @@ const updateProfilePicture = async (req, res, next) => {
       } else {
         // everything went fine
         if (req.file) {
-          const updatedUser = await User.findById(req.user._id);
+          const updatedUser = await Student.findById(req.user._id);
           const filename = updatedUser!.avatar;
           if (filename) {
-            fileRemover(filename);
+            fileRemover(filename, uploadDirectoies.pictures);
           }
           updatedUser!.avatar = req.file.filename;
           await updatedUser!.save();
@@ -368,21 +418,21 @@ const updateProfilePicture = async (req, res, next) => {
           const sanitizedUser = {
             _id: updatedUser!._id,
             avatar: updatedUser!.avatar,
-            name: updatedUser!.name,
+            firstName: updatedUser!.firstName,
+            lastName: updatedUser!.lastName,
             email: updatedUser!.email,
             password: updatedUser!.password,
             verified: updatedUser!.verified,
-            admin: updatedUser!.admin,
           };
           // Return the sanitized user data along with the token
           return res.status(201).json({ user: sanitizedUser, token });
         } else {
-          const updatedUser = await User.findById(req.user._id);
+          const updatedUser = await Student.findById(req.user._id);
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const filename = updatedUser!.avatar;
           updatedUser!.avatar = "";
           await updatedUser!.save();
-          fileRemover(filename);
+          fileRemover(filename, uploadDirectoies.pictures);
 
           // Generate a JWT token
           const token = await updatedUser!.generateJWT();
@@ -391,11 +441,11 @@ const updateProfilePicture = async (req, res, next) => {
           const sanitizedUser = {
             _id: updatedUser!._id,
             avatar: updatedUser!.avatar,
-            name: updatedUser!.name,
+            firstName: updatedUser!.firstName,
+            lastName: updatedUser!.lastName,
             email: updatedUser!.email,
             password: updatedUser!.password,
             verified: updatedUser!.verified,
-            admin: updatedUser!.admin,
           };
           // Return the sanitized user data along with the token
           return res.status(201).json({ user: sanitizedUser, token });
@@ -408,6 +458,7 @@ const updateProfilePicture = async (req, res, next) => {
 };
 
 export {
+  getUserById,
   registerUser,
   loginUser,
   userProfile,
