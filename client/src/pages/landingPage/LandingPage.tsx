@@ -16,19 +16,22 @@ import {
   sponsorsData,
   StatsContainer,
   StatsContainer2,
-
   TopCategoryCarousel,
   TestemonialsCard,
 } from "../../constants";
-
 
 function LandingPage() {
   return (
     <div>
       <div className="lg:w-full xl:w-full 2xl:w-full top-14 md:h-[920px] bg-gradient-to-r from-red-50 to-[#bedbfc]">
-        <NavBar isAuthenticated={true}  isFixed={true} isTeacher={false} handleLogout={function (): void {
-          throw new Error("Function not implemented.");
-        } } />
+        <NavBar
+          isAuthenticated={true}
+          isFixed={true}
+          isTeacher={false}
+          handleLogout={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
         <div>
           <ScrollToTopButton />
           <div className="text-gray-900 mx-[12px] lg:mx-[80px]">
@@ -38,7 +41,7 @@ function LandingPage() {
                   The Leader in Online Virtual interactive Learning
                 </h2>
                 <p className=" font-extrabold  text-3xl lg:text-[44px]">
-                  Interactive & Accessible  Online Courses For All
+                  Interactive & Accessible Online Courses For All
                 </p>
                 <h2 className="text-gray-600 text-lg">
                   Own your future learning new skills online
@@ -110,10 +113,9 @@ function LandingPage() {
         <TopCategoryCarousel categories={categories} />
       </div>
       <div
-        className="w-full top-14 h-full pb-4 bg-cover"
+        className="w-full top-14 h-full pb-4 bg-cover  bg-gradient-to-r from-red-50 to-[#bedbfc]"
         style={{
-          backgroundImage:
-            "url(/assets/bg/course-bg.png), url(/assets/bg/landingbanner2.png)",
+          
           backgroundRepeat: "no-repeat, repeat-y",
           backgroundSize: "auto, cover",
         }}
@@ -207,32 +209,45 @@ function LandingPage() {
         </div>
       </div>
       <div
-        className="w-full top-14 h-full pb-4 bg-cover"
+        className="w-full top-14 h-full pb-4 bg-cover "
         style={{
-          backgroundImage: " url(/assets/bg/banner-bg.png)",
+          backgroundImage: " url(/assets/bg/banner1-bg.png)",
           backgroundRepeat: "no-repeat, repeat-y",
           backgroundSize: "auto, cover",
         }}
       >
         <div className="lg:pt-24 lg:mx-[80px] lg:mb-24 pt-8 mx-[12px] mb-8">
-          <div className="space-y-6">
-            <p className="text-redPal font-medium text-sm lg:text-lg">
-              TOP News
-            </p>
-            <p className="font-bold text-3xl lg:text-4xl">
-              Virtual Interactive Learning
-            </p>
-            <p className="text-gray-500 text-sm lg:text-lg">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget
-              aenean accumsan bibendum gravida maecenas augue elementum et
-              neque. Suspendisse imperdiet.
-            </p>
-
-            <video className=" rounded-2xl ml-0 w-3/4  " autoPlay loop muted preload="auto">
+          <div className="lg:flex lg:space-x-32">
+            <div className="space-y-6">
+              <p className="text-redPal font-medium text-sm lg:text-lg">
+                TOP News
+              </p>
+              <p className="font-bold text-3xl lg:text-4xl">
+                Virtual Interactive Learning
+              </p>
+              <p className="text-gray-500 text-sm lg:text-lg">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget
+                aenean accumsan bibendum gravida maecenas augue elementum et
+                neque. Suspendisse imperdiet.
+              </p>
+            </div>
+            <Link to="/virtual-lab">
+              <button className="mt-2 lg:mt-0 flex items-center text-lightBluePal hover:text-white hover:bg-bluePal border-4 font-medium  border-bluePal py-1 px-4 lg:py-2 rounded-3xl">
+                <span className="mr-2">Enter</span>
+                 Lab
+              </button>
+            </Link>
+          </div>
+          <video
+            className=" mt-4 rounded-2xl ml-0 w-3/4  "
+            autoPlay
+            loop
+            muted
+            preload="auto"
+          >
             <source src="assets/videos/lab2.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          </div>
           <div className="mt-24 space-y-5 ">
             <p className="font-bold text-3xl lg:text-4xl text-center">
               Featured Instructor
@@ -255,9 +270,9 @@ function LandingPage() {
           <SponsorsCarousel sponsors={sponsorsData} />
         </div>
         <div
-          className="w-full top-14 h-full pb-4 bg-cover"
+          className="w-full top-14 h-full pb-4 bg-cover  bg-gradient-to-r from-[#bedbfc] to-red-50 "
           style={{
-            backgroundImage: " url(/assets/bg/landingbanner2.png)",
+           
             backgroundRepeat: "no-repeat, repeat-y",
             backgroundSize: "auto, cover",
           }}

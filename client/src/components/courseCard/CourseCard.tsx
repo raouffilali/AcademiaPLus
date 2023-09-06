@@ -1,5 +1,6 @@
-import { ImgHTMLAttributes } from "react";
+import { ImgHTMLAttributes, useState } from "react";
 import { FaStar } from "react-icons/fa";
+import { motion } from 'framer-motion';
 import { Link, useNavigate } from "react-router-dom";
 import  "./CourseCard.css";
 
@@ -44,7 +45,7 @@ function CourseCard({
     return truncated;
   }
   
-
+  const [isHovered, setIsHovered] = useState(false);
   const handleCourseClick = () => {
     navigate(`/courseDetails/${encodeURIComponent(courseName.replace(/\s/g, "-"))}`, {
       state: {
@@ -63,8 +64,21 @@ function CourseCard({
     });
   };
   
+  const cardVariants = {
+    hover: {
+      scale: 1.05,
+      boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',
+    },
+  };
+  
 
   return (
+    <motion.div
+    className=" space-y-3 duration-500 shadow-sm  "
+    onClick={handleCourseClick}
+    whileHover="hover"
+    variants={cardVariants}
+  >
     
     <div
     
@@ -147,7 +161,7 @@ function CourseCard({
         )}
       </div>
       </div>
-    </div>
+    </div> </motion.div>
   );
 }
 
