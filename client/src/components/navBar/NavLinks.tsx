@@ -7,32 +7,46 @@ import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 const NavLinks = () => {
   const [heading, setHeading] = useState("");
   const [subHeading, setSubHeading] = useState("");
+
   return (
     <>
       {links.map((link, index) => (
-        <div>
-          <div className=" px-3 text-left md:cursor-pointer group">
+        <div key={index}>
+          <div
+            className="px-3 text-left hover:underline hover:underline-offset-4 md:cursor-pointer group"
+            onMouseEnter={() => setHeading(link.name)}
+            onMouseLeave={() => setHeading("")}
+          >
             <h1
-              key={index}
-              className="py-7 md:text-sm text-DarkBluePal hover:text-gray-500 flex justify-between items-center md:pr-0 pr-5 group"
+              className="py-7 md:text-sm text-DarkBluePal hover:text-gray-600 flex justify-between items-center md:pr-0 pr-5 group"
               onClick={() => {
-                heading !== link.name ? setHeading(link.name) : setHeading("");
-                setSubHeading("");
+                if (heading !== link.name) {
+                  setHeading(link.name);
+                  setSubHeading("");
+                } else {
+                  setHeading("");
+                }
               }}
             >
               {link.name}
-
-              <span className="text-md  hover:text-gray-500 md:mt-1 md:ml-2  md:block hidden group-hover:rotate-180 ">
-                <FaAngleDown className=" " aria-hidden="true" />
+              <span
+                className={`text-md hover:text-gray-500 md:mt-1 md:ml-2 md:block hidden ${
+                  heading === link.name ? "rotate-180" : ""
+                }`}
+              >
+                <FaAngleDown aria-hidden="true" />
               </span>
             </h1>
             {link.submenu && (
               <div>
-                <div className="absolute top-14  hidden group-hover:md:block hover:md:block">
+                <div
+                  className="absolute top-14 hidden group-hover:md:block hover:md:block"
+                  onMouseEnter={() => setHeading(link.name)}
+                  onMouseLeave={() => setHeading("")}
+                >
                   <div className="py-3">
                     <div
-                      className="w-4 h-4 left-3 absolute 
-                    mt-1 bg-white rotate-45 "
+                      className="w-4 h-4 left-3 absolute mt-1 bg-white rotate-45 "
                     ></div>
                   </div>
                   <div className="bg-white rounded-sm p-5 grid grid-cols-2 gap-14">
@@ -62,25 +76,22 @@ const NavLinks = () => {
             )}
           </div>
           {/* Mobile menus */}
-          <div
-            className={`
-            ${heading === link.name ? "md:hidden" : "hidden"}
-          `}
-          >
+          <div className={`${heading === link.name ? "md:hidden" : "hidden"}`}>
             {/* sublinks */}
             {link.sublinks.map((slinks, index) => (
-              <div>
-                <div key={index}>
+              <div key={index}>
+                <div>
                   <h1
-                    onClick={() =>
-                      subHeading !== slinks.Head
-                        ? setSubHeading(slinks.Head)
-                        : setSubHeading("")
-                    }
-                    className="py-4 pl-7 font-medium text-gray-600 md:pr-0 pr-5 flex justify-between items-center "
+                    onClick={() => {
+                      if (subHeading !== slinks.Head) {
+                        setSubHeading(slinks.Head);
+                      } else {
+                        setSubHeading("");
+                      }
+                    }}
+                    className="py-4 pl-7 font-medium text-gray-600 md:pr-0 pr-5 flex justify-between items-center"
                   >
                     {slinks.Head}
-
                     <span className="text-md md:mt-1 md:ml-2 inline">
                       {subHeading === slinks.Head ? (
                         <FaChevronUp />

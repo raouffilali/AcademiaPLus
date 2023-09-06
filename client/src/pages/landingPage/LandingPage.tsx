@@ -33,19 +33,19 @@ function LandingPage() {
           <ScrollToTopButton />
           <div className="text-gray-900 mx-[12px] lg:mx-[80px]">
             <div className="lg:flex justify-between flex-row space-x-4 lg:space-x-10">
-              <div className="lg:space-y-8 xl:space-y-10 2xl:space-y-10 xl:mt-52  space-y-4 mt-20 lg:mt-32 ">
+              <div className="lg:space-y-8 xl:space-y-10 2xl:space-y-10 xl:mt-52  space-y-4 mt-20 lg:mt-36   ">
                 <h2 className="text-gray-600 lg:text-lg">
                   The Leader in Online Virtual interactive Learning
                 </h2>
-                <p className=" font-extrabold text-3xl lg:text-[44px]">
-                  Interactive & Accessible Online Courses For All
+                <p className=" font-extrabold  text-3xl lg:text-[44px]">
+                  Interactive & Accessible  Online Courses For All
                 </p>
                 <h2 className="text-gray-600 text-lg">
                   Own your future learning new skills online
                 </h2>
-                <div className=" lg:space-x-4 mt-6  space-y-2 lg:justify-start ">
+                <div className=" lg:space-x-4 mt-6  space-y-2 lg:space-y-0 xl:space-y-0 lg:justify-start ">
                   <Link to="/subscription">
-                    <button className="bg-redPal  lg:mb-0 mb-2 justify-center items-center hover:shadow-xl  text-white font-medium py-2 px-16 rounded-xl">
+                    <button className="bg-redPal border-2 border-redPal  lg:mb-0 mb-2 justify-center items-center hover:shadow-xl  text-white font-medium py-2 px-16 rounded-xl">
                       Try a Demo
                     </button>
                   </Link>
@@ -228,12 +228,10 @@ function LandingPage() {
               neque. Suspendisse imperdiet.
             </p>
 
-            <iframe
-              src="https://www.youtube.com/embed/fqh-tEoorqo"
-              title="Video"
-              className="rounded-2xl w-[245px] lg:w-[760px] lg:h-[415px]"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            ></iframe>
+            <video className=" rounded-2xl ml-0 w-3/4  " autoPlay loop muted preload="auto">
+            <source src="assets/videos/lab2.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
           </div>
           <div className="mt-24 space-y-5 ">
             <p className="font-bold text-3xl lg:text-4xl text-center">

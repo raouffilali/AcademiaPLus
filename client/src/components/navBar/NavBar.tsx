@@ -12,7 +12,8 @@ import { AiOutlineHeart } from "react-icons/ai";
 interface NavBarProps {
   isAuthenticated: boolean;
   isTeacher: boolean;
-  isFixed?: boolean; 
+  isFixed?: boolean;
+  isInsideVirtualLab?: boolean;
   handleLogout: () => void;
   // Add other necessary props
 }
@@ -23,12 +24,15 @@ const LANGUAGES: ILanguage[] = [
   { id: 3, label: "En" },
 ];
 
-const NavBarV2: React.FC<NavBarProps> = ({
+const NavBar: React.FC<NavBarProps> = ({
   handleLogout,
   isAuthenticated,
   isTeacher,
   isFixed,
+  isInsideVirtualLab,
 }) => {
+  const [isSimulationMenuOpen, setIsSimulationMenuOpen] = useState(false);
+  const [isResourcesMenuOpen, setIsResourcesMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false); // Separate state for language menu
@@ -66,10 +70,10 @@ const NavBarV2: React.FC<NavBarProps> = ({
 
   return (
     <nav
-    className={`navbar ${isScrolled ? "scrolled" : ""} ${
-      isFixed ? "lg:fixed " : "" // Conditionally add the "fixed" class
-    } w-full`}
-    style={{ zIndex: 1 }}
+      className={`navbar ${isScrolled ? "scrolled" : ""} ${
+        isFixed ? "lg:fixed  " : "" // Conditionally add the "fixed" class
+      } w-full`}
+      style={{ zIndex: 1 }}
     >
       <div className="flex items-center lg:mx-[80px] ">
         <div className="z-50 md:w-auto w-full flex">
@@ -85,26 +89,161 @@ const NavBarV2: React.FC<NavBarProps> = ({
             {open ? <FaTimes /> : <FaBars />}
           </div>
         </div>
-        <ul className="md:flex hidden items-center gap-2">
-          <NavLinks />
+        {isInsideVirtualLab ? ( // Conditionally render Simulation and Resources menus
+          <>
+            {/* Simulation Dropdown */}
+      <div
+        className="relative inline-block"
+        onMouseEnter={() => setIsSimulationMenuOpen(true)}
+        onMouseLeave={() => setIsSimulationMenuOpen(false)}
+      >
+        <button
+          type="button"
+          className="inline-flex items-center justify-center rounded-md px-2 py-2 text-sm font-Lato text-gray-700 hover:text-gray-500 focus:outline-none"
+        >
+          Simulation
+          <FaAngleDown
+            className={`ml-1 transition-transform duration-200 transform ${
+              isSimulationMenuOpen ? "rotate-180" : "rotate-0"
+            }`}
+            aria-hidden="true"
+            size={12}
+          />
+        </button>
 
-          <div className="hidden md:flex items-center">
-            <div className={`searchBar relative`}>
-              <input
-                className={`bg-white ${
-                  isScrolled ? " border border-gray-200" : "border-gray-300"
-                }  border-solid text-sm border-1 rounded-[15px] lg:w-[370px] text-gray-800 px-4 py-2 focus:outline-none`}
-                type="text"
-                placeholder="Search course .."
-              />
-              <div className="w-4 h-4 absolute top-1/2 transform -translate-y-1/2 right-3">
-                <FaSearch size={18} color="#b3b3b3" />
-              </div>
+        {isSimulationMenuOpen && (
+          <div
+            className="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+            onMouseEnter={() => setIsSimulationMenuOpen(true)}
+            onMouseLeave={() => setIsSimulationMenuOpen(false)}
+          >
+            <div className="py-4 px-1 rounded" role="none">
+              {/* Simulation menu content */}
+              <Link to="/find-simulations">
+                      <button className="block w-full text-left px-4 py-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
+                        Find Simulations
+                      </button>
+                    </Link>
+                    <Link to="/course-packages">
+                      <button className="block w-full text-left px-4 py-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
+                        Course Packages
+                      </button>
+                    </Link>
+                    <Link to="/pricing">
+                      <button className="block w-full text-left px-4 py-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
+                        Pricing
+                      </button>
+                    </Link>
             </div>
           </div>
-        </ul>
+        )}
+      </div>
 
-        <div className="md:hidden lg:flex hidden">
+      {/* Resources Dropdown */}
+      <div
+        className="relative inline-block"
+        onMouseEnter={() => setIsResourcesMenuOpen(true)}
+        onMouseLeave={() => setIsResourcesMenuOpen(false)}
+      >
+        <button
+          type="button"
+          className="inline-flex items-center justify-center rounded-md px-2 py-2 text-sm font-Lato text-gray-700 hover:text-gray-500 focus:outline-none"
+        >
+          Resources
+          <FaAngleDown
+            className={`ml-1 transition-transform duration-200 transform ${
+              isResourcesMenuOpen ? "rotate-180" : "rotate-0"
+            }`}
+            aria-hidden="true"
+            size={12}
+          />
+        </button>
+
+        {isResourcesMenuOpen && (
+          <div
+            className="origin-top-left absolute left-0 mt-2 w-[600px] pr-6 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+            onMouseEnter={() => setIsResourcesMenuOpen(true)}
+            onMouseLeave={() => setIsResourcesMenuOpen(false)}
+          >
+            <div className="p-4">
+              {/* Resources menu content */}
+              <div className="p-4">
+                    <div className="grid grid-cols-5 gap-4" role="none">
+                      <div className="col-span-3">
+                        <p className="text-md font-semibold text-blueLink">
+                          AcademiaLab Resources
+                        </p>
+                        <p className="text-sm text-gray-700">
+                          Check out all the AcademiaLab resources that can
+                          accelerate your learning.
+                        </p>
+                      </div>
+                      <div className="col-span-1 px-12">
+                        <ul className="text-sm text-gray-700">
+                          <li className="hover:bg-gray-100 hover:text-blueLink p-4">
+                            <Link to="/blog">Blog</Link>
+                          </li>
+                          <li className="hover:bg-gray-100 hover:text-blueLink p-4">
+                            <Link to="/events">Events</Link>
+                          </li>
+                          <li className="hover:bg-gray-100 hover:text-blueLink p-4">
+                            <Link to="/case-studies">Case Studies</Link>
+                          </li>
+                          <li className="hover:bg-gray-100 hover:text-blueLink p-4">
+                            <Link to="/webinars">Webinars</Link>
+                          </li>
+                          <li className="hover:bg-gray-100 hover:text-blueLink p-4">
+                            <Link to="/podcast">Podcast</Link>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="col-span-1 px-16">
+                        <ul className="text-sm text-gray-700">
+                          <li className="hover:bg-gray-100 hover:text-blueLink p-4  ">
+                            <Link to="/news">News</Link>
+                          </li>
+                          <li className="hover:bg-gray-100 hover:text-blueLink p-4">
+                            <Link to="/guides">Guides</Link>
+                          </li>
+                          <li className="hover:bg-gray-100 hover:text-blueLink p-4">
+                            <Link to="/research">Research</Link>
+                          </li>
+                          <li className="hover:bg-gray-100 hover:text-blueLink p-4">
+                            <Link to="/3d-assets">3D Assets</Link>
+                          </li>
+                          <li className="hover:bg-gray-100 hover:text-blueLink p-4">
+                            <Link to="/contact-us">Contact Us</Link>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        )}
+      </div>
+          </>
+        ) : (
+          <ul className="md:flex hidden items-center gap-2">
+            <NavLinks />
+            <div className="hidden md:flex items-center">
+              <div className={`searchBar relative`}>
+                <input
+                  className={`bg-white ${
+                    isScrolled ? " border border-gray-200" : "border-gray-300"
+                  }  border-solid text-sm border-1 rounded-[15px] lg:w-[370px] text-gray-800 px-4 py-2 focus:outline-none`}
+                  type="text"
+                  placeholder="Search course .."
+                />
+                <div className="w-4 h-4 absolute top-1/2 transform -translate-y-1/2 right-3">
+                  <FaSearch size={18} color="#b3b3b3" />
+                </div>
+              </div>
+            </div>
+          </ul>
+        )}
+
+        <div className="md:hidden  space-x-3 lg:flex hidden">
           {isAuthenticated ? (
             <>
               {isTeacher ? (
@@ -179,23 +318,23 @@ const NavBarV2: React.FC<NavBarProps> = ({
                 {isAvatarMenuOpen && (
                   <div className="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1" role="none">
-                    {isTeacher ? (
-                      <Link to="/edit-profile-instructor">
-                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
-                          Profile
-                        </button>
-                      </Link>
+                      {isTeacher ? (
+                        <Link to="/edit-profile-instructor">
+                          <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
+                            Profile
+                          </button>
+                        </Link>
                       ) : (
                         <Link to="/edit-profile-student">
-                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
-                          Profile
-                        </button>
-                      </Link>
+                          <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
+                            Profile
+                          </button>
+                        </Link>
                       )}
                       {isTeacher ? (
                         <Link to="/instructor-dashboard">
                           <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
-                          My Dashboard
+                            My Dashboard
                           </button>
                         </Link>
                       ) : (
@@ -205,31 +344,31 @@ const NavBarV2: React.FC<NavBarProps> = ({
                           </button>
                         </Link>
                       )}
-                       {isTeacher ? (
-                      <Link to="/earnings">
-                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
-                          Earnings
-                        </button>
-                      </Link>
+                      {isTeacher ? (
+                        <Link to="/earnings">
+                          <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
+                            Earnings
+                          </button>
+                        </Link>
                       ) : (
                         <Link to="/subscriptions">
-                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
-                          Subscriptions
-                        </button>
-                      </Link>
+                          <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
+                            Subscriptions
+                          </button>
+                        </Link>
                       )}
-                       {isTeacher ? (
-                      <Link to="/instructor-settings">
-                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
-                          settings
-                        </button>
-                      </Link>
+                      {isTeacher ? (
+                        <Link to="/instructor-settings">
+                          <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
+                            settings
+                          </button>
+                        </Link>
                       ) : (
                         <Link to="/student-settings">
-                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
-                          settings
-                        </button>
-                      </Link>
+                          <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
+                            settings
+                          </button>
+                        </Link>
                       )}
                       <button
                         className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none"
@@ -404,4 +543,4 @@ const NavBarV2: React.FC<NavBarProps> = ({
   );
 };
 
-export default NavBarV2;
+export default NavBar;

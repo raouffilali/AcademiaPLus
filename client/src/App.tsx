@@ -27,11 +27,12 @@ import PdfSummaries from "./pages/academicfieldPage/PdfSummeries/PdfSummaries";
 import GrpChat from "./pages/academicfieldPage/grpChat/GrpChat";
 import GamesPage from "./pages/academicfieldPage/GamesPage/GamesPage";
 import CheckoutComp from "./components/checkoutComponent/CheckoutComp";
+import VirtualLab from "./pages/VirtualLab/VirtualLab";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
+      <Route path="/" element={<VirtualLab />} />
       <Route path="/instructor-dashboard" element={<InstructorDashboard />} />
       <Route path="/student-dashboard" element={<StudentDashboard />} />
       <Route path="/login" element={<LoginPage />} />
