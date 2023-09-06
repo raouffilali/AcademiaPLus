@@ -54,7 +54,7 @@ export const courses = [
     rating: 4.6,
     views: 9,
     category: "Category 3",
-    price: 2200
+    price: 0
   },
   {
     courseName: "C# Developers Double Your Coding Speed with Visual Studio",

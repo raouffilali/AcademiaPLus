@@ -145,8 +145,9 @@ function CourseDetails() {
                 videoUrl="https://www.youtube.com/embed/6qLq7xkodA8&list=PLtS8Ubq2bIlUWixdH_1Q2yzZh8QJSBVmT"
                 onAddToCart={function (): void {
                   throw new Error("Function not implemented.");
-                }}
-              />
+                } } onAddToWishlist={function (): void {
+                  throw new Error("Function not implemented.");
+                } }              />
               {/* Elements below EnrollCourse */}
               <div className="space-y-6 mt-6 flex-col mb-10">
                 <div className="bg-white rounded-lg  border border-neutral-200">

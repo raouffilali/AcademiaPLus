@@ -120,7 +120,9 @@ function EducationalCoursesPage() {
 
   return (
     <>
-      <NavBar />
+      <NavBar isAuthenticated={false} isTeacher={false} handleLogout={function (): void {
+        throw new Error("Function not implemented.");
+      } } />
       <div style={{ fontFamily: "Tajawal" }}>
         <div className="lg:hidden md:hidden sm:hidden">
           <video className="mt-6 h-64 w-full " autoPlay muted preload="auto">

@@ -18,7 +18,9 @@ function SubscriptionPackagesPage() {
 
   return (
     <>
-      <NavBar />
+      <NavBar isAuthenticated={false} isTeacher={false} handleLogout={function (): void {
+        throw new Error("Function not implemented.");
+      } } />
       <PathPage />
       <div className="w-full  top-14 h-full bg-slate-50 bg-[url(assets/bg/academic_bg.png)]">
         <div className=" container  p-6 flex flex-col justify-start items-center mx-auto mt-10">
@@ -162,8 +164,7 @@ function SubscriptionPackagesPage() {
       </div>
       {/* Stats section */}
       <div className="mx-[80px]">
-        <StatsContainer />
-
+        
         <h1 className="  mt-10 text-[#565454] text-center text-2xl font-extrabold ">
           Platform Features
         </h1>

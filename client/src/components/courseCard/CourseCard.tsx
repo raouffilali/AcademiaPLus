@@ -10,7 +10,7 @@ export interface CourseCardProps {
   rating: number;
   views: number;
   category: string;
-  price: string;
+  price: number;
   courseThumbnailSrc: string;
   instructorJob: string;
   numLessons: number;

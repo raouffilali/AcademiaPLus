@@ -26,11 +26,13 @@ import ExamsPage from "./pages/academicfieldPage/examsPage/ExamsPage";
 import PdfSummaries from "./pages/academicfieldPage/PdfSummeries/PdfSummaries";
 import GrpChat from "./pages/academicfieldPage/grpChat/GrpChat";
 import GamesPage from "./pages/academicfieldPage/GamesPage/GamesPage";
+import CheckoutComp from "./components/checkoutComponent/CheckoutComp";
+import VirtualLab from "./pages/VirtualLab/VirtualLab";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
+      <Route path="/" element={<VirtualLab />} />
       <Route path="/instructor-dashboard" element={<InstructorDashboard />} />
       <Route path="/student-dashboard" element={<StudentDashboard />} />
       <Route path="/login" element={<LoginPage />} />
@@ -43,6 +45,7 @@ function App() {
       <Route path="/wishList" element={<WishList />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/category" element={<CategoryPage />} />
+      <Route path="/checkout" element={<CheckoutComp />} />
       <Route path="/courseDetails/:courseName" element={<CourseDetails />} />
       <Route
         path="/course-details/:courseId"
