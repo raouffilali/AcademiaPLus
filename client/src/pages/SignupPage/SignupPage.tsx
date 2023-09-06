@@ -8,6 +8,7 @@ interface FormData {
   firstName: string;
   lastName: string;
   email: string;
+  phone: string;
   password: string;
   agreedToTerms: boolean;
 }
@@ -16,13 +17,13 @@ function SignupPage() {
   // const [agreedToTerms, setAgreedToTerms] = useState(false);
   // const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [activeInput, setActiveInput] = useState("");
   const [userFormData, setUserFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
     email: "",
+    phone: "",
     password: "",
     agreedToTerms: false,
   });
@@ -45,6 +46,11 @@ function SignupPage() {
 
     if (userFormData.email.trim() === "") {
       setErrorMessage("Please enter your Email.");
+      hasError = true;
+    }
+
+    if (userFormData.phone.trim() === "") {
+      setErrorMessage("Please enter your Phone Number.");
       hasError = true;
     }
 
@@ -93,6 +99,13 @@ function SignupPage() {
     setUserFormData({
       ...userFormData,
       lastName: event.target.value,
+    });
+  };
+
+  const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUserFormData({
+      ...userFormData,
+      phone: event.target.value,
     });
   };
 
@@ -269,6 +282,23 @@ function SignupPage() {
               />
             </div>
             <div>
+              <label htmlFor="phone" className="text-gray-500 mb-2 block">
+                Phone Number
+              </label>
+              <input
+                type="number"
+                id="phone"
+                placeholder="phone number: 07xx-xx-xx-xx"
+                className={`rounded-md px-4 py-3 w-full border ${
+                  activeInput === "phone" ? "border-redPal" : "border-red-100"
+                } ::placeholder text-sm focus:border-redPal focus:outline-none`}
+                value={userFormData.phone}
+                onChange={handlePhoneChange}
+                onFocus={() => handleInputFocus("phone")}
+                onBlur={handleInputBlur}
+              />
+            </div>
+            <div>
               <label htmlFor="password" className="text-gray-500 mb-2 block">
                 Password
               </label>
@@ -353,7 +383,7 @@ function SignupPage() {
                 type="checkbox"
                 id="termsCheckbox"
                 className="form-checkbox h-4 w-4  accent-red-500 checked:bg-red-500 focus:ring-red-500"
-                checked={userFormData.agreedToTerms} // Use userFormData.agreedToTerms here
+                checked={userFormData.agreedToTerms} // Use userFormData.agreedToTerms
                 onChange={handleCheckboxChange}
               />
 
