@@ -8,8 +8,9 @@ export interface IStudent {
   password: string;
   email: string;
   avatar: string;
+  coverPicture: string;
   verified: boolean;
-  verificationCode: string;
+  verificationCode: number | undefined;
   enrolledCourses: string[];
   completedCourses: string[];
   achievements: string[];
@@ -38,7 +39,9 @@ export interface IStudent {
     zipCode: string;
     country: string;
   };
+  multipleFileUpload: [];
   generateJWT(): string;
+  tokenVersion: number;
   comparePassword(enteredPassword: string): Promise<boolean>;
 }
 
@@ -67,17 +70,23 @@ const userSchema = new Schema<IStudent>({
     },
   },
   avatar: { type: String },
+  coverPicture: { type: String },
   verified: { type: Boolean, default: false },
-  verificationCode: { type: String, default: "" },
+  verificationCode: { type: Number },
   enrolledCourses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
   completedCourses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
   achievements: [{ type: Schema.Types.ObjectId, ref: "Achievement" }],
   progress: [{ type: Schema.Types.ObjectId, ref: "Progress" }],
   phone: {
     type: String,
+    required: false,
+    unique: true,
     validate: {
-      validator: (value: string) => /^[0-9]{10}$/.test(value),
-      message: "Phone number must be a 10-digit number.",
+      // password must contain 10 digits and start with 07 or 07 or 05
+      validator: (value: string) =>
+        /^(07|07|05)[0-9]{8}$/.test(value),
+      message: "Phone number must be a 10-digit number and start with 07,06,05.",
+
     },
   },
   birthday: { type: Date },
@@ -112,7 +121,9 @@ const userSchema = new Schema<IStudent>({
       },
     },
     country: { type: String },
+    multipleFileUpload: [{ type: String }],
   },
+  tokenVersion: { type: Number, default: 0 },
 });
 
 // hash the password
