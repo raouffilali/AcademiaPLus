@@ -1,9 +1,18 @@
 import uploadFiles from "../../middleware/uploadFilesMiddleware";
 import uploadPicture from "../../middleware/uploadPictureMiddleware";
 import Student from "../../models/Users/Student";
-import { fileRemover, filesRemover, generateCode } from "../../utils/index";
+import {
+  fileRemover,
+  filesRemover,
+  generateCode,
+  // generateOTP,
+} from "../../utils/index";
 import formData from "form-data";
 import Mailgun from "mailgun.js";
+
+// import fs from "fs";
+import { messageVerificationEmail } from "../../utils/messageVerificationEmail";
+//! import twilio from "twilio";
 
 // Custom error class for endpoint not found
 class NotFoundError extends Error {
@@ -18,9 +27,13 @@ class NotFoundError extends Error {
 // ?WORKING
 
 const registerUser = async (req, res, next) => {
+  // ! TWILIO IS NOT WORKING
+  // const ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
+  // const AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
+  // const twilioClient = twilio(ACCOUNT_SID!, AUTH_TOKEN!);
+
   const API_KEY = process.env.MAILGUN_API_KEY;
   const DOMAIN = process.env.MAILGUN_DOMAIN;
-
   const mailgun = new Mailgun(formData);
   const client = mailgun.client({ username: "api", key: API_KEY! });
   try {
@@ -68,17 +81,48 @@ const registerUser = async (req, res, next) => {
       password,
     });
 
+    // ! PHONE VERIFICATION IS NOT WORKING
+    // if (phone) {
+    //   const verificationOTP = generateOTP();
+    //   newUser.verificatioOTP = verificationOTP;
+    //   await newUser.save();
+    //   const sendingPhone: string = "+15085910975";
+    //   const recivingPhone: string = `+213${phone.slice(1)}`;
+
+    //   await twilioClient.messages
+    //     .create({
+    //       body: `Your Academia+ verification code is ${verificationOTP}`,
+    //       from: sendingPhone,
+    //       // messagingServiceSid: "VA253423e0139f345075645ac99dfc51b4",
+    //       to: recivingPhone,
+    //     })
+    //     .then((message) => {
+    //       console.log(message);
+    //       return res.status(201).json({
+    //         message: "Please check your phone for verification instructions.",
+    //       });
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // }
+    // ! ! PHONE VERIFICATION IS NOT WORKING
+
     const verificationCode = generateCode(); // Implement a function to generate a random code.
     newUser.verificationCode = verificationCode;
+    firstName;
+    lastName;
     await newUser.save();
 
     // in production will be https://academia-plus.me/verify?code=${verificationCode}
     const verificationLink = `http://localhost:5000/api/student/verify?code=${verificationCode}`;
+    // const htmlContent = fs.readFileSync( "../../utils/messageVerificationEmail.html", "utf8");
     const messageData = {
-      from: "Academia+ Platform <support@academia-plus.me>",
+      from: "Academia+  <support@academia-plus.me>",
       to: email,
       subject: "Email Verification",
-      text: `Click the following link to verify your email: ${verificationLink}`,
+      html: messageVerificationEmail(verificationLink, firstName, lastName),
+      // html : htmlContent
     };
 
     // Generate a JWT token
@@ -405,11 +449,14 @@ const updateEmail = async (req, res, next) => {
       await user.save();
       // in production will be https://academia-plus.me/verify?code=${verificationCode}
       const verificationLink = `http://localhost:5000/api/student/verify?code=${verificationCode}`;
+      // const htmlContent = fs.readFileSync( "../../utils/messageVerificationEmail.html", "utf8");
+
       const messageData = {
         from: "Academia+ Platform <support@academia-plus.me>",
         to: email,
         subject: "Email Verification",
         text: `Click the following link to verify your email: ${verificationLink}`,
+        // html: htmlContent
       };
       await client.messages.create(DOMAIN!, messageData);
 
@@ -439,13 +486,11 @@ const updateEmail = async (req, res, next) => {
         billingAddress: user.billingAddress,
       };
       // Return the sanitized user data along with the token
-      return res
-        .status(201)
-        .json({
-          user: sanitizedUser,
-          message:
-            "Email updated successfully. Please check your email for verification instructions.",
-        });
+      return res.status(201).json({
+        user: sanitizedUser,
+        message:
+          "Email updated successfully. Please check your email for verification instructions.",
+      });
     }
   } catch (error) {
     next(error);

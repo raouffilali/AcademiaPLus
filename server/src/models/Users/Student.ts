@@ -10,7 +10,9 @@ export interface IStudent {
   avatar: string;
   coverPicture: string;
   verified: boolean;
+  phoneVerified : boolean;
   verificationCode: number | undefined;
+  verificatioOTP : number | undefined;
   enrolledCourses: string[];
   completedCourses: string[];
   achievements: string[];
@@ -72,7 +74,9 @@ const userSchema = new Schema<IStudent>({
   avatar: { type: String },
   coverPicture: { type: String },
   verified: { type: Boolean, default: false },
+  phoneVerified : { type: Boolean, default: false },
   verificationCode: { type: Number },
+  verificatioOTP : { type: Number },
   enrolledCourses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
   completedCourses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
   achievements: [{ type: Schema.Types.ObjectId, ref: "Achievement" }],
@@ -83,10 +87,9 @@ const userSchema = new Schema<IStudent>({
     unique: true,
     validate: {
       // password must contain 10 digits and start with 07 or 07 or 05
-      validator: (value: string) =>
-        /^(07|07|05)[0-9]{8}$/.test(value),
-      message: "Phone number must be a 10-digit number and start with 07,06,05.",
-
+      validator: (value: string) => /^(07|07|05)[0-9]{8}$/.test(value),
+      message:
+        "Phone number must be a 10-digit number and start with 07,06,05.",
     },
   },
   birthday: { type: Date },
@@ -138,7 +141,7 @@ userSchema.pre("save", async function (next) {
 // Define the methods on the schema
 userSchema.methods.generateJWT = async function (): Promise<string> {
   return await sign({ id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: "3d",
+    expiresIn: "1d",
   });
 };
 
