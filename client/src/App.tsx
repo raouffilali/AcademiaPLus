@@ -32,7 +32,7 @@ import VirtualLab from "./pages/VirtualLab/VirtualLab";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<VirtualLab />} />
+      <Route path="/" element={<LandingPage />} />
       <Route path="/instructor-dashboard" element={<InstructorDashboard />} />
       <Route path="/student-dashboard" element={<StudentDashboard />} />
       <Route path="/login" element={<LoginPage />} />
@@ -63,6 +63,7 @@ function App() {
       <Route path="/university" element={<UniversityPage />} />
       
       <Route path="/subscription" element={<SubscriptionPackagesPage />} />
+      <Route path="/virtual-lab" element={<VirtualLab />} />
     </Routes>
   );
 }
