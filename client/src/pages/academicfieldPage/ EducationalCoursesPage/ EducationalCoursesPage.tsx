@@ -23,6 +23,7 @@ interface Course {
   instructorAvtr: string;
   instructorJob: string;
   lab?: boolean;
+  labUrl?:string;
 }
 
 function EducationalCoursesPage() {
@@ -69,7 +70,7 @@ function EducationalCoursesPage() {
     // Logic to filter courses based on selectedYear, selectedSubject, and lab
     let filtered: Course[] = [];
     if (selectedYear === "السنة الأولى" && selectedSubject === "الرياضيات") {
-      filtered = [...courses_year1_math, ...courses_year1_arabic];
+      filtered = [...courses_year1_math];
     } else if (
       selectedYear === "السنة الأولى" &&
       selectedSubject === "العربية"
@@ -183,8 +184,7 @@ function EducationalCoursesPage() {
                   duration={""}
                   year={course.year}
                   subject={course.subject}
-                  lab={course.lab}
-                />
+                  lab={course.lab} labUrl={course.labUrl}                />
               </Link>
             ))}
           </div>

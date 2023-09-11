@@ -11,6 +11,9 @@ export const courses_year1_math = [
     instructor: "Ardjane Sanaa",
     instructorAvtr: "/assets/instructor/user8.jpg",
     instructorJob: "math professor",
+    lab: true,
+    labUrl:
+      "https://phet.colorado.edu/sims/html/vector-addition/latest/vector-addition_all.html?locale=ar_SA",
   },
   {
     id: 102,
@@ -27,7 +30,7 @@ export const courses_year1_math = [
   },
   {
     id: 103,
-    title: "دورة مقدمة في الجبر",
+    title: "استبدال العبارات الجبرية",
     imageSrc: "/assets/academicfield/courseThumbnails/math.jpg",
     rating: 0,
     year: "السنة الأولى",
@@ -37,10 +40,13 @@ export const courses_year1_math = [
     instructor: "joe dohn",
     instructorAvtr: "/assets/instructor/user1.jpg",
     instructorJob: "math professor",
+    lab: true,
+    labUrl:
+      "https://phet.colorado.edu/sims/html/expression-exchange/latest/expression-exchange_all.html?locale=ar_SA",
   },
   {
     id: 104,
-    title: "دورة مقدمة في الجبر",
+    title: "الاعداد",
     imageSrc: "/assets/academicfield/courseThumbnails/math1.jpg",
     rating: 2.8,
     year: "السنة الأولى",
@@ -50,6 +56,9 @@ export const courses_year1_math = [
     instructor: "joe dohn",
     instructorAvtr: "/assets/instructor/user7.jpg",
     instructorJob: "math professor",
+    lab: true,
+    labUrl:
+      "https://phet.colorado.edu/sims/html/number-play/latest/number-play_all.html?locale=ar_SA",
   },
   {
     id: 105,
@@ -62,7 +71,7 @@ export const courses_year1_math = [
     views: 2,
     instructor: "joe dohn",
     instructorAvtr: "/assets/instructor/user.jpg",
-   instructorJob: "math professor",
+    instructorJob: "math professor",
   },
   {
     id: 106,
@@ -79,7 +88,7 @@ export const courses_year1_math = [
   },
   {
     id: 107,
-    title: "دورة مقدمة في الجبر",
+    title: "دورة مقدمة في الكسور",
     imageSrc: "/assets/courses/course2.jpg",
     rating: 3.8,
     year: "السنة الأولى",
@@ -89,6 +98,9 @@ export const courses_year1_math = [
     instructor: "joe dohn",
     instructorAvtr: "/assets/instructor/user8.jpg",
     instructorJob: "math professor",
+    lab: true,
+    labUrl:
+      "https://phet.colorado.edu/sims/html/fractions-intro/latest/fractions-intro_all.html?locale=ar_SA",
   },
   {
     id: 108,
