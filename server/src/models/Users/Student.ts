@@ -14,9 +14,9 @@ export interface IStudent {
   verificationCode: number | undefined;
   verificatioOTP : number | undefined;
   enrolledCourses: string[];
-  completedCourses: string[];
-  achievements: string[];
-  progress: string[];
+  purchasedCourses: string[];
+  courseProgress: [{ courseId: string; progress: number }];
+  completedCourses: [{ courseId: string; completedOn: Date }];
   phone: string;
   birthday: Date;
   country: string;
@@ -77,10 +77,10 @@ const userSchema = new Schema<IStudent>({
   phoneVerified : { type: Boolean, default: false },
   verificationCode: { type: Number },
   verificatioOTP : { type: Number },
-  enrolledCourses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
-  completedCourses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
-  achievements: [{ type: Schema.Types.ObjectId, ref: "Achievement" }],
-  progress: [{ type: Schema.Types.ObjectId, ref: "Progress" }],
+  enrolledCourses: [{ type: Schema.Types.ObjectId, ref: 'Course' }],
+  courseProgress: [{ courseId: { type: Schema.Types.ObjectId, ref: 'Course' }, progress: Number }],
+  purchasedCourses: [{ type: Schema.Types.ObjectId, ref: 'Course' }],
+  completedCourses: [{ courseId: { type: Schema.Types.ObjectId, ref: 'Course' }, completedOn: Date }],
   phone: {
     type: String,
     required: false,

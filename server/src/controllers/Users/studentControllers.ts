@@ -251,8 +251,7 @@ const userProfile = async (req, res, next) => {
         verificationCode: user.verificationCode,
         enrolledCourses: user.enrolledCourses,
         completedCourses: user.completedCourses,
-        achievements: user.achievements,
-        progress: user.progress,
+
         phone: user.phone,
         birthday: user.birthday,
         country: user.country,
@@ -332,8 +331,6 @@ const updateProfile = async (req, res, next) => {
         verificationCode: user.verificationCode,
         enrolledCourses: user.enrolledCourses,
         completedCourses: user.completedCourses,
-        achievements: user.achievements,
-        progress: user.progress,
         phone: user.phone,
         birthday: user.birthday,
         country: user.country,
@@ -390,8 +387,7 @@ const updatePassword = async (req, res, next) => {
         verificationCode: user.verificationCode,
         enrolledCourses: user.enrolledCourses,
         completedCourses: user.completedCourses,
-        achievements: user.achievements,
-        progress: user.progress,
+
         phone: user.phone,
         birthday: user.birthday,
         country: user.country,
@@ -472,8 +468,7 @@ const updateEmail = async (req, res, next) => {
         verificationCode: user.verificationCode,
         enrolledCourses: user.enrolledCourses,
         completedCourses: user.completedCourses,
-        achievements: user.achievements,
-        progress: user.progress,
+
         phone: user.phone,
         birthday: user.birthday,
         country: user.country,
