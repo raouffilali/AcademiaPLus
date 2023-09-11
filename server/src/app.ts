@@ -7,6 +7,7 @@ import createHttpError, { isHttpError } from "http-errors";
 import morgan from "morgan";
 import env from "./utils/validateEnv";
 import studentRouter from "./routes/studentRoutes";
+import courseRouter from "./routes/courseRoutes";
 import {
   errorResponseHandler,
   invalidPathHandler,
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/student", studentRouter);
+app.use("/api/course", courseRouter);
 
 app.use(invalidPathHandler);
 app.use(errorResponseHandler);

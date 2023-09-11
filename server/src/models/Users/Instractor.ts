@@ -25,6 +25,7 @@ export interface IInstractor extends IStudent {
   qualifications: string;
   coverLetter: string;
   cv : string;
+  status : string;
 }
 
 const UserSchema = new Schema<IInstractor>({
@@ -45,10 +46,10 @@ const UserSchema = new Schema<IInstractor>({
   qualifications: { type: String },
   coverLetter: { type: String },
   cv : { type: String },
-  enrolledCourses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
-  completedCourses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
-  achievements: [{ type: Schema.Types.ObjectId, ref: "Achievement" }],
-  progress: [{ type: Schema.Types.ObjectId, ref: "Progress" }],
+  enrolledCourses: [{ type: Schema.Types.ObjectId, ref: 'Course' }],
+  courseProgress: [{ courseId: { type: Schema.Types.ObjectId, ref: 'Course' }, progress: Number }],
+  purchasedCourses: [{ type: Schema.Types.ObjectId, ref: 'Course' }],
+  completedCourses: [{ courseId: { type: Schema.Types.ObjectId, ref: 'Course' }, completedOn: Date }],
   birthday: { type: Date },
   country: { type: String },
   addressLine1: { type: String },
@@ -61,7 +62,7 @@ const UserSchema = new Schema<IInstractor>({
       message: "Zip code must be a 5-digit number.",
     },
   },
-  profileImage: { type: String },
+  avatar: { type: String },
   socialProfiles: {
     twitter: { type: String },
     facebook: { type: String },
@@ -95,6 +96,11 @@ const UserSchema = new Schema<IInstractor>({
       amount: { type: Number },
     },
   ],
+  status: {
+    type: String,
+    enum: ['pending', 'approved', 'rejected'],
+    default: 'pending',
+  },
 });
 
 export default model<IInstractor>("Instractor", UserSchema);

@@ -17,8 +17,15 @@ const verifyEmail = async (req, res, next) => {
     student.verified = true;
     student.verificationCode = undefined;
     await student.save();
+    console.log(
+      ` ${student.firstName} ${student.lastName}'s email has been verified`
+    );
 
-    return res.status(200).json({ message: "Email verified successfully" });
+    return res
+      .status(200)
+      .json({
+        message: `Congrats 🎉 ${student.firstName} ${student.lastName} your email has been verified, ENJOY!`,
+      });
   } catch (error) {
     next(error);
   }
