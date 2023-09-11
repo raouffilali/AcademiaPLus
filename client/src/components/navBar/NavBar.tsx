@@ -15,7 +15,7 @@ interface NavBarProps {
   isFixed?: boolean;
   isInsideVirtualLab?: boolean;
   handleLogout: () => void;
-  // Add other necessary props
+  
 }
 
 const LANGUAGES: ILanguage[] = [
@@ -71,7 +71,7 @@ const NavBar: React.FC<NavBarProps> = ({
   return (
     <nav
       className={`navbar ${isScrolled ? "scrolled" : ""} ${
-        isFixed ? "lg:fixed  " : "" // Conditionally add the "fixed" class
+        isFixed ? "lg:fixed  " : ""
       } w-full`}
       style={{ zIndex: 1 }}
     >
