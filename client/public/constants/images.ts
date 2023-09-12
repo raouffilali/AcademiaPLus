@@ -2,7 +2,7 @@ import Logo from "/assets/LOGO/APLogo.svg";
 import LogoBcp from "/assets/LOGO/APLogo1.png";
 import teacherSidePhoto from "/assets/teach.jpg";
 import teacherSidePhoto2 from "/assets/teach.png";
-import ComingSoonImage from "/assets/ComingSoon.svg"; 
+import ComingSoonImage from "/assets/ComingSoon.svg";
 import BaridiLogo from "assets/baridi-logo.png"
 import Category1 from "assets/category1.png"
 import Category2 from "assets/category2.png"

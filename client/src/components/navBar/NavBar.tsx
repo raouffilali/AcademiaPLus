@@ -8,16 +8,17 @@ import NavLinks from "./NavLinks";
 import { ILanguage } from "../../constants/interfaces";
 
 import { AiOutlineHeart } from "react-icons/ai";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { images } from "../../constants";
 
 interface NavBarProps {
-  isAuthenticated: boolean;
   isTeacher: boolean;
   isFixed?: boolean;
   isInsideVirtualLab?: boolean;
-  handleLogout: () => void;
-  
-  
+
+  // Add other necessary props
 }
 
 const LANGUAGES: ILanguage[] = [
@@ -27,8 +28,6 @@ const LANGUAGES: ILanguage[] = [
 ];
 
 const NavBar: React.FC<NavBarProps> = ({
-  handleLogout,
-  isAuthenticated,
   isTeacher,
   isFixed,
   isInsideVirtualLab,
@@ -43,6 +42,28 @@ const NavBar: React.FC<NavBarProps> = ({
   const [selectedLanguage, setSelectedLanguage] = useState<ILanguage>(
     LANGUAGES[0]
   );
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  useEffect(() => {
+    const userToken = localStorage.getItem("authToken");
+    if (userToken) {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    // Clear the token from local storage
+    localStorage.removeItem("authToken");
+    // Redirect to the login page or perform any other logout-related actions
+    navigate("/login");
+    toast.success("Logout successful!", {
+      draggable: true,
+      closeButton: true,
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 3000, // Auto close the toast after 3 seconds
+    })
+  };
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
@@ -95,34 +116,34 @@ const NavBar: React.FC<NavBarProps> = ({
         {isInsideVirtualLab ? ( // Conditionally render Simulation and Resources menus
           <>
             {/* Simulation Dropdown */}
-      <div
-        className="relative inline-block"
-        onMouseEnter={() => setIsSimulationMenuOpen(true)}
-        onMouseLeave={() => setIsSimulationMenuOpen(false)}
-      >
-        <button
-          type="button"
-          className="inline-flex items-center justify-center rounded-md px-2 py-2 text-sm font-Lato text-gray-700 hover:text-gray-500 focus:outline-none"
-        >
-          Simulation
-          <FaAngleDown
-            className={`ml-1 transition-transform duration-200 transform ${
-              isSimulationMenuOpen ? "rotate-180" : "rotate-0"
-            }`}
-            aria-hidden="true"
-            size={12}
-          />
-        </button>
+            <div
+              className="relative inline-block"
+              onMouseEnter={() => setIsSimulationMenuOpen(true)}
+              onMouseLeave={() => setIsSimulationMenuOpen(false)}
+            >
+              <button
+                type="button"
+                className="inline-flex items-center justify-center rounded-md px-2 py-2 text-sm font-Lato text-gray-700 hover:text-gray-500 focus:outline-none"
+              >
+                Simulation
+                <FaAngleDown
+                  className={`ml-1 transition-transform duration-200 transform ${
+                    isSimulationMenuOpen ? "rotate-180" : "rotate-0"
+                  }`}
+                  aria-hidden="true"
+                  size={12}
+                />
+              </button>
 
-        {isSimulationMenuOpen && (
-          <div
-            className="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-            onMouseEnter={() => setIsSimulationMenuOpen(true)}
-            onMouseLeave={() => setIsSimulationMenuOpen(false)}
-          >
-            <div className="py-4 px-1 rounded" role="none">
-              {/* Simulation menu content */}
-              <Link to="/find-simulations">
+              {isSimulationMenuOpen && (
+                <div
+                  className="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  onMouseEnter={() => setIsSimulationMenuOpen(true)}
+                  onMouseLeave={() => setIsSimulationMenuOpen(false)}
+                >
+                  <div className="py-4 px-1 rounded" role="none">
+                    {/* Simulation menu content */}
+                    <Link to="/find-simulations">
                       <button className="block w-full text-left px-4 py-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
                         Find Simulations
                       </button>
@@ -137,94 +158,94 @@ const NavBar: React.FC<NavBarProps> = ({
                         Pricing
                       </button>
                     </Link>
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
-        )}
-      </div>
 
-      {/* Resources Dropdown */}
-      <div
-        className="relative inline-block"
-        onMouseEnter={() => setIsResourcesMenuOpen(true)}
-        onMouseLeave={() => setIsResourcesMenuOpen(false)}
-      >
-        <button
-          type="button"
-          className="inline-flex items-center justify-center rounded-md px-2 py-2 text-sm font-Lato text-gray-700 hover:text-gray-500 focus:outline-none"
-        >
-          Resources
-          <FaAngleDown
-            className={`ml-1 transition-transform duration-200 transform ${
-              isResourcesMenuOpen ? "rotate-180" : "rotate-0"
-            }`}
-            aria-hidden="true"
-            size={12}
-          />
-        </button>
+            {/* Resources Dropdown */}
+            <div
+              className="relative inline-block"
+              onMouseEnter={() => setIsResourcesMenuOpen(true)}
+              onMouseLeave={() => setIsResourcesMenuOpen(false)}
+            >
+              <button
+                type="button"
+                className="inline-flex items-center justify-center rounded-md px-2 py-2 text-sm font-Lato text-gray-700 hover:text-gray-500 focus:outline-none"
+              >
+                Resources
+                <FaAngleDown
+                  className={`ml-1 transition-transform duration-200 transform ${
+                    isResourcesMenuOpen ? "rotate-180" : "rotate-0"
+                  }`}
+                  aria-hidden="true"
+                  size={12}
+                />
+              </button>
 
-        {isResourcesMenuOpen && (
-          <div
-            className="origin-top-left absolute left-0 mt-2 w-[600px] pr-6 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-            onMouseEnter={() => setIsResourcesMenuOpen(true)}
-            onMouseLeave={() => setIsResourcesMenuOpen(false)}
-          >
-            <div className="p-4">
-              {/* Resources menu content */}
-              <div className="p-4">
-                    <div className="grid grid-cols-5 gap-4" role="none">
-                      <div className="col-span-3">
-                        <p className="text-md font-semibold text-blueLink">
-                          AcademiaLab Resources
-                        </p>
-                        <p className="text-sm text-gray-700">
-                          Check out all the AcademiaLab resources that can
-                          accelerate your learning.
-                        </p>
-                      </div>
-                      <div className="col-span-1 px-12">
-                        <ul className="text-sm text-gray-700">
-                          <li className="hover:bg-gray-100 hover:text-blueLink p-4">
-                            <Link to="/blog">Blog</Link>
-                          </li>
-                          <li className="hover:bg-gray-100 hover:text-blueLink p-4">
-                            <Link to="/events">Events</Link>
-                          </li>
-                          <li className="hover:bg-gray-100 hover:text-blueLink p-4">
-                            <Link to="/case-studies">Case Studies</Link>
-                          </li>
-                          <li className="hover:bg-gray-100 hover:text-blueLink p-4">
-                            <Link to="/webinars">Webinars</Link>
-                          </li>
-                          <li className="hover:bg-gray-100 hover:text-blueLink p-4">
-                            <Link to="/podcast">Podcast</Link>
-                          </li>
-                        </ul>
-                      </div>
-                      <div className="col-span-1 px-16">
-                        <ul className="text-sm text-gray-700">
-                          <li className="hover:bg-gray-100 hover:text-blueLink p-4  ">
-                            <Link to="/news">News</Link>
-                          </li>
-                          <li className="hover:bg-gray-100 hover:text-blueLink p-4">
-                            <Link to="/guides">Guides</Link>
-                          </li>
-                          <li className="hover:bg-gray-100 hover:text-blueLink p-4">
-                            <Link to="/research">Research</Link>
-                          </li>
-                          <li className="hover:bg-gray-100 hover:text-blueLink p-4">
-                            <Link to="/3d-assets">3D Assets</Link>
-                          </li>
-                          <li className="hover:bg-gray-100 hover:text-blueLink p-4">
-                            <Link to="/contact-us">Contact Us</Link>
-                          </li>
-                        </ul>
+              {isResourcesMenuOpen && (
+                <div
+                  className="origin-top-left absolute left-0 mt-2 w-[600px] pr-6 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  onMouseEnter={() => setIsResourcesMenuOpen(true)}
+                  onMouseLeave={() => setIsResourcesMenuOpen(false)}
+                >
+                  <div className="p-4">
+                    {/* Resources menu content */}
+                    <div className="p-4">
+                      <div className="grid grid-cols-5 gap-4" role="none">
+                        <div className="col-span-3">
+                          <p className="text-md font-semibold text-blueLink">
+                            AcademiaLab Resources
+                          </p>
+                          <p className="text-sm text-gray-700">
+                            Check out all the AcademiaLab resources that can
+                            accelerate your learning.
+                          </p>
+                        </div>
+                        <div className="col-span-1 px-12">
+                          <ul className="text-sm text-gray-700">
+                            <li className="hover:bg-gray-100 hover:text-blueLink p-4">
+                              <Link to="/blog">Blog</Link>
+                            </li>
+                            <li className="hover:bg-gray-100 hover:text-blueLink p-4">
+                              <Link to="/events">Events</Link>
+                            </li>
+                            <li className="hover:bg-gray-100 hover:text-blueLink p-4">
+                              <Link to="/case-studies">Case Studies</Link>
+                            </li>
+                            <li className="hover:bg-gray-100 hover:text-blueLink p-4">
+                              <Link to="/webinars">Webinars</Link>
+                            </li>
+                            <li className="hover:bg-gray-100 hover:text-blueLink p-4">
+                              <Link to="/podcast">Podcast</Link>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="col-span-1 px-16">
+                          <ul className="text-sm text-gray-700">
+                            <li className="hover:bg-gray-100 hover:text-blueLink p-4  ">
+                              <Link to="/news">News</Link>
+                            </li>
+                            <li className="hover:bg-gray-100 hover:text-blueLink p-4">
+                              <Link to="/guides">Guides</Link>
+                            </li>
+                            <li className="hover:bg-gray-100 hover:text-blueLink p-4">
+                              <Link to="/research">Research</Link>
+                            </li>
+                            <li className="hover:bg-gray-100 hover:text-blueLink p-4">
+                              <Link to="/3d-assets">3D Assets</Link>
+                            </li>
+                            <li className="hover:bg-gray-100 hover:text-blueLink p-4">
+                              <Link to="/contact-us">Contact Us</Link>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
+                </div>
+              )}
             </div>
-          </div>
-        )}
-      </div>
           </>
         ) : (
           <ul className="md:flex hidden items-center gap-2">
@@ -445,7 +466,7 @@ const NavBar: React.FC<NavBarProps> = ({
 
               {/* Signup Button */}
               <Link
-                to="/signup"
+                to="/register"
                 className="text-redPal hover:text-white border-2 border-button hover:bg-redPal hover:border-redPal rounded-2xl px-4 py-2 mr-2 ml-2"
               >
                 Sign Up

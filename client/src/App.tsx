@@ -28,6 +28,7 @@ import GrpChat from "./pages/academicfieldPage/grpChat/GrpChat";
 import GamesPage from "./pages/academicfieldPage/GamesPage/GamesPage";
 import CheckoutComp from "./components/checkoutComponent/CheckoutComp";
 import VirtualLab from "./pages/VirtualLab/VirtualLab";
+import ResetPassword from "./pages/ResetPassword";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import Earnings from "./pages/instructorDashboard/Earnings";
 import Dashboard from "./pages/instructorDashboard/Dashboard";
@@ -97,11 +98,13 @@ function App() {
       <Route path="/educational-courses" element={<EducationalCoursesPage />} />
       <Route path="/create-course" element={<CreateCourse />} />
       <Route path="/landing" element={<LandingPage />} />
-      <Route path="/forgotPassword" element={<ForgotPassword />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/becomeaTeacher" element={<BecomeaTeacherPage />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="/wishList" element={<WishList />} />
-      <Route path="/signup" element={<SignupPage />} />
+      <Route path="/register" element={<SignupPage />} />
       <Route path="/category" element={<CategoryPage />} />
       <Route path="/category/:categoryName" element={<CategoryPage />} />
       <Route path="/about" element={<AboutUs />} />

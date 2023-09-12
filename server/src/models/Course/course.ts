@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema, Model } from "mongoose";
-import { ObjectId } from 'mongodb';
+import { ObjectId } from "mongodb";
 
 interface ILecture extends Document {
   title: string;
@@ -32,7 +32,7 @@ interface ICourse extends Document {
   reviews: IReview[];
   price: number;
   requirements: string;
-  instructore : Schema.Types.ObjectId;
+  instructore: Schema.Types.ObjectId;
 }
 
 // ? Define the Course schema
@@ -70,17 +70,22 @@ const sectionSchema = new Schema<ISection>(
 
 const courseSchema = new Schema<ICourse>(
   {
-    title: String,
-    category: String,
-    level: String,
-    description: String,
-    coverImage: String,
+    title: { type: String, required: true },
+    category: { type: String, required: true },
+    level: { type: String, required: true },
+    description: { type: String, required: true },
+    coverImage: {
+      type: String,
+      required: true,
+      default:
+        "https://i.pinimg.com/564x/fc/3d/70/fc3d703e1f4f0f4cb4b44ca83073d9f2.jpg",
+    },
     promoVideo: String,
     sections: [{ type: Schema.Types.ObjectId, ref: "Section" }],
     reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
     price: { type: Number, required: true }, // Add the price field as a number
     requirements: String, // Optionally, add any other fields you need
-    instructore : { type: Schema.Types.ObjectId, ref: "Instractor" },
+    instructore: { type: Schema.Types.ObjectId, ref: "Instractor" },
   },
   { timestamps: true }
 );

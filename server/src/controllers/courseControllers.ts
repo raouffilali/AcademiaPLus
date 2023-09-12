@@ -6,6 +6,8 @@ import { Course, Section, Lecture } from "../models/Course/course";
 const createCourse = async (req: Request, res: Response) => {
     const { name, description, price, image, category } = req.body;
 
+    
+
     const course = new Course({
         name,
         description,

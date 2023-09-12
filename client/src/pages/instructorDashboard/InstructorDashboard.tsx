@@ -91,9 +91,7 @@ const InstructorDashboard: React.FC = () => {
 
   return (
     <>
-      <NavBar  isAuthenticated={true} isTeacher={true} handleLogout={function (): void {
-        throw new Error("Function not implemented."); 
-      } } />
+      <NavBar  isTeacher={true} />
       <div className="bg-gray-50 mt-6">
         <div className="lg:mx-[80px] md:mx-[40px] mx-[12px] pt-8">
           <ProfileSection
