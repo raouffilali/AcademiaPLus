@@ -105,7 +105,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
               <li
                 key={option.value}
                 onClick={() => setActiveTab(option.value)}
-                className={`pl-2 py-1 pr-20 rounded-md transition duration-300 ${
+                className={`pl-2 py-1 pr-20 rounded-md transition duration-300 cursor-pointer ${
                   activeTab === option.value ? "bg-slate-200" : "hover:bg-slate-200"
                 }`}
               >

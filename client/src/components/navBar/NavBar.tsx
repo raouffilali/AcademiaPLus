@@ -17,6 +17,7 @@ interface NavBarProps {
   isInsideVirtualLab?: boolean;
   handleLogout: () => void;
   
+  
 }
 
 const LANGUAGES: ILanguage[] = [
@@ -31,6 +32,7 @@ const NavBar: React.FC<NavBarProps> = ({
   isTeacher,
   isFixed,
   isInsideVirtualLab,
+ 
 }) => {
   const [isSimulationMenuOpen, setIsSimulationMenuOpen] = useState(false);
   const [isResourcesMenuOpen, setIsResourcesMenuOpen] = useState(false);
@@ -320,14 +322,14 @@ const NavBar: React.FC<NavBarProps> = ({
                   <div className="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1" role="none">
                       {isTeacher ? (
-                        <Link to="/edit-profile-instructor">
+                        <Link to="/instructor-dashboard/profile">
                           <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
                             Profile
                           </button>
                         </Link>
                       ) : (
-                        <Link to="/edit-profile-student">
-                          <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
+                        <Link to="/student-dashboard/profile">
+                          <button  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
                             Profile
                           </button>
                         </Link>
@@ -346,26 +348,26 @@ const NavBar: React.FC<NavBarProps> = ({
                         </Link>
                       )}
                       {isTeacher ? (
-                        <Link to="/earnings">
+                        <Link to="/instructor-dashboard/earnings" >
                           <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
                             Earnings
                           </button>
                         </Link>
                       ) : (
-                        <Link to="/subscriptions">
+                        <Link to="/student-dashboard/subscriptions">
                           <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
                             Subscriptions
                           </button>
                         </Link>
                       )}
                       {isTeacher ? (
-                        <Link to="/instructor-settings">
+                        <Link to="/instructor-dashboard/settings">
                           <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
                             settings
                           </button>
                         </Link>
                       ) : (
-                        <Link to="/student-settings">
+                        <Link to="/student-dashboard/settings">
                           <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
                             settings
                           </button>
