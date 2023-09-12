@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Footer, NavBar } from "../../constants";
-import PackageCard from "../../components/Package card/PackageCard";
 import CheckoutComp from "../../components/checkoutComponent/CheckoutComp";
-import TestemonialsCard from "../../components/testmonialsCard/TestemonialsCard";
-import StatsContainer from "../../components/statsContainer/StatsContainer";
 import { Pricing } from "../../components/subsOfferCard/Pricing";
 import FAQ from "../../components/FAQ/FAQ";
 import { Testimonials } from "../../components/testmonialsCard/Testemonials";
@@ -11,16 +8,34 @@ import PathPage from "../../components/PathPage/PathPage";
 
 function SubscriptionPackagesPage() {
   const [displayMonthly, setDisplayMonthly] = useState(true); // State for selected option
-
-  const handleToggleChange = () => {
-    setDisplayMonthly((prevDisplayMonthly) => !prevDisplayMonthly);
+  const [selectedDuration, setSelectedDuration] = useState("Monthly");
+  const handleDurationChange = (duration: React.SetStateAction<string>) => {
+    setSelectedDuration(duration);
   };
+  // const handleToggleChange = () => {
+  //   setSelectedDuration((prevDuration) => {
+  //     switch (prevDuration) {
+  //       case "Monthly":
+  //         return "Annual";
+  //       case "Annual":
+  //         return "Semesterly";
+  //       case "Semesterly":
+  //         return "Monthly";
+  //       default:
+  //         return "Monthly"; // Default to Monthly in case of unexpected value
+  //     }
+  //   });
+  // };
 
   return (
     <>
-      <NavBar isAuthenticated={false} isTeacher={false} handleLogout={function (): void {
-        throw new Error("Function not implemented.");
-      } } />
+      <NavBar
+        isAuthenticated={false}
+        isTeacher={false}
+        handleLogout={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
       <PathPage />
       <div className="w-full  top-14 h-full bg-slate-50 bg-[url(assets/bg/academic_bg.png)]">
         <div className=" container  p-6 flex flex-col justify-start items-center mx-auto mt-10">
@@ -114,42 +129,45 @@ function SubscriptionPackagesPage() {
             </p>
           </div>
         </div>
-
-        {/* Toggle switch */}
+        {/* Subscription Tabs */}
         <div className="flex items-center justify-center mt-4">
-          <p
-            className={`text-lg font-medium ${
-              displayMonthly ? "text-emerald-500" : ""
-            }`}
+          <button
+            className={`${
+              selectedDuration === "Monthly"
+                ? "bg-emerald-500 text-white"
+                : "bg-white text-emerald-500"
+            } text-lg font-medium px-6 py-2 rounded-l-md focus:outline-none`}
+            onClick={() => handleDurationChange("Monthly")}
           >
             Monthly
-          </p>
-          <label className="switcher relative inline-block w-20 h-10 bg-white rounded-full mx-4">
-            <input
-              type="checkbox"
-              className="absolute w-0 h-0 opacity-0"
-              checked={displayMonthly}
-              onChange={handleToggleChange}
-            />
-            <span
-              className={`switcher-handle absolute left-0 w-10 h-10 rounded-full bg-emerald-500 transition-transform duration-300 ease-in-out transform ${
-                displayMonthly ? "translate-x-0" : "translate-x-10"
-              }`}
-            >
-              <p className="text-xs text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                {displayMonthly ? "Monthly" : "Annual"}
-              </p>
-            </span>
-          </label>
-          <p
-            className={`text-lg font-medium ${
-              !displayMonthly ? "text-emerald-500" : ""
-            }`}
+          </button>
+         
+          <button
+            className={`${
+              selectedDuration === "Semesterly"
+                ? "bg-emerald-500 text-white"
+                : "bg-white text-emerald-500"
+            } text-lg font-medium px-6 py-2 focus:outline-none`}
+            onClick={() => handleDurationChange("Semesterly")}
+          >
+            Semesterly
+          </button>
+          <button
+            className={`${
+              selectedDuration === "Annual"
+                ? "bg-emerald-500 text-white"
+                : "bg-white text-emerald-500"
+            } text-lg font-medium px-6 rounded-r-md py-2 focus:outline-none`}
+            onClick={() => handleDurationChange("Annual")}
           >
             Annual
-          </p>
+          </button>
         </div>
-        <Pricing displayMonthly={displayMonthly} />
+     
+        <Pricing
+          displayMonthly={selectedDuration === "Monthly"}
+          selectedDuration={selectedDuration}
+        />
       </div>
       {/* text of why we are different */}
       <h1 className="  mt-24 text-[#565454] text-center text-2xl font-extrabold ">
@@ -164,44 +182,74 @@ function SubscriptionPackagesPage() {
       </div>
       {/* Stats section */}
       <div className="mx-[80px]">
-        
         <h1 className="  mt-10 text-[#565454] text-center text-2xl font-extrabold ">
           Platform Features
         </h1>
         <div className="grid grid-cols-1 mt-10 md:grid-cols-3 gap-8 ">
           <div className=" space-y-2 text-center border border-gray-100 rounded-xl bg-white h-full w-full p-6 py-12">
-            <img src="assets/icon/virtual-reality.png" className="h-14 w-14" alt=""  />
+            <img
+              src="assets/icon/virtual-reality.png"
+              className="h-14 w-14"
+              alt=""
+            />
             <h1 className="font-medium text-lg"> Virtual Learning</h1>
-            <p className="text-gray-600 font-light"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+            <p className="text-gray-600 font-light">
+              {" "}
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
+            </p>
           </div>
           <div className=" space-y-2 text-center border border-gray-100 rounded-xl bg-white h-full w-full p-6 py-12">
-            <img src="assets/icon/online-courses.png" className="h-14 w-14" alt=""  />
+            <img
+              src="assets/icon/online-courses.png"
+              className="h-14 w-14"
+              alt=""
+            />
             <h1 className="font-medium text-lg"> interactive online courses</h1>
-            <p className="text-gray-600 font-light"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+            <p className="text-gray-600 font-light">
+              {" "}
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
+            </p>
           </div>
           <div className=" space-y-2 text-center border border-gray-100 rounded-xl bg-white h-full w-full p-6 py-12">
-            <img src="assets/icon/online-learning.png" className="h-14 w-14" alt=""  />
+            <img
+              src="assets/icon/online-learning.png"
+              className="h-14 w-14"
+              alt=""
+            />
             <h1 className="font-medium text-lg"> Academic Fields</h1>
-            <p className="text-gray-600 font-light"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+            <p className="text-gray-600 font-light">
+              {" "}
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
+            </p>
           </div>
           <div className=" space-y-2 text-center border border-gray-100 rounded-xl bg-white h-full w-full p-6 py-12">
-            <img src="assets/icon/group-chat.png" className="h-14 w-14" alt=""  />
+            <img
+              src="assets/icon/group-chat.png"
+              className="h-14 w-14"
+              alt=""
+            />
             <h1 className="font-medium text-lg"> Community Groups</h1>
-            <p className="text-gray-600 font-light"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+            <p className="text-gray-600 font-light">
+              {" "}
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
+            </p>
           </div>
           <div className=" space-y-2 text-center border border-gray-100 rounded-xl bg-white h-full w-full p-6 py-12">
-            <img src="assets/icon/books.png" className="h-14 w-14" alt=""  />
+            <img src="assets/icon/books.png" className="h-14 w-14" alt="" />
             <h1 className="font-medium text-lg"> 3D Book Store</h1>
-            <p className="text-gray-600 font-light"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+            <p className="text-gray-600 font-light">
+              {" "}
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
+            </p>
           </div>
           <div className=" space-y-2 text-center border border-gray-100 rounded-xl bg-white h-full w-full p-6 py-12">
-            <img src="assets/icon/game.png" className="h-14 w-14" alt=""  />
+            <img src="assets/icon/game.png" className="h-14 w-14" alt="" />
             <h1 className="font-medium text-lg"> Educational Games</h1>
-            <p className="text-gray-600 font-light"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+            <p className="text-gray-600 font-light">
+              {" "}
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
+            </p>
           </div>
-          
-          
-
         </div>
       </div>
       <div className="bg-slate-50 w-full">
@@ -225,10 +273,9 @@ function SubscriptionPackagesPage() {
               </h2>
               <div className="rounded-lg bg-gray-100 mt-2 p-2 ">
                 <p className="text-sm text-black font-light italic mt-8 p-2">
-                {testimonial.testimonial}
-              </p>
+                  {testimonial.testimonial}
+                </p>
               </div>
-              
             </div>
           ))}
         </div>
