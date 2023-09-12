@@ -1,6 +1,7 @@
 import React from "react";
 import { FaFacebook, FaLinkedin, FaInstagram, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { images } from "../../constants";
 
 function ComingSoon() {
   const [email, setEmail] = React.useState("");
@@ -23,7 +24,7 @@ function ComingSoon() {
   return (
     <div className="bg-gradient-to-r from-amber-50 to-blue-50 min-h-screen">
       <div className="p-5 flex flex-col space-y-4 items-center">
-        <img src="assets/logo.svg" alt="" className="h-8" />
+        <img src={images.Logo} alt="" className="h-8" />
         <p className="text-2xl">WE ARE COMING SOON!!</p>
         <p>Stay tuned for something amazing</p>
         <div className="flex flex-row space-x-4">

@@ -25,9 +25,9 @@ function LandingPage() {
     <div>
       <div className="lg:w-full xl:w-full 2xl:w-full top-14 md:h-[920px] bg-gradient-to-r from-red-50 to-[#e2eefc]">
         <NavBar
-          isAuthenticated={false}
+          isAuthenticated={true}
           isFixed={true}
-          isTeacher={false}
+          isTeacher={true}
           handleLogout={function (): void {
             throw new Error("Function not implemented.");
           }}

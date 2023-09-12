@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { images } from '../../constants';
 
 function ServerError() {
     return (
         <>
           <div className="bg-gradient-to-r from-amber-50 to-blue-50 min-h-screen">
             <div className="p-24 flex flex-col space-y-4 items-center">
-              <img src="assets/logo.svg" alt="" className="h-8" />
+              <img src={images.Logo} alt="" className="h-8" />
               <img src="assets/error.png" alt="" className="h-56" />
               <p className="text-3xl text-redPal font-medium">Oops! 500 Internal Server Error</p>
               <p className=" text-center items-center font-medium text-2xl text-gray-700 ">
