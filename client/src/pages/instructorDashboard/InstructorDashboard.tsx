@@ -18,10 +18,13 @@ import ProfilePrivacy from "./AccountSettings/ProfilePrivacy";
 import DeleteProfile from "./AccountSettings/DeleteProfile";
 import ProfileSection from "./ProfileSection";
 import LinkedAccounts from "./AccountSettings/LinkedAccounts";
-import { useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useParams } from "react-router-dom";
+
 
 const InstructorDashboard: React.FC = () => {
-  const [activeTab, setActiveTab] = useState("dashboard");
+  // Get the active tab from the URL using useParams
+  const { tab } = useParams<{ tab?: string }>();
+  const [activeTab, setActiveTab] = useState(tab||"dashboard");
   const navigate = useNavigate();
 
   const handleSignOut = () => {
@@ -75,7 +78,7 @@ const InstructorDashboard: React.FC = () => {
       case "profileprivacy":
         return <ProfilePrivacy />;
       case "deleteprofile":
-        return <DeleteProfile />;
+        return <DeleteProfile />;   
       case "linkedaccounts":
         return <LinkedAccounts />;
         case "signout":
@@ -88,9 +91,7 @@ const InstructorDashboard: React.FC = () => {
 
   return (
     <>
-      <NavBar isAuthenticated={true} isTeacher={true} handleLogout={function (): void {
-        throw new Error("Function not implemented.");
-      } } />
+      <NavBar  isTeacher={true} />
       <div className="bg-gray-50 mt-6">
         <div className="lg:mx-[80px] md:mx-[40px] mx-[12px] pt-8">
           <ProfileSection
@@ -99,7 +100,7 @@ const InstructorDashboard: React.FC = () => {
             coverImageUrl="assets/profile-bg.jpg"
             onCreateCourse={() => console.log("Create New Course clicked")}
           />
-          <div className="lg:flex lg:space-x-6">
+           <div className="lg:flex lg:space-x-6">
             <Sidebar setActiveTab={setActiveTab} activeTab={activeTab} />
             <div className="flex-grow mt-8">{renderContent()}</div>
           </div>

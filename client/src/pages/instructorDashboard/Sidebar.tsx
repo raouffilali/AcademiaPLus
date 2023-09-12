@@ -75,6 +75,7 @@ const sidebarOptions: SidebarOption[] = [
 ];
 
 const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
+  
     return (
       <div className="bg-white text-gray-600 shadow my-8 rounded-md text-sm h-full p-4">
         <ul className="space-y-1  ">
@@ -86,7 +87,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
                   <p className="text-gray-400 font-mono text-xs ">ACCOUNT SETTINGS</p>
                   <li
                     onClick={() => setActiveTab(option.value)}
-                    className={`pl-2 py-1 pr-20 rounded-md transition duration-300 ${
+                    className={`pl-2 py-1 pr-20 rounded-md transition duration-300  ${
                       activeTab === option.value ? "bg-slate-200" : "hover:bg-slate-200"
                     }`}
                   >
@@ -104,7 +105,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
               <li
                 key={option.value}
                 onClick={() => setActiveTab(option.value)}
-                className={`pl-2 py-1 pr-20 rounded-md transition duration-300 ${
+                className={`pl-2 py-1 pr-20 rounded-md transition duration-300 cursor-pointer ${
                   activeTab === option.value ? "bg-slate-200" : "hover:bg-slate-200"
                 }`}
               >
