@@ -803,9 +803,7 @@ export const messageVerificationEmail = (
                                   <p style="line-height: 170%">
                                     Let us know if you have any other questions.
                                   </p>
-                                  <p style="line-height: 170%">
-                                    Best regards, The YourApp Team
-                                  </p>
+
                                   <p style="font-size: 14px; line-height: 170%">
                                     <span
                                       style="

@@ -16,7 +16,7 @@ import {
 const router = express.Router();
 
 // Create a new course
-router.post("/courses",  createCourse);
+router.post("/course",  createCourse);
 // Create a new section within a course
 router.post("/courses/:courseId/sections", checkInstructorRole, createSection);
 // Create a new lecture within a section

@@ -134,6 +134,10 @@ const registerUser = async (req, res, next) => {
 
     // Generate a JWT token
     const token = newUser.generateJWT();
+    // request role from token
+
+
+
     await client.messages
       .create(DOMAIN!, messageData)
       .then((response) => {

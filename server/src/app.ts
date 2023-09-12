@@ -9,33 +9,36 @@ import env from "./utils/validateEnv";
 import cors from "cors";
 import studentRouter from "./routes/studentRoutes";
 import courseRouter from "./routes/courseRoutes";
+import instructorRouter from "./routes/instructorRoutes";
 import {
   errorResponseHandler,
   invalidPathHandler,
 } from "./middleware/errorHandler";
 import { authGuard } from "./middleware/authMiddleware";
+import checkInstructorRole from "./middleware/checkInstructorRole";
 
 const app = express();
-app.use(cors({
-  origin: env.CLIENT_URL,
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: env.CLIENT_URL,
+    credentials: true,
+  })
+);
 
 app.use(morgan("dev"));
 
 app.use(express.json());
-
 
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
 app.use("/api/student", studentRouter);
-app.use("/api/course",authGuard, courseRouter);
+app.use("/api/instructor", instructorRouter);
+app.use("/api/courses", authGuard,checkInstructorRole, courseRouter);
 
 app.use(invalidPathHandler);
 app.use(errorResponseHandler);
-
 
 export default app;
 

@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { images } from "../../constants";
 
-import { images } from "../../constants";
+
 interface FormData {
   identifier: string;
   password: string;

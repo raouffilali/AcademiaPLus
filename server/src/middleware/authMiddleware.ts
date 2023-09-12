@@ -56,12 +56,14 @@ export const authGuard = async (req, res, next) => {
     try {
       const token = req.headers.authorization.split(" ")[1];
       const { id, role } = verify(token, process.env.JWT_SECRET);
+      console.log("User ID:", id);
+      console.log("User Role:", role);
 
       // Determine the model based on the user's role
       let userModel;
       if (role === "Student") {
         userModel = Student;
-      } else if (role === "Instructor") {
+      } else if (role === "Instractor") {
         userModel = Instructor;
       } else {
         const authError = new AuthenticationError("Invalid role");
