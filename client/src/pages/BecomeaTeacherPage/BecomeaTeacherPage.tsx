@@ -23,7 +23,7 @@ function BecomeaTeacherPage() {
   };
   return (
     < >
-      <NavBar />
+      <NavBar isTeacher={false} />
       <PathPage />
       <div>
         {isFormVisible && (

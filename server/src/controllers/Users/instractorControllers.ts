@@ -1,4 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+// /* eslint-disable @typescript-eslint/no-unused-vars */
+// import multer from "multer";
+// const uploadFilecv =multer({ dest: "uploads/" });
 import uploadFiles from "../../middleware/uploadFilesMiddleware";
 import uploadPicture from "../../middleware/uploadPictureMiddleware";
 import Instructor from "../../models/Users/Instractor";
@@ -18,6 +21,7 @@ import bcrypt from "bcrypt";
 
 // import fs from "fs";
 import { messageVerificationEmailInstractor } from "../../utils/messageVerificationEmailInstractor";
+import uploadFile from "../../middleware/uploadFileMiddleware";
 
 //! import twilio from "twilio";
 
@@ -97,6 +101,19 @@ const registerUser = async (req, res, next) => {
       return res.status(409).json({ message: "User already exists" });
     }
 
+    // Check if a file was uploaded
+    const upload = uploadFile.single("cv");
+    upload(req, res, async (err) => {
+      if (err) {
+        const error = new Error('An error occurred when uploading the CV file: ' + err.message);
+        return next(error);
+      } else {
+        // Check if a file was uploaded
+        if (!req.file) {
+          return res.status(400).json({ message: "CV file is required" });
+        }
+           // because we have a 'cv' field in your form for the CV file
+           const cvFileName = req.file.filename;
     // Create a new user
     const newUser = await Instructor.create({
       fullName,
@@ -106,7 +123,7 @@ const registerUser = async (req, res, next) => {
       education,
       qualifications,
       coverLetter,
-      cv,
+      cv:cvFileName,
     });
 
     const verificationCode = generateCode(); // Implement a function to generate a random code.
@@ -164,6 +181,77 @@ const registerUser = async (req, res, next) => {
           .status(500)
           .json({ message: "Registration failed. Please try again later." });
       });
+      }
+    });
+
+  } catch (error) {
+    next(error);
+  }
+};
+
+const uploadUserWithFile = async (req, res, next) => {
+  try {
+    const upload = uploadFile.single("cv"); // Assuming 'cv' is the field name for the file in the form
+
+    upload(req, res, async (err) => {
+      if (err) {
+        const error = new Error(
+          "An unknown error occurred when uploading!" + err.message
+        );
+        return next(error);
+      } else {
+        // Extract user information from the request body
+        const {
+          fullName,
+          email,
+          phone,
+          password,
+          education,
+          qualifications,
+          coverLetter,
+        } = req.body;
+
+        // Create a new user document
+        const newUser = new Instructor({
+          fullName,
+          email,
+          phone,
+          password,
+          education,
+
+          qualifications,
+          coverLetter,
+        });
+
+        // Check if a file was uploaded
+        if (req.file) {
+          newUser.cv = req.file.filename; // Store the filename in the 'cv' field
+        }
+
+        // Save the user to the database
+        await newUser.save();
+
+        // Generate a JWT token for the new user
+        const token = await newUser.generateInstractorJWT();
+
+        // Respond with a sanitized user object (omit sensitive fields)
+        const sanitizedUser = {
+          _id: newUser._id,
+          fullName: newUser.fullName,
+          email: newUser.email,
+          phone: newUser.phone,
+          education: newUser.education,
+          experience: newUser.experience,
+
+          coverLetter: newUser.coverLetter,
+          cv: newUser.cv,
+          verified: newUser.verified,
+        };
+
+        // Return the sanitized user data along with the token
+        return res.status(201).json({ user: sanitizedUser, token });
+      }
+    });
   } catch (error) {
     next(error);
   }
@@ -679,6 +767,7 @@ const updateProfilePicture = async (req, res, next) => {
           // Respond with a sanitized user object (omit sensitive fields)
           const sanitizedUser = {
             _id: updatedUser!._id,
+            avatar: updatedUser!.avatar,
             coverPicture: updatedUser!.coverPicture,
             fullName: updatedUser!.fullName,
             email: updatedUser!.email,
@@ -706,6 +795,7 @@ const updateProfilePicture = async (req, res, next) => {
           // Respond with a sanitized user object (omit sensitive fields)
           const sanitizedUser = {
             _id: updatedUser!._id,
+            avatar: updatedUser!.avatar,
             coverPicture: updatedUser!.coverPicture,
             fullName: updatedUser!.fullName,
             email: updatedUser!.email,
@@ -866,7 +956,74 @@ const uploadMultipleFiles = async (req, res, next) => {
     next(error);
   }
 };
-// controllers/studentController.js
+
+// upload single file
+const uploadSingleFile = async (req, res, next) => {
+  try {
+    const upload = uploadFile.single("singleFile");
+    upload(req, res, async (err) => {
+      if (err) {
+        const error = new Error(
+          "An unknown error occurred when uploading!" + err.message
+        );
+        return next(error);
+      } else {
+        // everything went fine
+        if (req.file) {
+          const updatedUser = await Instructor.findById(req.user._id);
+          const filename = updatedUser!.singleFileUpload;
+          if (filename) {
+            fileRemover(filename, uploadDirectoies.files);
+          }
+          updatedUser!.singleFileUpload = req.file.filename;
+          await updatedUser!.save();
+          // Generate a JWT token
+          const token = await updatedUser!.generateInstractorJWT();
+
+          // Respond with a sanitized user object (omit sensitive fields)
+          const sanitizedUser = {
+            _id: updatedUser!._id,
+            singleFileUpload: updatedUser!.singleFileUpload,
+            fullName: updatedUser!.fullName,
+            firstName: updatedUser!.firstName,
+            lastName: updatedUser!.lastName,
+            email: updatedUser!.email,
+            password: updatedUser!.password,
+            verified: updatedUser!.verified,
+          };
+          // Return the sanitized user data along with the token
+          return res.status(201).json({ user: sanitizedUser, token });
+        } else {
+          const updatedUser = await Instructor.findById(req.user._id);
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const filename = updatedUser!.singleFileUpload;
+          updatedUser!.singleFileUpload = "";
+          await updatedUser!.save();
+          fileRemover(filename, uploadDirectoies.files);
+
+          // Generate a JWT token
+          const token = await updatedUser!.generateInstractorJWT();
+
+          // Respond with a sanitized user object (omit sensitive fields)
+          const sanitizedUser = {
+            _id: updatedUser!._id,
+            singleFileUpload: updatedUser!.singleFileUpload,
+            fullName: updatedUser!.fullName,
+            firstName: updatedUser!.firstName,
+            lastName: updatedUser!.lastName,
+            email: updatedUser!.email,
+            password: updatedUser!.password,
+            verified: updatedUser!.verified,
+          };
+          // Return the sanitized user data along with the token
+          return res.status(201).json({ user: sanitizedUser, token });
+        }
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 // Enroll a student in a course
 const enrollInCourse = async (req, res) => {
@@ -1034,4 +1191,6 @@ export {
   // resetPassword,
   senEmailForPassword,
   resetPassword,
+  uploadSingleFile,
+  uploadUserWithFile,
 };

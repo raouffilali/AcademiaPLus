@@ -16,6 +16,7 @@ export interface IInstractor extends IStudent {
   enrolledStudents: string[];
   // Number of students taught
   studentsTaught: number;
+  singleFileUpload: string;
   // Payouts information
   payouts: [
     {
@@ -133,6 +134,8 @@ const UserSchema = new Schema<IInstractor>({
   tokenVersion: { type: Number, default: 0 },
 
 
+  multipleFileUpload: [{ type: String }],
+  singleFileUpload: { type: String },
 
 
 

@@ -22,7 +22,9 @@ import {
     // sendPasswordResetEmail,
     // resetPassword,
     senEmailForPassword,
-    resetPassword
+    resetPassword,
+    uploadSingleFile,
+    uploadUserWithFile
 
 
   } from '../controllers/Users/instractorControllers'
@@ -43,6 +45,9 @@ router.put("/profile/email", authGuard, updateEmail);
 router.put("/profile/picture", authGuard, updateProfilePicture);
 router.put("/profile/cover", authGuard, updateCoverPicture);
 router.post("/profile/files-upload", authGuard, uploadMultipleFiles);
+router.post("/profile/file-upload",authGuard, uploadSingleFile);
+router.post("/profile/upload-user", uploadUserWithFile);
+
 router.get("/", getUsers);
 router.get("/:id", authGuard, getUserById);
 router.post("/enroll/:studentId/:courseId", authGuard, enrollInCourse);

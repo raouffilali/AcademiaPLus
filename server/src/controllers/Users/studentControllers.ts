@@ -136,8 +136,6 @@ const registerUser = async (req, res, next) => {
     const token = newUser.generateJWT();
     // request role from token
 
-
-
     await client.messages
       .create(DOMAIN!, messageData)
       .then((response) => {
@@ -223,11 +221,11 @@ const loginUser = async (req, res, next) => {
       let userIdentifier = "";
       // if user used email to login
       if (user.email === identifier) {
-        userIdentifier = "email";
+        userIdentifier = "Email";
       }
       // if user used phone number to login
       if (user.phone === identifier) {
-        userIdentifier = "phone";
+        userIdentifier = "Phone number";
       }
 
       // Return the sanitized user data along with the token

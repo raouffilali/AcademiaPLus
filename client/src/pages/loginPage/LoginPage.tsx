@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { images } from "../../constants";
 
-
 interface FormData {
   identifier: string;
   password: string;
@@ -110,13 +109,14 @@ function SignupPage() {
           // Handle success, e.g., redirect to a dashboard
           const data = await response.json();
           const authToken = data.token;
+          const userIdentifier = data.userIdentifier;
           // Save the token in local storage
           localStorage.setItem("authToken", authToken);
-          toast.success("Login successful!", {
+          toast.success(`Login successful! with your ${userIdentifier}`, {
             draggable: true,
             closeButton: true,
             position: toast.POSITION.TOP_RIGHT,
-            autoClose: 5000, // Auto close the toast after 3 seconds
+            autoClose: 2000, // Auto close the toast after 3 seconds
           });
           navigate("/");
         } else if (response.status === 401) {
@@ -135,21 +135,21 @@ function SignupPage() {
               draggable: true,
               closeButton: true,
               position: toast.POSITION.TOP_RIGHT,
-              autoClose: 4000, // Auto close the toast after 4 seconds
+              autoClose: 7000, // Auto close the toast after 4 seconds
             });
           } else if (data.message === "Email/Phone Number does not exist") {
             toast.error("Incorrect Email", {
               draggable: true,
               closeButton: true,
               position: toast.POSITION.TOP_RIGHT,
-              autoClose: 4000, // Auto close the toast after 4 seconds
+              autoClose: 7000, // Auto close the toast after 4 seconds
             });
           } else {
             toast.error("Login failed. Please check your Credentials", {
               draggable: true,
               closeButton: true,
               position: toast.POSITION.TOP_RIGHT,
-              autoClose: 4000, // Auto close the toast after 4 seconds
+              autoClose: 7000, // Auto close the toast after 4 seconds
             });
           }
 
@@ -187,21 +187,17 @@ function SignupPage() {
       <div className="lg:w-1/2 h-screen lg:overflow-y-scroll  ">
         <form onSubmit={handleSubmit}>
           <div className="p-20">
-            <div className="flex justify-between gap-x-12 lg:gap-x-48 ">
-              <img className="h-8" src={images.Logo} alt="" />
-              <Link
-                to="/"
-                className="py-2 px-3 bg-[#1450A3] rounded-lg text-white hover:bg-blue-400   "
-                style={{ textDecoration: "none" }}
-              >
-                <p className="font-light text-sm underline">Back Home</p>
+            <div className="flex space-x-4 lg:space-x-48">
+              <img className="h-8" src="assets/logo.svg" alt="" />
+              <Link to="/">
+                <p className="font-light text-sm underline">Back to Home</p>
               </Link>
             </div>
             <p className="mt-12 text-3xl font-medium">Login</p>
             <div className="space-y-4 mt-8">
               <div>
                 <label htmlFor="email" className="text-gray-500 mb-2 block">
-                  Email
+                  Email/Phone
                 </label>
                 <input
                   type="email"
