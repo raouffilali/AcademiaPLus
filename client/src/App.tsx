@@ -29,6 +29,7 @@ import GamesPage from "./pages/academicfieldPage/GamesPage/GamesPage";
 import CheckoutComp from "./components/checkoutComponent/CheckoutComp";
 import VirtualLab from "./pages/VirtualLab/VirtualLab";
 import ResetPassword from "./pages/ResetPassword";
+import AboutUs from "./pages/AboutUs/AboutUs";
 
 function App() {
   return (
@@ -48,6 +49,8 @@ function App() {
       <Route path="/wishList" element={<WishList />} />
       <Route path="/register" element={<SignupPage />} />
       <Route path="/category" element={<CategoryPage />} />
+      <Route path="/category/:categoryName" element={<CategoryPage/>} />
+      <Route path="/about" element={<AboutUs />} />
       <Route path="/checkout" element={<CheckoutComp />} />
       <Route path="/courseDetails/:courseName" element={<CourseDetails />} />
       <Route

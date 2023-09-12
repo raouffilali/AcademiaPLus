@@ -23,7 +23,7 @@ import {
 function LandingPage() {
   return (
     <div>
-      <div className="lg:w-full xl:w-full 2xl:w-full top-14 md:h-[920px] bg-gradient-to-r from-red-50 to-[#bedbfc]">
+      <div className="lg:w-full xl:w-full 2xl:w-full top-14 md:h-[920px] bg-gradient-to-r from-red-50 to-[#e2eefc]">
         <NavBar
           isFixed={true}
           isTeacher={false}
@@ -109,7 +109,7 @@ function LandingPage() {
         <TopCategoryCarousel categories={categories} />
       </div>
       <div
-        className="w-full top-14 h-full pb-4 bg-cover  bg-gradient-to-r from-red-50 to-[#bedbfc]"
+        className="w-full top-14 h-full pb-4 bg-cover  bg-gradient-to-r from-red-50 to-[#e2eefc]"
         style={{
 
           backgroundRepeat: "no-repeat, repeat-y",
@@ -136,7 +136,7 @@ function LandingPage() {
               </button>
             </Link>
           </div>
-          <div className="lg:mt-16 mt-8 grid grid-cols-1  md:grid-cols-3 gap-7">
+          <div className="lg:mt-16 mt-8 grid grid-cols-1 md:grid-cols-2   lg:grid-cols-3 gap-7">
             {courses.slice(0, 6).map((course, index) => (
               <CourseCard
                 key={index}
@@ -266,7 +266,7 @@ function LandingPage() {
           <SponsorsCarousel sponsors={sponsorsData} />
         </div>
         <div
-          className="w-full top-14 h-full pb-4 bg-cover  bg-gradient-to-r from-[#bedbfc] to-red-50 "
+          className="w-full top-14 h-full pb-4 bg-cover  bg-gradient-to-r from-[#e2eefc] to-red-50 "
           style={{
 
             backgroundRepeat: "no-repeat, repeat-y",

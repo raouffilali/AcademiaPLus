@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import UnderConstr from "../../components/Error/UnderConstr";
 import { NavBar } from "../../constants";
 
 function LabPage() {
@@ -51,6 +52,7 @@ function LabPage() {
           </div>
         </div>
       </div>
+      <UnderConstr/>
     </div>
   );
 }

@@ -19,6 +19,7 @@ interface AcademicCourseCardProps {
   progress?: number; // Make progress optional
   isLearningCourses?: boolean; // Add a new prop to indicate learning page
   lab?: boolean;
+  labUrl?: string;
 }
 
 const AcademicCourseCard: React.FC<AcademicCourseCardProps> = ({
@@ -37,6 +38,7 @@ const AcademicCourseCard: React.FC<AcademicCourseCardProps> = ({
   subject, // Receive subject prop
   progress,
   lab,
+  labUrl,
   isLearningCourses = false,
 }) => {
   function truncateText(text: string, maxLines: number) {
@@ -47,6 +49,14 @@ const AcademicCourseCard: React.FC<AcademicCourseCardProps> = ({
     }
     return truncated;
   }
+  
+
+  const handleLabClick = () => {
+    if (labUrl) {
+      // Open the labUrl in a new tab
+      window.open(labUrl, "_blank");
+    }
+  };
   return (
     <div className="w-full hover:bg-greenish hover:text-white h-full space-y-3 p-3 bg-white rounded-lg duration-500 shadow-sm border border-gray-200 dark:border-gray-200">
       <div className=" bg-blue-100 rounded-lg relative">
@@ -56,15 +66,15 @@ const AcademicCourseCard: React.FC<AcademicCourseCardProps> = ({
           alt="courseThumbnail"
         />
         {/* Conditionally render price if not on the learning courses page */}
-        {!isLearningCourses && (
+        {/* {!isLearningCourses && (
           <div className="absolute bottom-2 right-4 text-white rounded-xl p-2 w-36 bg-red-500 text-center font-bold text-xl">
             {price} دج
           </div>
-        )}
+        )} */}
       </div>
 
       <div className="p-1">
-        <Link to="" className="absolute flex items-center ml-2 mb-2">
+        <div  className="absolute flex items-center ml-2 mb-2">
           <img
             className="w-12 h-12 rounded-full inline-block"
             src={instructorAvtr}
@@ -74,7 +84,7 @@ const AcademicCourseCard: React.FC<AcademicCourseCardProps> = ({
             <p className="mb-0 font-medium text-gray-800 ">{instructor}</p>
             <p className="text-gray-500 text-sm">{instructorJob}</p>
           </div>
-        </Link>
+        </div>
         <h5 className="ml-2 mt-14 text-lg font-medium tracking-tight text-gray-900 max-h-16">
           {truncateText(courseName, 2)}
         </h5>
@@ -84,8 +94,8 @@ const AcademicCourseCard: React.FC<AcademicCourseCardProps> = ({
           <span className="bg-blue-100 text-blueLink text-xs px-2 py-1 rounded-md">
             {year} {subject}
           </span>
-          {lab && (
-            <button className=" text-sm bg-emerald-500 text-white rounded px-3 font-medium hover:bg-emerald-600 hover:scale-110">
+          {labUrl && (
+            <button className=" text-sm bg-emerald-500 text-white rounded px-3 font-medium hover:bg-emerald-600 hover:scale-110"  onClick={handleLabClick}>
               جرب في المختبر
             </button>
           )}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { images } from "../../constants";
 interface ForgotPasswordProps {}
 
 const ForgotPassword: React.FC<ForgotPasswordProps> = () => {
@@ -52,7 +53,7 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = () => {
       <div className="lg:w-1/2 h-screen lg:overflow-y-scroll  ">
         <div className="p-20">
           <div className="flex space-x-4 lg:space-x-48">
-            <img className="h-8" src="assets/logo.svg" alt="" />
+            <img className="h-8" src={images.Logo} alt="" />
             <Link to="/">
               <p className="font-light text-sm underline">Back to Home</p>
             </Link>

@@ -159,7 +159,9 @@ function AllCourses() {
   return (
     <div>
       <UrgentNews />
-      <NavBar />
+      <NavBar isAuthenticated={false} isTeacher={false} handleLogout={function (): void {
+        throw new Error("Function not implemented.");
+      } } />
       <PathPage />
       <div className="my-6 bg-neutral-50 h-full">
         <div className="py-6 lg:mx-[80px] mx-[12px] lg:flex lg:space-x-6  ">
@@ -233,7 +235,7 @@ function AllCourses() {
                     rating={course.rating}
                     views={course.views}
                     category={course.category}
-                    price={course.price.toString()}
+                    price={course.price}
                     courseThumbnailSrc={course.courseThumbnailSrc}
                     instructorAvtr={course.instructorAvtr}
                     instructorJob={course.instructorJob}
@@ -348,7 +350,7 @@ function AllCourses() {
                     className="items-center flex pt-2 pb-4 space-x-4 cursor-pointer"
                   >
                     <img
-                      src={course.thumbnail} // Replace with actual image path
+                      src={course.thumbnail} 
                       alt={course.title}
                       className="h-16 w-16 rounded-md"
                     />

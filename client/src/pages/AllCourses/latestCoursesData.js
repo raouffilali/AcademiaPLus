@@ -1,6 +1,6 @@
 // latestCoursesData.js
 
-const latestCourses = [
+export const latestCourses = [
     {
       id: 1,
       title: "Introduction to Web Development",

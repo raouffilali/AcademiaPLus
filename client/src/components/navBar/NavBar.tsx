@@ -6,11 +6,12 @@ import { Link } from "react-router-dom";
 import "./NavBar.css";
 import NavLinks from "./NavLinks";
 import { ILanguage } from "../../constants/interfaces";
-import { images } from "../../constants/";
+
 import { AiOutlineHeart } from "react-icons/ai";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { images } from "../../constants";
 
 interface NavBarProps {
   isTeacher: boolean;
@@ -87,13 +88,13 @@ const NavBar: React.FC<NavBarProps> = ({
   const handleLanguageSelect = (language: ILanguage) => {
     setSelectedLanguage(language);
     setIsLanguageMenuOpen(false); // Close the language menu when a language is selected
-    // Add logic to change the page language
+    // logic to change the page language
   };
 
   return (
     <nav
       className={`navbar ${isScrolled ? "scrolled" : ""} ${
-        isFixed ? "lg:fixed  " : "" // Conditionally add the "fixed" class
+        isFixed ? "lg:fixed  " : ""
       } w-full`}
       style={{ zIndex: 1 }}
     >

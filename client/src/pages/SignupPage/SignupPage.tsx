@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
+import { images } from "../../constants";
 // Define the type of formData
 interface FormData {
   firstName: string;
@@ -292,7 +293,7 @@ function SignupPage() {
       >
         <div className="p-20">
           <div className="flex space-x-4 lg:space-x-48">
-            <img className="h-8" src="assets/logo.svg" alt="" />
+            <img className="h-8" src={images.Logo} alt="" />
             <Link to="/">
               <p className="font-light text-sm underline">Back to Home</p>
             </Link>

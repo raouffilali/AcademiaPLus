@@ -2,14 +2,23 @@ import React, { useState, useEffect } from "react";
 import { Footer, NavBar } from "../../constants";
 import PathPage from "../../components/PathPage/PathPage";
 import categories from "./CategoriesData";
+import { useParams } from "react-router-dom";
 
 function CategoryPage() {
-  const [selectedButton, setSelectedButton] = useState("Graphics & Design");
+  const { categoryName } = useParams<{ categoryName?: string }>();
+  const formattedCategoryName = categoryName
+    ? categoryName.replace(/-/g, " ").replace(/and/g, "&")
+    : ""; // Replace dashes with spaces
+  const [selectedButton, setSelectedButton] = useState(formattedCategoryName);
   const [contentVisible, setContentVisible] = useState(false);
 
-  const handleButtonClick = (content:any) => {
+  const handleButtonClick = (content: any) => {
     setSelectedButton(content);
   };
+  // Update the selectedButton when the URL parameter changes
+  useEffect(() => {
+    setSelectedButton(formattedCategoryName);
+  }, [formattedCategoryName]);
 
   const renderCategoryCards = () => {
     const filteredCategories = categories.filter(
@@ -40,12 +49,18 @@ function CategoryPage() {
     setContentVisible(false);
     setTimeout(() => {
       setContentVisible(true);
-    }, 5); 
+    },300);
   }, [selectedButton]);
 
   return (
     <>
-      <NavBar />
+      <NavBar
+        isAuthenticated={false}
+        isTeacher={false}
+        handleLogout={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
       <PathPage />
       <div className="mt-5 flex flex-wrap justify-between  items-center bg-gray-50">
         <div className="ml-[80px] mr-[80px]">

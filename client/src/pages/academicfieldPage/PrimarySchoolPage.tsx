@@ -30,7 +30,7 @@ const years = [
 
 function PrimarySchoolPage() {
   const [selectedYear, setSelectedYear] = useState("السنة الأولى");
-  const [selectedSubject, setSelectedSubject] = useState("الرياضيات");
+  const [selectedSubject, setSelectedSubject] = useState("المادة");
   const [isMenuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -68,7 +68,13 @@ function PrimarySchoolPage() {
 
   return (
     <div className="font-tajawal">
-      <Navbar />
+      <Navbar
+        isAuthenticated={false}
+        isTeacher={false}
+        handleLogout={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
       <PathPage />
       <div style={{ fontFamily: "Tajawal", fontWeight: 700 }}>
         <div className="text-center ">
@@ -224,29 +230,27 @@ function PrimarySchoolPage() {
           <Link
             to={`/group-chat?year=${selectedYear}&subject=${selectedSubject}`}
           >
-          <CustomCard
-            imageSrc="/assets/academicfield/revision.jpg"
-            title="مجموعة المراجعة"
-            rating="4.7"
-            description="Enter a description for مجموعة المراجعة."
-            year={selectedYear}
-            subject={selectedSubject}
-          /></Link>
-           <Link
-            to={`/games?year=${selectedYear}&subject=${selectedSubject}`}
-          >
-          <CustomCard
-            imageSrc="/assets/academicfield/games.jpg"
-            title="الألعاب التعليمية"
-            rating="4.8"
-            description="Enter a description for الألعاب التعليمية."
-            year={selectedYear}
-            subject={selectedSubject}
-          /></Link>
+            <CustomCard
+              imageSrc="/assets/academicfield/revision.jpg"
+              title="مجموعة المراجعة"
+              rating="4.7"
+              description="Enter a description for مجموعة المراجعة."
+              year={selectedYear}
+              subject={selectedSubject}
+            />
+          </Link>
+          <Link to={`/games?year=${selectedYear}&subject=${selectedSubject}`}>
+            <CustomCard
+              imageSrc="/assets/academicfield/games.jpg"
+              title="الألعاب التعليمية"
+              rating="4.8"
+              description="Enter a description for الألعاب التعليمية."
+              year={selectedYear}
+              subject={selectedSubject}
+            />
+          </Link>
 
-          <Link
-            to={`/exams?year=${selectedYear}&subject=${selectedSubject}`}
-          >
+          <Link to={`/exams?year=${selectedYear}&subject=${selectedSubject}`}>
             <CustomCard
               imageSrc="/assets/academicfield/exams.jpg"
               title="فروض و امتحانات"
