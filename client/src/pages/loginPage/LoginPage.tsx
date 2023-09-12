@@ -2,15 +2,20 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { images } from "../../constants";
+
 interface FormData {
-  email: string;
+  identifier: string;
   password: string;
   rememberMe?: boolean;
 }
 function SignupPage() {
+  const navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [userFormData, setUserFormData] = useState<FormData>({
-    email: "",
+    identifier: "",
     password: "",
     rememberMe: false,
   });
@@ -18,7 +23,7 @@ function SignupPage() {
   const [activeInput, setActiveInput] = useState("");
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [formErrors, setFormErrors] = useState<FormData>({
-    email: "",
+    identifier: "",
     password: "",
   });
   const [globalError, setGlobalError] = useState("");
@@ -37,10 +42,12 @@ function SignupPage() {
       password: event.target.value,
     });
   };
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEmailPhoneChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setUserFormData({
       ...userFormData,
-      email: event.target.value,
+      identifier: event.target.value,
     });
   };
 
@@ -57,21 +64,21 @@ function SignupPage() {
     e.preventDefault();
 
     // Clear previous errors
-    setFormErrors({ email: "", password: "" });
+    setFormErrors({ identifier: "", password: "" });
     setGlobalError("");
 
     // Validation
     let isValid = true;
     let concatenatedError = "";
 
-    if (!userFormData.email && !userFormData.password) {
-      concatenatedError = "Email and password are required.";
+    if (!userFormData.identifier && !userFormData.password) {
+      concatenatedError = "Email/Phone and password are required.";
       isValid = false;
     } else {
-      if (!userFormData.email) {
+      if (!userFormData.identifier) {
         setFormErrors((prevErrors) => ({
           ...prevErrors,
-          email: "Email is required.",
+          identifier: "Email/Phone is required.",
         }));
         isValid = false;
       }
@@ -88,7 +95,7 @@ function SignupPage() {
     if (isValid) {
       // Send the formData to your backend API here and handle the response
       // You can use fetch or any other method to make the API request
-      const apiUrl = "your_api_endpoint_here";
+      const apiUrl = "http://localhost:5000/api/student/login";
       try {
         const response = await fetch(`${apiUrl}`, {
           method: "POST",
@@ -100,12 +107,55 @@ function SignupPage() {
 
         if (response.ok) {
           // Handle success, e.g., redirect to a dashboard
-        } else {
-          // Handle API errors and set appropriate error messages
-          // Example:
           const data = await response.json();
+          const authToken = data.token;
+          // Save the token in local storage
+          localStorage.setItem("authToken", authToken);
+          toast.success("Login successful!", {
+            draggable: true,
+            closeButton: true,
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 5000, // Auto close the toast after 3 seconds
+          });
+          navigate("/");
+        } else if (response.status === 401) {
+          // Handle errors here
+          console.error("Verify your account");
+          toast.error("You must verify your account first", {
+            draggable: true,
+            closeButton: true,
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 7000, // Auto close the toast after 5 seconds
+          });
+        } else {
+          const data = await response.json();
+          if (data.message === "Invalid email/phone number or Password") {
+            toast.error("Incorrect Password", {
+              draggable: true,
+              closeButton: true,
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 4000, // Auto close the toast after 4 seconds
+            });
+          } else if (data.message === "Email/Phone Number does not exist") {
+            toast.error("Incorrect Email", {
+              draggable: true,
+              closeButton: true,
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 4000, // Auto close the toast after 4 seconds
+            });
+          } else {
+            toast.error("Login failed. Please check your Credentials", {
+              draggable: true,
+              closeButton: true,
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 4000, // Auto close the toast after 4 seconds
+            });
+          }
+
           if (data.error) {
             setGlobalError(data.error);
+            // Show an error toast
+            navigate("/login");
           }
         }
       } catch (error) {
@@ -136,13 +186,17 @@ function SignupPage() {
       <div className="lg:w-1/2 h-screen lg:overflow-y-scroll  ">
         <form onSubmit={handleSubmit}>
           <div className="p-20">
-            <div className="flex space-x-4 lg:space-x-48">
-              <img className="h-8" src="assets/logo.svg" alt="" />
-              <Link to="/">
-                <p className="font-light text-sm underline">Back to Home</p>
+            <div className="flex justify-between gap-x-12 lg:gap-x-48 ">
+              <img className="h-8" src={images.Logo} alt="" />
+              <Link
+                to="/"
+                className="py-2 px-3 bg-[#1450A3] rounded-lg text-white hover:bg-blue-400   "
+                style={{ textDecoration: "none" }}
+              >
+                <p className="font-light text-sm underline">Back Home</p>
               </Link>
             </div>
-            <p className="mt-12 text-3xl font-medium">Sign up</p>
+            <p className="mt-12 text-3xl font-medium">Login</p>
             <div className="space-y-4 mt-8">
               <div>
                 <label htmlFor="email" className="text-gray-500 mb-2 block">
@@ -155,8 +209,8 @@ function SignupPage() {
                   className={`rounded-md px-4 py-3 w-full border ${
                     activeInput === "email" ? "border-redPal" : "border-red-100"
                   } ::placeholder text-sm focus:border-redPal focus:outline-none`}
-                  value={userFormData.email}
-                  onChange={handleEmailChange}
+                  value={userFormData.identifier}
+                  onChange={handleEmailPhoneChange}
                   onFocus={() => handleInputFocus("email")}
                   onBlur={handleInputBlur}
                 />
@@ -193,7 +247,7 @@ function SignupPage() {
                     />
                   </div>
                 </div>
-                <Link to="/forgotPassword">
+                <Link to="/forgot-password">
                   <p className="text-sm text-blueLink mt-3 font-medium hover:text-redPal">
                     Forgot Password?
                   </p>
@@ -215,9 +269,9 @@ function SignupPage() {
                 </label>
               </div>
               <div>
-                {formErrors.email && (
+                {formErrors.identifier && (
                   <div className="text-red-500 bg-red-100 border border-red-500 p-2 mb-4 rounded-lg">
-                    {formErrors.email}
+                    {formErrors.identifier}
                   </div>
                 )}
                 {formErrors.password && (
@@ -235,7 +289,7 @@ function SignupPage() {
                 type="submit"
                 className=" font-medium w-full p-3 bg-pechelight hover:bg-peche  text-white  rounded-md"
               >
-                Sign In
+                Login
               </button>
             </div>
           </div>

@@ -25,12 +25,8 @@ function LandingPage() {
     <div>
       <div className="lg:w-full xl:w-full 2xl:w-full top-14 md:h-[920px] bg-gradient-to-r from-red-50 to-[#bedbfc]">
         <NavBar
-          isAuthenticated={true}
           isFixed={true}
           isTeacher={false}
-          handleLogout={function (): void {
-            throw new Error("Function not implemented.");
-          }}
         />
         <div>
           <ScrollToTopButton />
@@ -115,7 +111,7 @@ function LandingPage() {
       <div
         className="w-full top-14 h-full pb-4 bg-cover  bg-gradient-to-r from-red-50 to-[#bedbfc]"
         style={{
-          
+
           backgroundRepeat: "no-repeat, repeat-y",
           backgroundSize: "auto, cover",
         }}
@@ -272,7 +268,7 @@ function LandingPage() {
         <div
           className="w-full top-14 h-full pb-4 bg-cover  bg-gradient-to-r from-[#bedbfc] to-red-50 "
           style={{
-           
+
             backgroundRepeat: "no-repeat, repeat-y",
             backgroundSize: "auto, cover",
           }}

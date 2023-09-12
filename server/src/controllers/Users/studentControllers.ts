@@ -1,17 +1,24 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import uploadFiles from "../../middleware/uploadFilesMiddleware";
 import uploadPicture from "../../middleware/uploadPictureMiddleware";
 import Student from "../../models/Users/Student";
+import { Course } from "../../models/Course/course";
 import {
   fileRemover,
   filesRemover,
   generateCode,
   // generateOTP,
 } from "../../utils/index";
+// import sendPasswordResetEmailTemplate from "../../utils/resetviaEmail";
 import formData from "form-data";
 import Mailgun from "mailgun.js";
+// import * as crypto from "crypto";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 // import fs from "fs";
 import { messageVerificationEmail } from "../../utils/messageVerificationEmail";
+
 //! import twilio from "twilio";
 
 // Custom error class for endpoint not found
@@ -69,7 +76,7 @@ const registerUser = async (req, res, next) => {
     });
 
     if (existingUser) {
-      throw new Error("User already exists");
+      return res.status(409).json({ message: "User already exists" });
     }
 
     // Create a new user
@@ -225,6 +232,171 @@ const loginUser = async (req, res, next) => {
         .json({ user: sanitizedUser, token, userIdentifier });
     } else {
       throw new Error("Invalid email/phone number or Password");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+// --------------------------------------------------------------------------------------
+// TODO:
+// // Step 1: Send password reset email
+// const sendPasswordResetEmail = async (req, res, next) => {
+//   try {
+//     const { email } = req.body;
+
+//     // Generate a unique reset token
+//     const resetToken = crypto.randomBytes(32).toString("hex");
+
+//     // Find the user by their email
+//     const user = await Student.findOne({ email });
+
+//     if (!user) {
+//       // User with the provided email does not exist
+//       return res.status(404).json({ message: "User not found" });
+//     }
+
+//     // Set the reset token and expiration time in the user's document
+//     user.resetPasswordToken = resetToken;
+//     user.resetPasswordExpires = Date.now() + 3600000; // Token expires in 1 hour
+
+//     // Save the updated user document
+//     await user.save();
+
+//     // Send the password reset email
+//     await sendPasswordResetEmailTemplate(email, resetToken); // Implement this function to send the email
+
+//     return res
+//       .status(200)
+//       .json({ message: "Password reset email sent", resetToken });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+// // Step 2: Handle password reset form
+// const resetPassword = async (req, res, next) => {
+//   try {
+//     const { token, newPassword } = req.body;
+
+//     // Find the user by their reset token and check if it's still valid
+//     const user = await Student.findOne({
+//       resetPasswordToken: token,
+//       resetPasswordExpires: { $gt: Date.now() },
+//     });
+
+//     if (!user) {
+//       // Token is invalid or expired
+//       return res.status(400).json({ message: "Invalid or expired token" });
+//     }
+
+//     // Update the user's password
+//     user.password = newPassword;
+//     user.resetPasswordToken = undefined;
+//     user.resetPasswordExpires = undefined;
+
+//     // Save the updated user document
+//     await user.save();
+
+//     return res.status(200).json({ message: "Password reset successful" });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
+const senEmailForPassword = async (req, res, next) => {
+  const API_KEY = process.env.MAILGUN_API_KEY;
+  const DOMAIN = process.env.MAILGUN_DOMAIN;
+  const mailgun = new Mailgun(formData);
+  const client = mailgun.client({ username: "api", key: API_KEY! });
+  try {
+    const { email } = req.body;
+    const user = await Student.findOne({ email: email });
+
+    if (!user) {
+      // User with the provided email does not exist
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Generate a unique reset token
+    const token = jwt.sign(
+      { id: user._id, role: user.role },
+      process.env.JWT_SECRET,
+      {
+        // expire in 2mn
+        expiresIn: "5m",
+      }
+    );
+    const verificationLink = `http://localhost:5173/reset-password/${user._id}/${token}`;
+    // const htmlContent = fs.readFileSync( "../../utils/messageVerificationEmail.html", "utf8");
+    const messageData = {
+      from: "Academia+  <support@academia-plus.me>",
+      to: email,
+      subject: "Reset password",
+      text: `Click the following link to reset your password: ${verificationLink}`,
+    };
+
+    await client.messages
+      .create(DOMAIN!, messageData)
+      .then((response) => {
+        console.log(response);
+        // Handle success
+
+        // Respond with a sanitized user object (omit sensitive fields)
+        const sanitizedUser = {
+          _id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          phone: user.phone,
+          verified: user.verified,
+        };
+
+        // Return the sanitized user data along with the token
+        return res.status(201).json({
+          user: sanitizedUser,
+          token,
+          message: "Email send succefully for reset your password",
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        // Handle the error
+        return res
+          .status(500)
+          .json({ message: "Reset failed. Please try again later." });
+      });
+  } catch (error) {
+    next(error);
+  }
+};
+const resetPassword = (req, res) => {
+  const { id, token } = req.params;
+  const { password } = req.body;
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return res.json({ Status: "Error with token" });
+    } else {
+      bcrypt
+        .hash(password, 10)
+        .then((hash) => {
+          Student.findByIdAndUpdate({ _id: id }, { password: hash })
+            .then((u) => res.send({ Status: "Success" }))
+            .catch((err) => res.send({ Status: err }));
+        })
+        .catch((err) => res.send({ Status: err }));
+    }
+  });
+};
+// --------------------------------------------------------------------------------------
+// ?Working
+const logoutUser = async (req, res, next) => {
+  try {
+    const user = await Student.findById(req.user._id);
+    if (user) {
+      // Revoke the current JWT token by incrementing the tokenVersion
+      user.tokenVersion += 1;
+      await user.save();
+      return res.status(201).json({ message: "Logout successfully" });
     }
   } catch (error) {
     next(error);
@@ -735,6 +907,148 @@ const uploadMultipleFiles = async (req, res, next) => {
     next(error);
   }
 };
+// controllers/studentController.js
+
+// Enroll a student in a course
+const enrollInCourse = async (req, res) => {
+  try {
+    const { studentId, courseId } = req.params;
+
+    // Find the student by ID
+    const student = await Student.findById(studentId);
+
+    // Find the course by ID
+    const course = await Course.findById(courseId);
+
+    // Check if both student and course exist
+    if (!student || !course) {
+      return res.status(404).json({ message: "Student or course not found." });
+    }
+
+    // Check if the student is already enrolled in the course
+    if (student.enrolledCourses.includes(courseId)) {
+      return res
+        .status(400)
+        .json({ message: "Student is already enrolled in this course." });
+    }
+
+    // Enroll the student in the course
+    student.enrolledCourses.push(courseId);
+    await student.save();
+
+    return res
+      .status(200)
+      .json({ message: "Student enrolled in the course successfully." });
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error." });
+  }
+};
+// course progress function
+
+const courseProgress = async (req, res, next) => {
+  try {
+    const { studentId, courseId } = req.params;
+    const { progress } = req.body;
+
+    // Find the student by ID
+    const student = await Student.findById(studentId);
+
+    // Find the course by ID
+    const course = await Course.findById(courseId);
+
+    // Check if both student and course exist
+    if (!student || !course) {
+      return res.status(404).json({ message: "Student or course not found." });
+    }
+
+    // Check if the student is already enrolled in the course
+    if (!student.enrolledCourses.includes(courseId)) {
+      return res
+        .status(400)
+        .json({ message: "Student is not enrolled in this course." });
+    }
+
+    // Update the student's course progress
+    student.courseProgress.push({ courseId, progress });
+    await student.save();
+
+    return res
+      .status(200)
+      .json({ message: "Student progress updated successfully." });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// course purchase function
+const purchaseCourse = async (req, res) => {
+  try {
+    const { studentId, courseId } = req.params;
+
+    // Find the student by ID
+    const student = await Student.findById(studentId);
+
+    // Find the course by ID
+    const course = await Course.findById(courseId);
+
+    // Check if both student and course exist
+    if (!student || !course) {
+      return res.status(404).json({ message: "Student or course not found." });
+    }
+
+    // Check if the student has already purchased the course
+    if (student.purchasedCourses.includes(courseId)) {
+      return res
+        .status(400)
+        .json({ message: "Student has already purchased this course." });
+    }
+
+    // Purchase the course
+    student.purchasedCourses.push(courseId);
+    await student.save();
+
+    return res
+      .status(200)
+      .json({ message: "Student purchased the course successfully." });
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error." });
+  }
+};
+
+// function to allow students to mark courses as completed,updating the completedCourses array. and to view their completed courses
+const completeCourse = async (req, res, next) => {
+  try {
+    const { studentId, courseId } = req.params;
+
+    // Find the student by ID
+    const student = await Student.findById(studentId);
+
+    // Find the course by ID
+    const course = await Course.findById(courseId);
+
+    // Check if both student and course exist
+    if (!student || !course) {
+      return res.status(404).json({ message: "Student or course not found." });
+    }
+
+    // Check if the student has already completed the course
+    if (student.completedCourses.includes(courseId)) {
+      return res
+        .status(400)
+        .json({ message: "Student has already completed this course." });
+    }
+
+    // Mark the course as completed
+    student.completedCourses.push(courseId);
+    await student.save();
+
+    return res
+      .status(200)
+      .json({ message: "Student completed the course successfully." });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export {
   getUserById,
@@ -748,4 +1062,13 @@ export {
   updateEmail,
   updateCoverPicture,
   uploadMultipleFiles,
+  enrollInCourse,
+  courseProgress,
+  purchaseCourse,
+  completeCourse,
+  logoutUser,
+  // sendPasswordResetEmail,
+  // resetPassword,
+  senEmailForPassword,
+  resetPassword,
 };

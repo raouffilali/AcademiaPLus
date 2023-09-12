@@ -28,6 +28,7 @@ import GrpChat from "./pages/academicfieldPage/grpChat/GrpChat";
 import GamesPage from "./pages/academicfieldPage/GamesPage/GamesPage";
 import CheckoutComp from "./components/checkoutComponent/CheckoutComp";
 import VirtualLab from "./pages/VirtualLab/VirtualLab";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   return (
@@ -39,11 +40,13 @@ function App() {
       <Route path="/educational-courses" element={<EducationalCoursesPage />} />
       <Route path="/create-course" element={<CreateCourse />} />
       <Route path="/landing" element={<LandingPage />} />
-      <Route path="/forgotPassword" element={<ForgotPassword />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/becomeaTeacher" element={<BecomeaTeacherPage />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="/wishList" element={<WishList />} />
-      <Route path="/signup" element={<SignupPage />} />
+      <Route path="/register" element={<SignupPage />} />
       <Route path="/category" element={<CategoryPage />} />
       <Route path="/checkout" element={<CheckoutComp />} />
       <Route path="/courseDetails/:courseName" element={<CourseDetails />} />
@@ -51,17 +54,17 @@ function App() {
         path="/course-details/:courseId"
         element={<AcademicCourseDetails />}
       />
-       <Route path="/video-summaries" element={<VideoSummaries/>} />
-       <Route path="/pdf-summaries" element={<PdfSummaries/>} />
-       <Route path="/games" element={<GamesPage/>} />
-       <Route path="/group-chat" element={<GrpChat/>} />
-       <Route path="/exams" element={<ExamsPage/>} />
+      <Route path="/video-summaries" element={<VideoSummaries />} />
+      <Route path="/pdf-summaries" element={<PdfSummaries />} />
+      <Route path="/games" element={<GamesPage />} />
+      <Route path="/group-chat" element={<GrpChat />} />
+      <Route path="/exams" element={<ExamsPage />} />
       <Route path="/allCourses" element={<AllCourses />} />
       <Route path="/primarySchool" element={<PrimarySchoolPage />} />
       <Route path="/middleSchool" element={<MiddleSchoolPage />} />
       <Route path="/highSchool" element={<HighSchoolPage />} />
       <Route path="/university" element={<UniversityPage />} />
-      
+
       <Route path="/subscription" element={<SubscriptionPackagesPage />} />
       <Route path="/virtual-lab" element={<VirtualLab />} />
     </Routes>

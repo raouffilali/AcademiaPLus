@@ -1,29 +1,32 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import PathPage from "../../components/PathPage/PathPage";
-
+import { toast } from "react-toastify";
 interface ForgotPasswordProps {}
 
 const ForgotPassword: React.FC<ForgotPasswordProps> = () => {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("");
+  const navigate = useNavigate();
 
+  axios.defaults.withCredentials = true;
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "/forgot-password",
-        { email },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          withCredentials: true, // enable CORS
-        }
-      );
-      setStatus(response.data.status);
+      axios
+        .post("http://localhost:5000/api/student/forgot-password", { email })
+        .then((res) => {
+          if (res.status === 201) {
+            toast.success("Email sent successful!", {
+              draggable: true,
+              closeButton: true,
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 5000, // Auto close the toast after 3 seconds
+            });
+            navigate("/login");
+          }
+        })
+        .catch((err) => console.log(err));
     } catch (error) {
       console.log(error);
     }
@@ -63,7 +66,7 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = () => {
           </div>
           <div className="space-y-4 mt-8">
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-              <div>
+              <form onSubmit={handleSubmit}>
                 <label htmlFor="email" className="text-gray-500 mb-2 block">
                   Email
                 </label>
@@ -71,21 +74,25 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = () => {
                   type="email"
                   id="email"
                   placeholder="Enter your email"
+                  onChange={(e) => setEmail(e.target.value)}
                   className={`rounded-md px-4 py-3 w-full border
                  border-red-100
                 } ::placeholder text-sm focus:border-redPal focus:outline-none`}
                 />
-              </div>
-
-              <button className=" mt-5 font-medium w-full p-3 bg-pechelight hover:bg-peche  text-white  rounded-md">
-                Sign In
+                              <button
+                type="submit"
+                className=" mt-5 font-medium w-full p-3 bg-pechelight hover:bg-peche  text-white  rounded-md"
+              >
+                Send Email
               </button>
+              </form>
+
+
             </div>
           </div>
         </div>
       </div>
     </div>
-    
 
     //   <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
     //     <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">

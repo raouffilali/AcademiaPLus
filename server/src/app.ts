@@ -6,14 +6,20 @@ import session from "express-session";
 import createHttpError, { isHttpError } from "http-errors";
 import morgan from "morgan";
 import env from "./utils/validateEnv";
+import cors from "cors";
 import studentRouter from "./routes/studentRoutes";
 import courseRouter from "./routes/courseRoutes";
 import {
   errorResponseHandler,
   invalidPathHandler,
 } from "./middleware/errorHandler";
+import { authGuard } from "./middleware/authMiddleware";
 
 const app = express();
+app.use(cors({
+  origin: env.CLIENT_URL,
+  credentials: true
+}));
 
 app.use(morgan("dev"));
 
@@ -25,7 +31,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/student", studentRouter);
-app.use("/api/course", courseRouter);
+app.use("/api/course",authGuard, courseRouter);
 
 app.use(invalidPathHandler);
 app.use(errorResponseHandler);

@@ -3,6 +3,7 @@ import { hash, compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
 
 export interface IStudent {
+  role: string;
   firstName: string;
   lastName: string;
   password: string;
@@ -10,9 +11,11 @@ export interface IStudent {
   avatar: string;
   coverPicture: string;
   verified: boolean;
-  phoneVerified : boolean;
+  phoneVerified: boolean;
   verificationCode: number | undefined;
-  verificatioOTP : number | undefined;
+  verificatioOTP: number | undefined;
+  resetPasswordToken : string | undefined;
+  resetPasswordExpires : number | undefined ;
   enrolledCourses: string[];
   purchasedCourses: string[];
   courseProgress: [{ courseId: string; progress: number }];
@@ -44,10 +47,12 @@ export interface IStudent {
   multipleFileUpload: [];
   generateJWT(): string;
   tokenVersion: number;
+
   comparePassword(enteredPassword: string): Promise<boolean>;
 }
 
 const userSchema = new Schema<IStudent>({
+  role: { type: String, default: "Student" },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   email: {
@@ -74,13 +79,23 @@ const userSchema = new Schema<IStudent>({
   avatar: { type: String },
   coverPicture: { type: String },
   verified: { type: Boolean, default: false },
-  phoneVerified : { type: Boolean, default: false },
+  phoneVerified: { type: Boolean, default: false },
   verificationCode: { type: Number },
-  verificatioOTP : { type: Number },
-  enrolledCourses: [{ type: Schema.Types.ObjectId, ref: 'Course' }],
-  courseProgress: [{ courseId: { type: Schema.Types.ObjectId, ref: 'Course' }, progress: Number }],
-  purchasedCourses: [{ type: Schema.Types.ObjectId, ref: 'Course' }],
-  completedCourses: [{ courseId: { type: Schema.Types.ObjectId, ref: 'Course' }, completedOn: Date }],
+  verificatioOTP: { type: Number },
+  enrolledCourses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
+  courseProgress: [
+    {
+      courseId: { type: Schema.Types.ObjectId, ref: "Course" },
+      progress: Number,
+    },
+  ],
+  purchasedCourses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
+  completedCourses: [
+    {
+      courseId: { type: Schema.Types.ObjectId, ref: "Course" },
+      completedOn: Date,
+    },
+  ],
   phone: {
     type: String,
     required: false,
@@ -127,6 +142,7 @@ const userSchema = new Schema<IStudent>({
     multipleFileUpload: [{ type: String }],
   },
   tokenVersion: { type: Number, default: 0 },
+
 });
 
 // hash the password
@@ -140,7 +156,7 @@ userSchema.pre("save", async function (next) {
 
 // Define the methods on the schema
 userSchema.methods.generateJWT = async function (): Promise<string> {
-  return await sign({ id: this._id }, process.env.JWT_SECRET, {
+  return await sign({ id: this._id, role: this.role }, process.env.JWT_SECRET, {
     expiresIn: "1d",
   });
 };
