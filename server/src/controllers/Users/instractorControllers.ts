@@ -37,159 +37,11 @@ class NotFoundError extends Error {
 
 // ?WORKING
 
-const registerUser = async (req, res, next) => {
-  // ! TWILIO IS NOT WORKING
-  // const ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
-  // const AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
-  // const twilioClient = twilio(ACCOUNT_SID!, AUTH_TOKEN!);
-
+const registerInstructorWithFile = async (req, res, next) => {
   const API_KEY = process.env.MAILGUN_API_KEY;
   const DOMAIN = process.env.MAILGUN_DOMAIN;
   const mailgun = new Mailgun(formData);
   const client = mailgun.client({ username: "api", key: API_KEY! });
-  try {
-    const {
-      fullName,
-      email,
-      phone,
-      password,
-      education,
-      qualifications,
-      coverLetter,
-      cv,
-    } = req.body;
-
-    // Validate input data
-    if (
-      !fullName ||
-      !email ||
-      !password ||
-      !phone ||
-      !education ||
-      !qualifications ||
-      !coverLetter ||
-      !cv
-    ) {
-      return res
-        .status(400)
-        .json({ message: " All fields are rquired you must fill them all " });
-    }
-    //Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/.test(password);
-    // Validate password strength (regex) and it must be at least 8 characters long
-    if (!passwordRegex || password.length < 8) {
-      return res.status(400).json({
-        message:
-          "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character and must be at least 8 characters long",
-      });
-    }
-    // validate phone number
-    const phoneRegex = /^[0-9]{10}$/.test(phone);
-    if (!phoneRegex) {
-      return res.status(400).json({
-        message: "Phone number must be a 10-digit number (ex:07-xx-xx-xx-xx).",
-      });
-    }
-
-    // Check if the user already exists with the email or phone number
-    const existingUser = await Instructor.findOne({
-      $or: [{ email }, { phone }],
-    });
-
-    if (existingUser) {
-      return res.status(409).json({ message: "User already exists" });
-    }
-
-    // Check if a file was uploaded
-    const upload = uploadFile.single("cv");
-    upload(req, res, async (err) => {
-      if (err) {
-        const error = new Error('An error occurred when uploading the CV file: ' + err.message);
-        return next(error);
-      } else {
-        // Check if a file was uploaded
-        if (!req.file) {
-          return res.status(400).json({ message: "CV file is required" });
-        }
-           // because we have a 'cv' field in your form for the CV file
-           const cvFileName = req.file.filename;
-    // Create a new user
-    const newUser = await Instructor.create({
-      fullName,
-      email,
-      phone,
-      password,
-      education,
-      qualifications,
-      coverLetter,
-      cv:cvFileName,
-    });
-
-    const verificationCode = generateCode(); // Implement a function to generate a random code.
-    newUser.verificationCode = verificationCode;
-    fullName;
-    await newUser.save();
-
-    // in production will be https://academia-plus.me/verify?code=${verificationCode}
-    const verificationLink = `http://localhost:5000/api/instructor/verify?code=${verificationCode}`;
-    // const htmlContent = fs.readFileSync( "../../utils/messageVerificationEmail.html", "utf8");
-    const messageData = {
-      from: "Academia+  <support@academia-plus.me>",
-      to: email,
-      subject: "Instractor Email Verification",
-      html: messageVerificationEmailInstractor(verificationLink, fullName),
-      // html : htmlContent
-    };
-
-    // Generate a JWT token
-    const token = newUser.generateInstractorJWT();
-    // request role from token
-
-    await client.messages
-      .create(DOMAIN!, messageData)
-      .then((response) => {
-        console.log(response);
-        // Handle success
-
-        // Respond with a sanitized user object (omit sensitive fields)
-        const sanitizedUser = {
-          _id: newUser._id,
-          fullName: newUser.fullName,
-          email: newUser.email,
-          phone: newUser.phone,
-          password: newUser.password,
-          education: newUser.education,
-          qualifications: newUser.qualifications,
-          coverLetter: newUser.coverLetter,
-          cv: newUser.cv,
-          verified: newUser.verified,
-        };
-
-        // Return the sanitized user data along with the token
-        return res.status(201).json({
-          user: sanitizedUser,
-          token,
-          message:
-            "Registration successful. Please check your email for verification instructions.",
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-        // Handle the error
-        return res
-          .status(500)
-          .json({ message: "Registration failed. Please try again later." });
-      });
-      }
-    });
-
-  } catch (error) {
-    next(error);
-  }
-};
-
-const uploadUserWithFile = async (req, res, next) => {
   try {
     const upload = uploadFile.single("cv"); // Assuming 'cv' is the field name for the file in the form
 
@@ -211,51 +63,118 @@ const uploadUserWithFile = async (req, res, next) => {
           coverLetter,
         } = req.body;
 
-        // Create a new user document
+        // Validate input data
+        if (
+          !fullName ||
+          !email ||
+          !password ||
+          !phone ||
+          !education ||
+          !qualifications ||
+          !coverLetter
+        ) {
+          return res.status(400).json({
+            message: "All fields are required, please fill them all.",
+          });
+        }
+
+        // Password validation
+        const passwordRegex =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/.test(password);
+        if (!passwordRegex || password.length < 8) {
+          return res.status(400).json({
+            message:
+              "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character and must be at least 8 characters long",
+          });
+        }
+
+        // Phone number validation
+        const phoneRegex = /^[0-9]{10}$/.test(phone);
+        if (!phoneRegex) {
+          return res.status(400).json({
+            message:
+              "Phone number must be a 10-digit number (ex:07-xx-xx-xx-xx).",
+          });
+        }
+
+        // Check if a file was uploaded
+        const cvFileName = req.file ? req.file.filename : null;
+        // Create a new instructor document
         const newUser = new Instructor({
           fullName,
           email,
           phone,
           password,
           education,
-
           qualifications,
           coverLetter,
+          cv: cvFileName,
         });
 
-        // Check if a file was uploaded
-        if (req.file) {
-          newUser.cv = req.file.filename; // Store the filename in the 'cv' field
-        }
-
-        // Save the user to the database
+        // Save the instructor to the database
         await newUser.save();
 
-        // Generate a JWT token for the new user
-        const token = await newUser.generateInstractorJWT();
+        // Generate a verification code for email
+        const verificationCode = generateCode(); // Implement a function to generate a random code.
 
-        // Respond with a sanitized user object (omit sensitive fields)
-        const sanitizedUser = {
+        // Add the verification code to the user document
+        newUser.verificationCode = verificationCode;
+
+        // Save the user with the verification code
+        await newUser.save();
+
+        // Send a verification email to the user
+        const verificationLink = `http://localhost:5000/api/instructor/verify?code=${verificationCode}`;
+        const messageData = {
+          from: "Academia+  <support@academia-plus.me>",
+          to: email,
+          subject: "Instructor Email Verification",
+          html: messageVerificationEmailInstractor(verificationLink, fullName),
+        };
+
+        await client.messages
+          .create(DOMAIN!, messageData)
+          .then((response) => {
+            console.log(
+              ` Registration successful ${fullName}. Please check your email for verification instructions. and this is the server response ${response}`
+            );
+            // Handle success
+          })
+          .catch((error) => {
+            console.error(error);
+            // Handle the error
+            return res.status(500).json({
+              message: "Registration failed. Please try again later.",
+            });
+          });
+
+        // Generate a JWT token for the new instructor
+        const token = await newUser.generateInstractorJWT;
+
+        // Respond with a sanitized instructor object (omit sensitive fields)
+        const sanitizedInstructor = {
           _id: newUser._id,
+          role: newUser.role,
           fullName: newUser.fullName,
           email: newUser.email,
+          password: newUser.password,
           phone: newUser.phone,
           education: newUser.education,
-          experience: newUser.experience,
-
+          qualifications: newUser.qualifications,
           coverLetter: newUser.coverLetter,
           cv: newUser.cv,
           verified: newUser.verified,
         };
 
-        // Return the sanitized user data along with the token
-        return res.status(201).json({ user: sanitizedUser, token });
+        // Return the sanitized instructor data along with the token
+        return res.status(201).json({ instructor: sanitizedInstructor, token });
       }
     });
   } catch (error) {
     next(error);
   }
 };
+
 // --------------------------------------------------------------------------------------
 
 // ?WORKING
@@ -279,6 +198,7 @@ const loginUser = async (req, res, next) => {
     if (!user) {
       throw new NotFoundError("Email/Phone Number does not exist", 404);
     }
+
     // Check if the user is verified
     if (!user.verified) {
       return res.status(401).json({
@@ -287,45 +207,60 @@ const loginUser = async (req, res, next) => {
       });
     }
 
-    if (await user.compareInstractorPassword(password)) {
-      // Generate a JWT token
-      const token = await user.generateInstractorJWT();
+    // Check the user's status
+    if (user.status === "rejected") {
+      return res.status(402).json({
+        message: "Your application has been rejected by the platform.",
+      });
+    } else if (user.status === "approved") {
+      if (await user.compareInstractorPassword(password)) {
+        // Generate a JWT token
+        const token = await user.generateInstractorJWT();
 
-      // Respond with a sanitized user object (omit sensitive fields)
-      const sanitizedUser = {
-        _id: user._id,
-        fullName: user.fullName,
-        email: user.email,
-        phone: user.phone,
-        password: user.password,
-        education: user.education,
-        qualifications: user.qualifications,
-        coverLetter: user.coverLetter,
-        cv: user.cv,
-        verified: user.verified,
-      };
-      // variable that stor what user used to login (email or phone number)
-      let userIdentifier = "";
-      // if user used email to login
-      if (user.email === identifier) {
-        userIdentifier = "email";
-      }
-      // if user used phone number to login
-      if (user.phone === identifier) {
-        userIdentifier = "phone";
-      }
+        // Respond with a sanitized user object (omit sensitive fields)
+        const sanitizedUser = {
+          _id: user._id,
+          fullName: user.fullName,
+          email: user.email,
+          phone: user.phone,
+          password: user.password,
+          education: user.education,
+          qualifications: user.qualifications,
+          coverLetter: user.coverLetter,
+          cv: user.cv,
+          verified: user.verified,
+        };
 
-      // Return the sanitized user data along with the token
-      return res
-        .status(201)
-        .json({ user: sanitizedUser, token, userIdentifier });
+        // variable that stores what user used to login (email or phone number)
+        let userIdentifier = "";
+        // if user used email to login
+        if (user.email === identifier) {
+          userIdentifier = "email";
+        }
+        // if user used phone number to login
+        if (user.phone === identifier) {
+          userIdentifier = "phone";
+        }
+
+        // Return the sanitized user data along with the token
+        return res
+          .status(201)
+          .json({ user: sanitizedUser, token, userIdentifier });
+      } else {
+        throw new Error("Invalid email/phone number or Password");
+      }
     } else {
-      throw new Error("Invalid email/phone number or Password");
+      // Instructor status is 'pending'
+      return res.status(403).json({
+        message:
+          "Your application is still being processed. Please wait for approval.",
+      });
     }
   } catch (error) {
     next(error);
   }
 };
+
 // --------------------------------------------------------------------------------------
 
 const senEmailForPassword = async (req, res, next) => {
@@ -1172,7 +1107,6 @@ const completeCourse = async (req, res, next) => {
 
 export {
   getUserById,
-  registerUser,
   loginUser,
   userProfile,
   updateProfile,
@@ -1192,5 +1126,5 @@ export {
   senEmailForPassword,
   resetPassword,
   uploadSingleFile,
-  uploadUserWithFile,
+  registerInstructorWithFile,
 };

@@ -37,6 +37,7 @@ import Reviews from "./pages/instructorDashboard/Reviews";
 import { Settings } from "./pages/instructorDashboard/AccountSettings/CreateCourseWizard";
 import EditProfile from "./pages/instructorDashboard/AccountSettings/EditProfile";
 import MySubscriptions from "./pages/StudentDashboard/MySubscriptions";
+import LoginPageInstructor from "./pages/loginPage/LoginPageInstructor";
 
 function App() {
   return (
@@ -95,6 +96,8 @@ function App() {
       <Route path="/student-dashboard" element={<StudentDashboard />} />
       <Route path="/instructor-dashboard/earnings" element={<Earnings />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<SignupPage />} />
+      <Route path ="/instructor-login" element={<LoginPageInstructor />} />
       <Route path="/educational-courses" element={<EducationalCoursesPage />} />
       <Route path="/create-course" element={<CreateCourse />} />
       <Route path="/landing" element={<LandingPage />} />
@@ -104,7 +107,6 @@ function App() {
       <Route path="/becomeaTeacher" element={<BecomeaTeacherPage />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="/wishList" element={<WishList />} />
-      <Route path="/register" element={<SignupPage />} />
       <Route path="/category" element={<CategoryPage />} />
       <Route path="/category/:categoryName" element={<CategoryPage />} />
       <Route path="/about" element={<AboutUs />} />

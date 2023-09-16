@@ -56,7 +56,7 @@ const Form = () => {
       formData.append("cv", cv);
     }
 
-    const apiUrl = "http://localhost:5000/api/instructor/profile/upload-user";
+    const apiUrl = "http://localhost:5000/api/instructor/instructor-register";
 
     try {
       await axios.post(apiUrl, formData, {
@@ -64,10 +64,10 @@ const Form = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      alert("Your application has been submitted successfully!");
+      alert("Your application has been submitted successfully! 🎉");
     } catch (error) {
       console.error(error);
-      alert("Error submitting your application!");
+      alert("Error submitting your application! 😢 try again later");
     }
 
     setName("");

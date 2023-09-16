@@ -5,12 +5,15 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, path.join(__dirname, "../../public/uploads/files"));
   },
+  // set file name to dat with day-month-year +original file name to avoid duplicate file names
   filename: (req, file, cb) => {
-    // Rename uploaded files
-    const uniqueSuffix = `${Date.now()}_${Math.round(Math.random() * 1e9)}`;
-    const fileExtension = path.extname(file.originalname);
-    cb(null, `${uniqueSuffix}${fileExtension}`);
-  },
+    const date = new Date();
+    const fileName = `${date.getDate()}-${
+      date.getMonth() + 1
+    }-${date.getFullYear()}-${file.originalname}`;
+    cb(null, fileName);
+  }
+
 });
 
 const uploadFile = multer({

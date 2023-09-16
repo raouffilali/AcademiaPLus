@@ -11,7 +11,7 @@ interface FormData {
   password: string;
   rememberMe?: boolean;
 }
-function SignupPage() {
+function SignupPageInstructor() {
   const navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [userFormData, setUserFormData] = useState<FormData>({
@@ -95,7 +95,7 @@ function SignupPage() {
     if (isValid) {
       // Send the formData to your backend API here and handle the response
       // You can use fetch or any other method to make the API request
-      const apiUrl = "http://localhost:5000/api/student/login";
+      const apiUrl = "http://localhost:5000/api/instructor/instructor-login";
       try {
         const response = await fetch(`${apiUrl}`, {
           method: "POST",
@@ -119,7 +119,7 @@ function SignupPage() {
             autoClose: 2000, // Auto close the toast after 3 seconds
           });
           navigate("/");
-        } else if (response.status === 401) {
+        } else if (response.status === 401 ) {
           // Handle errors here
           console.error("Verify your account");
           toast.error("You must verify your account first", {
@@ -135,16 +135,40 @@ function SignupPage() {
               draggable: true,
               closeButton: true,
               position: toast.POSITION.TOP_RIGHT,
-              autoClose: 7000, // Auto close the toast after 4 seconds
+              autoClose: 4000, // Auto close the toast after 4 seconds
             });
           } else if (data.message === "Email/Phone Number does not exist") {
             toast.error("Incorrect Email", {
               draggable: true,
               closeButton: true,
               position: toast.POSITION.TOP_RIGHT,
-              autoClose: 7000, // Auto close the toast after 4 seconds
+              autoClose: 4000, // Auto close the toast after 4 seconds
             });
-          } else {
+          } else if(response.status === 402){
+            toast.error("Your application has been rejected by the platform.", {
+              draggable: true,
+              closeButton: true,
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 4000, // Auto close the toast after 4 seconds
+            });
+            setTimeout(() => {
+                navigate("/");
+                }, 3000);
+
+
+          }else if(response.status === 403){
+            toast.info("Your application is still being processed. Please wait for approval.", {
+              draggable: true,
+              closeButton: true,
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 4000, // Auto close the toast after 4 seconds
+            });
+            setTimeout(() => {
+                navigate("/");
+                }, 7000);
+
+          }
+          else {
             toast.error("Login failed. Please check your Credentials", {
               draggable: true,
               closeButton: true,
@@ -193,7 +217,7 @@ function SignupPage() {
                 <p className="font-light text-sm underline">Back to Home</p>
               </Link>
             </div>
-            <p className="mt-12 text-3xl font-medium">Login</p>
+            <p className="mt-12 text-3xl font-medium">Instructor Login</p>
             <div className="space-y-4 mt-8">
               <div>
                 <label htmlFor="email" className="text-gray-500 mb-2 block">
@@ -202,7 +226,7 @@ function SignupPage() {
                 <input
                   type="email"
                   id="email"
-                  placeholder="Enter your email"
+                  placeholder="Enter your Instructor email or phone number"
                   className={`rounded-md px-4 py-3 w-full border ${
                     activeInput === "email" ? "border-redPal" : "border-red-100"
                   } ::placeholder text-sm focus:border-redPal focus:outline-none`}
@@ -325,7 +349,7 @@ function SignupPage() {
   );
 }
 
-export default SignupPage;
+export default SignupPageInstructor;
 
 // import React, { useState } from "react";
 // import "./LoginPage.css";
