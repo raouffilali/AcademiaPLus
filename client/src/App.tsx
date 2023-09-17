@@ -40,11 +40,13 @@ import MySubscriptions from "./pages/StudentDashboard/MySubscriptions";
 import LoginPageInstructor from "./pages/loginPage/LoginPageInstructor";
 import EmailConfirmation from "./pages/email confirmed/EmailConfirmation";
 import EmailConfirmationInstructor from "./pages/email confirmed/EmailConfirmationInstructor";
+import AddCourse from "../simple test/AddCourse"
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
+      <Route path="/add-course" element={<AddCourse />} />
       <Route path="/instructor-dashboard" element={<InstructorDashboard />}>
         <Route
           path="profile"
