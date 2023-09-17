@@ -1,6 +1,6 @@
 // Middleware to check if the user is an instructor
 const checkInstructorRole = (req, res, next) => {
-    // Check if the user is authenticated and has the role "instructor"
+    // Check if the user is authenticated and has the role "instructor" from local storage (JWT)
     if (req.user && req.user.role === 'Instractor') {
       // User is an instructor, proceed to the next middleware or route
       next();

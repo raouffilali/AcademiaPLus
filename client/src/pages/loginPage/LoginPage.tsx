@@ -138,7 +138,7 @@ function SignupPage() {
               autoClose: 7000, // Auto close the toast after 4 seconds
             });
           } else if (data.message === "Email/Phone Number does not exist") {
-            toast.error("Incorrect Email", {
+            toast.error("Incorrect Email or Phone number", {
               draggable: true,
               closeButton: true,
               position: toast.POSITION.TOP_RIGHT,
@@ -200,7 +200,7 @@ function SignupPage() {
                   Email/Phone
                 </label>
                 <input
-                  type="email"
+                  type="text"
                   id="email"
                   placeholder="Enter your email"
                   className={`rounded-md px-4 py-3 w-full border ${

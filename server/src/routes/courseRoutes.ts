@@ -1,4 +1,3 @@
-import checkInstructorRole from "../middleware/checkInstructorRole";
 import express from "express";
 import {
   createCourse,
@@ -13,47 +12,48 @@ import {
   deleteCourse,
 } from "../controllers/courseControllers";
 
+
 const router = express.Router();
 
 // Create a new course
 router.post("/course",  createCourse);
 // Create a new section within a course
-router.post("/courses/:courseId/sections", checkInstructorRole, createSection);
+router.post("/course/:courseId/sections",  createSection);
 // Create a new lecture within a section
 router.post(
-  "/courses/:courseId/sections/:sectionId/lectures",
-  checkInstructorRole,
+  "/course/:courseId/sections/:sectionId/lectures",
+
   createLecture
 );
 // Get all courses
-router.get("/courses", checkInstructorRole, getAllCourses);
+router.get("/all-courses", getAllCourses);
 // Get a single course
-router.get("/courses/:courseId", checkInstructorRole, getCourse);
+router.get("/course/:courseId", getCourse);
 // Update a section's title
 router.put(
-  "/courses/:courseId/sections/:sectionId",
-  checkInstructorRole,
+  "/course/:courseId/sections/:sectionId",
+
   updateSectionTitle
 );
 // Delete a lecture from a section
 router.delete(
-  "/courses/:courseId/sections/:sectionId/lectures/:lectureId",
-  checkInstructorRole,
+  "/course/:courseId/sections/:sectionId/lectures/:lectureId",
+
   deleteLectureFromSection
 );
 // Update lecture properties
 router.put(
-  "/courses/:courseId/sections/:sectionId/lectures/:lectureId",
-  checkInstructorRole,
+  "/course/:courseId/sections/:sectionId/lectures/:lectureId",
+
   updateLecture
 );
 // Delete a section from a course
 router.delete(
-  "/courses/:courseId/sections/:sectionId",
-  checkInstructorRole,
+  "/course/:courseId/sections/:sectionId",
+
   deleteSectionFromCourse
 );
 // Delete a course
-router.delete("/courses/:courseId", checkInstructorRole, deleteCourse);
+router.delete("/course/:courseId",  deleteCourse);
 
 export default router;

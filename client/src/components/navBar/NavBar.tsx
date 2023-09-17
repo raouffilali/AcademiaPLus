@@ -31,7 +31,6 @@ const NavBar: React.FC<NavBarProps> = ({
   isTeacher,
   isFixed,
   isInsideVirtualLab,
- 
 }) => {
   const [isSimulationMenuOpen, setIsSimulationMenuOpen] = useState(false);
   const [isResourcesMenuOpen, setIsResourcesMenuOpen] = useState(false);
@@ -42,6 +41,7 @@ const NavBar: React.FC<NavBarProps> = ({
   const [selectedLanguage, setSelectedLanguage] = useState<ILanguage>(
     LANGUAGES[0]
   );
+  const [isLoginDropdownVisible, setIsLoginDropdownVisible] = useState(false);
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
@@ -56,13 +56,13 @@ const NavBar: React.FC<NavBarProps> = ({
     // Clear the token from local storage
     localStorage.removeItem("authToken");
     // Redirect to the login page or perform any other logout-related actions
-    navigate("/login");
+    window.location.href = "/";
     toast.success("Logout successful!", {
       draggable: true,
       closeButton: true,
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 3000, // Auto close the toast after 3 seconds
-    })
+    });
   };
 
   const handleScroll = () => {
@@ -90,6 +90,21 @@ const NavBar: React.FC<NavBarProps> = ({
     setSelectedLanguage(language);
     setIsLanguageMenuOpen(false); // Close the language menu when a language is selected
     // logic to change the page language
+  };
+  const handleLoginAsStudent = () => {
+    // redirect to login page
+    navigate("login");
+  };
+  const handleLoginAsInstructor = () => {
+    navigate("instructor-login");
+  };
+  const handleHover = () => {
+    setIsLoginDropdownVisible(true);
+  };
+
+  const handleLeave = () => {
+    const dropdown = document.querySelector(".dropdown-menu");
+    setIsLoginDropdownVisible(false);
   };
 
   return (
@@ -250,6 +265,7 @@ const NavBar: React.FC<NavBarProps> = ({
         ) : (
           <ul className="md:flex hidden items-center gap-2">
             <NavLinks />
+
             <div className="hidden md:flex items-center">
               <div className={`searchBar relative`}>
                 <input
@@ -350,7 +366,7 @@ const NavBar: React.FC<NavBarProps> = ({
                         </Link>
                       ) : (
                         <Link to="/student-dashboard/profile">
-                          <button  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
+                          <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
                             Profile
                           </button>
                         </Link>
@@ -369,7 +385,7 @@ const NavBar: React.FC<NavBarProps> = ({
                         </Link>
                       )}
                       {isTeacher ? (
-                        <Link to="/instructor-dashboard/earnings" >
+                        <Link to="/instructor-dashboard/earnings">
                           <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blueLink focus:bg-gray-100 focus:text-gray-900 focus:outline-none">
                             Earnings
                           </button>
@@ -457,12 +473,30 @@ const NavBar: React.FC<NavBarProps> = ({
               </Link>
 
               {/* Login Button */}
-              <Link
-                to="/login"
-                className="mr-2 ml-2 text-gray-800 bg-button rounded-2xl hover:text-white hover:bg-redPal px-4 py-2 focus:outline-none"
+              <div
+                className="relative"
+                onMouseEnter={handleHover}
+                onMouseLeave={handleLeave}
               >
-                Login
-              </Link>
+                <Link
+                  to="/login"
+                  className="text-gray-800 bg-button rounded-2xl hover:text-white hover:bg-redPal px-6 py-3 focus:outline-none "
+                >
+                  Login
+                </Link>
+                {isLoginDropdownVisible && (
+                  <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5  focus:outline-none">
+                    <div className="py-1" role="none">
+                      <div className="option" onClick={handleLoginAsStudent}>
+                        as Student
+                      </div>
+                      <div className="option" onClick={handleLoginAsInstructor}>
+                        as Instructor
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
 
               {/* Signup Button */}
               <Link
@@ -538,16 +572,34 @@ const NavBar: React.FC<NavBarProps> = ({
               </div>
             </div>
           ) : (
-            <div className="py-5">
-              <Link
-                to="/login"
-                className="text-gray-800 bg-button rounded-2xl hover:text-white hover:bg-redPal px-4 py-2 focus:outline-none"
+            <div className="py-5 ">
+              <div
+                className="relative"
+                onMouseEnter={handleHover}
+                onMouseLeave={handleLeave}
               >
-                Login
-              </Link>
+                <Link
+                  to="/login"
+                  className="text-gray-800 bg-button rounded-2xl hover:text-white hover:bg-redPal px-6 py-3 focus:outline-none "
+                >
+                  Login
+                </Link>
+                {isLoginDropdownVisible && (
+                  <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5  focus:outline-none">
+                    <div className="py-1" role="none">
+                      <div className="option" onClick={handleLoginAsStudent}>
+                        Login as Student
+                      </div>
+                      <div className="option" onClick={handleLoginAsInstructor}>
+                        Login as Instructor
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
               <Link
-                to="/signup"
-                className="text-redPal hover:text-white border-2 border-button hover:bg-redPal hover:border-redPal rounded-2xl px-4 py-2 mt-2"
+                to="/register"
+                className="text-redPal sm:mt-12 hover:text-white border-2 border-button hover:bg-redPal hover:border-redPal rounded-2xl px-4 py-2 mt-2"
               >
                 Sign Up
               </Link>

@@ -374,7 +374,15 @@ const logoutUser = async (req, res, next) => {
 // get userProfile
 const userProfile = async (req, res, next) => {
   try {
-    const user = await Instructor.findById(req.user._id);
+    const user = await Instructor.findById(req.user._id).populate({
+      path: "createdCourses",
+      populate: {
+        path: "sections",
+        populate: {
+          path: "lectures", 
+        },
+      },
+    });
     if (user) {
       // Respond with a sanitized user object (omit sensitive fields)
       const sanitizedUser = {

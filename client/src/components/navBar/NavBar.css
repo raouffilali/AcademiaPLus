@@ -4,10 +4,35 @@
     background-color: transparent;
     transition: background-color 0.3s ease;
   }
-  
+
   .navbar.scrolled {
     background-color: white;
     top:0px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
   }
+  /* Style for the dropdown menu */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 150px; /* Adjust the width as needed */
+}
+
+/* Style for each option in the dropdown */
+.option {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+
+.option:hover {
+  background-color: #f0f0f0;
+}
+

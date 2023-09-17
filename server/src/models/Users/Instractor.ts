@@ -78,7 +78,11 @@ const UserSchema = new Schema<IInstractor>({
       message: "Zip code must be a 5-digit number.",
     },
   },
-  avatar: { type: String },
+  avatar: {
+    type: String,
+    default:
+      "https://i.pinimg.com/564x/fc/3d/70/fc3d703e1f4f0f4cb4b44ca83073d9f2.jpg",
+  },
   socialProfiles: {
     twitter: { type: String },
     facebook: { type: String },
@@ -118,12 +122,8 @@ const UserSchema = new Schema<IInstractor>({
     default: "pending",
   },
 
-
-
-  firstName: { type: String,  },
-  lastName: { type: String,  },
-
-
+  firstName: { type: String },
+  lastName: { type: String },
 
   coverPicture: { type: String },
   verified: { type: Boolean, default: false },
@@ -133,14 +133,8 @@ const UserSchema = new Schema<IInstractor>({
 
   tokenVersion: { type: Number, default: 0 },
 
-
   multipleFileUpload: [{ type: String }],
   singleFileUpload: { type: String },
-
-
-
-
-
 });
 // hash the password
 UserSchema.pre("save", async function (next) {

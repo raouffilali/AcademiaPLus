@@ -38,6 +38,8 @@ import { Settings } from "./pages/instructorDashboard/AccountSettings/CreateCour
 import EditProfile from "./pages/instructorDashboard/AccountSettings/EditProfile";
 import MySubscriptions from "./pages/StudentDashboard/MySubscriptions";
 import LoginPageInstructor from "./pages/loginPage/LoginPageInstructor";
+import EmailConfirmation from "./pages/email confirmed/EmailConfirmation";
+import EmailConfirmationInstructor from "./pages/email confirmed/EmailConfirmationInstructor";
 
 function App() {
   return (
@@ -75,34 +77,55 @@ function App() {
         <Route path="earnings" element={<Earnings />} />
         {/* Add routes for other sections */}
       </Route>
-      <Route  path="/student-dashboard" element={<StudentDashboard />}>
-        <Route path="profile" element={<EditProfile user={{
-          avatar: "",
-          firstName: "",
-          lastName: "",
-          phone: "",
-          birthday: "",
-          addressLine1: "",
-          addressLine2: "",
-          state: "",
-          country: ""
-        }} />} />
+      <Route path="/student-dashboard" element={<StudentDashboard />}>
+        <Route
+          path="profile"
+          element={
+            <EditProfile
+              user={{
+                avatar: "",
+                firstName: "",
+                lastName: "",
+                phone: "",
+                birthday: "",
+                addressLine1: "",
+                addressLine2: "",
+                state: "",
+                country: "",
+              }}
+            />
+          }
+        />
         <Route path="subscriptions" element={<MySubscriptions />} />
-        <Route path="settings" element={<Settings onPrevious={function (): void {
-          throw new Error("Function not implemented.");
-        } } />} />
+        <Route
+          path="settings"
+          element={
+            <Settings
+              onPrevious={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+          }
+        />
         {/* Add more routes as needed */}
       </Route>
       <Route path="/student-dashboard" element={<StudentDashboard />} />
       <Route path="/instructor-dashboard/earnings" element={<Earnings />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<SignupPage />} />
-      <Route path ="/instructor-login" element={<LoginPageInstructor />} />
+      <Route path="/email-verified/:token" element={<EmailConfirmation />} />
+      <Route
+        path="/email-verified-instructor/:token"
+        element={<EmailConfirmationInstructor />}
+      />
+
+      <Route path="/instructor-login" element={<LoginPageInstructor />} />
       <Route path="/educational-courses" element={<EducationalCoursesPage />} />
       <Route path="/create-course" element={<CreateCourse />} />
       <Route path="/landing" element={<LandingPage />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
+
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/becomeaTeacher" element={<BecomeaTeacherPage />} />
       <Route path="/cart" element={<CartPage />} />

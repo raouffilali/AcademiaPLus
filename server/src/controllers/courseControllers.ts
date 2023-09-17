@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Course, Section, Lecture } from "../models/Course/course";
+import Instructor from "../models/Users/Instractor";
 
 // create a new course
 const createCourse = async (req: Request, res: Response) => {
@@ -15,6 +16,11 @@ const createCourse = async (req: Request, res: Response) => {
     price,
   } = req.body;
 
+  // Extract instructor's information from JWT token
+  const token = req.headers.authorization; // Assuming you pass the JWT token in the Authorization header
+  const decodedToken = JSON.parse(atob(token!.split('.')[1]));
+  const instructorId = decodedToken.id; // Assuming the instructor's ID is in the token
+
   const course = new Course({
     title,
     category,
@@ -25,11 +31,26 @@ const createCourse = async (req: Request, res: Response) => {
     sections,
     reviews,
     price,
+    instructore: instructorId, // Associate the course with the instructor
   });
 
-  const createdCourse = await course.save();
-  res.status(201).json(createdCourse);
+  try {
+    const createdCourse = await course.save();
+
+    // Update the instructor's createdCourses array
+    await Instructor.findByIdAndUpdate(
+      instructorId,
+      { $push: { createdCourses: createdCourse._id } },
+      { new: true }
+    );
+
+    res.status(201).json(createdCourse);
+  } catch (error) {
+    console.error('Error creating course:', error);
+    res.status(500).json({ error: 'Course creation failed' });
+  }
 };
+
 
 // Create a new section within a course
 const createSection = async (req: Request, res: Response) => {

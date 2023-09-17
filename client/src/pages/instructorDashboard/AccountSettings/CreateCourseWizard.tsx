@@ -1,13 +1,47 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const BasicInfo: React.FC<{ onNext: () => void }> = ({ onNext }) => {
   const [courseTitle, setCourseTitle] = useState("");
   const [category, setCategory] = useState("");
   const [courseLevel, setCourseLevel] = useState("");
+  const [price, setPrice] = useState("");
   const [courseDescription, setCourseDescription] = useState("");
 
+  const apiURL = `http://localhost:5000/api/courses/course`;
+
+  // get token that is stored in local storage
+  const token = localStorage.getItem("authToken");
+
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token} `,
+      },
+    };
+    try {
+      const { data } = await axios.post(
+        apiURL,
+        {
+          courseTitle,
+          category,
+          courseLevel,
+          price,
+          courseDescription,
+        },
+        config
+      );
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+    onNext();
+  };
+
+
   const handleNext = () => {
-    // Validate the form data, then call the onNext function
     onNext();
   };
 
@@ -15,6 +49,7 @@ const BasicInfo: React.FC<{ onNext: () => void }> = ({ onNext }) => {
     <div className=" container">
       <div className="shadow rounded bg-white p-4 text-sm">
         <h2 className="text-xl font-semibold mb-4">Basic Information</h2>
+        <form onSubmit={submitHandler}>
         <div className="mb-4">
           <label className="block font-semibold text-gray-600 mb-1">
             Course Title
@@ -36,8 +71,13 @@ const BasicInfo: React.FC<{ onNext: () => void }> = ({ onNext }) => {
             onChange={(e) => setCategory(e.target.value)}
             className="border bg-white p-2 rounded w-full"
           >
-            <option value="">Select Category</option>
+            <option className=" w-7 rounded-lg" value="">Select Category</option>
             {/* Add your category options here */}
+            <option className=" w-7 rounded-lg" value="mobile">Mobile Development</option>
+            <option className=" w-7 rounded-lg" value="web">Web Development</option>
+            <option className=" w-7 rounded-lg" value="desktop">Desktop Development</option>
+            <option className=" w-7 rounded-lg" value="game">Game Development</option>
+            <option className=" w-7 rounded-lg" value="data">Data Science</option>
           </select>
         </div>
         <div className="mb-4">
@@ -69,6 +109,20 @@ const BasicInfo: React.FC<{ onNext: () => void }> = ({ onNext }) => {
             placeholder="Insert course description"
           />
         </div>
+        <div className="mb-4">
+          <label className="block font-semibold text-gray-600 mb-1">
+            Price
+          </label>
+          <input
+            type="number"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            className="border p-2 rounded w-full"
+            placeholder="Price in DZD "
+          />
+        </div>
+        <button type="submit" className="float-right mt-12 px-12 py-4 bg-bluePal text-white text-md rounded-xl font-bold">Save</button>
+      </form>
       </div>
     </div>
   );
@@ -228,7 +282,7 @@ const Curriculum: React.FC<{ onNext: () => void; onPrevious: () => void }> = ({
                     <button className=" rounded text-xs text-white font-medium p-1 px-3 bg-gray-500">
                       Add article+
                     </button>
-                    <button 
+                    <button
                       value={lectureDescription}
                       className=" rounded text-xs text-white font-medium p-1 px-3 bg-gray-500"
                     >

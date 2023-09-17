@@ -72,6 +72,7 @@ export const authGuard = async (req, res, next) => {
 
       // Fetch the user from the database
       const user = await userModel.findById(id).select("-password");
+      console.log("User:", user);
 
       if (!user) {
         const authError = new AuthenticationError("User not found");

@@ -19,15 +19,39 @@ import {
   TopCategoryCarousel,
   TestemonialsCard,
 } from "../../constants";
+import { useEffect, useState } from "react";
 
 function LandingPage() {
+  const [role, setRole] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      try {
+        const decodedToken = JSON.parse(atob(token.split(".")[1]));
+        const userRole = decodedToken.role;
+        setRole(userRole);
+        setIsAuthenticated(true);
+        console.log("role", role);
+        console.log("isAuthenticated", isAuthenticated);
+        console.log("decodedToken", decodedToken);
+      } catch (error) {
+        console.error("Error decoding or extracting token:", error);
+      }
+    } else {
+      console.error("Token not found in localStorage");
+    }
+  },);
+
   return (
     <div>
       <div className="lg:w-full xl:w-full 2xl:w-full top-14 md:h-[920px] bg-gradient-to-r from-red-50 to-[#e2eefc]">
-        <NavBar
-          isFixed={true}
-          isTeacher={false}
-        />
+        <div>
+          {!isAuthenticated && <NavBar isTeacher={false} />}
+          {role === "Student" && <NavBar isTeacher={false} />}
+          {role === "Instractor" && <NavBar isTeacher={true} />}
+        </div>
         <div>
           <ScrollToTopButton />
           <div className="text-gray-900 mx-[12px] lg:mx-[80px]">
@@ -111,7 +135,6 @@ function LandingPage() {
       <div
         className="w-full top-14 h-full pb-4 bg-cover  bg-gradient-to-r from-red-50 to-[#e2eefc]"
         style={{
-
           backgroundRepeat: "no-repeat, repeat-y",
           backgroundSize: "auto, cover",
         }}
@@ -230,7 +253,7 @@ function LandingPage() {
             <Link to="/virtual-lab">
               <button className="mt-2 lg:mt-0 flex items-center text-lightBluePal hover:text-white hover:bg-bluePal border-4 font-medium  border-bluePal py-1 px-4 lg:py-2 rounded-3xl">
                 <span className="mr-2">Enter</span>
-                 Lab
+                Lab
               </button>
             </Link>
           </div>
@@ -268,7 +291,6 @@ function LandingPage() {
         <div
           className="w-full top-14 h-full pb-4 bg-cover  bg-gradient-to-r from-[#e2eefc] to-red-50 "
           style={{
-
             backgroundRepeat: "no-repeat, repeat-y",
             backgroundSize: "auto, cover",
           }}

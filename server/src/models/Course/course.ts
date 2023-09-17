@@ -33,6 +33,7 @@ interface ICourse extends Document {
   price: number;
   requirements: string;
   instructore: Schema.Types.ObjectId;
+  Requirements: string;
 }
 
 // ? Define the Course schema
@@ -59,7 +60,7 @@ const lectureSchema = new Schema<ILecture>(
 // Section model
 const sectionSchema = new Schema<ISection>(
   {
-    title: String,
+    title: { type: String, default: "New Section" } ,
     course: { type: Schema.Types.ObjectId, ref: "Course" },
     lectures: [{ type: Schema.Types.ObjectId, ref: "Lecture" }],
   },
@@ -86,6 +87,7 @@ const courseSchema = new Schema<ICourse>(
     price: { type: Number, required: true }, // Add the price field as a number
     requirements: String, // Optionally, add any other fields you need
     instructore: { type: Schema.Types.ObjectId, ref: "Instractor" },
+    Requirements: String,
   },
   { timestamps: true }
 );
